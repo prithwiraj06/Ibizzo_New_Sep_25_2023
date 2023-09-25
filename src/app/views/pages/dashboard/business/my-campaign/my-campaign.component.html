@@ -1,0 +1,104 @@
+<kt-portlet>
+  <kt-portlet-header title="My Campaigns"> </kt-portlet-header>
+  <kt-portlet-body>
+    <mat-table
+      #table
+      [dataSource]="dataSource"
+      matSortActive="name"
+      matSortDirection="asc"
+      class="table table-striped"
+    >
+      <ng-container matColumnDef="siNo">
+        <mat-header-cell *matHeaderCellDef class="mat-col1">
+          #
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element; let i = index" class="mat-col1">
+          {{ i + 1 + paginator.pageSize * paginator.pageIndex }}
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <mat-header-cell
+          *matHeaderCellDef
+          mat-sort-header
+          class="header-cell set-padding"
+        >
+          Campaign Name
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element" class="header-cell set-padding">
+          {{ element.compaignName }}
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="sentDate">
+        <mat-header-cell *matHeaderCellDef mat-sort-header
+          >Sent Date</mat-header-cell
+        >
+        <mat-cell *matCellDef="let element">
+          <span
+            class="btn btn-label-primary btn-sm pointer"
+            (click)="openProductHistory(element)"
+          >
+            {{ getDateFormate(element.createDate) }}</span
+          >
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="sentTo">
+        <mat-header-cell *matHeaderCellDef> Sent To </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          {{ element.flyersSentTo }}
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="seenBy">
+        <mat-header-cell
+          *matHeaderCellDef
+          class="mob-view"
+          [ngClass]="type == 'updatedProfile' ? 'phone-cell' : ''"
+        >
+          Seen By
+        </mat-header-cell>
+        <mat-cell
+          *matCellDef="let element"
+          class="mob-view"
+          [ngClass]="type == 'updatedProfile' ? 'phone-cell' : ''"
+        >
+          {{ element.flyersSeenBy }}
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="view">
+        <mat-header-cell *matHeaderCellDef> View Flyer </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <button
+            class="btn btn-label-primary btn-sm"
+            (click)="openFlyer(element)"
+          >
+            View
+          </button>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row
+        *matRowDef="let row; columns: displayedColumns"
+        [ngClass]="row.isActive == 0 ? 'disabled-row' : ''"
+      >
+      </mat-row>
+      <div class="mat-table__message" *ngIf="!dataSource.hasData">
+        No Record Found
+      </div>
+    </mat-table>
+    <div class="align-item" *ngIf="loading">
+      <mat-spinner [diameter]="20"></mat-spinner>
+    </div>
+    <mat-paginator
+      [pageSize]="10"
+      [pageSizeOptions]="[5, 10, 20]"
+      (page)="pageChangeEvent()"
+      [length]="count"
+      [showFirstLastButtons]="true"
+    >
+    </mat-paginator>
+  </kt-portlet-body>
+</kt-portlet>

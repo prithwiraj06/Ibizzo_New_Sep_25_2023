@@ -1,0 +1,23 @@
+<!-- begin: Header -->
+<div *ngIf="memberData&&memberData.id" ktHeader #ktHeader class="kt-header kt-grid__item" [ngClass]="htmlClassService.getClasses('header', true)"
+	id="kt_header">
+	<div class="kt-header__top">
+		<div class="kt-container container-div" [ngClass]="{'kt-container--fluid': fluid, 'company-header': minisite }">
+			<!-- begin:: Brand -->
+			<kt-brand></kt-brand>
+			<!-- end:: Brand -->
+			<kt-search-default *ngIf="!isTest" class="search-bar" style=" width: 1200px !important;" id='search'></kt-search-default>
+			<!-- begin:: Header Topbar -->
+			<kt-topbar id='Registration'></kt-topbar>
+			<!-- end:: Header Topbar -->
+		</div>
+	</div>
+	<div class="kt-header__bottom">
+		<div class="kt-container" [ngClass]="{'kt-container--fluid': fluid}">
+			<!-- begin: Header Menu -->
+			<kt-menu-horizontal *ngIf="menuHeaderDisplay"></kt-menu-horizontal>
+			<!-- end: Header Menu -->
+		</div>
+	</div>
+</div>
+<!-- end: Header -->

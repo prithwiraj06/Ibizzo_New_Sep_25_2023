@@ -1,0 +1,49 @@
+<kt-portlet>
+  <div class="kt-portlet__head kt-portlet__head__custom">
+    <div class="kt-portlet__head-label">
+      <h5 class="kt-portlet__head-title">
+        Create Post
+      </h5>
+    </div>
+  </div>
+  <kt-portlet-body>
+    <div>
+      <div>
+        <form [formGroup]="videoForm">
+          <div class="row">
+            <div class="form-group col-lg-12">
+              <label class="mandatory-field">Video Link</label>
+              <input
+                placeholder="Video"
+                class="form-control"
+                formControlName="videoPath"
+                name="video"
+                type="text"
+              />
+              <mat-error *ngIf="isControlHasError('videoPath', 'required')">
+                Video link is required.
+              </mat-error>
+              <mat-error *ngIf="isControlHasError('video', 'pattern')">
+                Please enter the valid link
+              </mat-error>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </kt-portlet-body>
+  <kt-portlet-footer>
+    <div class="m-2 float-right">
+      <button
+        class="btn btn-primary"
+        (click)="postVideo()"
+        [ngClass]="{ 'kt-spinner kt-spinner--light': fetching }"
+      >
+        Post
+      </button>
+      <button class="btn btn-default mr-2" (click)="dialogRef.close()">
+        Cancel
+      </button>
+    </div>
+  </kt-portlet-footer>
+</kt-portlet>

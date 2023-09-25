@@ -1,0 +1,35 @@
+:host{
+  .close-button{
+    vertical-align: bottom;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    right: -10px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #ffffff;
+    box-shadow: 0px 0px 13px 0px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s;
+    margin-top: -21px;
+  }
+  
+  .close-icon{
+    color: #d90100;
+  }
+
+  .form-label{
+    text-align: right;
+    margin-top: 11px;
+  }
+
+  .row1{
+    width: 100% !important;
+  }
+
+  .footer{
+    text-align: center;
+  }
+}

@@ -1,0 +1,93 @@
+<kt-portlet>
+	<kt-portlet-body>
+		<div class="text-center">
+			<div [ngClass]="{'kt-spinner kt-spinner--right kt-spinner--md kt-spinner--danger': loadingData }">
+			</div>
+		</div>
+		<div *ngIf="productDetails" class="row">
+			<div class="col-lg-5 col-md-5 border">
+				<div class="row">
+					<div class="col text-center p-1">
+						<img *ngIf="!videoUrl" [src]="images  ? images : '/assets/media/placeholder/product.jpg'"
+							[ngClass]="productDetails.productImages[0]?'hero-image':'no-image'" alt="">
+						<div *ngIf="videoUrl" [ngClass]="productDetails.productImages[0]?'hero-image':'no-image'">
+							<iframe [src]="sanitizer.bypassSecurityTrustResourceUrl(images)" style="width:100%;height:100%;"
+								alt=""></iframe>
+						</div>
+
+					</div>
+				</div>
+				<div *ngIf="imageSource" class="row ">
+					<!-- <div class="col-3">
+					</div> -->
+					<div *ngFor="let image of imageSource;let i=index">
+						<img [src]="image" class="image-resize p-2 " (click)="setImage(image,i)" alt="">
+					</div>
+				</div>
+			</div>
+
+			<div class="col-lg-7 col-md-7">
+				<div class=" kt-padding-20">
+					<h4 class="kt-font-brand kt-font-bold">{{productDetails.productName}}</h4>
+					<h5 class="kt-font-dark" *ngIf=!contactSupplier>
+						Price: {{productDetails.priceMin | currency:"₹"}} - {{productDetails.priceMax | currency:"₹"}}
+					</h5>
+					<h5 class="kt-font-dark" *ngIf=contactSupplier>
+						Contact supplier for price.
+					</h5>
+					<h5 *ngIf="type!=2" class="kt-font-dark">Minimum Order Quantity: {{productDetails.moq}}</h5>
+
+					<form class="kt-form" [formGroup]='salescatlogForm'>
+
+						<div *ngIf="type!=2" class="row">
+							<div class="col">
+								<div class="form-group">
+									<label class="mandatory-field">Quantity</label>
+									<input class="form-control" type="number" [min]="productDetails.moq | number"
+										[ngClass]="!invalidInput?'border-secondary':'border-danger'" formControlName="quantity"
+										(keyup)="changeQuantity($event)" />
+								</div>
+							</div>
+							<div class="col">
+								<div class="form-group">
+									<label class="mandatory-field">Select Unit</label>
+									<div class="form-control" [ngClass]="unitInvalid?'border-danger':'border-secondary'">
+										<mat-select formControlName='unit' (selectionChange)="changeUnit($event)">
+											<mat-option *ngFor="let item of unitList" [value]='item.id'>
+												{{item.Type}}
+											</mat-option>
+										</mat-select>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<textarea class="form-control" rows="5" placeholder="Please enter your enquiry"
+								formControlName='enquiry'></textarea>
+						</div>
+
+						<div class="form-group">
+							<mat-checkbox formControlName='multiUser'> Get Quote from
+								other matching suppliers.
+							</mat-checkbox>
+						</div>
+
+						<button type="button" class="btn btn-brand btn-lg"
+							[ngClass]="{'kt-spinner kt-spinner--right kt-spinner--md kt-spinner--light': loading }"
+							(click)='submit()'>Send Enquiry</button>
+
+					</form>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div *ngIf="productDetails" class="col kt-padding-10">
+				<div *ngFor="let desc of productDetails.descriptionList; let i=index">
+					{{desc.description}}
+				</div>
+			</div>
+		</div>
+	</kt-portlet-body>
+</kt-portlet>

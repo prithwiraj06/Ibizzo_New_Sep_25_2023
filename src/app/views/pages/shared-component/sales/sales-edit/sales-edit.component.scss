@@ -1,0 +1,147 @@
+.form-label {
+  text-align: right;
+  margin-top: 11px;
+}
+
+.add-label {
+  text-align: right !important;
+}
+
+.header-text-align {
+  margin-left: 37%;
+}
+
+.btn-color {
+  background: #dc3545 !important;
+  color: #ffffff;
+}
+
+hr {
+  border: 0;
+  clear: both;
+  display: block;
+  width: 96%;
+  background-color: #efefef;
+  height: 1px;
+}
+
+@media screen and(max-width: 1300px) {
+  .exist-category {
+    margin-left: -11px;
+  }
+
+  .form-label {
+    text-align: left !important;
+  }
+}
+
+
+.error {
+  border-color: #dc3545 !important;
+}
+
+.help-text {
+  margin-top: 17px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #FF6600;
+  cursor: pointer;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.footer {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.img-close {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  background: #6d6c9a;
+  color: white;
+  border-radius: 50%;
+  position: absolute;
+}
+
+@media(min-width: 576px) {
+  .modal-dialog {
+    max-width: 650px !important;
+    margin: 1.75rem auto;
+  }
+}
+
+.cropper-bg{
+  width: auto !important;
+}
+
+.modal-dialog {
+  position: relative;
+  width: 650px !important;
+  margin: 0.5rem;
+  pointer-events: none;
+}
+
+.set-label {
+  text-align: right !important;
+}
+
+.image-size {
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  width: 150px !important;
+  height: 150px !important;
+}
+
+.default-image {
+  width: 150px !important;
+  height: 150px !important;
+}
+
+.close-icon {
+  margin-top: -13px;
+  margin-left: -13px;
+}
+
+.product-card {
+  width: 102%;
+  margin-left: -1%;
+}
+
+.cards {
+  width: 102%;
+  margin-left: -1%;
+  margin-top: 2%;
+}
+
+@media(min-width: 320px) and(max-width: 480px) {
+  .form-label {
+    text-align: left;
+  }
+
+  .product-card {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+  }
+
+  .add-label {
+    text-align: right !important;
+  }
+  .hide-text {
+    display: none !important;
+  }
+
+  .mobile-margin {
+    margin-top: 10px !important;
+  }
+
+  .set-label {
+    text-align: left !important;
+  }
+
+}

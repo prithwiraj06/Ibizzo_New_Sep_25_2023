@@ -1,0 +1,240 @@
+<form
+  [formGroup]="form"
+  class="kt-form kt-form--label-right"
+  autocomplete="off"
+>
+  <mat-card class="cards product-card">
+    <mat-card-header>
+      <mat-card-title style="font-size: 17px"
+        >Product/Service Details</mat-card-title
+      >
+    </mat-card-header>
+    <hr class="mt-1" />
+    <mat-card-content>
+      <div class="row form-group">
+        <div class="col-lg-3 form-label">
+          <label class="getClass()">Type</label>&nbsp;<span>:</span>
+          <i
+            class="fa fa-question-circle ml-1"
+            placement="right"
+            style="color: #ff6600"
+            ngbPopover="Please enter Type"
+            popoverTitle="Type"
+          ></i>
+        </div>
+        <div class="col-lg-6">
+          <mat-select
+            formControlName="productType"
+            class="form-control"
+            [ngClass]="
+              isControlHasError('productType', 'required') ? 'error' : ''
+            "
+          >
+            <mat-option
+              *ngFor="let option of productTypeOption"
+              [value]="option.id"
+            >
+              {{ option.name }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="isControlHasError('productType', 'required')">
+            Type is required
+          </mat-error>
+        </div>
+      </div>
+
+      <div class="row form-group">
+        <div class="col-lg-3 form-label">
+          <label class="mandatory-field">Product/Service Name</label
+          ><span>:</span>&nbsp;
+          <i
+            class="fa fa-question-circle ml-1"
+            placement="right"
+            style="color: #ff6600"
+            ngbPopover="Please enter Product Name"
+            popoverTitle="Product Name"
+          ></i>
+          <!-- <label style="font-size: 11px; margin-right: 8%"
+            >With UNSPS Code</label
+          > -->
+        </div>
+        <div class="col-lg-6">
+          <div class="form-group">
+            <kt-product-lookup
+              [data]="{ text: form.value.productName, id: 0 }"
+              (onChange)="onProductChange($event)"
+              type=""
+            >
+            </kt-product-lookup>
+            <mat-error *ngIf="isControlHasError('productName', 'required')">
+              Product/Service Name is required
+            </mat-error>
+          </div>
+        </div>
+      </div>
+
+      <div class="row form-group">
+        <div class="col-lg-3 form-label">
+          <label>Product/Service Category</label><span>:</span>
+          <i
+            class="fa fa-question-circle ml-1"
+            placement="right"
+            style="color: #ff6600"
+            ngbPopover="Please enter Product Category Name"
+            popoverTitle="Product Category Name"
+          ></i>
+        </div>
+        <div class="col-lg-6">
+          <kt-category-lookup
+            [data]="data.productCatogories"
+            [categories]="productCategoryList"
+            [customCategories]="data.customProductCatogories"
+            (onChange)="onCategoryChange($event)"
+            [productId]="userProduct.productId"
+            #categoryLookUps
+          ></kt-category-lookup>
+          <mat-error *ngIf="isControlHasError('productCatogories', 'required')">
+            Product/Service Category is required
+          </mat-error>
+        </div>
+      </div>
+
+      <div class="row form-group" style="margin-bottom: 14px">
+        <div class="col-lg-3 form-label">
+          <label>HSN/SAC code:</label>&nbsp;
+        </div>
+        <div class="col-lg-6">
+          <kt-hsn-lookup
+            [data]="{ text: form.value.hsn, id: form.value.hsn }"
+            (onChange)="onHSNChange($event)"
+            #hsnLookUps
+          >
+          </kt-hsn-lookup>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card class="cards">
+    <mat-card-header>
+      <mat-card-title style="font-size: 17px"
+        >Product Description</mat-card-title
+      >
+    </mat-card-header>
+    <hr class="mt-1" />
+    <mat-card-content>
+      <div class="row form-group mt-4" style="margin-bottom: 14px">
+        <div class="col-lg-3 form-label">
+          <label>Product/Service specification:</label>&nbsp;
+          <i
+            class="fa fa-question-circle ml-1"
+            placement="right"
+            style="color: #ff6600"
+            ngbPopover="Please enter Description"
+            popoverTitle="Description"
+          ></i>
+        </div>
+        <div class="col-lg-6">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Type, modal, make..."
+            formControlName="productSpecification"
+          />
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card class="cards">
+    <mat-card-header>
+      <mat-card-title style="font-size: 17px">Purchase Details</mat-card-title>
+    </mat-card-header>
+    <hr class="mt-1" />
+    <mat-card-content>
+      <div class="row form-group mt-2">
+        <div class="col-lg-3 form-label">
+          <label class="mt-2">Annual Requirement:</label>
+          <i
+            class="fa fa-question-circle ml-1"
+            placement="right"
+            style="color: #ff6600"
+            ngbPopover="Please enter Annual Requirement"
+            popoverTitle="Annual Requirement"
+          ></i>
+        </div>
+        <div class="col-lg-3 form-label">
+          <input
+            type="number"
+            class="form-control"
+            placeholder="Annual Requirement"
+            formControlName="annualRequirement"
+          />
+        </div>
+        <div class="col-lg-1 form-label">
+          <label class="mt-2">Units:</label>
+          <i
+            class="fa fa-question-circle ml-1"
+            placement="right"
+            style="color: #ff6600"
+            ngbPopover="Please enter Units Required."
+            popoverTitle="Units Required"
+          ></i>
+        </div>
+        <div class="col-lg-3" style="margin-top: 10px">
+          <mat-select class="form-control" formControlName="unitTypeId">
+            <mat-option
+              *ngFor="let option of productQuantityType"
+              [value]="option.id"
+              >{{ option.Type }}</mat-option
+            >
+          </mat-select>
+        </div>
+      </div>
+
+      <div class="row form-group" style="margin-bottom: 14px">
+        <div class="col-lg-3 form-label">
+          <label>Frequency of Purchase:</label>
+          <i
+            class="fa fa-question-circle ml-1"
+            placement="right"
+            style="color: #ff6600"
+            ngbPopover="Please enter Frequency of Purchase."
+            popoverTitle="Frequency of Purchase"
+          ></i>
+        </div>
+        <div class="col-lg-6">
+          <mat-select
+            class="form-control"
+            formControlName="frequencyOfPurchase"
+          >
+            <mat-option
+              *ngFor="let option of frequencyData"
+              [value]="option.id"
+              >{{ option.Type }}</mat-option
+            >
+          </mat-select>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</form>
+
+<div class="kt-portlet-footer footer">
+  <button
+    type="button"
+    class="btn btn-brand"
+    (click)="submit()"
+    [ngClass]="{ 'kt-spinner kt-spinner--light': loading }"
+  >
+    Submit</button
+  >&nbsp;
+  <button
+    type="button"
+    color="primary"
+    class="btn btn-secondary"
+    (click)="cancel()"
+  >
+    Cancel
+  </button>
+</div>

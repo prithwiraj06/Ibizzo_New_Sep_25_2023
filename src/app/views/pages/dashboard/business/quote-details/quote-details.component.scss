@@ -1,0 +1,37 @@
+:host{
+  input.input-text{
+    width: 100px;
+    padding: 5px 0px;
+    line-height: 20px;
+    height: 46px;
+    text-align: center;
+  }
+  
+  .set-button{
+    width: 200px !important; 
+    margin: auto !important;
+    display: flex !important;
+  }
+
+  span.input-group-btn.input-group-prepend{
+    width: 50px;
+  }
+
+  button.btn.btn-secondary{
+    font-size: 2.5rem;
+    line-height: 10px;
+  }
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+  .kt-portlet{
+    max-width: 310px !important;
+  }
+
+  .set-button{
+    width: 200px !important; 
+    margin: auto !important;
+    display: flex !important;
+  }
+
+}

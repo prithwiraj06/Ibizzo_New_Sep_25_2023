@@ -1,0 +1,59 @@
+// import login css
+@import "sass/pages/login/login-1";
+
+kt-auth, .kt-login {
+	height: 100%;
+
+	.mat-form-field {
+		width: 100%;
+	}
+
+	// add extra right padding when displaying spinner in button
+	.kt-spinner {
+		padding-right: 3rem !important;
+	}
+}
+
+.cursor-point{
+	cursor: pointer;
+}
+
+.mandatory-field:after{
+	content: "*";
+	margin-bottom: 2px;
+	font-size: 15px;
+	color: red;
+}
+
+.set-a {
+    display: inline-block !important;
+    text-decoration:none !important;
+    color: #5d78ff !important;
+  }
+  
+  .set-a:after {
+    content: "";
+    display: block !important;
+    width: 0 !important;
+    border-bottom: 1px solid !important;
+    margin: 0 auto !important;
+    transition:all 0.3s linear 0s !important;
+  }
+  
+  .set-a:hover:after {
+    width: 90% !important;
+    color: #5d78ff !important;
+  }
+
+  .align{
+    text-align: left !important;
+  }
+
+  .form-control {
+    width: 430px !important;
+  }
+:host{
+  kt-auth, .kt-login {
+	  height: 100%;
+  }
+}

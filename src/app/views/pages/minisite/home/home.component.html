@@ -1,0 +1,400 @@
+<div class="row" *ngIf="userInfo">
+  <div class="col-sm-8">
+    <!--About us -->
+    <div
+      class="company-info-wrapper"
+      svgbackground
+      [accentColor]="userInfo.accentColor"
+      [alternateColor]="userInfo.alternateColor"
+      [height]="userInfo.showContact?650:500"
+    >
+      <kt-portlet class="kt-border-radius no-bottom-margin">
+        <kt-portlet-body>
+          <div class="row mob-view">
+            <div class="col-lg-6 col-md-6">
+              <div class="paid-indication pb-1 pt-1">
+                <span
+                  *ngIf="
+                    checkPaymentIsDone('images', 0) &&
+                    companyRelatedImages.length > 0 &&
+                    this.myPackages.isPaidImage[0]
+                  "
+                  class="badge badge-paid"
+                  >NOT PAID
+                </span>
+              </div>
+              <img
+                [src]="
+                  checkPaymentIsDone('images', 0) &&
+                  companyRelatedImages.length > 0
+                    ? getImage(companyRelatedImages[0])
+                    : 'https://www.gumtree.com/static/1/resources/assets/rwd/images/orphans/a37b37d99e7cef805f354d47.noimage_thumbnail.png'
+                "
+                width="100%"
+                height="100%"
+                (click)="
+                  companyRelatedImages.length != 0 &&
+                    viewImage(companyRelatedImages[0])
+                "
+                class="cursor first-img"
+              />
+            </div>
+            <div class="col-lg-6 col-md-6">
+              <p
+                class="mt-2 company-description"
+                [innerHtml]="userInfo.aboutYourCompany | safe: 'html'"
+                [ngStyle]="{'height':userInfo.showContact?'550px':'400px'}"
+              ></p>
+            </div>
+          </div>
+        </kt-portlet-body>
+      </kt-portlet>
+    </div>
+    <!--About us -->
+  </div>
+
+  <div class="col-lg-4 col-md-4" (click)="gotoContactUs()">
+    <!-- begin: navigation-menu -->
+    <div class="kt-widget17" *ngIf="userInfo.showContact">
+      <div
+        class="kt-widget17__stats"
+        style="margin-top: 0; margin-bottom: 5px; width: 100%"
+      >
+        <div class="kt-widget17__items">
+          <span class="kt-widget17__item" style="padding: 1rem">
+            <!-- <span
+              class="kt-widget17__subtitle"
+              style="margin-bottom: 15px; margin-top: 0px"
+              >Contact Details
+            </span> -->
+            <div class="row">
+              <div class="col-sm-6" *ngIf="userInfo.phoneNumber">
+                <div class="font-weight-bold">Phone Number</div>
+                <div class="text-muted">{{ userInfo.phoneNumber }}</div>
+              </div>
+              <div class="col-sm-6" *ngIf="userInfo.email">
+                <div class="font-weight-bold">Email</div>
+                <div class="text-muted">{{ userInfo.email }}</div>
+              </div>
+            </div>
+            <div class="row" style="margin-top: 5px">
+              <div class="col-sm-12" *ngIf="userInfo.state">
+                <div class="font-weight-bold">Address</div>
+                <div class="text-muted">{{ userInfo.state }}</div>
+              </div>
+            </div>
+          </span>
+        </div>
+      </div>
+    </div>
+    <kt-portlet class="kt-border-radius">
+      <kt-portlet-header title="Company Summary">
+        <ng-container ktPortletTools>
+          <button
+            class="btn btn-bold btn-brand minisite-bg-color"
+            type="button"
+            (click)="gotoSalesCatalogue()"
+          >
+            Sales Catalogue
+          </button>
+        </ng-container>
+      </kt-portlet-header>
+      <kt-portlet-body style="padding: 0px !important">
+        <div class="kt-widget1" *ngIf="userInfo">
+          <div class="kt-widget1__items">
+            <div class="row kt-widget1__item kt-widget1__item--active">
+              <div class="col-lg-6 col-md-6">Business Category</div>
+              <div class="col-lg-6 col-md-6">
+                <span *ngIf="userInfo && userInfo.natuteOfBusiness">
+                  {{ (userInfo?.natuteOfBusiness)[0]?.name }}
+                </span>
+              </div>
+            </div>
+
+            <div class="row kt-widget1__item kt-widget1__item--active">
+              <div class="col-lg-6 col-md-6">Location</div>
+              <div class="col-lg-6 col-md-6">
+                {{ userInfo.location }}
+              </div>
+            </div>
+
+            <div class="row kt-widget1__item kt-widget1__item--active">
+              <div class="col-lg-6 col-md-6">Total Annual Revenue</div>
+              <div class="col-lg-6 col-md-6">
+                {{ getAnnualRevenue() }}
+              </div>
+            </div>
+
+            <div class="row kt-widget1__item kt-widget1__item--active">
+              <div class="col-lg-6 col-md-6">Website</div>
+              <div class="col-lg-6 col-md-6">
+                <!-- <span *ngIf="!myPackages.isWebsiteLink" class="kt-truncate website-width">{{userInfo.website}}</span> -->
+                <a
+                  *ngIf="myPackages.isWebsiteLink"
+                  [href]="userInfo.website"
+                  target="_blank"
+                  class="kt-truncate minisite-font-color website-width"
+                  [ktsmartlink]="userInfo.website"
+                  >{{ userInfo.website }}</a
+                >
+              </div>
+            </div>
+
+            <div class="row kt-widget1__item kt-widget1__item--active">
+              <div class="col-lg-6 col-md-6">GSTIN</div>
+              <div class="col-lg-6 col-md-6">
+                {{ userInfo.gstin }}
+              </div>
+            </div>
+
+            <div class="row kt-widget1__item kt-widget1__item--active">
+              <div class="col-lg-6 col-md-6">Total Employees</div>
+              <div class="col-lg-6 col-md-6">
+                {{ userInfo.employeeCount }}
+              </div>
+            </div>
+
+            <div class="row kt-widget1__item kt-widget1__item--active">
+              <div class="col-lg-6 col-md-6">Year Established</div>
+              <div class="col-lg-6 col-md-6">
+                {{ userInfo.registrationDate }}
+              </div>
+            </div>
+
+            <div class="row kt-widget1__item kt-widget1__item--active">
+              <div class="col-lg-6 col-md-6">Importer/Exporter</div>
+              <div class="col-lg-6 col-md-6">
+                <span *ngIf="userInfo.bussinessType == 0">None</span>
+                <span *ngIf="userInfo.bussinessType == 1">Importer</span>
+                <span *ngIf="userInfo.bussinessType == 2">Exporter</span>
+                <span *ngIf="userInfo.bussinessType == 3">Both</span>
+              </div>
+            </div>
+            <div class="row kt-widget1__item kt-widget1__item--active">
+              <div class="col-lg-6 col-md-6">Share with</div>
+              <div class="col-lg-6 col-md-6">
+                <span>
+                  <kt-social-share></kt-social-share>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </kt-portlet-body>
+    </kt-portlet>
+    <!-- end: navigation-menu -->
+  </div>
+</div>
+
+<!--Product image gallery-->
+<div id="products" *ngIf="productImages.length != 0">
+  <kt-product-image-gallery
+    [productImages]="productImages"
+    [colors]="minisiteColors"
+    [search]="source"
+    [isParterMember]='isSrc'
+  >
+  </kt-product-image-gallery>
+</div>
+
+<!--Product image gallery-->
+
+<div class="row">
+  <!--begin: Company videos-->
+  <div class="col-lg-4">
+    <kt-portlet id="videos">
+      <div class="kt-portlet__head">
+        <div class="kt-portlet__head-label">
+          <h3 class="kt-portlet__head-title">Company Videos</h3>
+        </div>
+        <div class="kt-portlet__head-toolbar" *ngIf="loading.videoLoading">
+          <span
+            class="kt-spinner kt-spinner--right kt-spinner--md kt-spinner--primary"
+          ></span>
+        </div>
+      </div>
+
+      <kt-portlet-body
+        class="portet-body"
+        [ngStyle]="{ 'padding-top': isPaidVideo ? '0px' : '' }"
+      >
+        <kt-no-results
+          class="icon-position"
+          *ngIf="!displayNoItemCard(videos, 'videos'); else showCompanyVideos"
+          [show]="true"
+          message="No videos found"
+          icon="flaticon-youtube"
+        ></kt-no-results>
+
+        <ng-template #showCompanyVideos>
+          <div class="row">
+            <div class="paid-indication pb-1 pt-1">
+              <span *ngIf="isPaidVideo" class="badge badge-paid"
+                >NOT PAID
+              </span>
+            </div>
+            <iframe
+              *ngIf="heroCards.firstVedio && checkPaymentIsDone('videos', 0)"
+              width="600"
+              height="250"
+              [src]="heroCards.firstVedio"
+              frameborder="0"
+              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            >
+            </iframe>
+            <img
+              *ngIf="!heroCards.firstVedio"
+              width="600"
+              height="300"
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRJlyf2lnwdLM9g1OUbvL1TW6KsxWU9WinFDMNhPIkz97aGQhsi"
+            />
+          </div>
+          <div class="row mt-4">
+            <div *ngFor="let video of videos; let i = index">
+              <img
+                *ngIf="i < 2 && checkPaymentIsDone('videos', i)"
+                class="vedio-thumbnail"
+                src="https://img.youtube.com/vi/{{ video.id }}/0.jpg"
+                [ngClass]="i != 0 ? 'ml-3' : ''"
+                (click)="fetchHeroCard(video.video, 'firstVedio', i)"
+                style="cursor: pointer"
+              />
+            </div>
+          </div>
+        </ng-template>
+      </kt-portlet-body>
+    </kt-portlet>
+  </div>
+  <!--end: Company videos-->
+
+  <!--begin: Company images-->
+  <div class="col-lg-4">
+    <kt-portlet id="gallery">
+      <div class="kt-portlet__head">
+        <div class="kt-portlet__head-label">
+          <h3 class="kt-portlet__head-title">Company Image Gallery</h3>
+        </div>
+        <div class="kt-portlet__head-toolbar" *ngIf="loading.imageLoading">
+          <span
+            class="kt-spinner kt-spinner--right kt-spinner--md kt-spinner--primary"
+          ></span>
+        </div>
+      </div>
+
+      <kt-portlet-body
+        class="portet-body"
+        [ngStyle]="{ 'padding-top': isPaid ? '0px' : '' }"
+      >
+        <kt-no-results
+          class="icon-position"
+          *ngIf="
+            !displayNoItemCard(companyRelatedImages, 'images');
+            else showCompanyImages
+          "
+          [show]="true"
+          message="No Images found"
+          icon="flaticon2-photograph"
+        ></kt-no-results>
+
+        <ng-template #showCompanyImages>
+          <div class="row">
+            <div class="paid-indication pb-1 pt-1">
+              <span *ngIf="isPaid" class="badge badge-paid">NOT PAID </span>
+            </div>
+            <img
+              *ngIf="checkPaymentIsDone('images', 0)"
+              width="100%"
+              height="250"
+              [src]="getImage(heroCards.firstImage)"
+              (click)="viewImage(heroCards.firstImage)"
+              class="cursor"
+            />
+          </div>
+          <div class="row mt-4">
+            <div *ngFor="let image of companyRelatedImages; let i = index">
+              <img
+                *ngIf="checkPaymentIsDone('images', i)"
+                class="image-size cursor"
+                [src]="getImage(image)"
+                (click)="fetchHeroCard(image, 'firstImage', i)"
+                [ngClass]="i != 0 ? 'ml-2' : ''"
+              />
+            </div>
+          </div>
+        </ng-template>
+      </kt-portlet-body>
+    </kt-portlet>
+  </div>
+  <!--end: Company images-->
+
+  <!-- begin: company-documents -->
+  <div class="col-lg-4">
+    <kt-portlet id="documents">
+      <div class="kt-portlet__head">
+        <div class="kt-portlet__head-label">
+          <h3 class="kt-portlet__head-title">Company Documents</h3>
+        </div>
+        <div class="kt-portlet__head-toolbar" *ngIf="loading.documentLoading">
+          <span
+            class="kt-spinner kt-spinner--right kt-spinner--md kt-spinner--primary"
+          ></span>
+        </div>
+      </div>
+
+      <kt-portlet-body class="portet-body">
+        <kt-no-results
+          class="icon-position"
+          *ngIf="
+            !displayNoItemCard(companyRelatedDocuments, 'document');
+            else showCompanyDocuments
+          "
+          [show]="true"
+          message="No document found"
+          icon="flaticon-graphic"
+        ></kt-no-results>
+
+        <ng-template #showCompanyDocuments>
+          <div class="kt-widget4">
+            <div
+              class="kt-widget4__item"
+              *ngFor="let document of companyRelatedDocuments; let i = index"
+            >
+              <div
+                *ngIf="checkPaymentIsDone('document', i)"
+                class="kt-widget4__pic kt-widget4__pic--icon"
+              >
+                <img
+                  src="https://image.flaticon.com/icons/svg/136/136522.svg"
+                  class="document-image"
+                />
+              </div>
+              <a
+                *ngIf="checkPaymentIsDone('document', i)"
+                [href]="downloadDoc(document)"
+                target="_blank"
+                class="kt-widget4__title document-text"
+              >
+                {{ getDocName(document) }}
+              </a>
+              <div class="paid-indication pb-1 pt-1">
+                <span
+                  *ngIf="
+                    checkPaymentIsDone('document', i) &&
+                    checkPaymentIsDone('isPaidDoc', i)
+                  "
+                  class="badge badge-paid"
+                  >NOT PAID
+                </span>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </kt-portlet-body>
+    </kt-portlet>
+  </div>
+  <!-- end: company-documents -->
+</div>
+<div id="contact" *ngIf="(userInfo&&userInfo.showContact)">
+  <kt-contact-us   [user]="userInfo" id="Contact-Us"></kt-contact-us>
+</div>

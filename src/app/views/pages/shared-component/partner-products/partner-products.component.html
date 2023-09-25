@@ -1,0 +1,228 @@
+<div>
+  <div class="row content-align">
+    <kt-no-results
+      class="text-position"
+      *ngIf="finalArrayProduct.length == 0"
+      [show]="true"
+      message="There are no products to show."
+    ></kt-no-results>
+  </div>
+  <div
+    class="search-results row"
+    infiniteScroll
+    infiniteScroll
+    [infiniteScrollDistance]="0.5"
+    (scrolled)="scrollDown($event, 'product')"
+  >
+    <div class="col-lg-3" *ngIf="firstArrayProduct.length > 0">
+      <!--begin::Card-->
+
+      <div
+        class="card card-custom card-stretch card-stretch-third gutter-b card-border"
+        *ngFor="let item of firstArrayProduct"
+      >
+        <div class="card-body">
+          <div class="img-center">
+            <img
+              mat-card-image
+              width="265"
+              height="200"
+              [src]="viewImage(item)"
+            />
+          </div>
+          <div class="card-text-body">
+            <div class="card-title kt-truncate" *ngIf="item.productName">
+              {{ item.productName }}
+            </div>
+            <div>
+              <div class="card-text kt-truncate" *ngIf="item.suppliername">
+                Seller: {{ item.suppliername }}
+              </div>
+              <div
+                class="card-text"
+                *ngIf="item.priceMin == 0.0 && item.priceMax == 0.0"
+              >
+                Contact supplier for price
+              </div>
+              <div
+                class="card-text"
+                *ngIf="item.priceMin != 0.0 && item.priceMax != 0.0"
+              >
+                Price: {{ item.priceMin }} - {{ item.priceMax }} INR
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <a
+            class="btn btn-block"
+            target="_blank"
+            [routerLink]="getUrl(item)"
+            style="background-color: rgb(204, 0, 17); color: rgb(255, 255, 255)"
+            >More Details</a
+          >
+        </div>
+      </div>
+
+      <!--end::Card-->
+    </div>
+    <div class="col-lg-3" *ngIf="secondArrayProduct.length > 0">
+      <!--begin::Card-->
+
+      <div
+        class="card card-custom card-stretch card-stretch-third gutter-b card-border"
+        *ngFor="let item of secondArrayProduct"
+      >
+        <div class="card-body">
+          <div class="img-center">
+            <img
+              mat-card-image
+              width="265"
+              height="200"
+              [src]="viewImage(item)"
+            />
+          </div>
+          <div class="card-text-body">
+            <div class="card-title kt-truncate" *ngIf="item.productName">
+              {{ item.productName }}
+            </div>
+            <div>
+              <div class="card-text kt-truncate" *ngIf="item.suppliername">
+                Seller: {{ item.suppliername }}
+              </div>
+              <div
+                class="card-text"
+                *ngIf="item.priceMin == 0.0 && item.priceMax == 0.0"
+              >
+                Contact supplier for price
+              </div>
+              <div
+                class="card-text"
+                *ngIf="item.priceMin != 0.0 && item.priceMax != 0.0"
+              >
+                Price: {{ item.priceMin }} - {{ item.priceMax }} INR
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <a
+            class="btn btn-block"
+            target="_blank"
+            [routerLink]="getUrl(item)"
+            style="background-color: rgb(204, 0, 17); color: rgb(255, 255, 255)"
+            >More Details</a
+          >
+        </div>
+      </div>
+
+      <!--end::Card-->
+    </div>
+    <div class="col-lg-3" *ngIf="thirdArrayProduct.length > 0">
+      <!--begin::Card-->
+
+      <div
+        class="card card-custom card-stretch card-stretch-third gutter-b card-border"
+        *ngFor="let item of thirdArrayProduct"
+      >
+        <div class="card-body">
+          <div class="img-center">
+            <img
+              mat-card-image
+              width="265"
+              height="200"
+              [src]="viewImage(item)"
+            />
+          </div>
+          <div class="card-text-body">
+            <div class="card-title kt-truncate" *ngIf="item.productName">
+              {{ item.productName }}
+            </div>
+            <div>
+              <div class="card-text kt-truncate" *ngIf="item.thirdArray">
+                Seller: {{ item.suppliername }}
+              </div>
+              <div
+                class="card-text"
+                *ngIf="item.priceMin == 0.0 && item.priceMax == 0.0"
+              >
+                Contact supplier for price
+              </div>
+              <div
+                class="card-text"
+                *ngIf="item.priceMin != 0.0 && item.priceMax != 0.0"
+              >
+                Price: {{ item.priceMin }} - {{ item.priceMax }} INR
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <a
+            class="btn btn-block"
+            target="_blank"
+            [routerLink]="getUrl(item)"
+            style="background-color: rgb(204, 0, 17); color: rgb(255, 255, 255)"
+            >More Details</a
+          >
+        </div>
+      </div>
+
+      <!--end::Card-->
+    </div>
+    <div class="col-lg-3" *ngIf="fourthArrayProduct.length > 0">
+      <!--begin::Card-->
+
+      <div
+        class="card card-custom card-stretch card-stretch-third gutter-b card-border"
+        *ngFor="let item of fourthArrayProduct"
+      >
+        <div class="card-body">
+          <div class="img-center">
+            <img
+              mat-card-image
+              width="265"
+              height="200"
+              [src]="viewImage(item)"
+            />
+          </div>
+          <div class="card-text-body">
+            <div class="card-title kt-truncate" *ngIf="item.productName">
+              {{ item.productName }}
+            </div>
+            <div>
+              <div class="card-text kt-truncate" *ngIf="item.thirdArray">
+                Seller: {{ item.suppliername }}
+              </div>
+              <div
+                class="card-text"
+                *ngIf="item.priceMin == 0.0 && item.priceMax == 0.0"
+              >
+                Contact supplier for price
+              </div>
+              <div
+                class="card-text"
+                *ngIf="item.priceMin != 0.0 && item.priceMax != 0.0"
+              >
+                Price: {{ item.priceMin }} - {{ item.priceMax }} INR
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <a
+            class="btn btn-block"
+            target="_blank"
+            [routerLink]="getUrl(item)"
+            style="background-color: rgb(204, 0, 17); color: rgb(255, 255, 255)"
+            >More Details</a
+          >
+        </div>
+      </div>
+
+      <!--end::Card-->
+    </div>
+    <mat-spinner *ngIf="loadingProduct" style="margin: 0 auto" [diameter]="30">
+    </mat-spinner>
+  </div>
+</div>

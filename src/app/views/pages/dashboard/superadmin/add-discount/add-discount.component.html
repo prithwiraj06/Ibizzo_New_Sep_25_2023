@@ -1,0 +1,84 @@
+<kt-portlet>
+  <div class="kt-portlet__head">
+    <div class="kt-portlet__head-label">
+      <h3 class="kt-portlet__head-title">Discount List</h3>
+    </div>
+  </div>
+  <kt-portlet-body>
+    <mat-table #table [dataSource]="dataSource">
+     
+      <ng-container matColumnDef="#">
+        <mat-header-cell *matHeaderCellDef> SI. No </mat-header-cell>
+        <mat-cell *matCellDef="let element; let i = index">
+          {{ i + 1 + paginator.pageSize * paginator.pageIndex }}
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          {{ element.offerName }}
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="discount">
+        <mat-header-cell *matHeaderCellDef> Discount </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          {{ element.offerDiscount }}
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="offers">
+        <mat-header-cell *matHeaderCellDef> Offers Count </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          {{ element.offerCount }}
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="price">
+        <mat-header-cell *matHeaderCellDef> Price </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          {{ element.offerPrice }}
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="action">
+        <mat-header-cell
+        *matHeaderCellDef
+      >
+        Update
+      </mat-header-cell>
+        <mat-cell *matCellDef="let element"
+        >
+          <button
+            class="btn btn-label-primary btn-sm"
+            (click)="updateDiscount(element)"
+          >
+          View
+          </button>
+        </mat-cell>
+      </ng-container>
+      
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns"> </mat-row>
+    </mat-table>
+
+    <div class="mat-table__message text-center" *ngIf="!dataSource">
+      No Record Found
+    </div>
+    <div
+      *ngIf="fetching"
+      style="display: flex; justify-content: center; align-items: center"
+    >
+      <mat-progress-spinner color="primary" mode="indeterminate" diameter="30">
+      </mat-progress-spinner>
+    </div>
+    <mat-paginator
+      [pageSize]="10"
+      [pageSizeOptions]="[10, 20, 50]"
+      [length]="1000"
+      [showFirstLastButtons]="true"
+    >
+    </mat-paginator>
+  </kt-portlet-body>
+</kt-portlet>
+

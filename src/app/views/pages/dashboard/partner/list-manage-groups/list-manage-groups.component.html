@@ -1,0 +1,33 @@
+<div>
+  <kt-group-main-page></kt-group-main-page>
+</div>
+<div>
+  <mat-tab-group
+    [selectedIndex]="selectedIndex"
+    (selectedTabChange)="onTabPanelClick($event)"
+  >
+    <mat-tab label="Products">
+      <div *ngIf="product">
+        <kt-article-card
+          [groupId]="groupId"
+          [isProduct]="true"
+        ></kt-article-card>
+      </div>
+    </mat-tab>
+    <mat-tab label="Discussions">
+      <div *ngIf="discussion">
+        <kt-article-card [groupId]="groupId"></kt-article-card>
+      </div>
+    </mat-tab>
+
+    <mat-tab #matTabOverflow label="Settings">
+      <kt-portlet>
+        <kt-portlet-body>
+          <div *ngIf="setting">
+            <kt-settings [groupId]="groupId"></kt-settings>
+          </div>
+        </kt-portlet-body>
+      </kt-portlet>
+    </mat-tab>
+  </mat-tab-group>
+</div>

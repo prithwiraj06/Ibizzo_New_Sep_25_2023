@@ -1,0 +1,28 @@
+:host /deep/ {
+  .sales-catalog-wrapper {
+    padding: 20px;
+    padding-bottom: 0px;
+    margin-bottom: 20px;
+  }
+
+  .kt-sc__title {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 10px;
+  }
+
+  .less-padding {
+    padding: 10px 10px 0px !important;
+    height: 370px;
+  }
+
+  .text-position {
+    margin-top: 7%;
+  }
+  @media screen and (max-width: 480px) {
+    .mobi-view {
+      margin-top: 60em !important;
+    }
+  }
+}

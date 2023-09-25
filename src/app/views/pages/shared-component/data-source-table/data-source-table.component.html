@@ -1,0 +1,290 @@
+<kt-portlet>
+  <div
+    class="mat-table__wrapper"
+    [ngStyle]="{ overflow: memberList.length == 0 ? 'hidden' : 'auto' }"
+  >
+    <mat-table
+      class="lmat-elevation-z8"
+      #table
+      [dataSource]="dataSource1"
+      matSort
+      matSortDisableClear
+      matSortActive="Name"
+      (matSortChange)="sortData($event)"
+      matSortDirection="asc"
+    >
+      <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef> # </mat-header-cell>
+        <mat-cell *matCellDef="let contact; let i = index">
+          <div *ngIf="data.isMember">
+            <mat-checkbox
+              (change)="addGroupMember(contact, $event)"
+            ></mat-checkbox>
+          </div>
+          <div *ngIf="!data.isMember">
+            {{ i + 1 + paginator.pageSize * paginator.pageIndex }}
+          </div>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          Name
+        </mat-header-cell>
+        <mat-cell
+          *matCellDef="let contact; let i = index"
+          class="text-overflow name-reg-cell text-case"
+        >
+          {{ contact.name }}
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="email">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          Email
+        </mat-header-cell>
+        <mat-cell
+          *matCellDef="let contact"
+          [ngClass]="type == 1 ? 'name-reg-cell' : ''"
+        >
+          <a
+            href="mailTo:{{ contact.email }}"
+            class="text-primary text-overflow"
+          >
+            {{ contact.email }}</a
+          >
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="companyName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          Company name
+        </mat-header-cell>
+        <mat-cell *matCellDef="let contact">
+          <a
+            (click)="getUrl(contact)"
+            class="link-url text-primary"
+            target="_blank"
+            >{{ contact.memberCompanyName }}</a
+          >
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="phone">
+        <mat-header-cell *matHeaderCellDef> Phone </mat-header-cell>
+        <mat-cell *matCellDef="let contact">
+          {{ validate ? contact.phoneNumber : contact.phone }}
+        </mat-cell>
+      </ng-container>
+      <!-- 
+      <ng-container matColumnDef="status">
+        <mat-header-cell *matHeaderCellDef>
+          Status
+        </mat-header-cell>
+        <mat-cell *matCellDef="let contact">
+          <div class="font-weight-bold"
+            [ngClass]="contact.status==1?'text-warning':contact.status==2?'text-success':'text-danger'">
+            {{contact.status==1?'Pending':contact.status==2?'Member':'Non-Member'}}
+          </div>
+        </mat-cell>
+      </ng-container> -->
+      <ng-container matColumnDef="cartItem">
+        <mat-header-cell *matHeaderCellDef style="padding-right: 44px">
+          Cart Items
+        </mat-header-cell>
+        <mat-cell
+          *matCellDef="let contact; let i = index"
+          style="padding-right: 44px"
+        >
+          {{ contact.cartCnt }}
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="sales">
+        <mat-header-cell *matHeaderCellDef> Sales Products </mat-header-cell>
+        <mat-cell *matCellDef="let contact; let i = index">
+          {{ contact.salesPrdCnt }}
+        </mat-cell>
+      </ng-container>
+
+     
+
+      <ng-container matColumnDef="credits">
+        <mat-header-cell *matHeaderCellDef style="padding-right: 140px">
+          Flyer credits
+        </mat-header-cell>
+        <mat-cell
+          *matCellDef="let contact; let i = index"
+          style="padding-right: 140px"
+        >
+          <div *ngIf="!contact.isEdit" class="content-flex" (click)="editCredits(contact, 'edit')">
+            {{ contact.flyerCredits }}
+            <span href="javascript:;"
+              ><i class="material-icons dp48">edit</i></span
+            >
+          </div>
+          <div *ngIf="contact.isEdit">
+            <div style="display: -webkit-box">
+              <span class="input-group-btn input-group-prepend">
+                <button
+                  class="btn-secondary btn btn-sm btn-bold bootstrap-touchspin-down"
+                  type="button"
+                  (click)="decrementValue(contact)"
+                >
+                  <i class="fa fa-minus"></i>
+                </button>
+              </span>
+              <input
+                id="kt_touchspin_1"
+                type="text"
+                class="form-control input-text"
+                [(ngModel)]="contact.flyerCredits"
+                name="demo1"
+              />
+              <span class="input-group-btn input-group-append">
+                <button
+                  class="btn-secondary btn btn-sm btn-bold bootstrap-touchspin-up"
+                  type="button"
+                  (click)="incrementValue(contact)"
+                >
+                  <i class="fa fa-plus"></i>
+                </button>
+              </span>
+            </div>
+            <div style="display: flex">
+              <button
+                class="btn btn-primary btn-sm"
+                (click)="addCredits(contact)"
+                [ngClass]="{ 'kt-spinner kt-spinner--light': loading }"
+              >
+                Save
+              </button>
+              <button
+                class="btn btn-danger btn-sm"
+                (click)="editCredits(contact, 'cancel')"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="profile">
+        <mat-header-cell *matHeaderCellDef> Profile </mat-header-cell>
+        <mat-cell *matCellDef="let contact; let i = index">
+          <a
+            class="btn btn-label-primary btn-sm"
+            [routerLink]="[getMemberProfileUrl(contact.memberId)] | baseurl"
+            [queryParams]="{ isMember: false }"
+            target="_blank"
+            >Update</a
+          >
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="purchase">
+        <mat-header-cell *matHeaderCellDef> Purchase Products </mat-header-cell>
+        <mat-cell *matCellDef="let contact; let i = index">
+          {{ contact.purchasePrdCnt }}
+        </mat-cell>
+      </ng-container>
+
+      <!-- <ng-container matColumnDef="minisite">
+        <mat-header-cell *matHeaderCellDef>
+          Minisite
+        </mat-header-cell>
+        <mat-cell *matCellDef="let contact; let i=index">
+          <a class="btn btn-label-primary btn-sm" [routerLink]="['/minisite/home'] | baseurl"
+            [queryParams]='getQueryParams(contact)' target="_blank">View</a>
+        </mat-cell>
+      </ng-container> -->
+
+      <ng-container matColumnDef="twoColumn">
+        <mat-header-cell *matHeaderCellDef> Change Status </mat-header-cell>
+        <mat-cell *matCellDef="let contact; let i = index">
+          <div>
+            <button
+              *ngIf="type == 1 || type == 3 || validate"
+              class="btn btn-success btn-sm"
+              (click)="addToMember(i)"
+            >
+              {{ member }}
+            </button>
+            <button
+              *ngIf="type == 1 || type == 2"
+              class="btn btn-danger btn-sm"
+              (click)="removeToMember(i)"
+            >
+              {{ nonMember }}
+            </button>
+          </div>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="action">
+        <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+        <mat-cell *matCellDef="let contact; let i = index">
+          <button class="btn btn-success btn-sm" (click)="select(contact)">
+            Select
+          </button>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="singleColumn">
+        <mat-header-cell *matHeaderCellDef> Change Status </mat-header-cell>
+        <mat-cell *matCellDef="let contact; let i = index">
+          <div>
+            <button
+              *ngIf="type == 1 || type == 3 || validate"
+              class="btn btn-success btn-sm"
+              (click)="addToMember(i)"
+            >
+              {{ member }}
+            </button>
+            <button
+              *ngIf="type == 1 || type == 2"
+              class="btn btn-danger btn-sm"
+              (click)="removeToMember(i)"
+            >
+              {{ nonMember }}
+            </button>
+          </div>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="getDisplayedColumns()"></mat-header-row>
+      <mat-row
+        class="mat-row"
+        *matRowDef="let row; columns: getDisplayedColumns()"
+      >
+      </mat-row>
+    </mat-table>
+  </div>
+  <div class="text-center" *ngIf="memberList.length == 0">No record found</div>
+
+  <div class="mat-table__bottom">
+    <div>
+      <mat-spinner *ngIf="fetching" [diameter]="20"> </mat-spinner>
+      <mat-paginator
+        [pageSize]="10"
+        [pageSizeOptions]="[10, 20, 50]"
+        (page)="pageChangeEvent($event)"
+        [length]="count"
+        [showFirstLastButtons]="true"
+      >
+      </mat-paginator>
+    </div>
+    <div *ngIf="data.isMember" class="float-right">
+      <button class="btn btn-default m-3" (click)="dialogRef.close()">
+        Cancel
+      </button>
+      <button class="btn btn-brand m-3" (click)="addUser()">Add Member</button>
+    </div>
+    <div *ngIf="data.isSearch">
+      <button class="btn btn-default m-3" (click)="dialogRef.close()">
+        Cancel
+      </button>
+    </div>
+  </div>
+</kt-portlet>

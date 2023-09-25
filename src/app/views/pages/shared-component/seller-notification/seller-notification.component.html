@@ -1,0 +1,282 @@
+<kt-portlet class="kt-portlet desktop-view">
+  <div class="kt-portlet__head" *ngIf="flyerDetails && flyerDetails.isPreview">
+    <div class="kt-portlet__head-label">
+      <h3 class="kt-portlet__head-title">Flyer Preview</h3>
+    </div>
+    <div class="kt-portlet__head-toolbar">
+      <button class="btn btn-clear" (click)="dialogRef.close()">
+        <i class="la la-close"></i>
+      </button>
+    </div>
+  </div>
+
+  <kt-portlet-body [class]="getClass()">
+    <div class="row" [ngClass]="data.flyerType=='digitalFlyers'?'style-of-margin row':''" *ngIf="flyerDetails">
+      <div class="col-xs-4 col-sm-4 col-lg-4">
+        <div class="row">
+          <img src="../../../../../assets/images/nl-big-green-arrow.png" alt="" class="arrow" />
+          <img *ngIf="flyerDetails.logo" [src]="getImage(flyerDetails.logo)" alt="" class="ibizzo-img" />
+        </div>
+        <div *ngIf="(data&&data.website)||(flyerDetails&&flyerDetails.website)" class="row p-20 content-ellapsis" (click)="openWebsite(data.website||flyerDetails.website)">
+          <div class="col-sm-4">
+            <img src="../../../../../assets/images/dlf.pt-website-png-4112658.png" alt="" width="50px" />
+          </div>
+          <div class="col-sm-8 col-xs-8 cursor">
+            <span class="kt-font-bold p-1 text-success">Website</span>
+            <br />
+            <span class="cursor-point">{{data.website||flyerDetails.website}}</span>
+          </div>
+        </div>
+        <div class="row p-20" (click)="openMinisite()">
+          <div class="col-sm-4">
+            <img src="../../../../../assets/images/nl-card.png" alt="" />
+          </div>
+          <div class="col-sm-8 col-xs-8 cursor">
+            <span class="kt-font-bold p-1 text-success">Company Profile</span>
+            <br />
+            <span>Know more about our</span>
+            <span>Company by viewing his profile</span>
+          </div>
+        </div>
+        <div class="row p-20" (click)="salesCatalogs()">
+          <div class="col-sm-4">
+            <img src="../../../../../assets/images/nl-graph.png" alt="" />
+          </div>
+          <div class="col-sm-8 cursor">
+            <span class="kt-font-bold p-1 text-success">Sales Catalogue</span>
+            <br />
+            <span>Checkout my catalogue to view</span>
+            <span>all my products and services</span>
+          </div>
+        </div>
+        <div *ngIf="!(flyerType == 'digitalFlyers')" class="row p-20" (click)="requestForQuote()">
+          <div class="col-sm-4">
+            <img src="../../../../../assets/images/nl-calendar.png" alt="" />
+          </div>
+          <div class="col-sm-8 cursor" *ngIf="(flyerDetails&&flyerDetails.productName)">
+            <span class="kt-font-bold p-1 text-success">{{
+              flyerDetails.productName
+              ? flyerDetails.productName
+              : "B2B Platform"
+              }}</span>
+            <br />
+            <span>Click here know about</span>
+            <span>this item</span>
+          </div>
+        </div>
+      </div>
+      <div [class]="getColumn()">
+        <div class="row image-back" [ngClass]="data.flyerType=='digitalFlyers'?'style-of-margin':''">
+          <div class="company-title">
+            <h5 [class]="getClasslist()" [id]="getMobiId()">
+              {{ flyerDetails.senderCompany }}
+            </h5>
+          </div>
+          <div [class]="getClassMsg()" id="message-data">
+            <h5  style="width: 300px;
+            overflow: hidden;">{{flyerDetails.compaignName}}</h5>
+            <span *ngIf="(flyerDetails&&flyerDetails.fileName!=null)" class="mt-0">
+              <div (click)="getUrl(flyerDetails.fileName)" [class]="getDownClass()">
+                <i class="flaticon-download"></i>
+                Dowload Attachment
+              </div>
+            </span>
+          </div>
+          <div [class]="getClassMsgInfo()">
+            <div *ngIf="(flyerDetails&&flyerDetails.message)" class="message-data">
+              <span [id]="getMsgText()">
+                {{ flyerDetails.message }}
+              </span>
+            </div>
+            <!-- <div>
+              <span *ngIf="flyerDetails.fileName">
+                <div (click)="getUrl(flyerDetails.fileName)" [class]="getDownClass()">
+                  <i class="flaticon-download"></i>
+                  Dowload Attachment
+                </div>
+              </span>
+            </div> -->
+          </div>
+        </div>
+      </div>
+      <div *ngIf="flyerDetails" [class]="getClassfooter()">
+        <img src="../../../../../assets/images/nl-footer.png" alt="" style="width: 97.5%" />
+        <div *ngIf="flyerDetails" class="row footer-variable">
+          <div class="col-4"></div>
+          <div class="col row">
+            <div class="col">
+              <span *ngIf="(flyerDetails&&flyerDetails.location)">
+                <i class="fas fa-map-marker-alt" style="font-size: 15px"></i>
+                {{ flyerDetails.location }}
+              </span>
+            </div>
+            <div class="col">
+              <span *ngIf="(flyerDetails&&flyerDetails.phoneNumber)" >
+                <img src="../../../../../assets/images/nl-phone.png" alt="" />
+                {{ flyerDetails.phoneNumber }}
+              </span>
+            </div>
+            <div class="col emial-text">
+              <span *ngIf="(flyerDetails&&flyerDetails.email)">
+                <img src="../../../../../assets/images/nl-website.png" alt="" />
+                {{ flyerDetails.email }}
+              </span>
+            </div>
+            <div class="col text-data">
+              <span>
+                <i class="fa fa-share-alt" style="font-size: 15px" aria-hidden="true"></i>
+                <span>
+                  <a class="link-text"  [routerLink]="getUrlToShare()" target="_blank">
+                    Share</a>
+                   
+                </span>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <mat-spinner *ngIf="isLoading" style="margin: 0 auto" [diameter]="30">
+    </mat-spinner>
+  </kt-portlet-body>
+  <kt-portlet-footer *ngIf="data.flyerType=='digitalFlyers'">
+    <div class="kt-footer-image row" style="margin-left:0px;margin-right: -10px; padding: 20px;">
+      <div class="col-4">
+
+      </div>
+      <span *ngIf="(flyerDetails&&flyerDetails.location)" class="col" style="color: #000; margin-left: 46px;">
+        <i class="fas fa-map-marker-alt icon-text"></i>
+        {{ flyerDetails.location }}
+      </span>
+      <span *ngIf="(flyerDetails&&flyerDetails.phoneNumber)" class="col-2" style="color: #000;">
+        <img src="../../../../../assets/images/nl-phone.png" alt="" />
+        {{ flyerDetails.phoneNumber }}
+      </span>
+      <span *ngIf="(flyerDetails&&flyerDetails.email)" class="col-3" style=" color: #000">
+        <img src="../../../../../assets/images/nl-website.png" alt="" />
+        {{ flyerDetails.email }}
+      </span>
+      <span class="col-1" style="margin-left: -30px;">
+        <i class="fa fa-share-alt icon-text" aria-hidden="true"></i>
+        <span>
+          <a style="color: #000" class="link-text"  target="_blank">
+            Share</a>
+        </span>
+      </span>
+    </div>
+
+    <!-- <div class="row" style="padding: 20px; background: #d8d8d8">
+      <span style="width: 70%; color: #000">
+        <img src="../../../../../assets/images/nl-website.png" alt="" />
+        {{ flyerDetails.email }}
+      </span>
+      <span style="width: 30%">
+        <i class="fa fa-share-alt icon-text" aria-hidden="true"></i>
+        <span>
+          <a style="color: #000" class="link-text" [routerLink]="getUrlToShare()" target="_blank">
+            Share</a>
+        </span>
+      </span>
+    </div> -->
+  </kt-portlet-footer>
+</kt-portlet>
+<div class="mobi-view">
+  <div class="row">
+    <div class="mobi-header" *ngIf="flyerDetails">
+      <div class="mobi-content">
+        <span class="logo-back">
+          <img *ngIf="flyerDetails.logo" [src]="getImage(flyerDetails.logo)" alt="" class="ibizzo-img-mobi" />
+        </span>
+      </div>
+      <h5 class="company-title-mobi">{{ flyerDetails.senderCompany }}</h5>
+    </div>
+  </div>
+  <!-- <div class="row message-back-mobi">
+    <div class="message-mobi">
+      <span class="msg-title-cs">Message from seller</span>
+      <br />
+      <br />
+
+      <span class="msg-mobi"> {{ flyerDetails.message }}</span>
+    </div>
+    <span>
+      <div *ngIf="flyerDetails.fileName" class="mobi-attach" (click)="getUrl(flyerDetails.fileName)">
+        <i class="flaticon-download"></i>
+        Dowload Attachment
+      </div>
+    </span>
+  </div> -->
+    <div class="message" id="message-data">
+      <h5>Message from Seller</h5>
+      <span *ngIf="(flyerDetails&&flyerDetails.fileName!=null)" class="mt-0">
+        <div (click)="getUrl(flyerDetails.fileName)" [class]="getDownClass()">
+          <i class="flaticon-download"></i>
+          Dowload Attachment
+        </div>
+      </span>
+    </div>
+    <div class="message-1440">
+      <div *ngIf="(flyerDetails&&flyerDetails.message)" class="message-data">
+        <span [id]="getMsgText()">
+          {{ flyerDetails.message }}
+        </span>
+      </div>
+      <!-- <div>
+        <span *ngIf="flyerDetails.fileName">
+          <div (click)="getUrl(flyerDetails.fileName)" [class]="getDownClass()">
+            <i class="flaticon-download"></i>
+            Dowload Attachment
+          </div>
+        </span>
+      </div> -->
+    </div>
+ 
+  <div class="row product-data">
+    <div class="mobi-company">
+      <a href="javascript:;" *ngIf="(flyerDetails&&flyerDetails.website)" (click)="openWebsite(flyerDetails.website)" style="padding-right: 15%"><img
+        src="../../../../../assets/images/dlf.pt-website-png-4112658.png" alt="" class="profile-img" />
+      <span class="kt-font-bold p-1" id="text-color">Website</span>
+    </a>
+      <a href="javascript:;" (click)="openMinisite()" style="padding-right: 15%"><img
+          src="../../../../../assets/images/nl-card.png" alt="" class="profile-img" />
+        <span class="kt-font-bold p-1" id="text-color">Company Profile</span>
+      </a>
+      <a href="javascript:;" (click)="salesCatalogs()">
+        <img src="../../../../../assets/images/nl-graph.png" alt="" class="profile-img" />
+        <span class="kt-font-bold p-1" id="text-color">Sales Catalogue</span>
+      </a>
+      <a href="javascript:;" *ngIf="!(flyerType == 'digitalFlyers')" (click)="requestForQuote()">
+        <img src="../../../../../assets/images/nl-calendar.png" alt="" class="profile-img" />
+        <span class="kt-font-bold p-1" id="text-color">{{
+          flyerDetails.productName ? flyerDetails.productName : "B2B Platform"
+          }}</span>
+      </a>
+    </div>
+  </div>
+  <div class="row" style="padding: 20px; background: #d8d8d8">
+    <span *ngIf="(flyerDetails&&flyerDetails.location)" style="color: #000; width: 70%">
+      <i class="fas fa-map-marker-alt icon-text"></i>
+      {{ flyerDetails.location }}
+    </span>
+    <span *ngIf="(flyerDetails&&flyerDetails.phoneNumber)" style="color: #000; width: 30%">
+      <img src="../../../../../assets/images/nl-phone.png" alt="" />
+      {{ flyerDetails.phoneNumber }}
+    </span>
+  </div>
+
+  <div class="row" style="padding: 20px; background: #d8d8d8">
+    <span *ngIf="(flyerDetails&&flyerDetails.email)" style="width: 70%; color: #000">
+      <img src="../../../../../assets/images/nl-website.png" alt="" />
+      {{ flyerDetails.email }}
+    </span>
+    <span style="width: 30%">
+      <i class="fa fa-share-alt icon-text" aria-hidden="true"></i>
+      <span>
+        <a style="color: #000" class="link-text" [routerLink]="getUrlToShare()" target="_blank">
+          Share</a>
+      </span>
+    </span>
+  </div>
+</div>
+<kt-social-share *ngIf="isPublic"></kt-social-share>

@@ -1,0 +1,5 @@
+<div class="row" *ngIf="organizations && organizations.length">
+    <kt-product-card [buttonLabel]="buttonLabel" *ngFor="let product of organizations" [product]='product'
+        [disableImagePaidCheck]="true" class="col col-md-3">
+    </kt-product-card>
+</div>

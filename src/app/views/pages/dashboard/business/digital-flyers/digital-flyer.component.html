@@ -1,0 +1,232 @@
+<kt-portlet>
+  <kt-portlet-header class="kt-font-bold" title="Market your Product/Services">
+  </kt-portlet-header>
+  <form [formGroup]="form">
+    <kt-portlet-body>
+      <div >
+        <!-- <div class="col-3 border-right border-dark">
+          <div>
+            <h5 class="kt-font-bold">
+              Market Compaign Target to Buyers :
+            </h5>
+          </div>
+        </div> -->
+        <div>
+          <div class="row">
+            <div class="form-group col col-xs">
+              <label class="kt-font-bold mandatory-field"> Name </label>
+              <input
+                type="email"
+                [ngClass]="
+                  isControlHasError('compaignName', 'required')
+                    ? 'border-danger'
+                    : ''
+                "
+                class="form-control"
+                formControlName="compaignName"
+                placeholder="Enter campaign name"
+              />
+              <mat-error *ngIf="isControlHasError('compaignName', 'required')">
+                Name is required
+              </mat-error>
+            </div>
+            <div class="form-group col col-xs">
+                <label class="kt-font-bold"> Website </label>
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="website"
+                  placeholder="http://example.com"
+                />
+                <mat-error *ngIf="isControlHasError('website', 'pattern')">
+                  Invalid website link or missing http://
+                </mat-error>
+            </div>
+          </div>
+         
+          <div>
+            <label class="kt-font-bold">
+              select your target audience/buyers by
+            </label>
+          </div>
+          <div class="row mt-2">
+            <div class="col">
+              <div>
+                <label for="location" class="kt-font-bold"
+                  >Business Category:
+                </label>
+              </div>
+              <div>
+                <kt-business-category-lookup
+                  [includeDefaults]="false"
+                  [placeHolder]="true"
+                  (onChange)="onBusinessChange($event)"
+                >
+                </kt-business-category-lookup>
+              </div>
+            </div>
+            <div class="col">
+              <div>
+                <label for="location" class="kt-font-bold">Location: </label>
+              </div>
+              <div>
+                <kt-location-lookups
+                  (onChange)="onLocation($event)"
+                ></kt-location-lookups>
+              </div>
+            </div>
+      
+          </div>
+          <div class="row mt-2">
+            <div class="col">
+              <div>
+                <label for="location" class="kt-font-bold">Groups: </label>
+              </div>
+              <div>
+                <kt-oranization-lookups
+                  (onChange)="onOrgChange($event)"
+                ></kt-oranization-lookups>
+              </div>
+            </div>
+            <div class="col">
+              <div>
+                <label for="location" class="kt-font-bold"
+                  >HSN/SAC Code:
+                </label>
+              </div>
+              <div>
+                <kt-hsn-multi-select (onChange)="onHSNChange($event)">
+                </kt-hsn-multi-select>
+              </div>
+            </div>
+          </div>
+          <div class="row mt-3">
+            <div class="col">
+              <div class="loadingCount">
+                <label
+                  for=""
+                  class="kt-font-bold mt-2 text-danger"
+                  [ngClass]="{
+                    'kt-spinner kt-spinner--right kt-spinner--md kt-spinner--primary': loadingCount
+                  }"
+                  >There are {{ totalMembers }} businesses in the selected
+                  filter
+                </label>
+              </div>
+            </div>
+            <div class="col row">
+              <div class="col">
+                <label for="" class="kt-font-bold mt-2"
+                  >How many flyers do you want to send</label
+                >
+              </div>
+              <div class="input-group col">
+                <div
+                  class="input-group-prepend"
+                  style="height: 38px"
+                  (mousedown)="mousedownDecrement()"
+                  (mouseup)="mouseupDecrement()"
+                  (mouseleave)="mouseupDecrement()"
+                >
+                  <span
+                    class="input-group-text btn btn-secondary"
+                    style="font-weight: 400; font-size: 18px"
+                    id="basic-addon1"
+                    >-</span
+                  >
+                </div>
+                <input
+                  type="text"
+                  formControlName="numberOfCom"
+                  class="form-control text-center"
+                  pattern="\d*"
+                  oninput="validity.valid||(value='');"
+                />
+                <div
+                  class="input-group-append"
+                  style="height: 38px"
+                  (mousedown)="mousedown()"
+                  (mouseup)="mouseup()"
+                  (mouseleave)="mouseup()"
+                >
+                  <span
+                    class="input-group-text btn btn-secondary"
+                    style="font-weight: 400; font-size: 18px"
+                    >+</span
+                  >
+                </div>
+                <label for="" class="kt-font-bold mt-2 text-danger"
+                  >Minimum Digital Flyer cost at 60 INR</label
+                >
+              </div>
+            </div>
+          </div>
+          <div class="row mt-2">
+            <div class="form-group green-border-focus col">
+              <label for="exampleFormControlTextarea5" class="kt-font-bold"
+                >Type your message</label
+              >
+              <textarea
+                #content
+                class="form-control"
+                formContrlName="message"
+                name="message"
+                id="exampleFormControlTextarea5"
+                rows="3"
+              ></textarea>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <div class="form-group loadingCount">
+                <label
+                  class="kt-font-bold"
+                  [ngClass]="{
+                    'kt-spinner kt-spinner--right kt-spinner--md kt-spinner--primary': fileLoading
+                  }"
+                  >While sending documents please type your message and send
+                </label>
+                <div class="custom-file">
+                  <input
+                    type="file"
+                    class="custom-file-input"
+                    formControlName="chooseFile"
+                    accept=".doc,.pdf,.jpg,.png,.gif"
+                    (change)="onFileChange($event)"
+                  />
+                  <label
+                    class="custom-file-label selected"
+                    for="customFile"
+                    id="customLabel"
+                    >{{ fileName }}</label
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="col"></div>
+          </div>
+        </div>
+      </div>
+    </kt-portlet-body>
+    <kt-portlet-footer>
+      <hr />
+      <div>
+        <button
+          class="btn btn-primary float-right m-3"
+          [ngClass]="{
+            'kt-spinner kt-spinner--right kt-spinner--md kt-spinner--light': subLoading
+          }"
+          (click)="submit()"
+        >
+          Submit
+        </button>
+        <button
+          class="btn btn-default float-right m-3"
+          (click)="previewFlyer()"
+        >
+          Preview
+        </button>
+      </div>
+    </kt-portlet-footer>
+  </form>
+</kt-portlet>

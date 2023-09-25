@@ -1,0 +1,32 @@
+:host {
+  max-width: 600px;
+
+  .input-group .prepend-text {
+    line-height: 1 !important;
+    width: 170px;
+    text-align: left !important;
+  }
+
+  mat-select.mat-select {
+    width: 100px;
+    border-radius: 4px 0px 0px 4px !important;
+  }
+
+  input.search-input {
+    border-radius: 0px !important;
+  }
+
+  .search-bar-group {
+    width: 454px !important;
+  }
+
+  .search-btn {
+    width: 60px !important;
+    height: 38px !important;
+  }
+
+  .search-icon {
+    height: 19px !important;
+    width: 14px !important;
+  }
+}

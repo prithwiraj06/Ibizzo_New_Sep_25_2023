@@ -1,0 +1,48 @@
+// :host /deep/{
+    .card{
+      box-shadow: 0 0 13px 0 rgba(82,63,105,.05);
+      margin-bottom: 10px;
+  
+      &.more{
+        box-shadow: 0 0 13px 0 rgba(82,63,105,.1);
+      }
+    }
+  
+    .card-image{
+      height: 200px;
+      overflow: hidden;
+      padding: 10px;
+      text-align: center;
+  
+      img{
+        max-width: 100%;
+      }
+    }
+  
+    .card-body{
+      height: 100px;
+  
+      .card-title{
+        color: #4c4949;
+        margin-bottom: 5px;
+        font-size: 1.1em;
+        font-weight: 600;
+      }
+    }
+  
+    .card-footer{
+      background-color: none;
+    }
+  
+    .set-btn{
+      background-color: #6C757D !important;
+      color: #ffffff !important;
+      border-radius: 25px !important;
+      padding-left: 40px !important;
+      padding-right: 40px !important;
+    }
+
+    .set-data{
+      float: right !important;
+    }
+  // }

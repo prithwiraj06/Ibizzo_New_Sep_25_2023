@@ -1,0 +1,126 @@
+<kt-portlet>
+  <div class="kt-portlet__head">
+    <div class="kt-portlet__head-label">
+      <h3 class="kt-portlet__head-title">Transaction History</h3>
+    </div>
+    <!-- <div class="float-right search-button ">
+          <div class="ml-0 mt-3  kt-input-icon kt-input-icon--left">
+              <button type="button" class="btn btn-outline-primary" (click)="addPackage()">Add Package
+              </button>
+          </div>
+      </div> -->
+  </div>
+  <div class=" pt-3 pr-3">
+    <div class="float-right">
+      <span class="pr-2">
+        <mat-form-field>
+          <input matInput [matDatepicker]="picker3" placeholder="From" [(ngModel)]='fromDate'
+            (dateChange)="formDateFormat()" [max]='toDate'>
+          <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+          <mat-datepicker #picker3></mat-datepicker>
+        </mat-form-field>
+      </span>
+      <span>
+        <mat-form-field>
+          <input matInput [matDatepicker]="picker" placeholder="To" [(ngModel)]='toDate' [min]='fromDate'
+            (dateChange)="toDateFormat()">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </span>
+    </div>
+  </div>
+
+  <kt-portlet-body>
+    <mat-table #table [dataSource]="dataSource">
+      <ng-container matColumnDef="#">
+        <mat-header-cell *matHeaderCellDef> SI. No </mat-header-cell>
+        <mat-cell *matCellDef="let element; let i=index"> {{(i+1)+(paginator.pageSize*paginator.pageIndex)}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="amount">
+        <mat-header-cell *matHeaderCellDef class="amount-cell">Amount</mat-header-cell>
+        <mat-cell *matCellDef="let element" class="amount-cell">
+          {{element.amount/100}}
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="trxId">
+        <mat-header-cell *matHeaderCellDef class="amount-cell">
+          Transaction Id
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element" class="amount-cell">
+          {{element.id}}
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="email">
+        <mat-header-cell *matHeaderCellDef>
+          Email
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <span class="text-primary cursor" (click)="approvedTransaction()">
+            {{element.email}}
+          </span>
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="contact">
+        <mat-header-cell *matHeaderCellDef>
+          Contact
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <span class="cursor">
+            {{element.contact}}
+            <!-- <i class="fa fa-info-circle" aria-hidden="true"></i> -->
+          </span>
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="action" class="mat-action-column btn-end-cell">
+        <mat-header-cell *matHeaderCellDef>Action</mat-header-cell>
+        <mat-cell *matCellDef="let element;let i=index" class='mat-action-column btn-end-cell'>
+          <div ngbDropdown class="d-inline-block p-0">
+            <button class="btn btn-sm btn-clean btn-icon btn-icon-md"><i class="flaticon-more-1"
+                ngbDropdownToggle></i></button>
+
+            <div ngbDropdownMenu>
+              <button [disabled]="checkView(element)" class="btn" ngbDropdownItem
+                (click)="viewCartTransaction(element)">
+                View Cart
+              </button>
+              <button [disabled]="checkView(element)" class="btn" ngbDropdownItem
+                (click)="approvedTransaction(element,1)">
+                Approve
+              </button>
+              <button [disabled]="checkView(element,3)" class="btn" ngbDropdownItem
+                (click)="approvedTransaction(element,2)">
+                Reject
+              </button>
+            </div>
+          </div>
+          <!-- <button class="btn btn-label-primary">
+            View Cart
+          </button>
+          <button class="btn btn-label-success" (click)="approvedTransaction()">
+            Approved
+          </button>&nbsp;
+          <button class="btn btn-label-danger" (click)="delete(element)">
+            Reject
+          </button> -->
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;">
+      </mat-row>
+    </mat-table>
+
+    <div class="mat-table__message text-center " *ngIf="!dataSource.hasData">
+      No Record Found
+    </div>
+    <div *ngIf="fetching" style="display: flex; justify-content: center; align-items: center">
+      <mat-progress-spinner color="primary" mode="indeterminate" diameter="20">
+      </mat-progress-spinner>
+    </div>
+    <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]" (page)="pageChangeEvent()" [length]='count'
+      [showFirstLastButtons]="true">
+    </mat-paginator>
+  </kt-portlet-body>
+</kt-portlet>

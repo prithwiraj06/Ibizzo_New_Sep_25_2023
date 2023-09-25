@@ -1,0 +1,94 @@
+<kt-portlet>
+  <div class="kt-portlet__head">
+    <div class="kt-portlet__head-label">
+      <h1 class="kt-portlet__head-title">
+
+        {{getTitle()}}
+        
+      </h1>
+    </div>
+  </div>
+  <kt-portlet-body>
+    <div>
+      <div>
+        <form [formGroup]="inviteForm">
+          <div class="row form-group">
+            <div class="col-lg-3 form-label">
+              <label class="mandatory-field" for="exampleInputPassword1"
+                >Name :
+              </label>
+            </div>
+            <div class="col-lg-9">
+              <input
+                type="text"
+                Settings
+                formControlName="name"
+                class="form-control"
+                placeholder="Name"
+              />
+              <mat-error *ngIf="isControlHasError('name', 'required')">
+                Name is required
+              </mat-error>
+            </div>
+          </div>
+          <div class="row form-group">
+            <div class="col-lg-3 form-label">
+              <label class="mandatory-field" for="exampleInputPassword1"
+                >Email :
+              </label>
+            </div>
+            <div class="col-lg-9">
+              <input
+                type="text"
+                formControlName="email"
+                class="form-control"
+                placeholder="New Email"
+              />
+              <mat-error *ngIf="isControlHasError('email', 'required')">
+                Email is required
+              </mat-error>
+              <mat-error *ngIf="isControlHasError('email', 'pattern')">
+                Enter valid Email
+              </mat-error>
+            </div>
+          </div>
+          <div class="row form-group">
+            <div class="col-lg-3 form-label">
+              <label class="phone-field" for="exampleInputPassword1"
+                >Phone :
+              </label>
+            </div>
+            <div class="col-lg-9">
+              <input
+                formControlName="phoneNumber"
+                class="form-control"
+                type="text"
+                maxlength="10"
+                min="0"
+                placeholder="Phone number"
+              />
+
+              <mat-error *ngIf="isControlHasError('phoneNumber', 'minlength')">
+                Phone Number should be 10 digits
+              </mat-error>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </kt-portlet-body>
+  <kt-portlet-footer>
+    <div class="m-2 float-right">
+      <button
+        class="btn btn-primary"
+        (click)="submit()"
+        [ngClass]="{ 'kt-spinner kt-spinner--light': fetching }"
+      >
+        Invite and Continue
+      </button>
+      <button class="btn btn-default mr-2" (click)="dialogRef.close()">
+        Cancel
+      </button>
+    </div>
+  </kt-portlet-footer>
+</kt-portlet>

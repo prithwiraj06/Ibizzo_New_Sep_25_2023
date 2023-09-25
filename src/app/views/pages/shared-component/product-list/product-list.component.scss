@@ -1,0 +1,196 @@
+.mat-table__message {
+  padding: 30px !important;
+  text-align: center;
+  font-weight: 500;
+  background-color: white;
+}
+
+.price-text{
+  color: #ff0000;
+}
+
+.sales-cell{
+  margin-left: -53px;
+}
+
+.purchase-cell{
+  max-width: 9%;
+}
+
+.sales-buyer{
+  margin-right: -48px;
+}
+
+.sales-history{
+  margin-left: 71px;
+}
+
+.purchase-history{
+  margin-left: 204px;
+}
+
+.saler-cell{
+  justify-content: center;
+  margin-left: 120px;
+}
+
+.cell{
+  max-width: 7%;
+}
+
+
+@media (min-width: 320px) and (max-width: 349px) {
+
+  .mob-view{
+    display: none !important;
+  }
+  .sales-cell{
+    margin-left: 0px;
+  }
+  
+  .purchase-cell{
+    max-width: 0px;
+  }
+  
+  .sales-buyer{
+    margin-right: 0px;
+  }
+  
+  .sales-history{
+    margin-left: 0px;
+  }
+  
+  .purchase-history{
+    margin-left: 0px;
+  }
+  
+  .saler-cell{
+    justify-content: center;
+    margin-left: 0px;
+  }
+  
+  .cell{
+    max-width: 7%;
+  }
+  .buyers{
+    max-width: 40px !important;
+    padding-right: 5px !important;
+  }
+  .history{
+    max-width: 0px !important;
+    padding-right: 0px !important;
+  }
+  .portlet-body{
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+  }
+  .products{
+    max-width: 80px !important;
+    word-break: break-word !important;
+    padding-right: 4px !important;
+  }
+}
+
+
+@media (min-width: 350px) and (max-width: 415px) {
+
+  .mob-view{
+    display: none !important;
+  }
+  .sales-cell{
+    margin-left: 0px;
+  }
+  
+  .purchase-cell{
+    max-width: 0px;
+  }
+  
+  .sales-buyer{
+    margin-right: 0px;
+  }
+  
+  .sales-history{
+    margin-left: 0px;
+  }
+  
+  .purchase-history{
+    margin-left: 0px;
+  }
+  
+  .saler-cell{
+    justify-content: center;
+    margin-left: 0px;
+  }
+  
+  .cell{
+    max-width: 7%;
+  }
+  .buyers{
+    max-width: 50px !important;
+    padding-right: 5px !important;
+  }
+  .history{
+    max-width: 0px !important;
+    padding-right: 0px !important;
+  }
+  .portlet-body{
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+  }
+  .products{
+    max-width: 116px !important;
+    word-break: break-word !important;
+    padding-right: 4px !important;
+  }
+}
+
+@media (min-width: 416px) and (max-width: 480px) {
+  .mob-view{
+    display: none !important;
+  }
+  .sales-cell{
+    margin-left: 0px;
+  }
+  
+  .purchase-cell{
+    max-width: 0px;
+  }
+  
+  .sales-buyer{
+    margin-right: 0px;
+  }
+  
+  .sales-history{
+    margin-left: 0px;
+  }
+  
+  .purchase-history{
+    margin-left: 0px;
+  }
+  
+  .saler-cell{
+    justify-content: center;
+    margin-left: 0px;
+  }
+  
+  .cell{
+    max-width: 7%;
+  }
+  .buyers{
+    max-width: 60px !important;
+    padding-right: 15px !important;
+  }
+  .history{
+    max-width: 0px !important;
+    padding-right: 0px !important;
+  }
+  .portlet-body{
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+  }
+  .products{
+    max-width: 160px !important;
+    word-break: break-word !important;
+    padding-right: 15px !important;
+  }
+}

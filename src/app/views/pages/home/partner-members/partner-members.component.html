@@ -1,0 +1,118 @@
+<kt-portlet class="kt-portlet-clear">
+  <div class="kt-portlet__head mb-3">
+    <div class="kt-portlet__head-label">
+      <h3 class="kt-portlet__head-title">Members of {{ partnerData?.name }}</h3>
+    </div>
+    <div class="kt-portlet__head-toolbar">
+      <div class="input-group mt-2">
+        <input
+          #searchInput
+          [(ngModel)]="searchKey"
+          type="text"
+          class="form-control search-input"
+          (keyup.enter)="applyFilter(searchKey, true)"
+          placeholder="Search..."
+          [ngModelOptions]="{ standalone: true }"
+        />
+        <div class="input-group-append">
+          <button
+            class="btn btn-brand btn-default btn-sm kt-font-bold"
+            [ngClass]="{
+              'kt-spinner kt-spinner--right kt-spinner--md kt-spinner--light': loading
+            }"
+            type="button"
+            (click)="applyFilter(searchKey, true)"
+          >
+            <mat-icon class="search-icon"> search</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <kt-portlet-body class="set-padding kt-portlet__body">
+    <mat-table #table [dataSource]="dataSource">
+      <ng-container matColumnDef="brands">
+        <mat-header-cell *matHeaderCellDef class="brands">
+          Brands
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element" class="brands">
+          <img
+            class="img-size"
+            *ngIf="element.logo != null && element.logo != ''"
+            [src]="getImage(element.logo)"
+          />
+          <img
+            class="img-size"
+            *ngIf="element.logo == null || element.logo == ''"
+            src="../../../../assets/media/logos/default-partner-logo.png "
+          />
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="companies">
+        <mat-header-cell *matHeaderCellDef class="col2-width">
+          Registered Companies
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element" class="text-break col2-width">
+          <a
+            (click)="getUrl(element)"
+            class="link-url text-primary"
+            target="_blank"
+            >{{ element.memberCompanyName }}</a
+          >
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="salesCatalogue">
+        <mat-header-cell
+          *matHeaderCellDef
+          class="catalouge mob-view set-margin ipad-width ml-5"
+        >
+          Sales Catalogue
+        </mat-header-cell>
+        <mat-cell
+          *matCellDef="let element"
+          class="catalouge mob-view set-margin ipad-width"
+        >
+          <a
+            class="btn btn-clear"
+            (click)="getUrl(element, 'sales-catalogue')"
+            class="link-url text-primary"
+            target="_blank"
+            ><span class="badge badge-pill badge-danger">
+              {{ element.salesPrdCnt }}</span
+            >
+            Catalogue</a
+          >
+        </mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns"> </mat-row>
+    </mat-table>
+    <div
+      *ngIf="fetching"
+      style="
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #ffffff !important;
+      "
+    >
+      <mat-progress-spinner color="primary" mode="indeterminate" diameter="20">
+      </mat-progress-spinner>
+    </div>
+    <div
+      class="mat-table__message text-center"
+      *ngIf="membersList?.partnerMemberList == 0"
+      style="background-color: #ffffff !important;"
+    >
+      No Record Found
+    </div>
+    <mat-paginator
+      [pageSize]="10"
+      [pageSizeOptions]="[10, 20, 30]"
+      (page)="pageChangeEvent($event)"
+      [length]="1000"
+      [showFirstLastButtons]="true"
+    >
+    </mat-paginator>
+  </kt-portlet-body>
+</kt-portlet>

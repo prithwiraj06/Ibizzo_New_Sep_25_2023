@@ -1,0 +1,130 @@
+<!-- <kt-portlet>
+  <div class="kt-portlet__head">
+    <div class="kt-portlet__head-label">
+      <h3 class="kt-portlet__head-title">Live RFQ's</h3>
+    </div>
+    <div class="mt-2">
+      <div class="kt-header__topbar-item kt-header__topbar-item--search">
+        <div class="kt-header__topbar-wrapper">
+          <div class="kt-header-toolbar">
+            <div
+              ngbDropdown
+              placement="bottom"
+              autoClose="outside"
+              class="
+                kt-quick-search
+                kt-quick-search--inline
+                kt-quick-search--result-compact
+              "
+              id="kt_quick_search_default"
+            >
+              <div class="input-group">
+                <input
+                  #searchInput
+                  [(ngModel)]="searchText"
+                  type="text"
+                  class="form-control search-input"
+                  placeholder="Search..."
+                  [ngModelOptions]="{ standalone: true }"
+                  (keyup.enter)="search()"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <kt-portlet-body class="portlet-body">
+    <div>
+      <mat-spinner *ngIf="fetching" style="margin: 0 auto" [diameter]="20">
+      </mat-spinner>
+      <div
+        class="mat-table__message text-center"
+        *ngIf="data.length == 0 && !fetching"
+      >
+        No Record Found
+      </div>
+    </div>
+
+    <div class="row body-data" style="cursor: pointer !important">
+      <div class="col-lg-6 col-xs-6 col-xl-6" *ngFor="let item of data">
+        <div class="rfq-body">
+          <div class="row">
+            <div class="col-lg-5 col-xs-5 col-xl-5">
+              <div class="row image-place">
+                <img class="img-size" [src]="getImage(item.productImage)" />
+              </div>
+              <div class="row btn-center">
+                <a
+                  href="javascript:;"
+                  class="btn-contact"
+                  type="button"
+                  (click)="viewBuyers(item)"
+                >
+                  Contact Buyer
+                </a>
+              </div>
+            </div>
+            <div class="col-lg-6 col-xs-6 col-xl-6">
+              <div class="row" *ngIf="item.productName || item.searchName">
+                <span class="prd-style">
+                  {{ item.productName ? item.productName : item.searchName }}
+                </span>
+              </div>
+              <div class="row pad-row">
+                <span class="detail_1" *ngIf="item.quantity">
+                  Quantity: {{ item.quantity }}
+                </span>
+                <span
+                  class="detail_1"
+                  *ngIf="item.quantityTypeName"
+                  style="padding-left: 10px"
+                >
+                  Unit: {{ item.quantityTypeName }}
+                </span>
+              </div>
+              <div class="row pad-row">
+                <span class="detail_2">
+                  {{ getDateFormat(item.createdDate) }}
+                </span>
+              </div>
+              <div class="row pad-row" *ngIf="item.location">
+                <span class="detail_1"> Location: {{ item.location }} </span>
+              </div>
+              <div class="row pad-row" *ngIf="item.purchaserEmail">
+                <span class="detail_1">
+                  Email: {{ getEmail(item.purchaserEmail) }}
+                </span>
+              </div>
+              <div class="row pad-row" *ngIf="item.purchaserPhoneNumber">
+                <span class="detail_1">
+                  Phone: {{ getPhone(item.purchaserPhoneNumber) }}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <mat-paginator
+      [length]="10000"
+      [pageSize]="6"
+      [pageSizeOptions]="[6, 12, 24]"
+      (page)="pageChangeEvent($event)"
+    >
+    </mat-paginator>
+  </kt-portlet-body>
+</kt-portlet> -->
+<iframe
+  [src]="urlSafe"
+  style="border: 0px #ffffff none"
+  name="myiFrame"
+  scrolling="no"
+  frameborder="1"
+  marginheight="0px"
+  marginwidth="0px"
+  height="2400px"
+  width="100%"
+  allowfullscreen
+></iframe>

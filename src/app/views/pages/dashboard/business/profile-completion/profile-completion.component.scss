@@ -1,0 +1,53 @@
+//additional styling
+
+.progress {
+  margin-bottom: 1em;
+  width: 65px !important;
+  height: 65px !important;
+}
+.progress-value {
+  margin-left: 23px !important;
+}
+.text-color {
+  font-weight: bold !important;
+  color: #ff0000 !important;
+  font-size: medium;
+}
+.txt-color {
+  color: #000000 !important;
+}
+.btn-color {
+  background: #ff0000;
+  color: #ffffff !important;
+}
+.text-decoration {
+  margin-top: 6px;
+}
+.text-place {
+  // margin-right: auto !important;
+  margin-left: -115px !important;
+}
+.circle {
+  width: 130px;
+  display: inline-block;
+  position: relative;
+  vertical-align: top;
+  margin-right: 10px;
+}
+
+.profile-status {
+  display: inline-block;
+  text-align: center;
+  line-height: 50px;
+  width: 65px;
+  height: 65px;
+  position: absolute;
+  left: 0;
+  color: red;
+  line-height: 65px;
+  font-weight: bold;
+}
+
+.text-primary {
+  margin-right: 110px !important;
+}

@@ -1,0 +1,95 @@
+:host {
+  .kt-widget17__stats {
+    margin-bottom: 1.5rem;
+  }
+
+  a.kt-widget17__item {
+    min-height: 140px;
+  }
+  .user-details {
+    margin-right: 40px;
+    text-align: center !important;
+  }
+  .info-icon {
+    margin-top: -15px;
+    margin-right: -14px;
+  }
+  .scroll-body {
+    overflow-y: auto !important;
+  }
+
+  .kt-mycart__container:hover {
+    background: #d8dbe04f;
+  }
+
+  .kt-iconbox {
+    padding: 5.5rem !important;
+  }
+  .kt-iconbox--animate-slower {
+    // background-color: #f7f8fa;
+    overflow: unset !important;
+    position: relative;
+  }
+}
+
+.set-notification {
+  height: 780px !important;
+}
+
+.notification-msg {
+  height: 100% !important;
+}
+
+.set-widget {
+  height: 260px !important;
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+  .set-notification {
+    height: 740px !important;
+  }
+  .set-widget {
+    height: 780px !important;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+  }
+}
+
+@media only screen and (width: 1440px) {
+  .kt-mycart__body {
+    max-height: 66vh !important;
+    position: relative;
+  }
+}
+
+@media only screen and(width: 1025px) {
+  .kt-mycart__body {
+    max-height: 76vh !important;
+    position: relative;
+  }
+}
+
+@media only screen and(min-width: 2560px) {
+  .kt-mycart__body {
+    max-height: 36vh !important;
+    position: relative;
+  }
+}
+
+a.btn.btn-label-primary,
+button.btn.btn-label-primary,
+input.btn.btn-label-primary {
+  cursor: pointer !important;
+  float: right;
+  background: #ff0000;
+  color: #ffffff !important;
+}
+.kt-media.light-warning span {
+  background-color: #ffad56b5 !important;
+}
+
+.badge-color {
+  background: #ff0000;
+  color: #ffffff;
+  font-weight: 600;
+}

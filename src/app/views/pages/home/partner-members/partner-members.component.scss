@@ -1,0 +1,99 @@
+:host {
+  /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#fc004f+7,fd397a+79 */
+  background: #3d94fb66; /* Old browsers */
+  background: -moz-linear-gradient(
+    45deg,
+    #3d94fb66 7%,
+    #3d94fb66 79%
+  ); /* FF3.6-15 */
+  background: -webkit-linear-gradient(
+    45deg,
+    #3d94fb66 7%,
+    #3d94fb66 79%
+  ); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(
+    45deg,
+    #3d94fb66 7%,
+    #3d94fb66 79%
+  ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fc004f', endColorstr='#fd397a',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
+  background-size: 100% 300px;
+  background-repeat: no-repeat;
+  padding: 30px;
+  width: 100%;
+  display: block;
+  border-radius: 4px;
+  overflow: hidden;
+
+  .kt-portlet-header-sm {
+    height: 10px !important;
+    overflow: hidden;
+  }
+
+  .link-url:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+  .btn-myproducts:hover {
+    background-color: #3d94fb66;
+  }
+
+  .brands {
+    max-width: 170px !important;
+  }
+  .catalouge {
+    max-width: 220px !important;
+  }
+
+  .set-padding {
+    overflow-x: hidden !important;
+    padding-top: 0px !important;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+    border-radius: 6px !important;
+  }
+
+  .search-icon {
+    color: #ffffff !important;
+  }
+
+  .img-size {
+    height: 60px !important;
+    width: 100px !important;
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+
+  .mat-header-row {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background-color: inherit;
+  }
+
+  .catalouge {
+    max-width: 220px !important;
+  }
+
+  .set-margin {
+    margin-right: 70px !important;
+  }
+
+  @media (min-width: 320px) and (max-width: 480px) {
+    .mob-view {
+      display: none !important;
+    }
+
+    .brands {
+      max-width: 110px !important;
+    }
+  }
+
+  @media only screen and (width: 768px) {
+    .ipad-width {
+      margin-right: -70px !important;
+    }
+  }
+}

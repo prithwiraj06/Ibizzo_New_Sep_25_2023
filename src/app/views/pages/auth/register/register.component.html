@@ -1,0 +1,523 @@
+<div class="kt-login__body">
+  <div class="kt-login__form">
+    <div
+      #wizard
+      class="kt-wizard-v1"
+      id="kt_wizard_v1"
+      data-ktwizard-state="step-first"
+    >
+      <!--begin: Form Wizard Nav -->
+      <div class="kt-wizard-v1__nav">
+        <div class="kt-wizard-v1__nav-items">
+          <a
+            class="kt-wizard-v1__nav-item"
+            href="javascript:;"
+            data-ktwizard-type="step"
+          >
+            <div class="kt-wizard-v1__nav-body">
+              <div class="kt-wizard-v1__nav-icon">
+                <i class="flaticon-profile"></i>
+              </div>
+              <div class="kt-wizard-v1__nav-label">
+                <div class="kt-wizard-v1__nav-label-title">Profile</div>
+                <div class="kt-wizard-v1__nav-label-desc">
+                  <!-- Add Payment Options -->
+                </div>
+              </div>
+            </div>
+          </a>
+          <a
+            class="kt-wizard-v1__nav-item"
+            href="javascript:;"
+            data-ktwizard-type="step"
+            data-ktwizard-state="current"
+          >
+            <div class="kt-wizard-v1__nav-body">
+              <div class="kt-wizard-v1__nav-icon">
+                <i class="flaticon-list"></i>
+              </div>
+              <div class="kt-wizard-v1__nav-label">
+                <div class="kt-wizard-v1__nav-label-title">Your Interests</div>
+                <div class="kt-wizard-v1__nav-label-desc">
+                  <!-- Create Custom Account -->
+                </div>
+              </div>
+            </div>
+          </a>
+          <a
+            class="kt-wizard-v1__nav-item"
+            href="javascript:;"
+            data-ktwizard-type="step"
+          >
+            <div class="kt-wizard-v1__nav-body">
+              <div class="kt-wizard-v1__nav-icon">
+                <i class="flaticon-user"></i>
+              </div>
+              <div class="kt-wizard-v1__nav-label">
+                <div class="kt-wizard-v1__nav-label-title">Password</div>
+                <div class="kt-wizard-v1__nav-label-desc">
+                  <!-- Setup Your Address -->
+                </div>
+              </div>
+            </div>
+          </a>
+
+          <a
+            class="kt-wizard-v1__nav-item"
+            href="javascript:;"
+            data-ktwizard-type="step"
+          >
+            <div class="kt-wizard-v1__nav-body">
+              <div class="kt-wizard-v1__nav-icon">
+                <i class="flaticon-like"></i>
+              </div>
+              <div class="kt-wizard-v1__nav-label">
+                <div class="kt-wizard-v1__nav-label-title">Complete</div>
+                <div class="kt-wizard-v1__nav-label-desc">
+                  <!-- Setup Your Address -->
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+      <!--end: Form Wizard Nav -->
+
+      <div class="kt-portlet no-shadow">
+        <div class="kt-portlet__body kt-portlet__body--fit">
+          <div class="kt-grid">
+            <div
+              class="kt-grid__item kt-grid__item--fluid kt-wizard-v1__wrapper"
+            >
+              <div class="kt-form kt-form-signup">
+                <!--begin: Form Wizard Step 1-->
+                <div
+                  class="kt-wizard-v1__content"
+                  data-ktwizard-type="step-content"
+                >
+                  <form [formGroup]="emailVerify">
+                    <div class="form-group" id="email">
+                      <label for="email" class="mandatory-field">Email</label>
+                      <div class="input-group">
+                        <input
+                          class="form-control"
+                          formControlName="email"
+                          placeholder="Enter your email ,cannot be changed once registered"
+                        />
+                        <div class="input-group-append">
+                          <button
+                            *ngIf="inputMode == 'enabled'"
+                            [class]="getClass()"
+                            type="button"
+                            (click)="verify()"
+                          >
+                            Go!
+                          </button>
+                          <button
+                            *ngIf="inputMode == 'disabled'"
+                            class="btn btn-warning"
+                            type="button"
+                            (click)="toggleInputLock('unlock')"
+                          >
+                            <i class="fa flaticon-edit"></i>
+                          </button>
+                        </div>
+                      </div>
+                      <div
+                        class="invalid-feedback"
+                        *ngIf="isControlHasError('email', 'required')"
+                      >
+                        Email is required
+                      </div>
+                      <div
+                        class="invalid-feedback"
+                        *ngIf="isControlHasError('email', 'pattern')"
+                      >
+                        Enter valid Email
+                      </div>
+                    </div>
+                  </form>
+                  <form [formGroup]="form1">
+                    <div class="form-group">
+                      <label for="Name"
+                        >Name
+                        <i
+                          class="fa fa-question-circle mandatory-field"
+                          style="color: #ff6600"
+                          ngbPopover="Enter your name"
+                          popoverTitle="Name is Mandatory"
+                        ></i>
+                      </label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        formControlName="name"
+                        placeholder="Enter your name"
+                      />
+                      <div
+                        class="invalid-feedback"
+                        *ngIf="isControlHasError('name', 'required')"
+                      >
+                        Name is required
+                      </div>
+                      <div
+                        class="invalid-feedback"
+                        *ngIf="isControlHasError('name', 'pattern')"
+                      >
+                        Enter valid name
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="Name"
+                        >Company Name
+                        <i
+                          class="fa fa-question-circle mandatory-field"
+                          style="color: #ff6600"
+                          ngbPopover="Enter Your Company or Business name"
+                          popoverTitle="Company Name is Mandatory"
+                        ></i>
+                      </label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        name="company"
+                        formControlName="companyName"
+                        placeholder="Enter your company name"
+                      />
+                      <div
+                        class="invalid-feedback"
+                        *ngIf="isControlHasError('companyName', 'required')"
+                      >
+                        Company name is required
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="phoneNumber"
+                        >Contact No.
+                        <i
+                          class="fa fa-question-circle mandatory-field"
+                          style="color: #ff6600"
+                          ngbPopover="Enter your valid contact No.Contact number cannot be changed once registered"
+                          popoverTitle="Contact is Mandatory"
+                        ></i>
+                      </label>
+                      <input
+                        class="form-control"
+                        name="phone"
+                        formControlName="phoneNumber"
+                        type="text"
+                        pattern="\d*"
+                        maxlength="10"
+                        min="0"
+                        oninput="validity.valid||(value='');"
+                        placeholder="You will receive a OTP on this number"
+                      />
+                      <div
+                        class="invalid-feedback"
+                        *ngIf="isControlHasError('phoneNumber', 'required')"
+                      >
+                        Phone number is required field
+                      </div>
+                      <div
+                        class="invalid-feedback"
+                        *ngIf="isControlHasError('phoneNumber', 'pattern')"
+                      >
+                        Enter valid Phone number
+                      </div>
+                    </div>
+                  </form>
+                </div>
+                <!--end: Form Wizard Step 1-->
+
+                <!--begin: Form Wizard Step 2-->
+                <div
+                  class="kt-wizard-v2__content"
+                  data-ktwizard-type="step-content"
+                >
+                  <form [formGroup]="form2" autocomplete="off">
+                    <div class="row">
+                      <div class="col">
+                        <div class="form-group">
+                          <label for="Name"
+                            >Business Category
+                            <i
+                              class="fa fa-question-circle mandatory-field"
+                              style="color: #ff6600"
+                              ngbPopover="Select your Business segment/category.You can select multiple categories"
+                              popoverTitle="Business category is Mandatory"
+                            ></i>
+                          </label>
+                          <div class="input-group">
+                            <kt-business-category-lookup
+                              (onChange)="onBusinessCategoryChange($event)"
+                              [includeDefaults]="false"
+                              [allowTags]="true"
+                              [width]="true"
+                            >
+                            </kt-business-category-lookup>
+                          </div>
+                          <div class="invalid-feedback" *ngIf="categoryError">
+                            Business Category is required
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="sales"
+                        >Sales Product
+                        <i
+                          class="fa fa-question-circle mandatory-field"
+                          style="color: #ff6600"
+                          ngbPopover="Enter only one product of your company.You can add more product after your registration"
+                          popoverTitle="Product Name is Mandatory"
+                        ></i>
+                      </label>
+                      <kt-product-lookup
+                        (onChange)="onProductChange($event, 'producName')"
+                        type="sales"
+                      >
+                      </kt-product-lookup>
+                      <div
+                        class="invalid-feedback"
+                        *ngIf="isControlHasError('producName', 'required')"
+                      >
+                        Product Name is required
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="purchase"
+                        >Purchase Product
+                        <i
+                          class="fa fa-question-circle mandatory-field"
+                          style="color: #ff6600"
+                          ngbPopover="Enter only one product you want to purchase.You can add more product after your registration"
+                          popoverTitle="Purchase Product Name is Mandatory"
+                        ></i>
+                      </label>
+                      <div class="input-group">
+                        <kt-product-lookup
+                          (onChange)="
+                            onProductChange($event, 'purchaseProductName')
+                          "
+                          type="purchase"
+                        >
+                        </kt-product-lookup>
+                      </div>
+                      <div
+                        class="invalid-feedback"
+                        *ngIf="
+                          isControlHasError('purchaseProductName', 'required')
+                        "
+                      >
+                        Purchase Product is required
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="emailId"
+                        >Pincode
+                        <i
+                          class="fa fa-question-circle mandatory-field"
+                          style="color: #ff6600"
+                          ngbPopover="Enter your pincode"
+                          popoverTitle="Pincode is Mandatory"
+                        ></i>
+                      </label>
+                      <input
+                        type="number"
+                        class="form-control"
+                        formControlName="location"
+                        placeholder="Enter Pincode"
+                      />
+                      <div
+                        class="invalid-feedback"
+                        *ngIf="isControlHasError('location', 'required')"
+                      >
+                        Pincode is required
+                      </div>
+                      <div
+                        class="invalid-feedback"
+                        *ngIf="isControlHasError('location', 'pattern')"
+                      >
+                        Please enter 6 digit pincode
+                      </div>
+                    </div>
+                  </form>
+                </div>
+                <!--end: Form Wizard Step 2-->
+
+                <!--begin: Form Wizard Step 3-->
+                <div
+                  class="kt-wizard-v3__content"
+                  data-ktwizard-type="step-content"
+                >
+                  <form [formGroup]="form3">
+                    <div class="form-group">
+                      <label for="Name"
+                        >User Name
+                        <i
+                          class="fa fa-question-circle mandatory-field"
+                          style="color: #ff6600"
+                          ngbPopover="UserName for login purpose"
+                          popoverTitle="User Name is Mandatory"
+                        ></i>
+                      </label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        formControlName="username"
+                        readonly
+                      />
+                    </div>
+
+                    <div class="form-group">
+                      <label for="password"
+                        >Password
+                        <i
+                          class="fa fa-question-circle mandatory-field"
+                          style="color: #ff6600"
+                          ngbPopover="Password must contain at least two of the following: numbers, lowercase letters, uppercase letters, or special characters"
+                          popoverTitle="Password is Mandatory"
+                        ></i>
+                      </label>
+                      <input
+                        type="password"
+                        class="form-control"
+                        name="company"
+                        formControlName="password"
+                        placeholder="Enter your password"
+                      />
+                      <div
+                        class="invalid-feedback"
+                        *ngIf="isControlHasError('password', 'required')"
+                      >
+                        Password is required
+                      </div>
+                      <div
+                        class="invalid-feedback"
+                        *ngIf="isControlHasError('password', 'minlength')"
+                      >
+                        Minimum of 7 characters required
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="confirmPassword">Confirm Password </label>
+                      <input
+                        type="password"
+                        class="form-control"
+                        name="phone"
+                        formControlName="confirmPassword"
+                        placeholder="Enter your confirm password"
+                      />
+                      <div
+                        class="invalid-feedback"
+                        *ngIf="isControlHasError('confirmPassword', 'required')"
+                      >
+                        Confirm password is required
+                      </div>
+                      <div
+                        class="invalid-feedback"
+                        *ngIf="
+                          form3.get('confirmPassword').errors &&
+                          form3.get('confirmPassword').errors.ConfirmPassword
+                        "
+                      >
+                        Passwords didn't match.
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-lg-2"></div>
+                      <div class="col-lg-10">
+                        <mat-checkbox formControlName="confirm">
+                          I agree with
+                        </mat-checkbox>
+                        <a class="kt-link" (click)="acceptTermsAndCondition()">
+                          <span class="term-text">Terms and Conditions</span>
+                        </a>
+                      </div>
+                    </div>
+
+                    <div class="row mt-3">
+                      <div class="col-lg-2"></div>
+                      <div class="col-lg-10">
+                        <re-captcha
+                          #captchaRef="reCaptcha"
+                          siteKey="6LcTNtsUAAAAAMW2aH7RZT0rwp_cBi1uWpIzrM55"
+                          (resolved)="resolvedCaptch($event)"
+                        >
+                        </re-captcha>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+                <!--end: Form Wizard Step 3-->
+
+                <!--begin: Form Wizard Step 3-->
+                <div
+                  class="kt-wizard-v3__content"
+                  data-ktwizard-type="step-content"
+                >
+                  <form class="kt-form">
+                    <div class="kt-portlet">
+                      <div class="kt-portlet__body success-message">
+                        <i class="flaticon-trophy"></i>
+                        <h5>Registration successful</h5>
+                        <p></p>
+                        <button
+                          class="btn btn-outline-primary"
+                          (click)="GotoDashboard()"
+                        >
+                          Goto Dashboard
+                        </button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+                <!--end: Form Wizard Step 3-->
+
+                <div
+                  class="kt-form__actions"
+                  [ngClass]="{ 'kt-hidden': successPage }"
+                >
+                  <button
+                    [disabled]="!prevButton"
+                    class="btn btn-secondary btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u"
+                    (click)="prevStep()"
+                  >
+                    Previous
+                  </button>
+                  <button
+                    (onNext)="onStep3Next($event)"
+                    *ngIf="registerStep == true"
+                    class="btn btn-brand btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u float-right"
+                    [ngClass]="{
+                      'kt-spinner kt-spinner--right kt-spinner--md kt-spinner--light': loading
+                    }"
+                    (click)="nextStep()"
+                  >
+                    Register
+                  </button>
+                  <button
+                    [disabled]="isEmailVerified"
+                    *ngIf="registerStep == false"
+                    class="btn btn-brand btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u float-right"
+                    [ngClass]="{
+                      'kt-spinner kt-spinner--right kt-spinner--md kt-spinner--light': loading
+                    }"
+                    (click)="nextStep()"
+                  >
+                    Next Step
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

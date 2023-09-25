@@ -1,0 +1,51 @@
+:host {
+	::ng-deep {
+		ngb-tabset > .nav-tabs {
+			display: none;
+		}
+	}
+
+	#side-menu{
+		border: 1px solid #c8d3ef;
+    box-shadow: 0px 0px 5px rgba(202, 202, 202, 0.5);
+		background-color: aliceblue;
+		
+		.kt-nav-link:hover{
+			background-color: #e5f3ff !important;
+		}
+
+		&:before{
+			content: 'Business Dashboard';
+			display: block;
+			background-color: dodgerblue;
+			color: white;
+			text-align: center;
+			border-radius: 4px 4px 0px 0px;
+			font-weight: bold;
+			line-height: 20px;
+		}
+
+		.kt-nav__item.active .kt-nav__link{
+			background-color: #deeefe;
+		}
+
+		.kt-nav__item.highlight{
+			margin-bottom: 10px;
+    	box-shadow: 0px 2px 2px rgba(0,0,0,0.1);
+		}		
+	}
+
+	.user-profile{
+		width: 90px !important;
+		max-width: 100%;
+		border-radius: 8px;
+		height: 67.41px !important;
+	}
+
+	.sub-units{
+		margin-left: -41px;
+	}
+	.kt-truncate{
+		display: inline-flex !important;
+	}
+}

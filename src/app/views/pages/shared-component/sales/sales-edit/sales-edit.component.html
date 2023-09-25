@@ -1,0 +1,382 @@
+<form [formGroup]="form" class="kt-form kt-form--label-right" autocomplete="off">
+
+  <!--Product Details-->
+  <mat-card class="product-card">
+    <mat-card-header>
+      <mat-card-title style="font-size: 17px">Product/Service Details</mat-card-title>
+    </mat-card-header>
+    <hr class="mt-1">
+    <mat-card-content>
+      <div class="row form-group">
+        <div class="col-lg-3 form-label">
+          <label [class]="getClass()">Type</label><span>:</span>
+          <i class="fa fa-question-circle ml-1" placement="right" style="color:#FF6600;" ngbPopover="Please enter Type"
+            popoverTitle="Type"></i>
+        </div>
+        <div class="col-lg-6">
+          <mat-select formControlName="productType" class="form-control" [(ngModel)]="optionValue"
+            [ngClass]="isControlHasError('productType', 'required') ? 'error' : ''">
+            <mat-option *ngFor="let option of productTypeOption" [value]="option.id">
+              {{option.name}}
+            </mat-option>
+          </mat-select>
+            <mat-error *ngIf="isControlHasError('productType', 'required')">
+              Type is required
+            </mat-error>
+        </div>
+      </div>
+
+      <div class="row form-group">
+        <div class="col-lg-3 form-label">
+          <label class="mandatory-field">Product/Service Name</label><span>:</span>
+          <i class="fa fa-question-circle ml-1" placement="right" style="color:#FF6600;"
+            ngbPopover="Please enter Product Name" popoverTitle="Product Name"></i>
+          <!-- <label style="font-size: 11px;margin-right: 8%;">With UNSPS Code</label> -->
+        </div>
+        <div class="col-lg-6">
+          <kt-product-lookup [data]="{'text': form.value.productName, 'id': form.value.unsbscProductCode }"
+            (onChange)="onProductChange($event)" type=''></kt-product-lookup>
+          <mat-error *ngIf="isControlHasError('productName', 'required')">
+            Product Name/Service Name is required
+          </mat-error>
+        </div>
+      </div>
+
+      <div class="row form-group">
+        <div class="col-lg-3 form-label">
+          <label [class]="getClass()">Product/Service Category</label><span>:</span>
+          <i class="fa fa-question-circle ml-1" placement="right" style="color:#FF6600;"
+            ngbPopover="Please enter Product Category Name" popoverTitle="Product Category Name"></i>
+        </div>
+        <div class="col-lg-6">
+          <kt-category-lookup [data]="data.productCatogories" [categories]="productCategoryList"
+            [customCategories]="data.customProductCatogories" (onChange)="onCategoryChange($event)"
+            [productId]="userProduct.productId" #categoryLookUps></kt-category-lookup>
+          <mat-error *ngIf="isControlHasError('productCatogories', 'required')">
+            Product?Service Category is required
+          </mat-error>
+        </div>
+      </div>
+      <div class="row form-group">
+        <div class="col-lg-3 form-label">
+          <label>Keyword</label>
+        </div>
+
+        <div class="col-lg-4 col-md-9 col-sm-12" formArrayName="keyWordsList" *ngIf="hasControl('keyWordsList')">
+          <div class="input-group bootstrap-touchspin bootstrap-touchspin-injected mt-2"
+            *ngFor="let cell of form.get('keyWordsList').controls; let i=index" [formGroupName]="i">
+            <input id="kt_touchspin_1" type="text" class="form-control" placeholder="Alternate trade Names"
+              formControlName="value">
+            <span *ngIf="i==0" class="input-group-btn input-group-append">
+              <button class="btn btn-secondary bootstrap-touchspin-up" type="button" (click)="addCell('keyWordsList')">+
+              </button>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="row form-group">
+        <div class="col-lg-3 form-label">
+          <label>HSN/SAC code</label>
+          <i class="fa fa-question-circle ml-1" placement="right" style="color:#FF6600;"
+            ngbPopover="Please enter HSN or SAC code" popoverTitle="HSN/SAC code"></i>
+        </div>
+        <div class="col-lg-6 row">
+          <div class="col-8">
+            <kt-hsn-lookup [data]="{'text': form.value.hsn, 'id': form.value.hsn }" #hsnLookUps
+              (onChange)="onHSNChange($event)">
+            </kt-hsn-lookup>
+          </div>
+          <div class="col" style="width: 100%;">
+            <button class="btn btn-primary label-primary pl-0 pr-0" (click)="openHsn()" style="width: 100%;">Search
+
+              my
+              Hsn Code
+            </button>
+            <span [ngClass]="{'kt-spinner kt-spinner--danger': loadingHsn}">
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="row form-group" style="margin-bottom: 14px;">
+        <div class="col-lg-3 form-label">
+          <label>Buyer Industry</label>
+        </div>
+        <div class="col-lg-6">
+          <kt-business-category-lookup [data]="buyerIndustries" allowTags=true
+            (onChange)="onBusinessCategoryChange($event)">
+          </kt-business-category-lookup>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  <!--Product Details-->
+    <!--Product Additional details-->
+    <mat-card class="cards">
+      <mat-card-header>
+        <mat-card-title style="font-size: 17px">Product/Service Additional Specifications Details</mat-card-title>
+      </mat-card-header>
+      <hr class="mt-1">
+      <mat-card-content>
+        <div class="row">
+          <div class="col-lg-3 form-label">
+            <h6>Additional Details:</h6>
+          </div>
+        </div>
+
+        <div class="row form-group" style="margin-top: -35px;">
+          <div  class="col-lg-3">
+          </div>
+          <div class="col-lg-6">
+            <kt-dynamic-object-value [arrListInfo]="arrList" (valueChange)="addtionalDetails($event)" #dymicKey></kt-dynamic-object-value>
+          </div>
+        </div>
+  
+      </mat-card-content>
+      <div class="row mt-2" style="margin-bottom: 14px; ">
+        <div class="col-lg-3">
+        </div>
+        <div class="col-lg" >
+          &nbsp;<span style="color:#dc3545; font-weight:500 ;">Please add additional details of your product/service, It will impact on search page. </span>
+        </div>
+      </div>
+    </mat-card>
+
+  <!--Product Description-->
+  <mat-card class="cards">
+    <mat-card-header>
+      <mat-card-title style="font-size: 17px">Product/Service Description</mat-card-title>
+    </mat-card-header>
+    <hr class="mt-1">
+    <mat-card-content>
+      <div class="row form-group mt-4">
+        <div class="col-lg-3 form-label">
+          <label [class]="getClass()">Description line 1</label><span>:</span>
+          <i class="fa fa-question-circle ml-1" placement="right" style="color:#FF6600;"
+            ngbPopover="Please enter Description" popoverTitle="Description"></i>
+        </div>
+        <div class="col-lg-6">
+          <input type="text" class="form-control" formControlName="descriptionsOne"
+            [ngClass]="isControlHasError('descriptionsOne', 'required') ? 'error' : ''"
+            placeholder="Type, modal, make...">
+          <mat-error *ngIf="isControlHasError('descriptionsOne', 'required')">
+            Description is required
+          </mat-error>
+        </div>
+      </div>
+      <div class="row form-group">
+        <div class="col-lg-3 form-label">
+          <label>Description line 2:</label>&nbsp;
+        </div>
+        <div class="col-lg-6">
+          <input type="text" class="form-control" placeholder="Technical Detail, color, material..."
+            formControlName="descriptionsTwo">
+        </div>
+      </div>
+
+      <div formArrayName="descriptions" *ngIf="hasControl('descriptions')">
+        <div class="row form-group" *ngFor="let cell of form.get('descriptions').controls; let i=index">
+          <div class="col-lg-3 form-label">
+            <label>Description line {{2+i+1 }}:</label>&nbsp;
+          </div>
+          <div class="col-lg-6" [formGroupName]="i">
+            <input type="text" class="form-control" placeholder="Any other Specifications" formControlName="value">
+          </div>
+        </div>
+      </div>
+
+      <div class="row" style="margin-bottom: 14px;">
+        <div class="col-lg-4 add-label" (click)="addCell('descriptions')" style="margin-left: -62px;">
+          <i class="mb-add-margin"><i style="color:#2F75DB" class="fa-lg fa fa-plus-circle"></i></i>
+          &nbsp;<span style="color:#dc3545; font-weight:500 ;">Add More
+            Details</span>
+        </div>
+      </div>
+
+      <div class="row mt-2" style="margin-bottom: 14px; ">
+        <div class="col-lg-3">
+        </div>
+        <div class="col-lg" >
+          &nbsp;<span style="color:#dc3545; font-weight:500 ;">Please add complete descriptive product/service, It will impact on search page. </span>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  <!--product Description-->
+
+
+
+
+  <!--Supply Details-->
+
+  <mat-card class="cards">
+    <mat-card-header>
+      <mat-card-title style="font-size: 17px">Supply Details<i class="fa fa-question-circle ml-1" placement="right"
+          style="color:#FF6600;margin: 5px;" ngbPopover="Supply details is Not Applicable for service industries"
+          popoverTitle="Supply Details"></i></mat-card-title>
+
+    </mat-card-header>
+    <hr class="mt-1">
+    <mat-card-content>
+      <div formGroupName="supplyDetail">
+        <div class="row form-group mt-4" *ngIf="optionValue!=2">
+          <div class="col-lg-3 form-label">
+            <label>MOQ:</label>&nbsp;
+            <i class="fa fa-question-circle ml-1" placement="right" style="color:#FF6600;"
+              ngbPopover="Please enter Minimum Order Quantity" popoverTitle="Minimum Order Quantity"></i>
+          </div>
+          <div class="col-lg-6">
+            <input type="number" min="0" class="form-control" formControlName="moq"
+              placeholder="Minimum Order Quantity">
+          </div>
+        </div>
+
+        <div class="row form-group mt-4" *ngIf="optionValue!=2">
+          <div class="col-lg-3 form-label">
+            <label>Quantity Per Pack:</label>&nbsp;
+            <i class="fa fa-question-circle ml-1" placement="right" style="color:#FF6600;"
+              ngbPopover="Quantity Per Pack" popoverTitle="Quantity"></i>
+          </div>
+          <div class="col-lg-6">
+            <input type="number" min="0" class="form-control" formControlName="quantityPerPack"
+              placeholder="Quantity per pack">
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col-lg-12">
+            <div class="row">
+              <label class="col-lg-3 mb-0 set-label">Price:</label>
+              <div class="col-lg-3">
+                <input type="number" class="form-control" formControlName="priceMin"
+                  placeholder="Approx Price Range-INR">
+              </div>
+              <span class="mt-1 hide-text" style="font-size: 18px;">--</span>
+
+              <div class="col-lg-3 mobile-margin">
+                <input type="number" class="form-control " formControlName="priceMax"
+                  placeholder="Approx Price Range-INR">
+              </div>
+            </div>
+          </div>
+        </div>
+
+      
+
+        <div class="row form-group mt-5">
+          <div class='col-lg-3 set-label'>
+            <label>Unit:</label>
+            <i class="fa fa-question-circle ml-1" placement="right" style="color:#FF6600;"
+              ngbPopover="Please enter Price per Unit" popoverTitle="Price per Unit"></i>
+          </div>
+          <div class='col-lg-6'>
+            <mat-select formControlName="unit" class="form-control">
+              <mat-option *ngFor="let option of productQuantityType" [value]="option.id">{{option.Type}}
+              </mat-option>
+            </mat-select>
+          </div>
+        </div>
+
+
+        <div class="row form-group">
+          <div class="col-lg-3 form-label">
+            <label class="mt-2">Production Capacity:</label>
+          </div>
+          <div class="col-lg-3 form-label">
+            <input type="number" class="form-control" formControlName="capacity" placeholder="Quantity">
+          </div>
+          <div class="col-lg-1">
+            <label class="mt-4">Per:</label>
+            <i class="fa fa-question-circle ml-1" placement="right" style="color:#FF6600;"
+              ngbPopover="Please enter Production Capacity" popoverTitle="Production Capacity"></i>
+          </div>
+          <div class="col-lg-3" style="margin-top: 10px;">
+            <mat-select formControlName="supplyDurationTypeId" class="form-control">
+              <mat-option *ngFor="let option of supplyDurationType" [value]="option.id">{{option.Type}}</mat-option>
+            </mat-select>
+          </div>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  <!--Supply Details-->
+
+
+
+
+  <!--Product Images and Videos-->
+  <mat-card class="cards">
+    <mat-card-header>
+      <mat-card-title style="font-size: 17px">Product/Service Images and Videos</mat-card-title>
+    </mat-card-header>
+    <hr class="mt-1">
+    <mat-card-content>
+
+      <div class="row form-group">
+        <div class="col-lg-4 form-label">
+          <label>Upload Product/Service Images</label>&nbsp;
+          <i class="fa fa-question-circle ml-1" placement="right" style="color:#FF6600;"
+            ngbPopover="Upload your product images to make your customers understand about the products and services ,Once paid these images will be displayed in your sales catalgue,search results,Mini- website."
+            popoverTitle="Upload Product Images"></i>
+        </div>
+        <div class="col-lg-7">
+          <label class="dropzone-select btn btn-label-primary btn-bold btn-sm dz-clickable"
+            [ngClass]="{'kt-spinner kt-spinner--danger': imageLoading}">Browse
+            <input type="file" size="60" accept="image/*" (change)="imageEdit($event)" />
+          </label>
+          <!-- <kt-photo-editor width="300" height="300" (valueChange)="fileUpload($event)"  ></kt-photo-editor> -->
+       <!-- <div class="btn btn-info" (click)="imageEdit()">Browse</div> -->
+        </div>
+      </div>
+      <div class="row mt-2" style="margin-bottom: 14px; ">
+        <div class="col-lg-2">
+        </div>
+        <div class="col-lg" >
+          &nbsp;<span style="color:#dc3545; font-weight:500 ;">Please add 300x300 resolution Image, It will have better impact on Product/Service in the search page.</span>
+        </div>
+      </div>
+      <div class="row form-group" style="margin-left: 12%;">
+        <div *ngFor="let i of [0,1, 2, 3]">
+          <div class="col-lg-3 ml-1 mt-2">
+            <label *ngIf="urls[i]" class="kt-avatar__close img-close close-icon" data-toggle="kt-tooltip" title=""
+              data-original-title="Change avatar" (click)="deleteImage(i)">
+              <i class="fa fa-close"></i>
+            </label>
+            <img *ngIf="urls[i]" [src]="viewImage(urls[ i ])" class="image-size mt-1">
+            <img *ngIf="!urls[i]"
+              src="https://www.gumtree.com/static/1/resources/assets/rwd/images/orphans/a37b37d99e7cef805f354d47.noimage_thumbnail.png"
+              class="default-image mt-1">
+          </div>
+        </div>
+      </div>
+
+  
+
+      <div class="row form-group" style="margin-bottom: 14px;">
+        <div class="col-lg-3 form-label">
+          <label>Video Link:<i class="fa fa-question-circle ml-1" placement="right" style="color:#FF6600;"
+              ngbPopover="Add YouTube video links to a video related to this product/service to attract more consumers."
+              popoverTitle="Product video link"></i></label>
+        </div>
+        <div class="col-lg-6">
+          <input type="text" class="form-control" formControlName="videoLink"
+            [ngClass]="isControlHasError('videoLink', 'pattern') ? 'error': ''">
+          <mat-error *ngIf="isControlHasError('videoLink', 'pattern')">
+            Invalid youtube link.
+          </mat-error>
+        </div>
+      </div>
+    </mat-card-content>
+   
+  </mat-card>
+  <!--Product Images and Videos-->
+</form>
+
+<div class="kt-portlet-footer footer">
+  <button type="button" [ngClass]="{'kt-spinner kt-spinner--light': loading}" class="btn btn-brand" (click)="submit()">
+    Submit
+  </button>&nbsp;
+  <button type="button" class="btn btn-secondary" (click)="cancel()">
+    Cancel
+  </button>
+</div>

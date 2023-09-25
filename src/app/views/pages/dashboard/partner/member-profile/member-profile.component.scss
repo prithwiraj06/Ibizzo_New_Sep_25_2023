@@ -1,0 +1,49 @@
+@import "../../../../../../assets/sass/pages/wizard/wizard-4.scss";
+
+:host {
+  /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#cc5500+0,ff7400+100 */
+  background: #cc5500; /* Old browsers */
+  background: -moz-linear-gradient(45deg,  #cc5500 0%, #ff7400 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(45deg,  #cc5500 0%,#ff7400 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(45deg,  #cc5500 0%,#ff7400 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cc5500', endColorstr='#ff7400',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
+  background-size: 100% 300px;
+  background-repeat: no-repeat;
+  padding: 30px;
+  width: 100%;
+  display: block;
+  border-radius: 4px;
+  overflow: hidden;
+
+  // kt-sales-product-list, kt-purchase-product-list{
+  //   background: none !important;
+  //   background-color: white !important;
+  // }
+
+  // .kt-portlet__head-title{
+  //   color: black !important;
+  // }
+
+  .icon{
+    font-size:24px;
+    color: #ffff;
+  }
+
+  .bubble-notification{
+    position: relative !important;
+    top: -18px !important;
+    left: -5px !important;
+    background: #fd397a;
+  }
+
+  
+  .mat-label{
+    color: #ffff;
+  }
+
+  .mat-tab-label{
+    color: #ffff !important;
+  }
+}
+

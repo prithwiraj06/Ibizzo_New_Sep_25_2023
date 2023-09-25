@@ -1,0 +1,25 @@
+.mat-tab-body {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: absolute;
+  display: block;
+  overflow: hidden;
+  flex-basis: 100%;
+}
+.mat-tab-body.mat-tab-body-active {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  flex-grow: 1;
+}
+.mat-tab-group.mat-tab-group-dynamic-height .mat-tab-body.mat-tab-body-active {
+  overflow-y: hidden;
+}
+.btn-container {
+  display: flow-root !important;
+}
+.btn-float {
+  float: right !important;
+}

@@ -1,0 +1,167 @@
+<kt-portlet-body>
+  <div class="mat-table__wrapper">
+    <mat-table
+      #table
+      [dataSource]="dataSource"
+      matSortActive="name"
+      matSortDirection="asc"
+      class="table table-striped"
+      matSort
+      #sort1="matSort"
+      (matSortChange)="sortData($event)"
+    >
+      <ng-container matColumnDef="#">
+        <mat-header-cell *matHeaderCellDef> # </mat-header-cell>
+        <mat-cell *matCellDef="let element; let i = index">
+          <div *ngIf="!(component == 'unspsc')">
+            <mat-checkbox
+              [disabled]="element.isActive == 0"
+              (change)="handleInviteMember(element, $event)"
+            ></mat-checkbox>
+          </div>
+          <div *ngIf="component == 'unspsc'">
+            {{ i + 1 + paginator.pageSize * paginator.pageIndex }}
+          </div>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <mat-header-cell
+          *matHeaderCellDef
+          class="bg-list"
+          [ngClass]="component == 'unspsc' ? 'unspsc-row' : 'second-row'"
+        >
+          <span mat-sort-header> Product/Service </span>
+          <span *ngIf="component == 'user'">
+            <mat-checkbox (change)="handleDuplicate(element, $event)"
+              >Duplicates</mat-checkbox
+            >
+          </span>
+        </mat-header-cell>
+        <mat-cell
+          *matCellDef="let element"
+          [ngClass]="component == 'unspsc' ? 'unspsc-row' : 'second-row'"
+        >
+          {{ getProductName(element) }}
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="unspc">
+        <mat-header-cell *matHeaderCellDef>UNSPSC </mat-header-cell>
+        <mat-cell *matCellDef="let element" class="cursor-label">
+          <div *ngIf="!(component == 'unspsc')" (click)="selectUNSPSC(element)">
+            <span
+              *ngIf="element.unspcCode && element.unspcCode != 0"
+              class="btn btn-label-primary btn-sm"
+            >
+              {{ element.unspcCode }}</span
+            >
+
+            <span *ngIf="element.unspcCode == 0 || element.unspcCode == null"
+              ><i class="material-icons dp48">edit</i></span
+            >
+          </div>
+          <div *ngIf="component == 'unspsc'">
+            <span class="btn btn-label-primary btn-sm">
+              {{
+                element.unsbscProductCode
+                  ? element.unsbscProductCode
+                  : element._source.product_unspsc_code
+              }}</span
+            >
+          </div>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="hsn">
+        <mat-header-cell *matHeaderCellDef class="third-row">
+          HSN
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element" class="cursor-label third-row">
+          <div (click)="selectHSN(element)">
+            <div *ngIf="component == 'user'">
+              <span
+                *ngIf="element.hsnCode && element.hsnCode != 0"
+                class="btn btn-label-danger btn-sm cursor-label"
+                >{{ element.hsnCode }}</span
+              >
+              <span *ngIf="element.hsnCode == null || element.hsnCode == 0"
+                ><i class="material-icons dp48">edit</i></span
+              >
+            </div>
+            <div *ngIf="component == 'unspsc'">
+              <span
+                *ngIf="element._source.product_hnsc_code"
+                class="btn btn-label-danger btn-sm cursor-label"
+                >{{ element._source.product_hnsc_code }}</span
+              >
+              <span *ngIf="element._source.product_hnsc_code == null"
+                ><i class="material-icons dp48">edit</i></span
+              >
+            </div>
+          </div>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="product">
+        <mat-header-cell *matHeaderCellDef> Product category </mat-header-cell>
+        <mat-cell *matCellDef="let element; let i = index" class="cursor-label">
+          <div (click)="selectCustomProductCatalogue(element.categoriesList)">
+            <span
+              *ngIf="
+                element.categoriesList != null && getProCatalogue(element, 0)
+              "
+              class="btn btn-label-success btn-sm cursor-label"
+              >{{ getCatagory(element, 0) }}</span
+            >
+            <span
+              *ngIf="
+                element.categoriesList != null && getProCatalogue(element, 1)
+              "
+              class="btn btn-label-danger btn-sm cursor-label"
+              >{{ getCatagory(element, 1) }}</span
+            >
+            <!-- <span *ngIf="element.categoriesList==null"><i class="material-icons dp48">edit</i></span> -->
+          </div>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="system">
+        <mat-header-cell
+          *matHeaderCellDef
+          [ngClass]="type == 'updatedProfile' ? 'phone-cell' : ''"
+        >
+          System category
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element" class="cursor-label">
+          <div (click)="selectProductCatalogue(element)">
+            <span
+              *ngIf="element.systemCategoryName"
+              class="btn btn-label-primary btn-sm cursor-label"
+              >{{ element.systemCategoryName }}</span
+            >
+            <span *ngIf="element.systemCategoryName == null"
+              ><i class="material-icons dp48">edit</i></span
+            >
+          </div>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns"> </mat-row>
+    </mat-table>
+
+    <div class="mat-table__message" *ngIf="noRecords">No Record Found</div>
+  </div>
+  <div class="mat-table__bottom">
+    <mat-spinner *ngIf="loading" [diameter]="20"> </mat-spinner>
+    <mat-paginator
+      [pageSize]="10"
+      [pageSizeOptions]="[10, 20, 50]"
+      (page)="pageChangeEvent()"
+      length="1000"
+      [showFirstLastButtons]="true"
+    >
+    </mat-paginator>
+  </div>
+</kt-portlet-body>

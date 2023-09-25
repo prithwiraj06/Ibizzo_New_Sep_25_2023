@@ -1,0 +1,88 @@
+:host {
+  .company-text {
+    font-size: 16px;
+    font-weight: 400;
+    color: black;
+    margin-bottom: 15px;
+    margin-left: -16px !important;
+  }
+
+  .company-info-wrapper {
+    padding: 20px;
+  }
+  .no-bottom-margin {
+    margin-bottom: 0px;
+  }
+
+  .image-size {
+    width: 98px !important;
+    height: 100px;
+  }
+  .row {
+    flex: 0 !important;
+  }
+  .vedio-thumbnail {
+    width: 147px !important;
+    height: 100px;
+  }
+
+  .kt-border-radius {
+    border-radius: 10px !important;
+  }
+
+  .document-size {
+    width: 3.5rem !important;
+  }
+
+  .company-description {
+    font-size: 15px;
+    overflow-y: auto;
+  }
+
+  .kt-height {
+    max-height: 469px !important;
+  }
+
+  .cursor {
+    cursor: pointer;
+  }
+
+  .document-text {
+    word-break: break-all;
+    font-size: 14px !important;
+  }
+
+  .document-image {
+    width: 3.5rem !important;
+  }
+
+  .portet-body {
+    height: 420.5px;
+  }
+
+  .icon-position {
+    margin-top: 25%;
+  }
+
+  .website-width {
+    width: 85%;
+  }
+  @media only screen and (device-width: 768px) {
+    .first-img {
+      width: 200px !important;
+    }
+  }
+
+  .badge.badge-paid {
+    display: inline-block;
+    border: 1px solid #f97674;
+    background-color: #f5eeed;
+    color: #ea2520;
+    padding: 0.2rem 0.4rem;
+    font-size: 0.85rem;
+    margin-left: 5px;
+  }
+  .paid-indication {
+    float: right;
+  }
+}

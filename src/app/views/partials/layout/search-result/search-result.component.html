@@ -1,0 +1,22 @@
+<div class="kt-quick-search__result" *ngFor="let item of data">
+	<ng-container >
+		<ng-container  [ngTemplateOutlet]="itemTemplate" [ngTemplateOutletContext]="{item: item}"></ng-container>
+	</ng-container>
+</div>
+
+<ng-template #itemTemplate let-item="item">
+	<div class="kt-quick-search__item m-3">
+		<div class="kt-quick-search__item-icon mr-1 icon-size">
+			<mat-icon style="height: 20px; width: 16px;" 
+			aria-label="Example home icon">business</mat-icon>
+		</div>
+		<div class="kt-quick-search__item-wrapper title-align">
+			<a href="#" class="kt-quick-search__item-title ">
+				{{item.supplierName | titlecase}}
+			</a>
+			<div class="kt-quick-search__item-desc title-align">
+				{{item.productName}}
+			</div>
+		</div>
+	</div>
+</ng-template>

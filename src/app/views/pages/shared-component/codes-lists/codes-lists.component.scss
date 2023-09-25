@@ -1,0 +1,27 @@
+
+:host{
+  .bg-dark{
+    background: #f3f3f3 !important;
+  }
+
+  .bg-white{
+    background: #ffffff !important;
+  }
+
+  .mat-table__message {
+    padding: 30px !important;
+    text-align: center;
+    font-weight: 500;
+    background-color: white;
+  }
+  .col1-width {
+    max-width: 70px !important;
+  }
+  .col3-width {
+    margin-left: 18px !important;
+  }
+  .btn1 {
+    margin-right: 10px !important;
+  }
+  
+}

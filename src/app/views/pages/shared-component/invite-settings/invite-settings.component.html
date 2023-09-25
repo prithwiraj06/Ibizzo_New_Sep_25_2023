@@ -1,0 +1,109 @@
+<kt-portlet-body>
+  <form [formGroup]="emailInviteForm">
+    <div class="row">
+      <div class="col">
+        <div class="form-group">
+          <label for="" class="mandatory-field">From Email</label>
+          <input type="Email" class="form-control"
+            [ngClass]="isControlHasError('fromEmail','required') || isControlHasError('fromEmail','pattern') ? 'border-color' : ''"
+            formControlName="fromEmail" placeholder="Enter the from email "
+            disabled
+            />
+          <mat-error *ngIf="isControlHasError('fromEmail','required')">
+            Email is required
+          </mat-error>
+          <mat-error *ngIf="isControlHasError('fromEmail','pattern')">
+            Invalid email.
+          </mat-error>
+        </div>
+        <!-- <div class="form-group">
+            <label for="">Test Email</label>
+            <input type="Email" class="form-control"
+            [ngClass]="isControlHasError('testEMails','required') ? 'border-color' : ''"
+            formControlName="testEMails" placeholder="Enter the test email ">
+            <mat-error *ngIf="isControlHasError('testEMails','required')">
+              Name is required
+            </mat-error>
+          </div> -->
+        <div class="form-group">
+          <label for="">Subject</label>
+          <input type="text" class="form-control" formControlName="subjectLine" placeholder="Enter to subject ">
+        </div>
+      </div>
+      <div class="col-5">
+        <div class="table-height">
+          <div class="table-responsive" style="height: 150px;">
+            <table class="table table-font table-bordered">
+              <tr>
+                <th>Token Name</th>
+                <th>Description</th>
+              </tr>
+              <tr>
+                <td>-partnerlogo-</td>
+                <td>Logo of your Organization</td>
+              </tr>
+              <tr>
+                <td>-organizationname-</td>
+                <td>Your Organization Name</td>
+              </tr>
+              <tr>
+                <td>-organizationregistartionlink-</td>
+                <td>Registartion Link</td>
+              </tr>
+              <tr>
+                <td>-name- </td>
+                <td>Invitees Name</td>
+              </tr>
+              <tr>
+                <td>-company-</td>
+                <td>Invitees Compmany</td>
+              </tr>
+              <tr>
+                <td>-website-</td>
+                <td>Invitees Website</td>
+              </tr>
+              <tr>
+                <td>-phone-</td>
+                <td>Invitees Phone</td>
+              </tr>
+              <tr>
+                <td>-pincode-</td>
+                <td>Inviees Pincode</td>
+              </tr>
+              <tr>
+                <td>-unsubscribeLink-</td>
+                <td>Unsubscribe Link</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div>
+      <div class="form-group">
+        <label class="mandatory-field">HTML</label>
+        <tinymce formControlName="htmlBody" [config]="config" class="" style="height: 200px;overflow-y: scroll;">
+        </tinymce>
+        <mat-error *ngIf="isControlHasError('htmlBody','required')">
+          Name is required
+        </mat-error>
+      </div>
+    </div>
+  </form>
+</kt-portlet-body>
+<kt-portlet-footer *ngIf="!footer">
+  <hr>
+  <div class="m-3 float-right">
+    <button type="button" [routerLink]="['/dashboard/partner/home'] | baseurl"
+      class="btn btn-secondary mr-3">Cancel</button>
+    <button type="button" (click)="getMyInviteEmailSettings(-1)" class="btn btn-secondary mr-3"> Demo Invite Template
+    </button>
+    <button type="button" class="btn btn-brand mr-3" (click)="onSubmit()"
+      [ngClass]="{'kt-spinner kt-spinner--right kt-spinner--md kt-spinner--light': loading }">save</button>
+    <button type="button" class="btn btn-brand " (click)="getMyInviteEmailSettings()"
+      [ngClass]="{'kt-spinner kt-spinner--right kt-spinner--md kt-spinner--light': loading }"> Get My Saved Email
+      Settings</button>
+  </div>
+</kt-portlet-footer>

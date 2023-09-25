@@ -1,0 +1,23 @@
+<h3>My Newsletter</h3>
+<div class="row">
+  <div class="card col-3" *ngFor='let item of statistics' (click)='myNewsletters(item.templateDetails[0])'>
+    <div class="card-image">
+      <img [src]="item.templateDetails[0].dataUri">
+      <div class="badge badge-primary">{{item.templateDetails[0].templateName}}</div>
+    </div>
+    <div class="card-body row">
+      <div class="col">
+        <div class="set-title kt-font-info">Date</div>
+        <div class="set-text">{{item.createdDate | date : 'd/MM/yyyy h:mm a'}}</div>
+      </div>
+      <div class="col col-4">
+        <div class="set-title kt-font-info">Delivered</div>
+        <div class="set-text">{{ item.newsLetterSentTo}}</div>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf='noData'> No records found</div>
+<div *ngIf='loading' class='set-center'>
+  <mat-spinner [diameter]="20"></mat-spinner>
+</div>

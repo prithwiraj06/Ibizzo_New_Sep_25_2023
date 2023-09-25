@@ -1,0 +1,116 @@
+<div class="card card-custom">
+  <div
+    class="row"
+    style="
+      background-color: #ffffff;
+      padding-top: 50px;
+      margin-left: 0;
+      margin-right: 0;
+    "
+  >
+    <div class="col-xl-1"></div>
+    <div class="col-xl-11">
+      <h2>Contact Us</h2>
+    </div>
+    <!-- <h4 class="card-label">Send us your enquiries</h4> -->
+  </div>
+  <!--begin::Form-->
+  <form class="form" [formGroup]="form">
+    <div class="card-body" style="padding-top: 25px !important">
+      <div class="row">
+        <div class="col-xl-1"></div>
+        <div class="col-xl-5">
+          <div class="form-group">
+            <mat-form-field appearance="legacy" style="width: 100%">
+              <mat-label>Your Name</mat-label>
+              <input
+                matInput
+                formControlName="name"
+                placeholder="Enter your name"
+              />
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="col-xl-5">
+          <mat-form-field appearance="legacy" style="width: 100%">
+            <mat-label>Email</mat-label>
+            <input
+              matInput
+              type="email"
+              formControlName="email"
+              placeholder="Enter Your Email Address"
+            />
+          </mat-form-field>
+        </div>
+        <div class="col-xl-"></div>
+      </div>
+      <div class="row">
+        <div class="col-xl-1"></div>
+        <div class="col-xl-5">
+          <div class="form-group">
+            <mat-form-field appearance="legacy" style="width: 100%">
+              <mat-label>Phone Number</mat-label>
+              <input
+                matInput
+                formControlName="phone"
+                name="phone"
+                 type="text"
+                pattern="\d*"
+               maxlength="10"
+               min="0"
+               oninput="validity.valid||(value='');"
+                placeholder="Enter your phone"
+              />
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="col-xl-5">
+          <mat-form-field appearance="legacy" style="width: 100%">
+            <mat-label>Address</mat-label>
+            <input
+              matInput
+              type="text"
+              formControlName="address"
+              placeholder="Enter Your Address"
+            />
+          </mat-form-field>
+        </div>
+        <div class="col-xl-"></div>
+      </div>
+      <div class="row">
+        <div class="col-xl-1"></div>
+        <div class="col-xl-10">
+          <div class="form-group">
+            <mat-form-field class="example-full-width">
+              <mat-label>Message</mat-label>
+              <textarea
+                matInput
+                formControlName="message"
+                placeholder="Your message here..."
+              ></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="col-xl-"></div>
+      </div>
+    </div>
+    <div style="background-color: #ffffff; padding: 25px">
+      <div class="row">
+        <div class="col-xl-1"></div>
+        <div class="col-xl-10">
+          <button mat-fab color="warn" (click)="submit()"  style="width: 80px; margin-right: 15px">
+            SUBMIT
+          </button>
+
+          <button
+            mat-fab
+            style="width: 80px; background-color: #e0e0e0; color: #000"
+          >
+            CANCEL
+          </button>
+        </div>
+        <div class="col-xl-1"></div>
+      </div>
+    </div>
+  </form>
+</div>

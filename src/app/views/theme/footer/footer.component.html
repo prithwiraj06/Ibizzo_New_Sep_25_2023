@@ -1,0 +1,178 @@
+<!-- begin:: Footer -->
+<div
+  *ngIf="isOne&& !isMinisite"
+  class="kt-footer kt-footer--extended kt-grid__item"
+  id="kt_footer"
+>
+  <div class="kt-footer__top">
+    <div class="kt-container" [ngClass]="{ 'kt-container--fluid': fluid }">
+      <div class="row">
+        <div class="col-lg-3 col-md-3 col-sm-3">
+          <div class="kt-footer__section">
+            <div>
+              <a href="https://ibizzo.com/" target="#">
+                <img
+                  alt="logo"
+                  class="kt-header__brand-logo-sticky brand-logo"
+                  src="../../../../assets/media/logos/ibizzo-logo.png"
+                />
+              </a>
+              <div class="kt-footer__content">"A Unified marketplace"</div>
+            </div>
+            <div class="mt-4">
+              <h4 class="kt-footer__title">Share with us</h4>
+              <mat-icon class="text-color">
+                <a href="https://twitter.com/iBizzo2" target="blank">
+                  <i class="flaticon-twitter-logo mr-3 text-color"></i>
+                </a>
+              </mat-icon>
+              <mat-icon class="text-color">
+                <a
+                  href="https://www.facebook.com/IBizzocom-112430126893040/?modal=admin_todo_tour"
+                  target="blank"
+                >
+                  <i class="flaticon-facebook-letter-logo mr-3 text-color"></i>
+                </a>
+              </mat-icon>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-3">
+          <div class="kt-footer__section">
+            <h3 class="kt-footer__title">Help & Support</h3>
+            <div class="kt-footer__content">
+              <div class="kt-footer__nav">
+                <div class="kt-footer__nav-section">
+                  <a [routerLink]="['/pages/support'] | baseurl">Help</a>
+                  <!-- <a [routerLink]="['/pages/terms-conditions'] | baseurl">Terms and Conditions</a> -->
+                  <a [routerLink]="['/pages/support'] | baseurl">Contact Us</a>
+                  <a
+                    [routerLink]="['/pages/privacy-policy'] | baseurl"
+                    target="blank"
+                    >Privacy Policy</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- <div class="col-lg-3 col-md-3 col-sm-3">
+					<div class="kt-footer__section">
+						<h3 class="kt-footer__title">Information</h3>
+						<div class="kt-footer__nav">
+							<div class="kt-footer__nav-section">
+								<a (click)="goTo('search')">Search </a>
+								<a (click)="goTo('Registration')">Registration</a>
+								<a (click)="goTo('newArrivals')">New Arrivals</a>
+							</div>
+						</div>
+					</div>
+				</div> -->
+
+        <div class="col-lg-3 col-md-3 col-sm-3">
+          <div class="kt-footer__section">
+            <h3 class="kt-footer__title">Contact Us</h3>
+            <div class="kt-footer__nav">
+              <div class="kt-footer__nav-section">
+                <a href="tel:9380454634"
+                  ><i class="flaticon2-phone text-color mr-2"></i> +91
+                  +91 6363 766 925 | 84318 10196 | 6362 631 028
+                </a>
+                <a href="mailto:support@ibizzo.com"
+                  ><i class="flaticon-email text-color mr-2"></i>
+                  support@ibizzo.com</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-3">
+          <div class="kt-footer__section">
+            <h3 class="kt-footer__title">Australia & New Zealand</h3>
+            <div class="kt-footer__nav">
+              <div class="kt-footer__nav-section">
+                <a href="tel:1300567568"
+                  ><i class="flaticon2-phone text-color mr-2"></i> +61 1300 567
+                  568
+                </a>
+                <a href="mailto:sales@appdistri.com"
+                  ><i class="flaticon-email text-color mr-2"></i>
+                  sales@appdistri.com</a
+                >
+                <a href="https://appdistri.com/" target="_blank">
+                  <img
+                    alt="logo"
+                    class="kt-header__brand-logo-sticky logo-size"
+                    src="../../../../assets/images/appdistri.png"
+                /></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="kt-footer__bottom">
+    <div class="kt-container" [ngClass]="{ 'kt-container--fluid': fluid }">
+      <div class="kt-footer__wrapper">
+        <div class="kt-footer__logo">
+          <a
+            href="https://ibizzo.com/"
+            target="#"
+            class="kt-footer__copyright col"
+          >
+            Copyright
+            {{ today | date: "yyyy" }} ©&nbsp; iBizzo.com &nbsp;
+          </a>
+        </div>
+        <div class="kt-footer__logo">
+          <a
+            style="cursor: pointer; float: right"
+            *ngIf="isCreateGroupAllowed"
+            (click)="createGroup()"
+          >
+            Create your own Market place
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end:: Footer -->
+
+<!-- partner page footer-->
+<div
+  *ngIf="isNotOne || isMinisite"
+>
+<div class="kt-footer kt-footer--extended kt-grid__item"
+id="kt_footer">
+  <div class="kt-footer__top">
+    <div class="kt-container" [ngClass]="{ 'kt-container--fluid': fluid }">
+      <div class="row">
+        <div class="col-sm-6 col-xl-6 col-lg-6">
+          <img
+            alt="logo"
+            class="kt-header__brand-logo-sticky brand-logo"
+            src="../../../../assets/media/logos/ibizzo-logo.png"
+          />
+          <div class="kt-footer__content">
+            <span> "Powered by Ibizzo" </span>
+          </div>
+        </div>
+        <div class="col-sm-6 col-xl-6 col-lg-6">
+          <a
+            style="cursor: pointer; margin-top: 90px; float: right"
+            *ngIf="isCreateGroupAllowed"
+            (click)="createGroup()"
+          >
+            Create your own Market place
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+<!-- End of partner page ui-->

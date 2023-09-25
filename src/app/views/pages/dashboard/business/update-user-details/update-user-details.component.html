@@ -1,0 +1,96 @@
+<kt-portlet>
+  <div class="kt-portlet__head">
+    <div class="kt-portlet__head-label">
+      <h1 class="kt-portlet__head-title">
+        Update Information
+      </h1>
+    </div>
+  </div>
+  <kt-portlet-body>
+    <div *ngIf="!otpNum">
+      <div *ngIf="editEmail">
+        <form [formGroup]='userForm'>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Current Email</label>
+            <input type="text" formControlName="currentEmail" class="form-control readonly" readonly>
+          </div>
+          <div class="form-group">
+            <section class="example-section">
+              <mat-checkbox class="kt-font-bold " formControlName='check_User'>UserId</mat-checkbox>
+              <mat-checkbox class="kt-font-bold ml-3" formControlName='check_Commu'>Communication</mat-checkbox>
+            </section>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Enter the New Email</label>
+            <input type="text" formControlName="email" class="form-control" placeholder="New Email">
+            <mat-error *ngIf="isControlHasError('email','required')">
+              Enter Email
+            </mat-error>
+            <mat-error *ngIf="isControlHasError('email','pattern')">
+              Enter valid Email
+            </mat-error>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">confirm New Email</label>
+            <input type="text" formControlName="conformEmail" class="form-control" (ngModelChange)="compareEmail()"
+              placeholder="Conform Email">
+            <mat-error *ngIf="isCheck">
+              Conform Email is invalid
+            </mat-error>
+          </div>
+        </form>
+      </div>
+      <div *ngIf="editPhone">
+        <form [formGroup]='userForm'>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Current Phone number</label>
+            <input type="text" formControlName="currentPhone" class="form-control readonly" readonly>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Enter the New Phone number</label>
+            <input formControlName="phone" class="form-control" type="text" pattern="\d*" maxlength="10" min="0"
+              oninput="validity.valid||(value='');" placeholder="New Phone number">
+            <mat-error *ngIf="isControlHasError('phone','required')">
+              Phone Number is required
+            </mat-error>
+            <mat-error *ngIf="isControlHasError('phone','minlength')">
+              Phone Number should be 10 digits
+            </mat-error>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Confirm the Phone number</label>
+            <input formControlName="conformPhone" class="form-control" type="text" maxlength="10" min="0"
+              oninput="validity.valid||(value='');" placeholder="Confirm Phone number" (ngModelChange)="compare()">
+            <mat-error *ngIf="isCheck">
+              Conform Phone number is invalid
+            </mat-error>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div *ngIf="otpNum">
+      <div class="form-group">
+        <label for="exampleInputPassword1">Enter the OTP</label>
+        <input class="form-control" type="text" maxlength="4" pattern="\d*" min="0"
+          oninput="validity.valid||(value='');" placeholder="Enter the OTP" [(ngModel)]="otp">
+        <a (click)="submit(data.event)" class="text-primary">Resend</a>
+        <mat-error *ngIf="isOtp">
+          OTP is required
+        </mat-error>
+      </div>
+    </div>
+
+  </kt-portlet-body>
+  <kt-portlet-footer>
+    <div class="m-2 float-right">
+      <button class="btn btn-default mr-2" (click)="dialogRef.close()">
+        Cancel
+      </button>
+      <button [disabled]='this.userForm.invalid' class="btn btn-primary" [ngClass]="{
+        'kt-spinner kt-spinner--right kt-spinner--md kt-spinner--light': loading}"
+        (click)="!otpNum?submit(data.event):otpSubmit()">
+        Submit
+      </button>
+    </div>
+  </kt-portlet-footer>
+</kt-portlet>

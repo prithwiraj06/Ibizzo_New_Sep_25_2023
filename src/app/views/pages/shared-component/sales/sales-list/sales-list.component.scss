@@ -1,0 +1,32 @@
+:host {
+  /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#fc004f+7,fd397a+79 */
+  background: #fc004f; /* Old browsers */
+  background: -moz-linear-gradient(45deg,  #fc004f 7%, #fd397a 79%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(45deg,  #fc004f 7%,#fd397a 79%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(45deg,  #fc004f 7%,#fd397a 79%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fc004f', endColorstr='#fd397a',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
+  background-size: 100% 300px;
+  background-repeat: no-repeat;
+  padding: 30px;
+  width: 100%;
+  display: block;
+  border-radius: 4px;
+  overflow: hidden;
+
+  .kt-portlet-header-sm{
+    height: 10px !important;
+    overflow: hidden;
+  }
+
+  .btn-myproducts:hover {
+    background-color: #fd397a;
+  }
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+  .mob-view{
+  padding-left: 5px !important;
+  padding-right: 5px !important;
+}
+}

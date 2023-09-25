@@ -1,0 +1,34 @@
+<!-- begin:: Header Topbar -->
+<div class="mob-view-btn">
+  <div class="kt-header__topbar" *ngIf="isCheckMinisite">
+    <!--begin: My Cart -->
+    <!-- <kt-notification *ngIf="isLoggedIn" [bgImage]="'./assets/media/misc/bg-1.jpg'">
+	</kt-notification> -->
+
+    <kt-cart
+      *ngIf="isLoggedIn"
+      [iconType]="'primary'"
+      [bgImage]="'./assets/media/misc/bg-1.jpg'"
+      [icon]="'./assets/media/icons/svg/Shopping/Cart1.svg'"
+      [useSVG]="true"
+    ></kt-cart>
+    <!--end: My Cart -->
+
+    <!--begin: User bar -->
+    <kt-user-profile [greeting]="false"></kt-user-profile>
+    <!--end: User bar -->
+  </div>
+</div>
+
+<!-- end:: Header Topbar -->
+
+<div *ngIf="!isCheckMinisite" class="kt-hidden-mobile">
+  <a href="/IBizzo/pages/home" target="_blank">
+    <img
+      alt="logo"
+      src="../../../../assets/media/logos/powered-by-ibizzo.png"
+      class="kt-header__primary-logo-default"
+    />
+  </a>
+
+</div>

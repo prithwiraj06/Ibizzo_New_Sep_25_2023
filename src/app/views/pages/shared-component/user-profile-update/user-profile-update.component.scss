@@ -1,0 +1,230 @@
+@import "../../../../../assets/sass/pages/wizard/wizard-1.scss";
+:host {
+  .content-list {
+    margin-top: 57px;
+  }
+
+  .badge.badge-paid {
+    display: inline-block;
+    border: 1px solid #f97674;
+    background-color: #f5eeed;
+    color: #ea2520;
+    padding: 0.2rem 0.4rem;
+    font-size: 0.85rem;
+    margin-left: 5px;
+  }
+
+  #kt_wizard_v1 {
+    background-color: white;
+    border-radius: 5px;
+  }
+
+  .kt-avatar__holder1{
+    width: 250px !important;
+    height: 200px;
+  }
+
+  .kt-wizard-v1 .kt-wizard-v1__wrapper {
+    background-color: white;
+
+    .kt-form {
+      width: 90%;
+    }
+  }
+
+  .kt-wizard-v1__nav-items {
+    width: 80% !important;
+  }
+
+  .img-logo {
+    margin-top: -65px !important;
+  }
+
+  .button-close {
+    width: 30px;
+    height: 30px;
+    background: #dee2e6;
+    border-radius: 50;
+    border-radius: 50%;
+    position: relative;
+    left: 11px;
+    top: -15px;
+  }
+
+  .no-image {
+    width: 310px;
+    height: 250px;
+  }
+
+  .image-resize {
+    width: 110px !important;
+    height: 100px !important;
+  }
+
+  .hero-image {
+    width: 430px;
+    height: 300px;
+  }
+  .image-resize:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    width: 130px !important;
+    height: 110px !important;
+  }
+
+  .btn-file {
+    position: relative;
+    overflow: hidden;
+    float: right;
+  }
+  .btn-file input[type="file"] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    cursor: inherit;
+    display: block;
+  }
+
+  .impload-img {
+    width: 61px;
+  }
+
+  .list-group-item {
+    width: 100%;
+  }
+
+  .list-data {
+    width: 100%;
+  }
+
+  .img-close {
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    background: #6d6c9a;
+    color: white;
+    border-radius: 50%;
+    position: absolute;
+  }
+
+  .list-content {
+    border: 1px solid gainsboro !important;
+  }
+
+  .tag-select-input {
+    border-bottom: unset;
+    position: relative;
+    top: 0px;
+    border: 1px solid #dee2e6;
+    /* padding: 2px; */
+    padding-left: 2px;
+    padding-right: 2px;
+    height: 38px !important;
+    border-radius: 5px !important;
+  }
+
+  .tag-select-input .ng2-tag-input.ng2-tag-input--focused {
+    border-bottom: none !important;
+    height: 38px !important;
+  }
+
+  .tag-select-input .ng2-tag-input {
+    border-bottom: none !important;
+  }
+
+  .ng2-tag-input__text-input {
+    height: 32px !important;
+  }
+
+  .tag-select-input .ng2-tag-input .ng2-tags-container tag {
+    position: relative !important;
+    bottom: 2px !important;
+  }
+  .tag-select-input:hover {
+    border: 1px solid #2196f3 !important;
+  }
+
+  tag-input {
+    ::ng-deep {
+      .ng2-tag-input {
+        border-bottom: none !important;
+      }
+      .ng2-tag-input__text-input {
+        height: 30px !important;
+      }
+      svg {
+        height: 28px !important;
+      }
+      tag {
+        height: 29px;
+        line-height: 29px;
+      }
+    }
+  }
+}
+
+.kt-wizard-v1__content {
+  margin-bottom: 0px !important;
+}
+
+.kt-form__actions {
+  width: 100% !important;
+  margin: auto;
+}
+
+.float-right {
+  float: right !important;
+}
+
+.input-bg {
+  background-color: #f3f3f3;
+}
+
+.kt-section .kt-spinner.kt-spinner--right:before {
+  left: auto;
+  right: -9px !important;
+}
+
+.kt-section .kt-spinner:before {
+  width: 20px;
+  height: 20px;
+  margin-top: 48px;
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+  .kt-form {
+    padding: 0px !important;
+  }
+  .hero-image {
+    max-width: 200px !important;
+  }
+  .mob-view {
+    word-break: break-word !important;
+    display: -webkit-box !important;
+  }
+  .mce-btn-group {
+    max-width: 172px !important;
+  }
+
+  .mob-view {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+  }
+
+  .hidden-mobile {
+    display: none !important;
+  }
+
+  .set-margin {
+    margin-left: 10px !important;
+  }
+}

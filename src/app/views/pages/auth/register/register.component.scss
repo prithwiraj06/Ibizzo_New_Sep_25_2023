@@ -1,0 +1,66 @@
+@import "../../../../../assets/sass/pages/wizard/wizard-1.scss";
+
+:host{
+  .kt-portlet.no-shadow {
+    box-shadow: none;
+  }
+
+
+  .kt-wizard-v1__content, .kt-wizard-v2__content, .kt-wizard-v3__content, .kt-wizard-v4__content{
+    width: 90%;
+    margin: 2rem auto 0rem;
+    padding-bottom: 0rem !important;
+    margin-bottom: 0rem !important;
+  }
+
+  .kt-wizard-v1__wrapper, .kt-wizard-v2__wrapper, .kt-wizard-v3__wrapper, .kt-wizard-v4__wrapper {
+      background-color: #fff !important;
+  }
+
+  .kt-form.kt-form-signup{
+    width: 100%;
+  }
+
+  .invalid-feedback{
+    display: inline;
+  }
+
+  .form-group{
+    min-height: 90px;
+    margin-bottom: 1rem;
+  }
+
+  .form-bottom{
+   min-height: 30px !important;
+  }
+
+  .form-control[readonly] {
+    background-color: #d8dbe0 !important;
+  }
+
+  .term-text{
+    color: #5d78ff;
+    margin-left: 5px;
+    cursor: pointer;
+  }
+
+  .kt-wizard-v1__nav-items{
+    width: 90% !important;
+    .kt-wizard-v1__nav-icon {
+      font-size: 2.5rem !important;
+    }
+  }
+
+  // .kt-form .kt-form__actions {
+  //   padding: 10px 0px !important;
+  // }
+
+  .success-message{
+    text-align: center;
+    background-color: cornsilk;
+    i {
+      font-size: 3.5rem;
+      color: #009c00;
+    }
+  }
+}

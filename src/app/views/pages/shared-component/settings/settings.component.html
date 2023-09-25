@@ -1,0 +1,41 @@
+<div class="btn-container">
+  <button
+    class="mr-2 btn btn-outline-primary btn-float btn-elevate kt-login__btn-primary"
+    (click)="view()"
+  >
+    View Public Page
+  </button>
+  <button
+    class="mr-2 btn btn-outline-primary btn-float btn-elevate kt-login__btn-primary"
+    (click)="update()"
+  >
+    Update
+  </button>
+  <button
+    class="mr-2 btn btn-outline-primary btn-float btn-elevate kt-login__btn-primary"
+    (click)="invite()"
+  >
+    Invite
+  </button>
+  <button
+    *ngIf="!checkForPartner()"
+    class="mr-2 btn btn-outline-primary btn-float btn-elevate kt-login__btn-primary"
+    (click)="Revenue()"
+  >
+    Member Revenue
+  </button>
+</div>
+<div>
+  <mat-tab-group (selectedTabChange)="onTabPanelClick($event)">
+    <mat-tab label="My Members">
+      <div *ngIf="memberTab">
+        <kt-group-members [groupId]="groupId" type="member"></kt-group-members>
+      </div>
+    </mat-tab>
+    <mat-tab label="New Request">
+      <div *ngIf="newRequestTab">
+        <kt-group-members [groupId]="groupId" type="new"></kt-group-members>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</div>

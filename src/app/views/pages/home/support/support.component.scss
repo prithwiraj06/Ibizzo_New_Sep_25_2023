@@ -1,0 +1,43 @@
+.kt-sc_top{
+  display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    padding: 6rem 0 10rem;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+:host /deep/
+.support-img{
+  background-image: url(https://keenthemes.com/metronic/themes/metronic/theme/default/demo5/dist/assets/media/bg/bg-9.jpg);
+  /* width: 323px; */
+  object-fit: cover;
+  height: 234px;
+  background-position: center top;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100%;
+  margin-top: -30px;
+}
+
+.support-body{
+  position: relative;
+  top: 0px;
+}
+
+.support-image-body{
+margin: 0 !important;
+padding: 0 !important;
+width: 100% !important;
+}
+
+.support-title{
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 6rem 0 10rem;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}

@@ -1,0 +1,50 @@
+<!-- <div
+  *ngIf="items"
+  style="display: flex; justify-content: center; align-items: center"
+>
+  <mat-progress-spinner color="primary" mode="indeterminate" diameter="30">
+  </mat-progress-spinner>
+</div>
+<h2>Search Results</h2>
+
+<hr />
+<h4 *ngIf="!items && organizations.length == 0">
+  Sorry your search did not match any products/services. Our team is working to
+  get suppliers for your product.
+</h4>
+<div
+  class="row"
+  *ngIf="
+    searchItem.type != 3 && organizations && organizations.length;
+    else ShowCompanyCards
+  "
+>
+  <kt-product-card
+    [buttonLabel]="buttonLabel"
+    *ngFor="let product of organizations"
+    [product]="product"
+    [disableImagePaidCheck]="true"
+    [type]="searchItem.type"
+    [search]="true"
+    [showImage]="true"
+    class="col col-md-3"
+  >
+  </kt-product-card>
+</div>
+
+<ng-template #ShowCompanyCards>
+  <div
+    class="row"
+    *ngIf="searchItem.type == 3 && organizations && organizations.length"
+  >
+    <kt-company-card
+      *ngFor="let company of organizations"
+      [company]="company"
+      class="col-lg-3 col-md-3"
+    >
+    </kt-company-card>
+  </div>
+</ng-template> -->
+<div style="height: 900px;">
+  <iframe id='iframe' width="100%" height="100%" frameBorder="0" [src]="urlSafe"></iframe>
+</div>

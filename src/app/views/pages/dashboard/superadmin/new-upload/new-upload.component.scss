@@ -1,0 +1,79 @@
+:host {
+  .mat-card {
+    margin-top: 18px !important;
+  }
+  .mat-card-content {
+    display: flex !important;
+  }
+  .badge-paid {
+    display: inline-block;
+
+    color: #ea2520;
+    padding: 0.2rem 0.4rem;
+    font-size: 14px;
+    font-weight: 500;
+    margin-top: 4px !important;
+  }
+  .pb-1 {
+    margin-bottom: 25px !important;
+  }
+  .mat-card-header {
+    display: block !important;
+  }
+  .text-data {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #48465b;
+  }
+  .mat-card-image {
+    margin-top: -20px !important;
+    margin-bottom: 0px !important;
+  }
+  .mat-card > .mat-card-actions:last-child {
+    margin-bottom: -12px !important;
+    padding-bottom: 0;
+  }
+  .mr-t {
+    margin-top: -25px !important ;
+  }
+  .badge-data {
+    display: inline-block;
+
+    color: #10c738;
+    padding: 0.2rem 0.4rem;
+    font-size: 14px;
+    font-weight: 500;
+    margin-top: 4px !important;
+  }
+  .footer {
+    margin-top: 30px;
+    margin-right: 70px;
+    text-align: right !important;
+    margin-bottom: 30px;
+    margin-top: 30px;
+    text-align: center;
+  }
+  .chk-fl {
+    float: right !important;
+  }
+  ::ng-deep .mat-checkbox-checked .mat-checkbox-background {
+    background-color: #ff0000 !important;
+  }
+  .data-indi {
+    display: inline-flex !important;
+  }
+  .btn-brand {
+    color: #fff;
+    background-color: var(--green) !important;
+    border-color: var(--green) !important;
+    color: #ffffff;
+    margin: 4px !important;
+  }
+  .kt-switch input:checked ~ span:after {
+    background-color: #42a746 !important;
+    color: #ffffff;
+  }
+  .document-text {
+    word-break: break-all !important;
+  }
+}

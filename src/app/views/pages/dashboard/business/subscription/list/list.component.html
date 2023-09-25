@@ -1,0 +1,68 @@
+<kt-portlet>
+  <kt-portlet-header title="Subscriptions">
+  </kt-portlet-header>
+
+  <kt-portlet-body>
+    <mat-table #table [dataSource]="dataSource">
+
+      <ng-container matColumnDef="number">
+        <mat-header-cell *matHeaderCellDef> # </mat-header-cell>
+        <mat-cell *matCellDef="let element; let i=index"> {{(i+1)+(paginator.pageIndex*paginator.pageSize)}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef element style="margin-left: -91px;">
+          Package Name
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element" style="margin-left: -91px;">
+          {{element.packageDetailName}}
+        </mat-cell>
+      </ng-container>
+
+      <!-- <ng-container matColumnDef="package">
+        <mat-header-cell *matHeaderCellDef>Package</mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          {{element.prdName}}
+        </mat-cell>
+      </ng-container> -->
+
+      <ng-container matColumnDef="noOfItems">
+        <mat-header-cell *matHeaderCellDef element>
+          No. of Items
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          {{element.quantity}}
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="amountPaid">
+        <mat-header-cell *matHeaderCellDef element>
+          Amount Paid in INR
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          {{element.totalAmountPaidDerived}}
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="status">
+        <mat-header-cell *matHeaderCellDef style="margin-right: -64px;">Status</mat-header-cell>
+        <mat-cell *matCellDef="let element" style="margin-right: -64px;">
+          <span *ngIf="element.status == 'Active'" class="btn btn-label-success">{{element.status}}</span>
+          <span *ngIf="element.status != 'Active'" class="btn btn-label-danger">{{element.status}}</span>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;">
+      </mat-row>
+    </mat-table>
+
+    <div class="mat-table__message" *ngIf="!dataSource.hasData">
+      No Record Found
+    </div>
+
+    <mat-paginator [pageSize]="10" [pageSizeOptions]="[10, 20, 50]" [showFirstLastButtons]="true">
+    </mat-paginator>
+
+  </kt-portlet-body>
+</kt-portlet>

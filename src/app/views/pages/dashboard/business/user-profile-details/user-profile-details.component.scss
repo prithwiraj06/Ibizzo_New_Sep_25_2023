@@ -1,0 +1,169 @@
+:host {
+  /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#0e6df2+7,23ceed+79 */
+  background: #0e6df2; /* Old browsers */
+  background: -moz-linear-gradient(45deg,  #0e6df2 7%, #23ceed 79%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(45deg,  #0e6df2 7%,#23ceed 79%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(45deg,  #0e6df2 7%,#23ceed 79%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0e6df2', endColorstr='#23ceed',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
+  background-size: 100% 300px;
+  background-repeat: no-repeat;
+  padding: 30px;
+  width: 100%;
+  display: block;
+  border-radius: 4px;
+  overflow: hidden;
+
+  .kt-portlet-header-sm{
+    height: 10px !important;
+    overflow: hidden;
+  }
+
+  .btn-myproducts:hover {
+    background-color: #4086ee;
+  }
+
+  .content-list{
+    margin-top: 57px;
+  }
+  
+  .img-logo{
+    margin-top: -65px !important;
+  }
+  
+  .button-close{
+    width: 30px;
+    height: 30px;
+    background: #dee2e6;
+    border-radius: 50;
+    border-radius: 50%;
+    position: relative;
+    left: 11px;
+    top: -15px;
+  }
+  
+  .no-image{
+    width: 310px;
+    height: 250px;
+  }
+  
+  .image-resize{
+    width: 110px !important;
+    height:100px !important;
+  }
+  
+  .hero-image{
+  width: 430px;
+  height: 300px;
+  }
+  .image-resize:hover{
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  width: 130px !important;
+  height:110px !important;
+  }
+  
+  .btn-file {
+    position: relative;
+    overflow: hidden;
+  }
+  .btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;   
+    cursor: inherit;
+    display: block;
+  }
+  
+  .impload-img{
+    width: 61px;
+  }
+  
+  .list-group-item{
+    width: 100% ;
+  }
+  
+  .list-data{
+    width: 100%;
+  }
+  
+  .img-close{
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    background: #6d6c9a;
+    color: white;
+    border-radius: 50%;
+    position: absolute;
+  }
+  
+  .list-content{
+    border: 1px solid gainsboro !important;
+  }
+  
+  .tag-select-input{
+    border-bottom: unset;
+      position: relative;
+      top: 0px;
+      border: 1px solid #dee2e6;
+      /* padding: 2px; */
+      padding-left: 2px;
+      padding-right: 2px;
+      height: 38px !important;
+      border-radius: 5px !important;
+  }
+  .tag-select-input:hover{
+    border: 1px solid #2196f3 !important;
+  } 
+  
+  .ng2-tag-input__text-input[_ngcontent-ibc-c19] {
+    display: inline;
+    vertical-align: middle;
+    border: none;
+    padding: 0 .5rem;
+    height:33px !important;
+    font-size: 1em;
+    font-family: Roboto,"Helvetica Neue",sans-serif;
+  }
+  
+   .tag-select-input .ng2-tag-input.ng2-tag-input--focused{
+     border-bottom:none !important;
+     height: 38px !important;
+    }
+  
+  .tag-select-input .ng2-tag-input {
+   
+    border-bottom:none !important;
+  }
+  
+  .ng2-tag-input__text-input{
+    height: 32px !important;
+  }
+  
+  .tag-select-input .ng2-tag-input .ng2-tags-container tag{
+    position: relative !important;
+    bottom: 2px !important;
+  }
+
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+  .mob-view{
+    width: 102px !important;
+  }
+  :host {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+  }
+  
+}
+

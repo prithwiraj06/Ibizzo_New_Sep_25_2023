@@ -1,0 +1,62 @@
+<div class="kt-portlet">
+  <div class="kt-portlet__head">
+    <div class="kt-portlet__head-label">
+      <h1 class="kt-portlet__head-title">Purchase History</h1>
+    </div>
+    <div class="kt-portlet__head-toolbar">
+      <button class="btn btn-clear" (click)="dialogRef.close()">
+        <i class="la la-close"></i>
+      </button>
+    </div>
+  </div>
+  <div class="kt-portlet__body" id="inviteHistoryContainer">
+    <div class="row">
+      <div class="col-xl-1"></div>
+      <div class="col-xl-10">
+        <div *ngIf="history.length == 0">
+          <kt-no-results
+            class="icon-position"
+            [show]="true"
+            message="No result found"
+          ></kt-no-results>
+        </div>
+        <div
+          *ngIf="history.length > 0"
+          class="kt-timeline-v1 kt-timeline-v1--justified"
+        >
+          <div class="kt-timeline-v1__items">
+            <div class="kt-timeline-v1__marker"></div>
+
+            <div>
+              <div *ngFor="let item of history">
+                <div class="kt-timeline-v1__item kt-timeline-v1__item--first">
+                  <div class="kt-timeline-v1__item-circle">
+                    <div class="kt-bg-danger"></div>
+                  </div>
+
+                  <div class="row">
+                    <span class="time-color">
+                      {{ item.createdDate | date: "medium" }}</span
+                    >
+                    <span class="time-color" style="padding-left: 10px">
+                      Quantity:
+                      <span> {{ item.quantity }}</span></span
+                    >
+                  </div>
+
+                  <div class="kt-timeline-v1__item-content fit-contant">
+                    <div>
+                      <div class="kt-timeline-v1__item-title cmt-color">
+                        {{ item.purchaserQuery }}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

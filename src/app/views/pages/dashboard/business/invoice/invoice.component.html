@@ -1,0 +1,165 @@
+<kt-portlet>
+  <div class="kt-portlet__head">
+    <div class="kt-portlet__head-label">
+      <h3 class="kt-font-bold">
+        Create Proforma
+      </h3>
+    </div>
+    <div class="kt-portlet__head-toolbar">
+      <a class="btn btn-clear" (click)="dialogRef.close()"><i class="la la-close"></i></a>
+    </div>
+  </div>
+  <kt-portlet-body>
+    <div class="row">
+      <form [formGroup]="form" #invoiceContainer>
+        <div class="row row-nomargin ">
+          <div class="col col-md-4">
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text " id="basic-addon1">Quotation#</span>
+              </div>
+              <input type="text" class="form-control" id="invoice-number" ng-model="invoice.invoice_number">
+            </div>
+          </div>
+        </div>
+
+        <div class="row row-nomargin">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="exampleFormControlTextarea1">Customer Info</label>
+              <textarea *ngIf="!downloadEnable" formControlName="customerInfo" id="customerInfo" class="form-control"
+                rows="4" cols="20"></textarea>
+              <div *ngIf="downloadEnable" id="info1" #info1></div>
+            </div>
+          </div>
+          <div class="col col-md-6">
+            <div class="form-group">
+              <label for="exampleFormControlTextarea1">Company Info</label>
+              <textarea *ngIf="!downloadEnable" formControlName="companyInfo" id="companyInfo" class="form-control "
+                rows="4" cols="20"></textarea>
+              <div *ngIf="downloadEnable" id="info2" #info2></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row row-header">
+          <div class="col col-md-1" style="text-align: center;">#</div>
+          <div class="col col-md-3">Product/Service</div>
+          <div class="col col-md-2">Unit</div>
+          <div class="col col-md-1">Qty</div>
+          <div class="col col-md-2">Price</div>
+          <div class="col col-md-2">Total</div>
+          <div class="col col-md-1"></div>
+        </div>
+
+        <div formArrayName="invoiceItems" style="font-weight: bolder; text-align: center">
+          <div *ngFor="let item of invoiceItems.controls; let i=index; let odd=odd;" [formGroupName]="i"
+            class="row row-lineitem input-enable" [ngClass]="{odd_row: odd}">
+            <div class="col col-md-1">{{i + 1}}</div>
+            <div class="col col-md-3">
+              <input class="form-control form-control-sm input-enable" type="text" formControlName="name">
+            </div>
+            <div class="col col-md-2">
+              <!-- <input class="form-control form-control-sm" type="text" formControlName="unit"> -->
+              <div class="form-control form-control-sm input-enable">
+                <mat-select formControlName="unit">
+                  <mat-option value="0">None</mat-option>
+                  <mat-option *ngFor="let item of unitList" [value]='item.id'>{{item.Type}}
+                  </mat-option>
+                </mat-select>
+              </div>
+            </div>
+            <div mdInput class="col col-md-1">
+              <input class="form-control form-control-sm pl-1 pr-1 input-enable" type="number" formControlName="qty">
+            </div>
+            <div class="col col-md-2">
+              <input class="form-control form-control-sm input-enable" type="number" formControlName="cost">
+            </div>
+            <div class="col col-md-2">
+              <input class="form-control form-control-sm input-enable" disabled
+                value="{{ item.value.total | currency : '₹'  }}">
+            </div>
+            <div class="col col-md-1">
+              <button class="btn btn-light btn-sm" (click)="removeItem(item)" *ngIf="i>0">X</button>
+            </div>
+          </div>
+        </div>
+        <div class="row row-add-lineitem">
+          <button (click)="addItem()" class="btn btn-light add-row">Add Line Item</button>
+        </div>
+
+        <div class="row">
+          <div class="col col-md-9">
+            <label class="right_placeholder">Sub total</label>
+          </div>
+          <div class="col col-md-2">
+            <input class="form-control form-control-sm mb-2" disabled
+              value="{{ form.value.subTotal | currency : '₹'  }}">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col col-md-6">
+          </div>
+          <div class="col col-md-3">
+            <div class="input-group mb-3" style="float: right; width: auto;">
+              <div class="input-group-prepend">
+                <span class="input-group-text">CGST</span>
+              </div>
+              <input class="form-control form-control-sm input-tax" formControlName="cgst_taxPercent">
+              <div class="input-group-append">
+                <span class="input-group-text">%</span>
+              </div>
+            </div>
+          </div>
+          <div class="col col-md-2">
+            <input class="form-control form-control-sm" type="text" disabled
+              value="{{ form.value.cgst_tax | currency : '₹'  }}">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col col-md-6">
+          </div>
+          <div class="col col-md-3">
+            <div class="input-group mb-3" style="float: right; width: auto;">
+              <div class="input-group-prepend">
+                <span class="input-group-text">SGST</span>
+              </div>
+              <input class="form-control form-control-sm input-tax" formControlName="sgst_taxPercent">
+              <div class="input-group-append">
+                <span class="input-group-text">%</span>
+              </div>
+            </div>
+          </div>
+          <div class="col col-md-2">
+            <input class="form-control form-control-sm" type="text" disabled
+              value="{{ form.value.sgst_tax | currency : '₹'  }}">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col col-md-9">
+            <label class="right_placeholder">Grand total</label>
+          </div>
+          <div class="col col-md-2">
+            <input class="form-control form-control-sm" type="text" disabled
+              value="{{ form.value.grandTotal | currency : '₹'  }}">
+          </div>
+        </div>
+      </form>
+    </div>
+  </kt-portlet-body>
+  <kt-portlet-footer>
+    <div>
+      <div class="float-right m-3">
+        <button (click)="dialogRef.close()" class="btn btn-default mr-2">
+          cancel
+        </button>
+        <button (click)="download()" class="btn btn-brand">
+          Download
+        </button>
+      </div>
+    </div>
+  </kt-portlet-footer>
+</kt-portlet>

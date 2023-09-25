@@ -1,0 +1,354 @@
+<div class="kt-body kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor kt-grid--stretch" id="kt_body" style="padding: 0 30px;">
+	<div class="kt-content  kt-content--fit-top  kt-grid__item kt-grid__item--fluid kt-grid kt-grid--hor support-image-body" id="kt_content">
+
+		<!-- begin:: Content -->
+		<!-- begin:: Hero -->
+		<div class="kt-sc-faq support-img"
+			style="background-image: url('https://keenthemes.com/metronic/themes/metronic/theme/default/demo5/dist/assets/media/bg/bg-9.jpg')">
+			<div class="kt-container ">
+				<div class="kt-sc__top support-title">
+					<h3 class="kt-sc__title">
+						Support
+					</h3>
+					<div class="kt-sc__nav">
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- end:: Hero -->
+
+		<div class="kt-negative-spacing--7"></div>
+
+		<!-- begin:: Section -->
+		<div class="kt-container support-body">
+			<div class="kt-portlet">
+				<div class="kt-portlet__body">
+					<div class="kt-infobox">
+						<div class="kt-infobox__body">
+							<div class="row">
+								<div class="col-lg-3">
+									<ul class="kt-nav kt-nav--bold kt-nav--md-space kt-nav--v4" role="tablist">
+										<li class="kt-nav__item " [ngClass]="tab==1?'active':' '" (click)="setTab(1)">
+											<a class="kt-nav__link" data-toggle="tab" href="#kt_profile_tab_personal_information" role="tab">
+												<span class="kt-nav__link-text">Get Started</span>
+											</a>
+										</li>
+										<li class="kt-nav__item " [ngClass]="tab==2?'active':' '" (click)="setTab(2)">
+											<a class="kt-nav__link" data-toggle="tab" href="#kt_profile_tab_personal_information" role="tab">
+												<span class="kt-nav__link-text">Registration</span>
+											</a>
+										</li>
+										<li class="kt-nav__item" [ngClass]="tab==3?'active':' '" (click)="setTab(3)">
+											<a class="kt-nav__link" data-toggle="tab" href="#kt_profile_tab_personal_information" role="tab">
+												<span class="kt-nav__link-text">Company Profile</span>
+											</a>
+										</li>
+										<li class="kt-nav__item" [ngClass]="tab==4?'active':' '" (click)="setTab(4)">
+											<a class="kt-nav__link" data-toggle="tab" href="#kt_profile_tab_personal_information" role="tab">
+												<span class="kt-nav__link-text">My Products / Catalogues</span>
+											</a>
+										</li>
+									</ul>
+									<ul class="kt-nav kt-nav--bold kt-nav--md-space kt-nav--v4" role="tablist">
+										<li class="kt-nav__item " [ngClass]="tab==5?'active':' '" (click)="setTab(5)">
+											<a class="kt-nav__link" data-toggle="tab" href="#kt_profile_tab_personal_information" role="tab">
+												<span class="kt-nav__link-text">Contacts Us</span>
+											</a>
+										</li>
+									</ul>
+								</div>
+								<div *ngIf="tab!=5" class="col-lg-9">
+									<!--begin::Accordion-->
+									<div class="accordion accordion-light  accordion-svg-icon" id="faq">
+										<div class="card">
+											<div class="card-header" id="faqHeading1">
+												<div class="card-title" [ngClass]="tab!=1?'collapsed':' '" data-toggle="collapse"
+													data-target="#faq1" aria-expanded="true" aria-controls="faq1" (click)="setTab(1)">
+													<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+														width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
+														<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+															<polygon points="0 0 24 0 24 24 0 24"></polygon>
+															<path
+																d="M12.2928955,6.70710318 C11.9023712,6.31657888 11.9023712,5.68341391 12.2928955,5.29288961 C12.6834198,4.90236532 13.3165848,4.90236532 13.7071091,5.29288961 L19.7071091,11.2928896 C20.085688,11.6714686 20.0989336,12.281055 19.7371564,12.675721 L14.2371564,18.675721 C13.863964,19.08284 13.2313966,19.1103429 12.8242777,18.7371505 C12.4171587,18.3639581 12.3896557,17.7313908 12.7628481,17.3242718 L17.6158645,12.0300721 L12.2928955,6.70710318 Z"
+																fill="#000000" fill-rule="nonzero"></path>
+															<path
+																d="M3.70710678,15.7071068 C3.31658249,16.0976311 2.68341751,16.0976311 2.29289322,15.7071068 C1.90236893,15.3165825 1.90236893,14.6834175 2.29289322,14.2928932 L8.29289322,8.29289322 C8.67147216,7.91431428 9.28105859,7.90106866 9.67572463,8.26284586 L15.6757246,13.7628459 C16.0828436,14.1360383 16.1103465,14.7686056 15.7371541,15.1757246 C15.3639617,15.5828436 14.7313944,15.6103465 14.3242754,15.2371541 L9.03007575,10.3841378 L3.70710678,15.7071068 Z"
+																fill="#000000" fill-rule="nonzero" opacity="0.3"
+																transform="translate(9.000003, 11.999999) rotate(-270.000000) translate(-9.000003, -11.999999) ">
+															</path>
+														</g>
+													</svg> User Support
+												</div>
+											</div>
+											<div id="faq1" [ngClass]="tab==1?'show':' '" class="collapse" aria-labelledby="faqHeading1"
+												data-parent="#faq">
+												<div class="card-body">
+													<p>Welcome to ibizzo Support!</p>
+													<p>Get Solutions to all your Queries with just a click of a button.
+														You can search your query using a keyword or navigate through
+														the links in the sidemenu to get the answer for your query.</p>
+													<p>Each Menu item consists of FAQ's with respect to that topic with
+														end to end description and step by step procedure for the
+														queries.</p>
+													<p class="text-center"><img class="img-fluid mx-auto"
+															src="../../../../../assets/images/ibizzo-Support.jpg" alt="iBizzo Support Image" /></p>
+
+												</div>
+											</div>
+										</div>
+										<div class="card">
+											<div class="card-header" id="faqHeading2">
+												<div class="card-title" [ngClass]="tab!=2?'collapsed':' '" data-toggle="collapse"
+													data-target="#faq2" aria-expanded="true" aria-controls="faq2" (click)="setTab(2)">
+													<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+														width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
+														<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+															<polygon points="0 0 24 0 24 24 0 24"></polygon>
+															<path
+																d="M12.2928955,6.70710318 C11.9023712,6.31657888 11.9023712,5.68341391 12.2928955,5.29288961 C12.6834198,4.90236532 13.3165848,4.90236532 13.7071091,5.29288961 L19.7071091,11.2928896 C20.085688,11.6714686 20.0989336,12.281055 19.7371564,12.675721 L14.2371564,18.675721 C13.863964,19.08284 13.2313966,19.1103429 12.8242777,18.7371505 C12.4171587,18.3639581 12.3896557,17.7313908 12.7628481,17.3242718 L17.6158645,12.0300721 L12.2928955,6.70710318 Z"
+																fill="#000000" fill-rule="nonzero"></path>
+															<path
+																d="M3.70710678,15.7071068 C3.31658249,16.0976311 2.68341751,16.0976311 2.29289322,15.7071068 C1.90236893,15.3165825 1.90236893,14.6834175 2.29289322,14.2928932 L8.29289322,8.29289322 C8.67147216,7.91431428 9.28105859,7.90106866 9.67572463,8.26284586 L15.6757246,13.7628459 C16.0828436,14.1360383 16.1103465,14.7686056 15.7371541,15.1757246 C15.3639617,15.5828436 14.7313944,15.6103465 14.3242754,15.2371541 L9.03007575,10.3841378 L3.70710678,15.7071068 Z"
+																fill="#000000" fill-rule="nonzero" opacity="0.3"
+																transform="translate(9.000003, 11.999999) rotate(-270.000000) translate(-9.000003, -11.999999) ">
+															</path>
+														</g>
+													</svg> Registration
+												</div>
+											</div>
+											<div id="faq2" [ngClass]="tab==2?'show':' '" class="collapse" aria-labelledby="faqHeading2"
+												data-parent="#faq">
+												<div class="card-body">
+													<p>Registration is a Free and simple process of getting you onboard
+														with us.</p>
+													<p>You can get registered with us by following these simple steps:
+													</p>
+													<p>Step 1 : Visit <b>iBizzo.com</b> and click on Register
+														button.<br />
+														Step 2 :Enter your basic details such as your name, company
+														name, Ph no and Email. Click Continue..<br />
+														Step 3: Now enter a few more details about your company (your
+														business category, product, pincode, partner
+														organization).<br />
+														Step 4: Create your password and log in to your Dashboard</p>
+													<h3>FAQ's on Registration</h3>
+													<ol>
+														<li><b>Why should i register on ibizzo platform?</b><br />
+															Register your business in our platform to promote and market
+															your products & services
+															This platform provides affordable marketing and buy leads
+															for your products.<br />
+															Resulting in enhancing your buisness in tersm of sales and
+															customer base.</li>
+														<li><b>Why do you require both my ph no & email id?</b><br />
+															We need your phone number and email id to intimate you
+															regarding the requests for your products and also your email
+															id & ph no is used for recovering your password if
+															forgotten.
+														</li>
+														<li><b>What is Business category in registration process? What
+																if my company is into different business
+																categories?</b><br />
+															Business category indicates which segment you are doing
+															business in. Select the business line which your products
+															belong to.<br />
+															You can select multiple categories if you are into different
+															business lines
+														</li>
+														<li><b>What is Industry Organization? Why is it
+																required?</b><br />
+															Industry organization is the one which your company/Business
+															is already a member..<br />
+															This information Is required for us to display a particular
+															business in that organizations home page.
+														</li>
+													</ol>
+												</div>
+											</div>
+										</div>
+										<div class="card">
+											<div class="card-header" id="faqHeading3">
+												<div class="card-title" [ngClass]="tab!=3?'collapsed':' '" data-toggle="collapse"
+													data-target="#faq3" aria-expanded="false" aria-controls="faq3" (click)="setTab(3)">
+													<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+														width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
+														<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+															<polygon points="0 0 24 0 24 24 0 24"></polygon>
+															<path
+																d="M12.2928955,6.70710318 C11.9023712,6.31657888 11.9023712,5.68341391 12.2928955,5.29288961 C12.6834198,4.90236532 13.3165848,4.90236532 13.7071091,5.29288961 L19.7071091,11.2928896 C20.085688,11.6714686 20.0989336,12.281055 19.7371564,12.675721 L14.2371564,18.675721 C13.863964,19.08284 13.2313966,19.1103429 12.8242777,18.7371505 C12.4171587,18.3639581 12.3896557,17.7313908 12.7628481,17.3242718 L17.6158645,12.0300721 L12.2928955,6.70710318 Z"
+																fill="#000000" fill-rule="nonzero"></path>
+															<path
+																d="M3.70710678,15.7071068 C3.31658249,16.0976311 2.68341751,16.0976311 2.29289322,15.7071068 C1.90236893,15.3165825 1.90236893,14.6834175 2.29289322,14.2928932 L8.29289322,8.29289322 C8.67147216,7.91431428 9.28105859,7.90106866 9.67572463,8.26284586 L15.6757246,13.7628459 C16.0828436,14.1360383 16.1103465,14.7686056 15.7371541,15.1757246 C15.3639617,15.5828436 14.7313944,15.6103465 14.3242754,15.2371541 L9.03007575,10.3841378 L3.70710678,15.7071068 Z"
+																fill="#000000" fill-rule="nonzero" opacity="0.3"
+																transform="translate(9.000003, 11.999999) rotate(-270.000000) translate(-9.000003, -11.999999) ">
+															</path>
+														</g>
+													</svg> Company Profile
+												</div>
+											</div>
+											<div id="faq3" [ngClass]="tab==3?'show':' '" class="collapse" aria-labelledby="faqHeading3"
+												data-parent="#faq">
+												<div class="card-body">
+													<p>Up to date Company profile improves the credibility of the listed
+														business.</p>
+													<p>Step 1 : <b>Go to Your "Dashboard"</b><br />
+														Step 2 : <b>Click on "my profile"</b><br />
+														Step 3 : <b>Click on my Update or edit the required Fields about
+															your Copmany.</b>
+													</p>
+													<h3>FAQ's on Company Profile</h3>
+													<ol>
+														<li><b>Why should i update my profile?</b><br />
+															An updated profile improves your visbility as a business and
+															also you will recieve a more accurate sell and buy requests
+															based on the location,busines category,comapny details
+															etc....
+														</li>
+														<li><b>Can i edit profile anytime?</b><br />
+															You can edit your profile anytime in your dashboard by
+															clicking on "profile" button
+														</li>
+													</ol>
+												</div>
+											</div>
+										</div>
+										<div class="card">
+											<div class="card-header" id="faqHeading4">
+												<div class="card-title" [ngClass]="tab!=4?'collapsed':' '" data-toggle="collapse"
+													data-target="#faq4" aria-expanded="false" aria-controls="faq4" (click)="setTab(4)">
+													<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+														width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
+														<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+															<polygon points="0 0 24 0 24 24 0 24"></polygon>
+															<path
+																d="M12.2928955,6.70710318 C11.9023712,6.31657888 11.9023712,5.68341391 12.2928955,5.29288961 C12.6834198,4.90236532 13.3165848,4.90236532 13.7071091,5.29288961 L19.7071091,11.2928896 C20.085688,11.6714686 20.0989336,12.281055 19.7371564,12.675721 L14.2371564,18.675721 C13.863964,19.08284 13.2313966,19.1103429 12.8242777,18.7371505 C12.4171587,18.3639581 12.3896557,17.7313908 12.7628481,17.3242718 L17.6158645,12.0300721 L12.2928955,6.70710318 Z"
+																fill="#000000" fill-rule="nonzero"></path>
+															<path
+																d="M3.70710678,15.7071068 C3.31658249,16.0976311 2.68341751,16.0976311 2.29289322,15.7071068 C1.90236893,15.3165825 1.90236893,14.6834175 2.29289322,14.2928932 L8.29289322,8.29289322 C8.67147216,7.91431428 9.28105859,7.90106866 9.67572463,8.26284586 L15.6757246,13.7628459 C16.0828436,14.1360383 16.1103465,14.7686056 15.7371541,15.1757246 C15.3639617,15.5828436 14.7313944,15.6103465 14.3242754,15.2371541 L9.03007575,10.3841378 L3.70710678,15.7071068 Z"
+																fill="#000000" fill-rule="nonzero" opacity="0.3"
+																transform="translate(9.000003, 11.999999) rotate(-270.000000) translate(-9.000003, -11.999999) ">
+															</path>
+														</g>
+													</svg>My Products / Catalogues
+												</div>
+											</div>
+											<div id="faq4" class="collapse" [ngClass]="tab==4?'show':' '" aria-labelledby="faqHeading4"
+												data-parent="#faq">
+												<div class="card-body">
+													<p>The main driving force for any buyer is your product catalogue.
+													</p>
+													<p>The completeness of your product catalogue improves your
+														visibility when somebody searches for a product</p>
+													<p>Add a new product by follwing these steps.</p>
+													<p>Step 1 : Go to your "Dashboard".<br />
+														Step 2 : Click on sales catalogue button to add your sales
+														products.<br />
+														Step 3 : Fill in the required details about your product.<br />
+														Step 4 : Add description about your product(specification,
+														technical data etc) .<br />
+														Step 5 : Upload your product images.<br />
+														Step 6 : Click and save and submit.
+													</p>
+													<h3>FAQ's on Catalogue</h3>
+													<ol>
+														<li>What is "sales catalogue" and "Buy Catalogue".?<br />
+															<b>Sales Catalogue :</b> The products your company sells
+															comes under sales catalogue.<br />
+															You will recieve buy leads based on this catalogue.<br />
+															<b>Purcahse Catalogue :</b> The products your company wants
+															to buy comes under Purchase catalogue.<br />
+															You can request for Quotations(RFQ) based on this
+															catalogue.<br />
+														</li>
+														<li><b>How to add a new product name?</b><br />
+															You can add the name following these simple steps:<br />
+															Step 1: <b>Type the name of the product you want to
+																add.</b><br />
+															Step 2: <b>Click on search button.</b><br />
+															Step 3: <b>Select the product from the dropdown</b><br />
+															Step 4: <b>Click on add this product.</b> If the drop down
+															does not contain your product<br />
+															Step 5: <b>Select the product category and press submit.</b>
+														</li>
+														<li><b>Why should i add Hsn/sac code?</b><br />
+															HSN and SAC codes helps the buyer to search for your
+															products easily by just knowing the codes.
+														</li>
+														<li><b>What is user or target industry?why is it required
+																?</b><br />
+															The "buyer industry will help our backend team to showcase
+															or promote your products to those who are buying that
+															product which inturn will increase buy leads to your
+															company.
+														</li>
+														<li><b>What is MOQ & Production capacity?</b><br />
+															MOQ is "minimum order quantity" and your companys production
+															capacity/supply ability helps in providing more accurate
+															buyers for your products.
+														</li>
+														<li><b>How do i upload images and what should be the size of the
+																image?</b><br />
+															Click on browse button and select the image you want to add
+															and press submit.<br />
+															Images should be of size less than 1mb
+														</li>
+														<li><b>Can i edit my product details once i have
+																submited?</b><br />
+															You can edit your product any time even after you have
+															submitted.
+														</li>
+													</ol>
+												</div>
+											</div>
+										</div>
+									</div>
+									<!--end::Accordion-->
+								</div>
+								<div *ngIf="tab==5" class="col-lg-9">
+									<!--begin::Accordion-->
+									<div class="accordion accordion-light  accordion-svg-icon" id="faq">
+										<div class="card">
+											<div class="card-header" id="faqHeading1">
+												<div class="card-title" [ngClass]="tab!=5?'collapsed':' '" data-toggle="collapse"
+													data-target="#faq1" aria-expanded="true" aria-controls="faq1" (click)="setTab(5)">
+													<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+														width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
+														<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+															<polygon points="0 0 24 0 24 24 0 24"></polygon>
+															<path
+																d="M12.2928955,6.70710318 C11.9023712,6.31657888 11.9023712,5.68341391 12.2928955,5.29288961 C12.6834198,4.90236532 13.3165848,4.90236532 13.7071091,5.29288961 L19.7071091,11.2928896 C20.085688,11.6714686 20.0989336,12.281055 19.7371564,12.675721 L14.2371564,18.675721 C13.863964,19.08284 13.2313966,19.1103429 12.8242777,18.7371505 C12.4171587,18.3639581 12.3896557,17.7313908 12.7628481,17.3242718 L17.6158645,12.0300721 L12.2928955,6.70710318 Z"
+																fill="#000000" fill-rule="nonzero"></path>
+															<path
+																d="M3.70710678,15.7071068 C3.31658249,16.0976311 2.68341751,16.0976311 2.29289322,15.7071068 C1.90236893,15.3165825 1.90236893,14.6834175 2.29289322,14.2928932 L8.29289322,8.29289322 C8.67147216,7.91431428 9.28105859,7.90106866 9.67572463,8.26284586 L15.6757246,13.7628459 C16.0828436,14.1360383 16.1103465,14.7686056 15.7371541,15.1757246 C15.3639617,15.5828436 14.7313944,15.6103465 14.3242754,15.2371541 L9.03007575,10.3841378 L3.70710678,15.7071068 Z"
+																fill="#000000" fill-rule="nonzero" opacity="0.3"
+																transform="translate(9.000003, 11.999999) rotate(-270.000000) translate(-9.000003, -11.999999) ">
+															</path>
+														</g>
+													</svg> Contact us
+												</div>
+											</div>
+											<div id="faq1" [ngClass]="tab==5?'show':' '" class="collapse" aria-labelledby="faqHeading1"
+												data-parent="#faq">
+												<div class="card-body">
+													<p>You can reach us at support@ibizzo.com with any of your queries and we will get back to as soon as possible with a solution to query.</p>
+													<p>You can reach us through <a  href="tel:9380454634"> +91 9380454634 / 9632189646 </a>  </p>
+													<p>Just post your query by filling the below form for a more convinient way to reach us</p>
+													<p class="text-center"><img class="img-fluid mx-auto" src="../../../../../assets/images/ibizzo-Support.jpg" alt="iBizzo Contact Us Image" /></p>
+												</div>
+											</div>
+										</div>
+									</div>
+									<!--end::Accordion-->
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- end:: Section -->
+
+		<!-- begin:: Section -->
+	
+	</div>
+</div>

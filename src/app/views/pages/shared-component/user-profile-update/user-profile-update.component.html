@@ -1,0 +1,705 @@
+<!--begin: Wizard -->
+<form [formGroup]="userForm">
+  <div #wizard class="kt-wizard-v1" id="kt_wizard_v1" data-ktwizard-state="step-first">
+    <!--begin: Form Wizard Nav -->
+    <div class="kt-wizard-v1__nav">
+      <div class="kt-wizard-v1__nav-items">
+        <a class="kt-wizard-v1__nav-item" href="javascript:;" data-ktwizard-type="step" data-ktwizard-state="current">
+          <div class="kt-wizard-v1__nav-body">
+            <div class="kt-wizard-v1__nav-icon">
+              <i class="flaticon-list"></i>
+            </div>
+            <div class="kt-wizard-v1__nav-label">
+              <div class="kt-wizard-v1__nav-label-title">
+                Basic Details
+              </div>
+              <div class="kt-wizard-v1__nav-label-desc">
+                <!-- Add Payment Options -->
+              </div>
+            </div>
+          </div>
+        </a>
+        <a class="kt-wizard-v1__nav-item" href="javascript:;" data-ktwizard-type="step">
+          <div class="kt-wizard-v1__nav-body">
+            <div class="kt-wizard-v1__nav-icon">
+              <i class="flaticon-bus-stop"></i>
+            </div>
+            <div class="kt-wizard-v1__nav-label">
+              <div class="kt-wizard-v1__nav-label-title">
+                Location & Address
+              </div>
+              <div class="kt-wizard-v1__nav-label-desc">
+                <!-- Create Custom Account -->
+              </div>
+            </div>
+          </div>
+        </a>
+        <a class="kt-wizard-v1__nav-item" href="javascript:;" data-ktwizard-type="step">
+          <div class="kt-wizard-v1__nav-body">
+            <div class="kt-wizard-v1__nav-icon">
+              <i class="flaticon-profile"></i>
+            </div>
+            <div class="kt-wizard-v1__nav-label">
+              <div class="kt-wizard-v1__nav-label-title">
+                Profile
+              </div>
+              <div class="kt-wizard-v1__nav-label-desc">
+                <!-- Setup Your Address -->
+              </div>
+            </div>
+          </div>
+        </a>
+        <a class="kt-wizard-v1__nav-item" href="javascript:;" data-ktwizard-type="step">
+          <div class="kt-wizard-v1__nav-body">
+            <div class="kt-wizard-v1__nav-icon">
+              <i class="flaticon-globe"></i>
+            </div>
+            <div class="kt-wizard-v1__nav-label">
+              <div class="kt-wizard-v1__nav-label-title">
+                Minisite
+              </div>
+              <div class="kt-wizard-v1__nav-label-desc">
+              </div>
+            </div>
+          </div>
+        </a>
+        <a class="kt-wizard-v1__nav-item" href="javascript:;" data-ktwizard-type="step">
+          <div class="kt-wizard-v1__nav-body">
+            <div class="kt-wizard-v1__nav-icon">
+              <i class="flaticon2-open-text-book"></i>
+            </div>
+            <div class="kt-wizard-v1__nav-label">
+              <div class="kt-wizard-v1__nav-label-title">
+                Sales Catalogue
+              </div>
+              <div class="kt-wizard-v1__nav-label-desc">
+              </div>
+            </div>
+          </div>
+        </a>
+        <a class="kt-wizard-v1__nav-item" href="javascript:;" data-ktwizard-type="step">
+          <div class="kt-wizard-v1__nav-body">
+            <div class="kt-wizard-v1__nav-icon">
+              <i class="flaticon-add"></i>
+            </div>
+            <div class="kt-wizard-v1__nav-label">
+              <div class="kt-wizard-v1__nav-label-title">
+                Purchase Catalogue
+              </div>
+              <div class="kt-wizard-v1__nav-label-desc">
+              </div>
+            </div>
+          </div>
+        </a>
+        <a *ngIf="isMemberProfile" class="kt-wizard-v1__nav-item" href="javascript:;" data-ktwizard-type="step" (click)="stepChange()">
+          <div class="kt-wizard-v1__nav-body">
+            <div class="kt-wizard-v1__nav-icon">
+              <i class="flaticon-edit"></i>
+            </div>
+            <div class="kt-wizard-v1__nav-label">
+              <div class="kt-wizard-v1__nav-label-title">
+               Offerings
+              </div>
+              <div class="kt-wizard-v1__nav-label-desc">
+              </div>
+            </div>
+          </div>
+        </a>
+        <a class="kt-wizard-v1__nav-item" href="javascript:;" data-ktwizard-type="step">
+          <div class="kt-wizard-v1__nav-body">
+            <div class="kt-wizard-v1__nav-icon">
+              <i class="flaticon-upload"></i>
+            </div>
+            <div class="kt-wizard-v1__nav-label">
+              <div class="kt-wizard-v1__nav-label-title">
+                Upload Documents
+              </div>
+              <div class="kt-wizard-v1__nav-label-desc">
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+    <!--end: Form Wizard Nav -->
+
+    <div class="kt-portlet">
+      <div class="kt-portlet__body kt-portlet__body--fit">
+        <div class="kt-grid">
+          <div class="kt-grid__item kt-grid__item--fluid kt-wizard-v1__wrapper mob-view">
+            <!--begin: Form Wizard Form-->
+            <div class="kt-form" id="kt_form">
+              <!--begin: Form Wizard Step 1-->
+              <div class="kt-wizard-v1__content" data-ktwizard-type="step-content">
+
+                <div class="row">
+                  <div class="form-group col-lg-6">
+                    <label cfor="Name">Name<i class="fa fa-question-circle mandatory-field ml-2" style="color:#FF6600;"
+                        ngbPopover="Name of the person handling company" popoverTitle="Name is Mandatory"></i>
+                    </label>
+                    <input type="text" class="form-control" formControlName="name">
+                  </div>
+                  <div class="form-group col-lg-6">
+                    <label for="Name">Company Name <i class="fa fa-question-circle mandatory-field "
+                        style="color:#FF6600;" popoverTitle="Company Name" ngbPopover="Your company name"></i>
+                    </label>
+                    <input type="text" class="form-control" formControlName="companyName">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-lg-6">
+                    <label for="Designation">Designation<i class="fa fa-question-circle  ml-2" style="color:#FF6600;"
+                        popoverTitle="Designation" ngbPopover="Your role in company"></i> </label>
+                    <input type="text" class="form-control" formControlName="designation">
+                  </div>
+                  <div class="form-group col-lg-6">
+                    <label for="Name">GSTIN<i class="fa fa-question-circle  ml-2" style="color:#FF6600;"
+                        popoverTitle="GSTIN no" ngbPopover="Your company registered GSTIN No"></i>
+                    </label>
+                    <input type="text" class="form-control" formControlName="gstin">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-lg-6">
+                    <label for="Name">Year of Company
+                      Registration<i class="fa fa-question-circle  ml-2" style="color:#FF6600;"
+                        popoverTitle="Year of Registration" ngbPopover="When your company got registered?"></i> </label>
+                    <!-- <div class="form-control">
+                      <mat-select formControlName="registrationDate">
+                        <mat-option *ngFor="let item of registerDate" [value]='item'>{{item}}</mat-option>
+                      </mat-select>
+                    </div> -->
+                    <input type="text" class="form-control" formControlName="registrationDate">
+                  </div>
+                  <div class="form-group col-lg-6">
+                    <!-- <label for="Name">Business Category<i class="fa fa-question-circle  ml-2" style="color:#FF6600;"
+                        popoverTitle="Business" ngbPopover="*add your company's main trade"></i> </label>
+                    <tag-input [(ngModel)]="tag" formControlName="businessCategory" class="tag-select-input"
+                      [maxItems]="2" [onTextChangeDebounce]="500" (onTextChange)="onTextChange($event)"
+                      placeholder="Select only two types" id="tag-id">
+                      <tag-input-dropdown [autocompleteItems]="items" [showDropdownIfEmpty]="true"
+                        [dynamicUpdate]="false">
+                      </tag-input-dropdown>
+                    </tag-input> -->
+                    <label for="Name">Business Category
+                      <i class="fa fa-question-circle " style="color:#FF6600;"
+                        ngbPopover="Select your Business segment/category.You can select multiple categories"
+                        popoverTitle="Business category is Mandatory"></i>
+                    </label>
+                    <div *ngIf='fetch'>
+                      <div class="input-group">
+                        <kt-business-category-lookup [data]='unsbcCategory'
+                          (onChange)="onBusinessCategoryChange($event)" [includeDefaults]="false" [allowTags]="true">
+                        </kt-business-category-lookup>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                </div>
+              </div>
+
+              <!--begin: Form Wizard Step 2-->
+              <div class="kt-wizard-v1__content" data-ktwizard-type="step-content" data-ktwizard-state="current">
+                <div class="row">
+                  <div class="form-group col-lg-6">
+                    <label for="Name">Address<i class="fa fa-question-circle  ml-2" style="color:#FF6600;"
+                        ngbPopover="Where your company locates"></i></label>
+                    <input type="text" class="form-control" formControlName="address">
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="form-group col-lg-6">
+                    <label for="Name">Area
+                      <i class="fa fa-question-circle  ml-2" style="color:#FF6600;" popoverTitle="Office name"
+                        ngbPopover="*Door no, locality ,area.."></i>
+                    </label>
+                    <div class="form-control">
+                      <mat-select formControlName="officename">
+                        <mat-option *ngFor="let item of pincodeData" [value]="item">{{item}}</mat-option>
+                      </mat-select>
+                    </div>
+
+                  </div>
+                  <div class="form-group col-lg-6">
+                    <label for="Name">Division Name<i class="fa fa-question-circle  ml-2" style="color:#FF6600;"
+                        popoverTitle="Divison name" ngbPopover="Which division your company belongs"></i></label>
+                    <input type="text" class="form-control input-bg" formControlName="divisionname" readonly>
+                  </div>
+
+                </div>
+
+
+                <div class="row">
+                  <div class="form-group col-lg-6">
+                    <label for="Name">Region Name<i class="fa fa-question-circle  ml-2" style="color:#FF6600;"
+                        popoverTitle="Region name" ngbPopover="Which Region your company belongs"></i> </label>
+                    <input type="text" class="form-control input-bg" formControlName="regionname" readonly>
+                  </div>
+                  <div class="form-group col-lg-6">
+                    <label for="Name">Circle Name<i class="fa fa-question-circle  ml-2" style="color:#FF6600;"
+                        popoverTitle="Circle name" ngbPopover="Which circle your company belongs"></i> </label>
+                    <input type="text" class="form-control input-bg" formControlName="circlename" readonly>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-lg-6">
+                    <label for="Name">State<i class="fa fa-question-circle  ml-2" style="color:#FF6600;"
+                        popoverTitle="State name" ngbPopover="State which your company belongs"></i> </label>
+                    <input type="text" class="form-control input-bg" formControlName="state" readonly>
+                  </div>
+                  <div class="form-group col-lg-6">
+                    <label for="Name">Pincode<i class="fa fa-question-circle  ml-2" style="color:#FF6600;"
+                        popoverTitle="Pincode" ngbPopover="Area Pincode"></i>
+                      <span
+                        [ngClass]="{'kt-spinner kt-spinner--right kt-spinner--md kt-spinner--primary ml-4 pl-2': loadingPincode }"></span>
+                    </label>
+                    <input type="text" class="form-control" formControlName="location"
+                      (ngModelChange)="onChangePincode($event)">
+                  </div>
+                </div>
+
+              </div>
+
+              <!--begin: Form Wizard Step 3-->
+              <div class="kt-wizard-v1__content" data-ktwizard-type="step-content">
+                <div class="row">
+                  <div class="form-group col-lg-6">
+                    <label for="employeeCount">Employee count
+                      <i class="fa fa-question-circle ml-2" style="color:#FF6600;" popoverTitle="Employees"
+                        ngbPopover="Your Employee count"></i> </label>
+                    <input type="text" class="form-control" formControlName="employeeCount"
+                    >
+                  </div>
+
+                  <div class="form-group col-lg-6">
+                    <label for="businessType">Bussiness Type <i class="fa fa-question-circle ml-2"
+                        style="color:#FF6600;" popoverTitle="Type of Business"
+                        ngbPopover="Business type is either Import or Export"></i> </label>
+                    <div class="form-control">
+                      <mat-select formControlName="bussinessType">
+                        <mat-option value=0>None</mat-option>
+                        <mat-option *ngFor="let item of businessTypeList" [value]='item.value'>{{item.text}}
+                        </mat-option>
+                      </mat-select>
+                    </div>
+                  </div>
+
+
+                </div>
+                <div class="row">
+                  <div class="form-group col-lg-6">
+                    <label for="annualTurnOver">Annual Turnover <i class="fa fa-question-circle ml-2"
+                        style="color:#FF6600;" popoverTitle="Annual Turnover"
+                        ngbPopover="Please select company Annual Turnover."></i>
+                    </label>
+                    <div class="form-control">
+                      <mat-select formControlName="annualTurnover">
+                        <mat-option *ngFor="let item of annualTurnOverList" [value]='item.value'>{{item.text}}
+                        </mat-option>
+                      </mat-select>
+                    </div>
+                  </div>
+                  <div class="form-group col-lg-6" id='website-link'>
+                    <label for="website">Company Website
+                      <i class="fa fa-question-circle ml-2" style="color:#FF6600;" popoverTitle="Website"
+                        ngbPopover="You can link your existing website to your ibizzo profile by entering you website link here."></i>
+                      <span class="badge badge-paid">PAID FEATURE</span>
+                    </label>
+                    <input type="url" class="form-control" formControlName="website" placeholder="http://example.com">
+                    <mat-error *ngIf="isCheckControls('website', 'pattern')">
+                      Invalid website link or missing http://
+                    </mat-error>
+                  </div>
+
+                </div>
+                <kt-portlet-header title="About Company"></kt-portlet-header>
+                <kt-portlet-body class="pb-0">
+                  <div class="row">
+                    <div class="col-lg-12 col-md-12">
+                      <tinymce formControlName="aboutYourCompany" [config]="config" class=""
+                        style="height: 200px;overflow-y: scroll;">
+                      </tinymce>
+                      <p>Use CTRL+C/CTRL+V for copy/paste.</p>
+                    </div>
+                  </div>
+                </kt-portlet-body>
+
+              </div>
+
+              <!--begin: Form Wizard Step 4-->
+              <div class="kt-wizard-v1__content" data-ktwizard-type="step-content">
+
+                <!-- begin: logo + themeing -->
+                <div class="kt-section">
+                  <div class="kt-section__title">
+                    Company logo
+                    <i class="fa fa-question-circle ml-2" style="color:#FF6600;" popoverTitle="Logo"
+                      ngbPopover="Upload your company's logo to market your brand to all your buyers ,this will appear in your mini website once paid."></i>
+                    <span class="badge badge-paid">PAID FEATURE</span>
+                  </div>
+                  <div class="kt-section__body">
+                    <div class="row">
+                      <div class="col-lg-5 col-md-3">
+                        <div class="form-group col-lg-2" ngbPopover="Allowed file types: png, jpg, jpeg">
+                          <div class="kt-avatar kt-avatar--outline" id='Logo'
+                            [ngClass]="{'kt-spinner kt-spinner--right kt-spinner--md kt-spinner--primary mt-4': logoLoading }">
+                            <img
+                              [src]="logo==''?'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1200px-No_image_available.svg.png':logo"
+                              class="kt-avatar__holder">
+                            <div></div>
+                            <label class="kt-avatar__upload" data-toggle="kt-tooltip" title=""
+                              data-original-title="Change avatar">
+                              <i class="fa fa-pen"></i>
+                              <input class="kt-file-input" type="file" formControlName="profile" name="profile_avatar"
+                                accept=".png, .jpg, .jpeg" (change)="detectFiles($event)">
+                            </label>
+                            <button *ngIf="logo" type="button" class="close button-close" (click)="close()"
+                              aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-lg-4 col-md-4">
+                        <div>
+                          <div class="form-group col-lg-12">
+                            <label for="accentColor">Overall site color</label>
+                            <div class="input-group">
+                              <div class="input-group-prepend"><span class="input-group-text"
+                                  [style.background-color]="userForm.value.accentColor"><i class="la la-eyedropper"
+                                    [style.color]="invertColor(userForm.value.accentColor)"></i></span></div>
+                              <input type="text" class="form-control" readonly [value]="userForm.value.accentColor"
+                                [(colorPicker)]="userForm.value.accentColor" [cpOutputFormat]="'hex'"
+                                (cpSliderDragStart)="onColorChange('accentColor', $event)"
+                                (cpSliderDragEnd)="onColorChange('accentColor', $event)" />
+                            </div>
+                            <span class='hidden-mobile'>Choose the color scheme for your site</span>
+                          </div>
+                        </div>
+                        <div>
+                          <div class="form-group col-lg-12">
+                            <label for="alternateColor">Secondary color</label>
+                            <div class="input-group">
+                              <div class="input-group-prepend"><span class="input-group-text"
+                                  [style.background-color]="userForm.value.alternateColor"><i class="la la-eyedropper"
+                                    [style.color]="invertColor(userForm.value.alternateColor)"></i></span></div>
+                              <input type="text" class="form-control" [value]="userForm.value.alternateColor"
+                                [(colorPicker)]="userForm.value.alternateColor" [cpOutputFormat]="'hex'"
+                                (cpSliderDragStart)="onColorChange('alternateColor', $event)"
+                                (cpSliderDragEnd)="onColorChange('alternateColor', $event)" />
+                            </div>
+                          </div>
+                        </div>
+                        <div>
+                          <div class="form-group">
+                            <label class="ml-2">Keywords</label>
+                    
+                            <div class="col" formArrayName="keyWordsList" *ngIf="hasControl('keyWordsList')">
+                              <div class="input-group bootstrap-touchspin bootstrap-touchspin-injected mt-2"
+                                *ngFor="let cell of userForm.get('keyWordsList').controls; let i=index" [formGroupName]="i">
+                                <input id="kt_touchspin_1" type="text" class="form-control" placeholder="keyword"
+                                  formControlName="value">
+                                <span *ngIf="i==0" class="input-group-btn input-group-append">
+                                  <button class="btn btn-secondary bootstrap-touchspin-up" type="button" (click)="addCell('keyWordsList')">+
+                                  </button>
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- end: logo + themeing -->
+
+
+                <!-- begin: video-links -->
+                <div class="kt-section">
+                  <div class="kt-section__title">
+                    Video links
+                    <i class="fa fa-question-circle" style="color:#FF6600;" popoverTitle="Video Link"
+                      ngbPopover="Add youtube video links to any of your videos related to your products or business to attract more consumers,this will appear in your mini website."></i>
+                  </div>
+                  <div class="kt-section__body">
+                    <div class="row">
+                      <div class="form-group col-lg-6 col-md-6 col-sm-12 set-margin" id='Videos'>
+                        <label for="videoLink1">Video Link #1
+                          <span class="badge badge-paid">PAID FEATURE</span>
+                        </label>
+                        <input type="text" class="form-control" formControlName="videoLink1" />
+                        <mat-error *ngIf="isCheckControls('videoLink1','pattern')">
+                          Invalid Youtube link.
+                        </mat-error>
+                      </div>
+                      <div class="form-group col-lg-6 col-md-6 col-sm-12 set-margin" id='Videos'>
+                        <label for="videoLink1">Video Link #2
+                          <span class="badge badge-paid">PAID FEATURE</span>
+                        </label>
+                        <input type="text" class="form-control" formControlName="videoLink2" />
+                        <mat-error *ngIf="isCheckControls('videoLink2','pattern')">
+                          Invalid Youtube link.
+                        </mat-error>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- end: video-links -->
+
+                <div class="kt-separator kt-separator--border-dashed kt-separator--space-lg"></div>
+
+                <!-- begin: company-facility images  -->
+                <div class="kt-section">
+                  <div class="kt-section__title">
+                    <button class="btn btn-default btn-file btn-sm"
+                      [ngClass]="{'kt-spinner kt-spinner--right kt-spinner--md kt-spinner--danger': loading }">
+                      Add <input id="facility-upload" name="fileHidden" formControlName="companyFacilityImages"
+                        (change)="uploadFacilityImages($event)" multiple type="file" accept="image/*" />
+                    </button>
+                    Company Facility Images
+                    <i class="fa fa-question-circle" style="color:#FF6600;" popoverTitle="Company Images"
+                      ngbPopover="Upload your company's Infrastructure/factory/shop/facility images to make your customers know better about you,this will appear in your mini website once paid."></i>
+                    <span class="badge badge-paid">PAID FEATURE</span>
+                  </div>
+                  <div class="kt-section__body">
+                    <div class="row">
+                      <div class="col-lg-6 text-center p-1 mb-2" id='Images'>
+                        <img [src]="images" [ngClass]="urls?'hero-image':'no-image'" alt="">
+                      </div>
+                    </div>
+                    <div *ngIf="urls" class="row pt-2">
+                      <div *ngFor="let image of urls;let i=index">
+                        <label class="kt-avatar__close img-close" data-toggle="kt-tooltip" title=""
+                          data-original-title="Change avatar" (click)="deleteImage(image,i)">
+                          <i class="fa fa-close"></i>
+                        </label>
+                        <div class="p-0">
+                          <img [src]="image" class="image-resize p-2" (click)="setImage(image)" alt="">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- begin: company-facility images -->
+
+                <div class="kt-separator kt-separator--border-dashed kt-separator--space-lg"></div>
+
+                <!-- begin: company documents -->
+                <div class="kt-section ">
+                  <button class="btn btn-default btn-file btn-sm"
+                    [ngClass]="{'kt-spinner kt-spinner--right kt-spinner--md kt-spinner--danger': docLoding }">
+                    Add <input iid="doc-upload" name="fileHidden" formControlName="docUpload"
+                      (change)="uploadDocuments($event)" multiple type="file" accept="application/pdf" />
+                  </button>
+                  <div class="kt-section__title" id='Documents'>
+                    Company Documents
+                    <i class="fa fa-question-circle" style="color:#FF6600;" popoverTitle="Company Documents"
+                      ngbPopover="Upload documents related to your company like Brochure,Certification,Awards etc and let your customers know more about you.This will available for download for your website viewers once paid."></i>
+                    <span class="badge badge-paid">PAID FEATURE</span>
+                  </div>
+
+                  <div class="kt-section__body" id='Documents'>
+                    <div *ngIf="docUrls.length < 1" class="row">
+                      <div class="col-lg-6 text-center p-1">
+                        <img [src]="noDoc" class="no-image" alt="">
+                      </div>
+                    </div>
+                    <div *ngFor="let doc of docUrls;let i=index" class="row">
+                      <ul class="list-group list-group-flush list-data p-2">
+                        <li class="list-group-item list-content"> <a [href]="getRoute(doc)" target="_blank">
+                            <img src="../../../../../assets/images/pdf-icon.png" alt="PDF Thumbnail"
+                              class="rounded impload-img" />
+                            <span class="pl-2 font-weight-bold p-1 mob-view">{{ getDocName(doc)}}</span>
+                          </a>
+                          <div class="float-right mt-3" (click)="deleteDoc(i)">
+                            <i class="fa fa-close" style="font-size: 30px;
+                            color: #646c9a;"></i>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              
+              <!-- wizard five start -->
+              <div class="kt-wizard-v1__content" data-ktwizard-type="step-content">
+                <kt-sales-product-list [token]="token" [addMemberApi]="addMemberUserProfileApi"
+               class="mob-view" [isPending]="isPending" [addUserMemberProfile]="addMemberProfile">
+                </kt-sales-product-list>
+              </div>
+              <!-- wizard five end  -->
+                <!-- wizard five start -->
+                <div class="kt-wizard-v1__content" data-ktwizard-type="step-content">
+                    <kt-purchase-product-list [token]="token" [addMemberApi]="addMemberUserProfileApi" [isPending]="isPending" [addUserMemberProfile]="addMemberProfile">
+                    </kt-purchase-product-list>
+                </div>
+                <div *ngIf="isMemberProfile" class="kt-wizard-v1__content" data-ktwizard-type="step-content">
+                  <div *ngIf="packageIsAllow">
+                    <kt-subscribe-packages cartNo="3" isMember="true" [memberId]="memberId">
+                    </kt-subscribe-packages>
+                  </div>
+                  
+                </div>
+                <div class="kt-wizard-v1__content" data-ktwizard-type="step-content">
+                  <div class="kt-section ">
+                    <div class="kt-section__title" id='Documents' [ngClass]="{'kt-spinner kt-spinner--right kt-spinner--md kt-spinner--danger': isDocUpload }">
+                      Documents
+                      <i class="fa fa-question-circle" style="color:#FF6600;" popoverTitle="Company Documents"
+                        ngbPopover="Upload documents related to your company like Brochure,Certification,Awards etc and let your customers know more about you.This will available for download for your website viewers once paid."></i>
+                      <span class="badge badge-paid"  >PAID FEATURE</span>
+                    </div>
+                    <kt-portlet-body>
+                      <div class="form-group">
+                        <label for="exampleFormControlInput1" >Company PAN card</label>
+                        <div class="input-group mb-3">
+                          <div class="custom-file">
+                            <input type="file" class="custom-file-input"  (change)="docUpload($event,'pan')" id="inputGroupFile01">
+                            <label class="custom-file-label" for="inputGroupFile01">{{pan}}</label>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="exampleFormControlInput1">Shop & Establishment Certificate</label>
+                        <div class="input-group mb-3">
+                          <div class="custom-file">
+                            <input type="file" class="custom-file-input" (change)="docUpload($event,'shop')" id="inputGroupFile01">
+                            <label class="custom-file-label" for="inputGroupFile01">{{shop}}</label>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="exampleFormControlInput1">GST certificate</label>
+                        <div class="input-group mb-3">
+                          <div class="custom-file">
+                            <input type="file" class="custom-file-input" (change)="docUpload($event,'GST')" id="inputGroupFile01">
+                            <label class="custom-file-label" for="inputGroupFile01">{{GST}}</label>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="exampleFormControlInput1">Certificate of Incoporation/LLP certificate/Partnership Certificate</label>
+                        <div class="input-group mb-3">
+                          <div class="custom-file">
+                            <input type="file" class="custom-file-input" (change)="docUpload($event,'partnership')" id="inputGroupFile01">
+                            <label class="custom-file-label" for="inputGroupFile01">{{partnership}}</label>
+                          </div>
+                        </div>
+                      </div>
+
+
+                      <div class="form-group">
+                        <label for="exampleFormControlInput1">Pollution Control Board certifications</label>
+                        <div class="input-group mb-3">
+                          <div class="custom-file">
+                            <input type="file" class="custom-file-input" (change)="docUpload($event,'pollution')" id="inputGroupFile01">
+                            <label class="custom-file-label" for="inputGroupFile01">{{pollution}}</label>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="exampleFormControlInput1">Udyam Aadhar</label>
+                        <div class="input-group mb-3">
+                          <div class="custom-file">
+                            <input type="file" class="custom-file-input" (change)="docUpload($event,'Aadhar')" id="inputGroupFile01">
+                            <label class="custom-file-label" for="inputGroupFile01">{{Aadhar}}</label>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="exampleFormControlInput1">Quality Certification (Ex : ISO )</label>
+                        <div class="input-group mb-3">
+                          <div class="custom-file">
+                            <input type="file" class="custom-file-input" (change)="docUpload($event,'Quality')" id="inputGroupFile01">
+                            <label class="custom-file-label" for="inputGroupFile01">{{Quality}}</label>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="exampleFormControlInput1">Startup Recognition certificate</label>
+                        <div class="input-group mb-3">
+                          <div class="custom-file">
+                            <input type="file" class="custom-file-input" (change)="docUpload($event,'Recognition')" id="inputGroupFile01">
+                            <label class="custom-file-label" for="inputGroupFile01">{{Recognition}}</label>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleFormControlInput1">MSME Certificate</label>
+                        <div class="input-group mb-3">
+                          <div class="custom-file">
+                            <input type="file" class="custom-file-input" (change)="docUpload($event,'MSME')" id="inputGroupFile01">
+                            <label class="custom-file-label" for="inputGroupFile01">{{MSME}}</label>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="exampleFormControlInput1">Export/Import Certifications</label>
+                        <div class="input-group mb-3">
+                          <div class="custom-file">
+                            <input type="file" class="custom-file-input" (change)="docUpload($event,'exports')" id="inputGroupFile01">
+                            <label class="custom-file-label" for="inputGroupFile01">{{exports}}</label>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="exampleFormControlInput1">Company/Shop/Factory Images</label>
+                        <div class="input-group mb-3">
+                          <div class="custom-file">
+                            <input type="file" class="custom-file-input" (change)="docUpload($event,'Factory')" id="inputGroupFile01">
+                            <label class="custom-file-label" for="inputGroupFile01">{{Factory}}</label>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      
+             
+                    </kt-portlet-body>
+                  </div>
+                </div>
+                <!-- wizard five end  -->
+              <div class="row">
+
+                <div class="kt-form__actions">
+                  <button class="btn btn-secondary btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u"
+                    data-ktwizard-type="action-prev">
+                    Previous
+                  </button>
+                  <div class=" float-right">
+                    <button class="btn btn-brand btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u float-right"
+                      (click)="onSubmit()"
+                      [ngClass]="{'kt-spinner kt-spinner--right kt-spinner--md kt-spinner--light': subLoading }"
+                      data-ktwizard-type="action-submit">
+                      Save and Done
+                    </button>
+                  </div>
+                  <div class=" float-right">
+                    <button class="btn btn-brand btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u float-right"
+                      data-ktwizard-type="action-next">
+                      Next Step
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--end: Form Wizard Form-->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</form>
+<!--end: Wizard -->

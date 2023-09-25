@@ -1,0 +1,161 @@
+:host {
+  width: 100%;
+
+  .kt-header-menu-wrapper {
+    height: 100%;
+    justify-content: center !important;
+  }
+
+  @media (min-width: 1025px) {
+    .kt-menu__link-text {
+      color: #ffffff !important;
+      font-weight: bold;
+      font-size: 16px !important;
+    }
+
+    .kt-menu__link-text:hover {
+      color: #fe372f !important;
+    }
+
+    .kt-menu__item.kt-menu__item--active {
+      .kt-menu__link-text {
+        color: white;
+        background-color: #d85454;
+      }
+
+      .kt-menu__link-text:hover {
+        color: white !important;
+      }
+
+      .kt-menu__link {
+        background-color: #d85454;
+      }
+    }
+  }
+}
+
+.search-bar {
+  width: 460px !important;
+}
+
+.set-radius {
+  border-radius: 30px !important;
+  background-color: #fe372f !important;
+  color: #ffffff !important;
+}
+.nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nav {
+  //   background: #555;
+  text-align: center;
+}
+
+.nav ul {
+  display: inline-block;
+  vertical-align: top;
+  font-size: 16px;
+}
+
+.nav ul li {
+  position: relative;
+  float: left;
+}
+
+.nav ul li + li {
+  margin-left: 1px;
+}
+#refer-btn {
+  border-radius: 4px;
+  margin-top: 5px;
+  padding: 0.75rem 1.45rem;
+}
+#refer-btn:hover {
+  background-color: #edf2fe;
+}
+.nav ul li a {
+  display: inline-block;
+  color: #fff;
+  text-decoration: none;
+  padding: 17px 20px;
+  // -webkit-transition: all 0.1s ease-in;
+  // -o-transition: all 0.1s ease-in;
+  // transition: all 0.1s ease-in;
+}
+
+.nav ul li a:hover {
+  background: #edafb0;
+  color: #fe372f;
+  z-index: 2;
+}
+
+.nav ul li > ul {
+  display: none;
+  position: absolute;
+  width: 150px;
+  top: 100%;
+  left: -1px;
+  z-index: 100;
+  text-align: left;
+}
+
+.nav ul li > ul li {
+  float: none;
+  margin: 0;
+}
+
+.nav ul li > ul li a {
+  display: block;
+}
+
+.nav ul li > ul li a:hover,
+.nav ul li > ul li a.active {
+  color: #1e90ff;
+}
+
+.nav ul li:hover a,
+.nav ul li.active a {
+  background: #fff;
+}
+.icon-size {
+  line-height: 50px !important;
+}
+.nav ul li.active {
+  pointer-events: none;
+}
+.nav ul li:hover a.link {
+  color: #fe372f;
+}
+
+.flaticon-multimedia {
+  color: #f56505;
+}
+.flaticon-whatsapp {
+  color: #3cbea5;
+}
+.flaticon2-copy {
+  color: #7e8299;
+}
+@media (max-width: 768px) {
+  .mobi-view:hover {
+    background-color: #f8f8fb;
+  }
+  #refer-btn {
+    color: #5e6383 !important;
+    font-weight: 400;
+    font-size: 1.02rem;
+    text-transform: initial;
+  }
+  #refer-btn:hover {
+    color: #fe372f !important;
+    background-color: #f8f8fb;
+  }
+  .nav ul {
+    font-weight: 400;
+    font-size: 1.02rem;
+    text-transform: initial;
+  }
+}

@@ -1,0 +1,14 @@
+:host{
+  .bg-dark{
+    background: #f3f3f3 !important;
+  }
+
+  .bg-white{
+    background: #ffffff !important;
+  }
+  
+  .kt-spinner.kt-spinner--right:before {
+    left: 160px !important;
+    right: 0;
+  }
+}

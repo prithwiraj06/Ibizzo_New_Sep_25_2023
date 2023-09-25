@@ -1,0 +1,56 @@
+<kt-portlet>
+  <kt-portlet-header [title]="company&&company.supplierName?company.supplierName:''"></kt-portlet-header>
+  <div class="kt-widget kt-widget--project-1">
+    <img *ngIf="company.isVerified=='Verified'"  src="../../../../../assets/images/verified.png" style="position: absolute;
+    top: 0px;
+    right: 0px;"
+     height="40" />
+    <div class="image-area">
+      <div class="swiper-container" *ngIf="company.image; else noImage">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide" *ngFor="let item of company.image">
+            <img [src]="item" />
+          </div>
+        </div>
+        <!-- Add Arrows -->
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+      </div>
+
+      <ng-template #noImage>
+        <div class="no-image">
+          <span>No Company Image</span>
+        </div>
+      </ng-template>
+    </div>
+
+    <div class="kt-widget__body kt-padding-10">
+      <div class="kt-widget__text widget-text-set">
+        Category: {{ company.category }}
+      </div>
+      <div class="kt-widget__content">
+        <div class="kt-widget__details">
+          <span class="kt-widget__subtitle">Location</span>
+          <span class="btn btn-label-primary btn-sm btn-bold btn-upper btn-text">{{ company.location || "-" }}</span>
+        </div>
+
+        <div class="kt-widget__details">
+          <span class="kt-widget__subtitle">Established</span>
+          <span class="btn btn-label-brand btn-sm btn-bold btn-upper btn-text">{{ company.established || "-" }}</span>
+        </div>
+
+        <div class="kt-widget__details">
+          <span class="kt-widget__subtitle">Employees</span>
+          <span class="btn btn-label-success btn-sm btn-bold btn-upper">{{
+            company.employeeCount || "-"
+          }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <kt-portlet-footer>
+    <div style="padding: 10px;">
+      <a class="btn btn-block btn-brand" target="_blank" [routerLink]="['/m/h/'+queryParams] | baseurl">Company Profile</a>
+    </div>
+  </kt-portlet-footer>
+</kt-portlet>

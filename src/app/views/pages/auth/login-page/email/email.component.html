@@ -1,0 +1,229 @@
+<!-- <div class="kt-portlet">
+  <div class="kt-portlet__head ">
+    <div class="kt-portlet__head-label">
+      <h3 class="kt-portlet__head-title">
+        {{titleChange?"User Details":'Login'}}
+      </h3>
+    </div>
+    <div class="kt-portlet__head-label">
+      <i class="fa fa-times set-corsor" (click)='onClose()'></i>
+    </div>
+  </div>
+  <form class="kt-form kt-form--label-right" [formGroup]='emailForm' *ngIf='!enterPassword'>
+    <div class="kt-portlet__body">
+      <div class="form-group row">
+        <div class="col-lg-12 ">
+          <div class="input-group">
+            <input type="text" class="form-control" name="email" formControlName="email" [(ngModel)]=email
+              placeholder="Enter your Email Address">
+          </div>
+
+          <mat-error *ngIf="isControlHasError('email','required')">
+            {{ 'AUTH.VALIDATION.REQUIRED_FIELD' | translate }}
+          </mat-error>
+          <mat-error *ngIf="isControlHasError('email','pattern')">
+            Enter valid email.
+          </mat-error>
+        </div>
+      </div>
+    </div>
+    <div class="kt-portlet__foot">
+      <div class="row align-items-center">
+        <div class="col-lg-6 m--valign-middle">
+          <a class="btn btn-text kt-font-primary" [routerLink]="['/registration'] | baseurl"
+            (click)='onClose()'>Register</a>
+        </div>
+        <div class="col-lg-6 kt-align-right">
+          <button type="submit" [ngClass]="{
+            'kt-spinner kt-spinner--right kt-spinner--md kt-spinner--light': loading}" color="primary"
+            (click)='onSubmit()' class="btn btn-brand">
+            Submit
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <div *ngIf='enterPassword'>
+    <div *ngIf="!isEnable">
+      <div class="alert alert-solid-primary alert-bold" role="alert" style="margin-bottom: 0px;">
+        <div class="alert-text">Welcome {{userName}}</div>
+      </div>
+
+      <form class="kt-form kt-form--label-right" [formGroup]='passwordForm'>
+        <div class="kt-portlet__body" *ngIf='enterPassword'>
+
+          <div class="form-group row mb-0">
+            <div class="col-lg-12 ">
+              <div class="input-group">
+                <input type="password" class="form-control" name="password" formControlName="password"
+                  [(ngModel)]=password placeholder="Enter your password">
+              </div>
+              <mat-error *ngIf="isControlHasError('password','required')">
+                {{ 'AUTH.VALIDATION.REQUIRED_FIELD' | translate }}
+              </mat-error>
+              <mat-error *ngIf="wrongPassword">
+                Password is incorrect.
+              </mat-error>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="kt-portlet__foot">
+          <div class="row align-items-center">
+            <div class="col-lg-6 m--valign-middle">
+              <a class="btn btn-text kt-font-primary" (click)='forgotPassword()'>Forgot Password</a>
+            </div>
+            <div class="col-lg-6 kt-align-right">
+              <button type="submit" [ngClass]="{
+                'kt-spinner kt-spinner--right kt-spinner--md kt-spinner--light': loading}" color="primary"
+                (click)='onSubmitPass()' class="btn btn-brand">
+                Submit
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </form>
+    </div>
+
+
+  </div>
+</div> -->
+<div class="kt-portlet">
+  <div class="kt-portlet__head">
+    <div class="kt-portlet__head-label">
+      <h3 class="kt-portlet__head-title">
+        {{ titleChange ? "User Details" : "Login" }}
+      </h3>
+    </div>
+    <div class="kt-portlet__head-label">
+      <i class="fa fa-times set-corsor" (click)="onClose()"></i>
+    </div>
+  </div>
+  <form class="kt-form kt-form--label-right" [formGroup]="emailForm" *ngIf="!enterPassword">
+    <div class="kt-portlet__body">
+      <div class="form-group row">
+        <div class="col-lg-12">
+          <div class="input-group">
+            <input type="text"
+             class="form-control"
+              name="email" 
+              formControlName="email" [(ngModel)]="email" placeholder="Enter your Email Address"/>
+          </div>
+
+          <mat-error *ngIf="isControlHasError('email', 'required')">
+            {{ "AUTH.VALIDATION.REQUIRED_FIELD" | translate }}
+          </mat-error>
+          <mat-error *ngIf="isControlHasError('email', 'pattern')">
+            Enter valid email.
+          </mat-error>
+        </div>
+      </div>
+    </div>
+    <div class="kt-portlet__foot">
+      <div class="row align-items-center">
+        <div class="col-lg-6 m--valign-middle">
+          <a class="btn btn-text kt-font-primary" [routerLink]="['/registration'] | baseurl" (click)="onClose()">Register</a>
+        </div>
+        <div class="col-lg-6 kt-align-right">
+          <button type="submit" [ngClass]="{
+                          'kt-spinner kt-spinner--right kt-spinner--md kt-spinner--light': loading
+                        }" color="primary" (click)="onSubmit()" class="btn btn-brand">
+            Submit
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <div *ngIf="enterPassword">
+    <div *ngIf="isEnable">
+      <div class="alert alert-solid-primary alert-bold" role="alert" style="margin-bottom: 0px">
+        <div class="alert-text">Welcome
+          {{ email }}</div>
+      </div>
+      <div class="form-group row m-2 mt-4 mb-3">
+        <div class="col-lg-12">
+          <div class="input-group">
+            <input type="text" class="form-control" (ngModelChange)="setName('name')" [(ngModel)]="name" placeholder="Enter your Name"/>
+          </div>
+          <mat-error *ngIf="isName">
+            Please enter the name
+          </mat-error>
+        </div>
+      </div>
+      <div class="form-group row m-2 mt-4 mb-3">
+        <div class="col-lg-12">
+          <div class="input-group">
+            <input type="text" pattern="\d*" maxlength="10" min="0" class="form-control" (ngModelChange)="setName('phone')" [(ngModel)]="nonPhone" placeholder="Phone Number"/>
+          </div>
+          <mat-error *ngIf="isPhone">Phone number is required.</mat-error>
+        </div>
+      </div>
+      <div class="form-group row m-2 mt-4 mb-3">
+        <div class="col-lg-12">
+          <div class="input-group">
+            <input class="form-control" (ngModelChange)="setName('pin')" type="text" pattern="\d*" maxlength="6" min="0" [(ngModel)]="pincode" placeholder="Pincode"/>
+          </div>
+          <mat-error *ngIf="isPin">Pincode is required.</mat-error>
+        </div>
+      </div>
+
+      <div class="kt-portlet__foot">
+        <div class="row align-items-center">
+          <div class="col-lg-6 m--valign-middle">
+            <a class="btn btn-text kt-font-primary" [routerLink]="['/registration'] | baseurl" (click)="onClose()">Register</a>
+          </div>
+          <div class="col-lg-6 kt-align-right">
+            <button type="submit" color="primary" [ngClass]="{
+                              'kt-spinner kt-spinner--right kt-spinner--md kt-spinner--light': loading
+                            }" (click)="onSubmitResult()" class="btn btn-brand">
+              Submit
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="!isEnable">
+      <div class="alert alert-solid-primary alert-bold" role="alert" style="margin-bottom: 0px">
+        <div class="alert-text">Welcome
+          {{ userName }}</div>
+      </div>
+
+      <form class="kt-form kt-form--label-right" [formGroup]="passwordForm">
+        <div class="kt-portlet__body" *ngIf="enterPassword">
+          <div class="form-group row mb-0">
+            <div class="col-lg-12">
+              <div class="input-group">
+                <input type="password" class="form-control" name="password" formControlName="password" [(ngModel)]="password" placeholder="Enter your password"/>
+              </div>
+              <mat-error *ngIf="isControlHasError('password', 'required')">
+                {{ "AUTH.VALIDATION.REQUIRED_FIELD" | translate }}
+              </mat-error>
+              <mat-error *ngIf="wrongPassword">
+                Password is incorrect.
+              </mat-error>
+            </div>
+          </div>
+        </div>
+
+        <div class="kt-portlet__foot">
+          <div class="row align-items-center">
+            <div class="col-lg-6 m--valign-middle">
+              <a class="btn btn-text kt-font-primary" (click)="forgotPassword()">Forgot Password</a>
+            </div>
+            <div class="col-lg-6 kt-align-right">
+              <button type="submit" [ngClass]="{
+                                  'kt-spinner kt-spinner--right kt-spinner--md kt-spinner--light': loading
+                                }" color="primary" (click)="onSubmitPass()" class="btn btn-brand">
+                Submit
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

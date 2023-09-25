@@ -1,0 +1,43 @@
+<kt-portlet>
+  <div class="kt-portlet__head">
+    <div class="mt-3">
+      <h5>
+        Taxonomy List
+      </h5>
+    </div>
+    <div class="mt-1">
+      <div class="kt-header__topbar-item kt-header__topbar-item--search">
+        <div class="kt-header__topbar-wrapper">
+          <div class="kt-header-toolbar">
+            <div autoClose="outside" class="kt-quick-search kt-quick-search--inline kt-quick-search--result-compact"
+              id="kt_quick_search_default">
+              <div class="input-group">
+                <input #searchInput [(ngModel)]="productService" type="text" class="form-control search-input"
+                  (keyup.enter)="searchMembers()" placeholder="Search..." [ngModelOptions]="{standalone: true}" />
+                <div class="input-group-append">
+                  <button class="btn btn-brand search-btn" type="button" (click)="searchMembers()">
+                    <mat-icon class="search-icon">search</mat-icon>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <kt-portlet-body>
+    <mat-tab-group [selectedIndex]="selectedIndex" (selectedTabChange)="onTabPanelClick($event, $event.tab)">
+      <mat-tab label="User Taxonomy">
+        <div *ngIf="user">
+          <kt-shared-data-table [columns]='displayColums' #unspsc component="user"></kt-shared-data-table>
+        </div>
+      </mat-tab>
+      <mat-tab label="UNSPSC  Taxonomy">
+        <div *ngIf="unspsc">
+          <kt-shared-data-table [columns]='displayColums1' #unspsc component="unspsc"></kt-shared-data-table>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </kt-portlet-body>
+</kt-portlet>

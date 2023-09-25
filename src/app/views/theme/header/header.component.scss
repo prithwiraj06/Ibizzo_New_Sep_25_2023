@@ -1,0 +1,56 @@
+:host {
+
+	@media (min-width: 1025px){
+		border-top: 5px solid #ff0000;
+	}
+
+	::ng-deep {
+		.kt-loading-bar {
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			width: 100%;
+
+			.progress-bar {
+				// brand color
+				background-color: #ff0000;
+			}
+		}
+
+		.kt-header .kt-header__top {
+			height: 70px;
+		}
+
+		.kt-header__topbar-item {
+			height: 100%;
+		}
+
+		.brand-text{
+			text-align: center;
+			position: fixed;
+			left: 50%;
+			margin-left: -200px;
+			width: 400px;
+			z-index: 100;
+
+			span{
+				background-color: #ececec;
+				padding: 3px 10px;
+				border-radius: 10px;
+			}
+		}
+
+		@media (min-width: 1025px) {
+			.kt-header__topbar, .kt-header__topbar-item-wrapper {
+				height: 100%;
+			}
+		}
+	}
+}
+
+.container-div{
+	margin-left: 10px !important; 
+	width: 100%;
+	background-color: #ffffff !important;
+}

@@ -1,0 +1,77 @@
+
+.printmode button, .printmode .row-add-lineitem{
+  display: none;
+}
+
+.odd_row{
+  background:#f9f9f9;
+}
+
+.input-tax{
+  max-width: 40px !important;
+}
+
+// .printmode .input-enable{
+//   background-color:white !important;
+// }
+
+.row-nomargin{
+  margin: auto;
+}
+
+.row-lineitem{
+  padding-top: 15px !important;
+  margin: auto;
+  padding-bottom: 15px !important;
+  border-bottom: 1px solid #efefef;
+}
+
+.row-add-lineitem{
+  text-align: center;
+  margin: 10px 0px;
+  align-items: center;
+}
+
+.row-add-lineitem:before{
+  content: ' ';
+  display: block;
+  height: 1px;
+  background-color: gainsboro;
+  margin-top: 3px;
+}
+
+button.add-row{
+  margin: auto;
+  z-index: 100;
+  border-color: gainsboro;
+  border-radius: 50px;
+}
+
+.row-header {
+  font-weight: bolder;
+  background-color: #efefef;
+  margin: auto;
+  padding: 10px 0px;
+  border-top: 1px solid #dcdcdc;
+  border-bottom: 2px solid #dcdcdc;
+}
+
+.right_placeholder{
+  text-align:right;
+}
+label.right_placeholder{
+  width: 100%;
+}
+
+.heading {
+  background-color: #357EBD;
+  color: #FFF;
+  margin-bottom: 3em;
+  text-align: center;
+  line-height: 1.2em;
+}
+
+.input-group-text{
+  font-size: .875rem;
+  line-height: 1.25;
+}  

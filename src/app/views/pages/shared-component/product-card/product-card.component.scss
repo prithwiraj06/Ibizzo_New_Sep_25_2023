@@ -1,0 +1,74 @@
+:host /deep/ {
+  .card {
+    box-shadow: 0 0 13px 0 rgba(82, 63, 105, 0.05);
+    margin-bottom: 10px;
+
+    &.more {
+      box-shadow: 0 0 13px 0 rgba(82, 63, 105, 0.1);
+    }
+  }
+
+  .card-image {
+    height: 200px;
+    overflow: hidden;
+    padding: 10px;
+    text-align: center;
+    position: relative;
+    left: 0;
+    top: 0;
+
+    img {
+      max-width: 100%;
+    }
+  }
+
+  .card-height{
+    height: 55px !important;
+  }
+
+  .card-body {
+    height: 100px;
+    .card-title {
+      color: #4c4949;
+      margin-bottom: 5px;
+      font-size: 1.1em;
+      font-weight: 600;
+    }
+  }
+
+  .card-footer {
+    background-color: none;
+  }
+
+  .set-btn {
+    background-color: #6c757d !important;
+    color: #ffffff !important;
+    border-radius: 25px !important;
+    padding-left: 40px !important;
+    padding-right: 40px !important;
+  }
+  @media only screen and (device-width: 768px) {
+    .card-text-body {
+      text-overflow: ellipsis !important;
+      overflow: hidden !important;
+    }
+  }
+
+  @media only screen and (device-width: 768px) {
+    .card-image {
+      height: 150px !important;
+    }
+  }
+  .badge.badge-paid {
+    display: inline-block;
+    border: 1px solid #f97674;
+    background-color: #f5eeed;
+    color: #ea2520;
+    padding: 0.2rem 0.4rem;
+    font-size: 0.85rem;
+    margin-left: 5px;
+  }
+  .paid-indication {
+    float: right;
+  }
+}

@@ -1,0 +1,61 @@
+:host {
+  .kt-widget4__number {
+    font-size: 20px !important;
+  }
+  .set-border {
+    border-right: 2px solid #cdd3cd;
+    height: 60px;
+  }
+  .kt-sub-portlet {
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+
+  .img-fluid {
+    height: 400px !important;
+  }
+  #market-place {
+    background-image: url("/assets/media/illustrations/desktop-screen.jpg");
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    color: white;
+    font-weight: 800;
+    background-size: cover;
+    text-align: center;
+    box-shadow: 0px 10px 100px inset rgba(0, 0, 0, 0.9);
+
+    p {
+      font-size: 1.4rem;
+    }
+
+    h4.kt-widget24__title,
+    span.kt-widget24__stats {
+      font-weight: 600;
+      font-size: 2rem;
+    }
+
+    span.kt-widget24__stats:after {
+      content: "+";
+    }
+  }
+
+  .company-text {
+    font-size: 20px !important;
+  }
+
+  @media (min-width: 768px) {
+    .data-banner {
+      background: rgba(0, 0, 0, 0.4) !important;
+      padding-bottom: 20px !important;
+      padding-top: 10px !important;
+      margin-left: -24px !important;
+      margin-right: -24px !important;
+      padding-bottom: 37px !important;
+      padding-top: 10px !important;
+      margin-top: 242px !important;
+    }
+    #market-place {
+      height: 400px !important;
+    }
+  }
+}

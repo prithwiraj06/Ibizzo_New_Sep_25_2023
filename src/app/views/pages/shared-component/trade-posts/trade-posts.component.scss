@@ -1,0 +1,73 @@
+:host {
+  .text-space {
+    padding-left: 20px;
+  }
+  .data-flex {
+    display: flex !important;
+  }
+  .search-icon {
+    background-color: linear-gradient(#356ca3, #4c9ae7) !important;
+  }
+
+  .btn1 {
+    float: right !important;
+  }
+  .item-gap {
+    padding-top: 5% !important;
+  }
+  .title-text {
+    display: flex !important;
+  }
+  .kt-widget17__stats {
+    width: 80% !important;
+  }
+  .rfq-body {
+    border: 2px solid #e5e5e5;
+    padding: 10px !important;
+    margin-bottom: 20px;
+  }
+  .img-size {
+    width: 200px !important;
+    height: 100px !important;
+  }
+  .image-place {
+    justify-content: center !important;
+  }
+  .btn-contact {
+    background-image: linear-gradient(#356ca3, #4c9ae7);
+    border-radius: 2px;
+    color: #f0f5fb;
+    padding: 5px;
+    padding-left: 30px;
+    padding-right: 30px;
+    margin-top: 5px;
+  }
+  .btn-center {
+    justify-content: center;
+  }
+  .prd-style {
+    font-size: 18px;
+    font-family: "Roboto";
+    font-weight: 400;
+    color: #ff0000;
+  }
+  .body-data {
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+  .detail_1 {
+    font-size: 14px;
+    font-family: "Roboto";
+    color: rgba(0, 0, 0, 0.6);
+    font-weight: normal;
+  }
+  .detail_2 {
+    font-size: 14px;
+    font-family: "Roboto";
+    color: #b71c1c;
+    font-weight: normal;
+  }
+  .pad-row {
+    padding-top: 10px;
+  }
+}

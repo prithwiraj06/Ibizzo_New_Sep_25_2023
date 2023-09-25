@@ -1,0 +1,97 @@
+<div ngbDropdown placement="bottom" autoClose="true" class="kt-header__topbar-item">
+  <div ngbDropdownToggle class="kt-header__topbar-wrapper">
+    <span class="kt-header__topbar-icon kt-pulse kt-pulse--primary ">
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px"
+        viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
+        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+          <rect x="0" y="0" width="24" height="24"></rect>
+          <path
+            d="M2.56066017,10.6819805 L4.68198052,8.56066017 C5.26776695,7.97487373 6.21751442,7.97487373 6.80330086,8.56066017 L8.9246212,10.6819805 C9.51040764,11.267767 9.51040764,12.2175144 8.9246212,12.8033009 L6.80330086,14.9246212 C6.21751442,15.5104076 5.26776695,15.5104076 4.68198052,14.9246212 L2.56066017,12.8033009 C1.97487373,12.2175144 1.97487373,11.267767 2.56066017,10.6819805 Z M14.5606602,10.6819805 L16.6819805,8.56066017 C17.267767,7.97487373 18.2175144,7.97487373 18.8033009,8.56066017 L20.9246212,10.6819805 C21.5104076,11.267767 21.5104076,12.2175144 20.9246212,12.8033009 L18.8033009,14.9246212 C18.2175144,15.5104076 17.267767,15.5104076 16.6819805,14.9246212 L14.5606602,12.8033009 C13.9748737,12.2175144 13.9748737,11.267767 14.5606602,10.6819805 Z"
+            fill="#000000" opacity="0.3"></path>
+          <path
+            d="M8.56066017,16.6819805 L10.6819805,14.5606602 C11.267767,13.9748737 12.2175144,13.9748737 12.8033009,14.5606602 L14.9246212,16.6819805 C15.5104076,17.267767 15.5104076,18.2175144 14.9246212,18.8033009 L12.8033009,20.9246212 C12.2175144,21.5104076 11.267767,21.5104076 10.6819805,20.9246212 L8.56066017,18.8033009 C7.97487373,18.2175144 7.97487373,17.267767 8.56066017,16.6819805 Z M8.56066017,4.68198052 L10.6819805,2.56066017 C11.267767,1.97487373 12.2175144,1.97487373 12.8033009,2.56066017 L14.9246212,4.68198052 C15.5104076,5.26776695 15.5104076,6.21751442 14.9246212,6.80330086 L12.8033009,8.9246212 C12.2175144,9.51040764 11.267767,9.51040764 10.6819805,8.9246212 L8.56066017,6.80330086 C7.97487373,6.21751442 7.97487373,5.26776695 8.56066017,4.68198052 Z"
+            fill="#000000"></path>
+        </g>
+      </svg>
+      <!--<i class="flaticon2-bell-alarm-symbol"></i>-->
+      <span class="kt-pulse__ring"></span>
+    </span>
+  </div>
+  <div ngbDropdownMenu
+    class="dropdown-menu dropdown-menu-fit dropdown-menu-right dropdown-menu-anim dropdown-menu-top-unround dropdown-menu-xl">
+
+    <div class="kt-portlet kt-iconbox kt-iconbox--danger kt-iconbox--animate-slower" *ngIf="!notification">
+      <div class="kt-portlet__body">
+        <div class="kt-iconbox__body">
+          <div class="kt-iconbox__icon">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
+              height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon">
+              <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <rect x="0" y="0" width="24" height="24" />
+                <path
+                  d="M11.1669899,4.49941818 L2.82535718,19.5143571 C2.557144,19.9971408 2.7310878,20.6059441 3.21387153,20.8741573 C3.36242953,20.9566895 3.52957021,21 3.69951446,21 L21.2169432,21 C21.7692279,21 22.2169432,20.5522847 22.2169432,20 C22.2169432,19.8159952 22.1661743,19.6355579 22.070225,19.47855 L12.894429,4.4636111 C12.6064401,3.99235656 11.9909517,3.84379039 11.5196972,4.13177928 C11.3723594,4.22181902 11.2508468,4.34847583 11.1669899,4.49941818 Z"
+                  fill="#000000" opacity="0.3" />
+                <rect fill="#000000" x="11" y="9" width="2" height="7" rx="1" />
+                <rect fill="#000000" x="11" y="17" width="2" height="2" rx="1" />
+              </g>
+            </svg> </div>
+          <div class="kt-iconbox__desc">
+            <h3 class="kt-iconbox__title">
+              <a class="kt-link" href="#">Oops!</a>
+            </h3>
+            <div class="kt-iconbox__content">
+              There Is No Notification.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div *ngIf="notification">
+      <!-- begin:: Mycart -->
+      <div class="kt-mycart">
+        <div class="kt-mycart__head kt-head" [ngStyle]="{'background-image': 'url('+bgImage+')'}">
+          <div class="kt-mycart__info">
+            <span class="kt-mycart__icon"><img src="../../../../../../assets/images/bell-ring.png"></span>
+            <h3 class="kt-mycart__title">Notifications</h3>
+          </div>
+        </div>
+
+        <div [perfectScrollbar]="{wheelPropagation: false}" [ngStyle]="{'max-height': '28vh', 'position': 'relative'}"
+          class="kt-mycart__body">
+          <div *ngFor="let cd of notification" [ngStyle]="{'max-height': '28vh', 'position': 'relative'}"
+            class="kt-mycart__body">
+            <div class="kt-mycart__item">
+
+              <div class="kt-mycart__container" ngbDropdownItem>
+                <span class="kt-media kt-media--circle kt-media--danger">
+                  <span>{{cd.senderName|firstLetter}}</span>
+                </span>
+                <div class="kt-mycart__info user-details ml-2">
+                  <a href="javascript:;" class="kt-mycart__title kt-font-bold text-primary">
+                    {{cd.senderName}}
+                  </a>
+                  <div style="width: 100%;">
+                    <span class="kt-mycart__desc over-flow">
+                      {{cd.senderCompany}}
+                    </span>
+                  </div>
+                </div>
+                <div class="kt-mycart__info">
+
+                  <div ngbDropdownItem class="kt-notification__custom">
+                    <a href="javascript:;"
+                      class="btn btn-secondary border-default">View</a>
+                    <div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

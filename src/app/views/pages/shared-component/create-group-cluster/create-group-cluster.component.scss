@@ -1,0 +1,28 @@
+:host{
+  .kt-spinner.kt-spinner--right:before {
+    left: 41px !important;
+    right: 0;
+}
+
+.mandatory-field:after {
+  content: "*";
+  margin-left: 4px !important;
+  margin-bottom: 2px;
+  font-size: 15px;
+  color: red;
+}
+
+.expansion-panel{
+  overflow:visible !important;
+}
+.button-close{
+  width: 30px;
+  height: 30px;
+  background: #dee2e6;
+  border-radius: 50;
+  border-radius: 50%;
+  position: relative;
+  left: 11px;
+  top: -15px;
+}
+}

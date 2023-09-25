@@ -1,0 +1,228 @@
+<kt-portlet>
+  <div class="kt-portlet__head kt-portlet__head__custom">
+    <div class="kt-portlet__head-label">
+      <h3 class="kt-portlet__head-title">{{ getGroupTitle() }}</h3>
+    </div>
+  </div>
+  <kt-portlet-body>
+    <form [formGroup]="form">
+      <div class="form-group">
+        <label class="mandatory-field">Enter the Group Name</label>
+        <input
+          formControlName="name"
+          type="text"
+          class="form-control"
+          placeholder="Enter Group Name"
+        />
+        <mat-error *ngIf="isControlHasError('name', 'required')">
+          Group name is required
+        </mat-error>
+      </div>
+      <div class="form-group">
+        <label class="mandatory-field">Business Catagory</label>
+        <kt-business-category-lookup
+          [data]="businessCategory"
+          allowTags="true"
+          (onChange)="onBusinessCategoryChange($event)"
+          #businessCategoryCom
+        >
+        </kt-business-category-lookup>
+
+        <mat-error *ngIf="isCategory">
+          Business Catagory is required
+        </mat-error>
+      </div>
+      <div class="form-group">
+        <label class="mandatory-field">Type of Group</label>
+        <mat-select
+          placeholder="Select the Group"
+          class="form-control"
+          formControlName="type"
+        >
+          <mat-option value="Open">Open</mat-option>
+          <!-- <mat-option value="Public">Public</mat-option> -->
+        </mat-select>
+        <mat-error *ngIf="isControlHasError('type', 'required')">
+          Group type is required
+        </mat-error>
+      </div>
+      <div class="form-group">
+        <label class="mandatory-field">Location</label>
+        <mat-select
+          placeholder="Select the Group"
+          class="form-control"
+          formControlName="location"
+        >
+          <mat-option value="{{ item }}" *ngFor="let item of locations">{{
+            item
+          }}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="isControlHasError('location', 'required')">
+          Location is required
+        </mat-error>
+      </div>
+      <mat-accordion>
+        <mat-expansion-panel
+          [ngClass]="
+            this.isPartner && !this.data.isCheck ? 'expansion-panel' : ''
+          "
+        >
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Advanced
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div>
+            <div class="row">
+              <div class="col-lg-3 col-md-3">
+                <label> Banner</label>
+                <div
+                  class="form-group col-lg-2"
+                  ngbPopover="Allowed file types: png, jpg, jpeg"
+                >
+                  <div
+                    class="kt-avatar kt-avatar--outline"
+                    id="Logo"
+                    [ngClass]="{
+                      'kt-spinner kt-spinner--right kt-spinner--md kt-spinner--primary mt-4': fileLoading
+                    }"
+                  >
+                    <img
+                      [src]="getImage(logo) ? no_image : logo"
+                      class="kt-avatar__holder"
+                    />
+                    <div></div>
+                    <label
+                      class="kt-avatar__upload"
+                      data-toggle="kt-tooltip"
+                      title=""
+                      data-original-title="Change avatar"
+                    >
+                      <i class="fa fa-pen"></i>
+                      <input
+                        class="kt-file-input"
+                        type="file"
+                        formControlName="choseFile"
+                        name="profile_avatar"
+                        accept=".png, .jpg, .jpeg"
+                        (change)="onFileChange($event)"
+                      />
+                    </label>
+                    <button
+                      *ngIf="logo"
+                      type="button"
+                      class="close button-close"
+                      (click)="close()"
+                      aria-label="Close"
+                    >
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <!-- <div class="form-group col">
+                <label [ngClass]="{'kt-spinner kt-spinner--right kt-spinner--primary mr-3': fileLoading }">
+                  Banner</label>
+                <div class="custom-file">
+                  <input type="file" class="custom-file-input" formControlName="choseFile" accept=".jpg,.png"
+                    (change)="onFileChange($event)">
+                  <label class="custom-file-label selected" for="customFile" id="customLabel">{{fileName}}</label>
+                </div>
+              </div> -->
+              <div class="form-group col">
+                <label for="exampleInputEmail1">Primary Color</label>
+                <div class="input-group" style="width: 200px;">
+                  <div class="input-group-prepend">
+                    <span
+                      class="input-group-text"
+                      [style.background-color]="form.value.primaryColor"
+                      ><i
+                        class="la la-eyedropper"
+                        [style.color]="invertColor(form.value.primaryColor)"
+                      ></i
+                    ></span>
+                  </div>
+                  <input
+                    type="text"
+                    class="form-control"
+                    readonly
+                    [value]="form.value.primaryColor"
+                    [(colorPicker)]="form.value.primaryColor"
+                    [cpOutputFormat]="'hex'"
+                    (cpSliderDragStart)="onColorChange('primaryColor', $event)"
+                    (cpSliderDragEnd)="onColorChange('primaryColor', $event)"
+                  />
+                </div>
+              </div>
+              <div class="form-group col ml-2">
+                <label for="exampleInputEmail1">Secondary Color</label>
+                <div class="input-group" style="width: 200px;">
+                  <div class="input-group-prepend">
+                    <span
+                      class="input-group-text"
+                      [style.background-color]="form.value.secondaryColor"
+                      ><i
+                        class="la la-eyedropper"
+                        [style.color]="invertColor(form.value.secondaryColor)"
+                      ></i
+                    ></span>
+                  </div>
+                  <input
+                    type="text"
+                    class="form-control"
+                    readonly
+                    [value]="form.value.secondaryColor"
+                    [(colorPicker)]="form.value.secondaryColor"
+                    [cpOutputFormat]="'hex'"
+                    (cpSliderDragStart)="
+                      onColorChange('secondaryColor', $event)
+                    "
+                    (cpSliderDragEnd)="onColorChange('secondaryColor', $event)"
+                  />
+                </div>
+              </div>
+              <div>
+                <div class="form-group">
+                  <label class="ml-3">Keywords</label>
+          
+                  <div class="col" formArrayName="keyWordsList" *ngIf="hasControl('keyWordsList')">
+                    <div class="input-group bootstrap-touchspin bootstrap-touchspin-injected mt-2"
+                      *ngFor="let cell of form.get('keyWordsList').controls; let i=index" [formGroupName]="i">
+                      <input id="kt_touchspin_1" type="text" class="form-control" placeholder="keyword"
+                        formControlName="value">
+                      <span *ngIf="i==0" class="input-group-btn input-group-append">
+                        <button class="btn btn-secondary bootstrap-touchspin-up" type="button" (click)="addCell('keyWordsList')">+
+                        </button>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Description</label>
+              <textarea
+                class="form-control"
+                formControlName="description"
+                [(ngModel)]="description"
+              >
+              </textarea>
+            </div>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </form>
+  </kt-portlet-body>
+  <kt-portlet-footer>
+    <div class="float-right m-2">
+      <span *ngIf="data.length != 0" class="mr-3">
+        <button class="btn btn-default" (click)="dialogRef.close()">
+          Cancel
+        </button>
+      </span>
+      <button class="btn btn-primary" (click)="submitCluster()">
+        {{ getTitle() }}
+      </button>
+    </div>
+  </kt-portlet-footer>
+</kt-portlet>

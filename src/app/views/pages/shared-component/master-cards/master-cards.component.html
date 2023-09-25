@@ -1,0 +1,102 @@
+<div class="kt-portlet">
+  <div class="kt-portlet__head">
+    <div class="kt-portlet__head-label">
+      <div *ngIf="!source">
+        <h2 class="kt-portlet__head-title kt-font-bold kt-font-brand">
+          Marketplaces
+        </h2>
+      </div>
+      <div *ngIf="source" class="display-screen">
+        <h4 class="mr-3 kt-portlet__head-title kt-font-bold kt-font-brand mt-3">
+          My Groups
+        </h4>
+        <button class="btn btn-primary" (click)="crateGroup()">
+          Create a new Group
+        </button>
+      </div>
+    </div>
+    <div class="kt-portlet__head-toolbar">
+      <div class="kt-widget__action">
+        <button
+          type="button"
+          class="btn btn-light marketplace-swiper-button-prev"
+          (click)="goPrev()"
+        >
+          <i class="fas arrow-icon kt-font-dark">&#xf060;</i></button
+        >&nbsp;
+        <button
+          type="button"
+          class="btn btn-light marketplace-swiper-button-next"
+          (click)="goNext()"
+        >
+          <i class="fas arrow-icon kt-font-dark">&#xf061;</i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <kt-portlet-body>
+    <div class="marketplace-swiper-container">
+      <div class="swiper-wrapper" *ngIf="!source">
+        <div
+          class="col-md-4 swiper-slide"
+          *ngFor="let partner of filteredArray"
+        >
+          <div class="card">
+            <div class="card-body">
+              <div class="card-image">
+                <img
+                  [src]="getImage(partner)"
+                  alt="partner.name"
+                  height="60px"
+                />
+              </div>
+              <div class="card-text-body">
+                <h5>{{ partner.name }}</h5>
+              </div>
+            </div>
+
+            <div class="card-footer">
+              <a
+                class="btn btn-elevate btn-pill btn-sm btn-gray"
+                [routerLink]="[getUrl(partner, 'pages/home')]"
+                target="_blank"
+                >Visit</a
+              >
+              <a
+                class="btn btn-elevate btn-pill btn-sm btn-brand"
+                [routerLink]="[getUrl(partner, 'registration')]"
+                target="_blank"
+                >Register</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="swiper-wrapper" *ngIf="source">
+        <kt-group-cards
+          *ngFor="let group of data"
+          [group]="group"
+          [colors]="colors"
+          class="swiper-slide col-md-3 col-sm-12"
+          shadow="more"
+          buttonLabel="false"
+          [isMyGroup]="source"
+          isNameEnable="false"
+        >
+        </kt-group-cards>
+      </div>
+      <div *ngIf="source">
+        <kt-no-results
+          class="text-position"
+          *ngIf="data.length == 0"
+          [show]="true"
+          message="You have not created or joined any groups yet. Create and Join groups to network with other businesses"
+        ></kt-no-results>
+      </div>
+
+      <div class="marketplace-swiper-pagination"></div>
+    </div>
+  </kt-portlet-body>
+</div>

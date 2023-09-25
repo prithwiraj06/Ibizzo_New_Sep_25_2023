@@ -1,0 +1,69 @@
+<div class="kt-portlet">
+  <div class="kt-portlet__head">
+    <div class="kt-portlet__head-label">
+      <h3 class="kt-portlet__head-title">Announcement List</h3>
+    </div>
+  </div>
+  <div class="kt-portlet-body row">
+    <div class="col-lg-3">
+
+    </div>
+    <div class="form-group col-lg" [formGroup]="form"> 
+      <label class="col-lg-4 col-form-label"></label>
+      <div class="col-lg">
+        <div class="kt-avatar kt-avatar--outline kt-avatar--circle-" id="kt_user_edit_avatar">
+          <img class="kt-avatar__holder" [src]="getImage()">
+          <label class="kt-avatar__upload" data-toggle="kt-tooltip" title="" data-original-title="Change avatar">
+            <i class="fa fa-pen"></i>
+            <input type="file" name="profile_avatar" accept=".png, .jpg, .jpeg" (change)="fileUpload($event)">
+          </label>
+          <span *ngIf="response" class="close-button" data-toggle="kt-tooltip" title=""
+            data-original-title="Cancel avatar" (click)="deleteImage()">
+            <i class="fa fa-times close-icon"></i>
+          </span>
+        </div>
+        <span class="form-text text-muted">Allowed file types: png, jpg, jpeg</span>
+      </div>
+      <div class="form-group col-lg " id='website-link'>
+        <label for="website">Title
+        </label>
+        <input type="url" class="form-control" formControlName="title" placeholder="Enter the title">
+        <mat-error *ngIf="isCheckControls('title', 'required')">
+          Please Enter Required Fields
+        </mat-error>
+      </div>
+      <div class="form-group col-lg " id='website-link'>
+        <label for="website">Link
+        </label>
+        <input type="url" class="form-control" formControlName="linkToPage" placeholder="http://example.com">
+        <mat-error *ngIf="isCheckControls('linkToPage', 'pattern')">
+          Invalid website link or missing http://
+        </mat-error>
+      </div>
+      <div class="form-group col-lg" >
+        <label for="exampleFormControlTextarea1">Description</label>
+        <textarea class="form-control" formControlName="description" id="exampleFormControlTextarea1" rows="3"></textarea>
+      </div>
+    </div>
+    <div class="col-lg-3">
+
+    </div>
+  </div>
+  <kt-portlet-footer class="footer-align text-center">
+    <button
+      type="button"
+      class="mt-3 mb-3 mr-2 btn btn-brand"
+      (click)="submit()"
+      [ngClass]="{ 'kt-spinner kt-spinner--light': loading }"
+    >
+      {{isUpdate?'Update':'Submit'}}
+    </button>
+    <button
+      *ngIf="!isRfq"
+      class="btn btn-default"
+      [routerLink]="['/dashboard/admin/annoucement-list'] | baseurl"
+    >
+      Cancel
+    </button>
+  </kt-portlet-footer>
+</div>

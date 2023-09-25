@@ -1,0 +1,14 @@
+<div class="fullscreenDiv" *ngIf="isUnsubscribe">
+  <div class="center">
+    <p class="display-4 font-weight-bold text-white">
+      You have been unsubscribed successfully...
+    </p>
+  </div>
+</div>
+<div class="fullscreenDiv" *ngIf="!isUnsubscribe">
+  <div class="center">
+    <p class="display-4 font-weight-bold text-danger">
+      Error unsubscribing member.
+    </p>
+  </div>
+</div>

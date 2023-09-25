@@ -1,0 +1,184 @@
+<kt-portlet>
+  <div class="kt-portlet__head">
+    <div class="kt-portlet__head-label">
+      <h3 class="kt-portlet__head-title">List of Content</h3>
+    </div>
+  </div>
+
+  <kt-portlet-body>
+    <mat-spinner *ngIf="loading" style="margin: 0 auto" [diameter]="30">
+    </mat-spinner>
+    <div
+      *ngIf="
+        validationImages.length == 0 &&
+        videos.length == 0 &&
+        validationDoc.length == 0
+      "
+    >
+      <kt-no-results
+        class="text-position"
+        textColor="true"
+        [show]="true"
+        message="There are no content to show."
+      ></kt-no-results>
+    </div>
+    <div class="row mt-4" *ngIf="validationImages.length > 0">
+      <h3 class="text-data mr-t">Images</h3>
+    </div>
+
+    <div class="row">
+      <div
+        class="col-xl-4 col-md-4 col-sm-4"
+        *ngFor="let item of validationImages"
+      >
+        <mat-card class="example-card">
+          <mat-card-header> </mat-card-header>
+          <a href="javascript:;" (click)="viewImage(item.image)">
+            <img
+              mat-card-image
+              width="400"
+              height="200"
+              [src]="getImage(item.image)"
+            />
+          </a>
+
+          <mat-card-actions>
+            <div class="data-indi">
+              <span class="kt-switch kt-switch--icon-check">
+                <label>
+                  <input
+                    type="checkbox"
+                    [(ngModel)]="item.isImageCheck"
+                    (change)="enbleAndDisableContent($event, item, 'image')"
+                  />
+                  <span></span>
+                </label>
+              </span>
+              <span *ngIf="!item.isImageCheck" class="badge-paid"
+                >Delete from Public View</span
+              >
+              <span *ngIf="item.isImageCheck" class="badge-data"
+                >Display in Public View</span
+              >
+            </div>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </div>
+    <div class="row mt-4" *ngIf="videos.length > 0">
+      <h3 class="text-data">Video Links</h3>
+    </div>
+    <div class="row">
+      <div class="col-xl-4 col-md-4 col-sm-4" *ngFor="let video of videos">
+        <mat-card class="example-card">
+          <iframe
+            [src]="video.video"
+            frameborder="0"
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          >
+          </iframe>
+
+          <mat-card-actions>
+            <div class="data-indi">
+              <span class="kt-switch kt-switch--icon-check">
+                <label>
+                  <input
+                    type="checkbox"
+                    [(ngModel)]="video.isVideoCheck"
+                    (change)="enbleAndDisableContent($event, video, 'video')"
+                    value="true"
+                  />
+                  <span></span>
+                </label>
+              </span>
+              <span *ngIf="!video.isVideoCheck" class="badge-paid"
+                >Delete from Public View</span
+              >
+              <span *ngIf="video.isVideoCheck" class="badge-data"
+                >Display in Public View</span
+              >
+            </div>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </div>
+    <div class="row mt-4" *ngIf="validationDoc.length > 0">
+      <h3 class="text-data">Documents</h3>
+    </div>
+    <div class="row">
+      <div class="col-xl-4 col-md-4 col-sm-4" *ngFor="let doc of validationDoc">
+        <mat-card class="example-card">
+          <mat-card-header> </mat-card-header>
+          <mat-card-content>
+            <div class="kt-widget4__pic kt-widget4__pic--icon">
+              <img
+                width="50"
+                src="https://image.flaticon.com/icons/svg/136/136522.svg"
+                class="document-image"
+              />
+            </div>
+            <a
+              [href]="downloadDoc(doc.doc)"
+              target="_blank"
+              class="kt-widget4__title document-text"
+            >
+              {{ getDocName(doc.doc) }}
+            </a>
+          </mat-card-content>
+          <mat-card-actions>
+            <div class="data-indi">
+              <span class="kt-switch kt-switch--icon-check">
+                <label>
+                  <input
+                    type="checkbox"
+                    [(ngModel)]="doc.isDocCheck"
+                    value="true"
+                    (change)="enbleAndDisableContent($event, doc, 'doc')"
+                  />
+                  <span></span>
+                </label>
+              </span>
+              <span *ngIf="!doc.isDocCheck" class="badge-paid"
+                >Delete from Public View</span
+              >
+              <span *ngIf="doc.isDocCheck" class="badge-data"
+                >Display in Public View</span
+              >
+            </div>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </div>
+  </kt-portlet-body>
+  <div class="kt-portlet-footer footer">
+    <span
+      *ngIf="
+        validationImages.length > 0 ||
+        videos.length > 0 ||
+        validationDoc.length > 0
+      "
+    >
+      <button
+        type="button"
+        [ngClass]="{ 'kt-spinner kt-spinner--light': fetching }"
+        class="btn btn-brand"
+        (click)="submit()"
+      >
+        Save
+      </button>
+      <button
+        type="button"
+        [ngClass]="{ 'kt-spinner kt-spinner--light': load }"
+        class="btn btn-brand"
+        (click)="markAsVerify()"
+      >
+        Mark As Verify</button
+      >&nbsp;
+    </span>
+
+    <button type="button" class="btn btn-secondary" (click)="dialogRef.close()">
+      Cancel
+    </button>
+  </div>
+</kt-portlet>

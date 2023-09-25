@@ -1,0 +1,57 @@
+<div *ngIf="product" [class]="className">
+  <div *ngIf="!isCluster">
+
+    <div class="card-image">
+      <div class="paid-indication pb-1">
+        <span *ngIf="isEnable" class="badge badge-paid">NOT PAID </span>
+      </div>
+    <img *ngIf="product.isVerified=='Verified'" src="../../../../../assets/images/verified.png" style="position: absolute;
+    top: 0px;
+    right: 0px;"
+    [alt]="product.productName" height="40" />
+      <img [src]="viewImage(product.imageUrl)" [alt]="product.productName" />
+    </div>
+    <div class="card-body" [ngClass]="this.isNameEnable?'card-height':''">
+      <div class="card-text-body">
+        <div *ngIf="product.productName || product.category" class="card-title kt-truncate">
+          {{ product.productName || product.category }}
+        </div>
+        <div *ngIf="!this.isNameEnable">
+          <div *ngIf="product.companyName || product.supplierName" class="card-text kt-truncate">
+            Seller: {{ product.companyName || product.supplierName }}
+          </div>
+          <div class="card-text" *ngIf="!contactSupplier">
+            Price: {{ product.priceMin }} - {{ product.priceMax }} INR
+          </div>
+          <div class="card-text" *ngIf="contactSupplier">
+            Contact supplier for price
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer">
+      <a [target]="target" class="btn btn-block" [ngStyle]="buttonStyleColor"
+        [routerLink]="productLinkUrl">{{ buttonLabel }}</a>
+    </div>
+  </div>
+  <div *ngIf="isCluster">
+
+    <div class="card-image">
+      <img [src]="viewImage(product.imageUrl)" [alt]="product.productName" />
+    </div>
+    <!-- <a class="card-footer">
+          <div class="btn btn-primary">
+           Manager
+          </div>
+         <div class="btn btn-default p-2">
+           Search Members & Assign Admin
+         </div>
+            </a> -->
+    <div class="card-footer">
+      <a [target]="target" class="btn btn-block" [ngStyle]="buttonStyleColor">Manager</a>
+      <a [target]="target" (click)="openService()" class="btn btn-default p-2 mt-3 btn-block">
+        Search Members & Assign Admin</a>
+
+    </div>
+  </div>
+</div>

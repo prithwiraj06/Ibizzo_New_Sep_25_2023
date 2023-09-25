@@ -1,0 +1,70 @@
+<kt-portlet>
+  <div class="kt-portlet__head">
+    <div class="kt-portlet__head-label">
+      <h3 class="kt-portlet__head-title">Cart Details</h3>
+    </div>
+  </div>
+
+  <form>
+    <!-- begin:: Mycart -->
+    <div *ngIf="totalAmountPayable !== 0" class="kt-mycart">
+      <div *ngFor="let cd of cartItemsList" [ngStyle]="{'max-height': '28vh', 'position': 'relative'}"
+        class="kt-mycart__body">
+        <div class="kt-mycart__item">
+          <div class="kt-mycart__container">
+            <a href="javascript:;" class="kt-mycart__pic">
+              <img [src]="getImagesServices(cd.packageDetailName, cd.fileName)" title="">
+            </a>
+            <div class="kt-mycart__info cart-data">
+              <a href="javascript:;" class="kt-mycart__title">
+                {{cd.packageDetailName}}
+              </a>
+              <span *ngIf="cd.prdName" class="kt-mycart__desc">
+                {{cd.prdName}}
+              </span>
+
+              <div class="kt-mycart__action">
+                <span class="kt-mycart__price">{{cd.totalAmountPayable | currency:"₹"}}</span>
+                <span class="kt-mycart__text">for</span>
+                <span class="kt-mycart__quantity">{{cd.quantity}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="kt-mycart__footer">
+        <div class="kt-mycart__section">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div class="kt-mycart__subtitel ">
+            <span>Sub Total</span>
+            <span>CGST</span>
+            <span>GST</span>
+            <span>Total
+            </span>
+          </div>
+
+          <div class="kt-mycart__prices">
+            <span>{{totalAmountPayable | currency:"₹"}}</span>
+            <span>{{00 | currency:"₹"}}</span>
+            <span>{{00 | currency:"₹"}}</span>
+            <span class="kt-font-brand">{{totalAmountPayable | currency:"₹"}}</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- end:: Mycart -->
+  </form>
+  <kt-portlet-footer>
+    <div class="kt-mycart__footer kt-align-right m-3">
+      <button type="button" class="btn btn-default btn-sm" (click)="dialogRef.close()">Cancel</button>
+      <button class="btn btn-primary btn-sm ml-2" (click)="approvedTransaction(data.info)">
+        Approve
+      </button>
+    </div>
+  </kt-portlet-footer>
+</kt-portlet>

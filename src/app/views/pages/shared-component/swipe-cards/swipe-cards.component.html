@@ -1,0 +1,43 @@
+<div class="kt-portlet">
+  <div class="kt-portlet__head" [ngStyle]="
+  isMinisite == true && {
+    'background-color': lightenColor(80)
+  }
+">
+    <div class="kt-portlet__head-label">
+      <h2 class="kt-portlet__head-title kt-font-bold kt-font-brand">
+        {{ title }}
+      </h2>
+    </div>
+    <div class="kt-portlet__head-toolbar">
+      <div class="kt-widget__action">
+        <button type="button" class="btn btn-light" (click)="goPrev()">
+          <i class="fas arrow-icon kt-font-dark">&#xf060;</i></button>&nbsp;
+        <button type="button" class="btn btn-light" (click)="goNext()">
+          <i class="fas arrow-icon kt-font-dark">&#xf061;</i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <kt-portlet-body [ngStyle]="
+      isMinisite == true && {
+        'background-color': lightenColor(80)
+      }
+    ">
+    <div [ngClass]="getStyles()">
+      <div class="swiper-wrapper" *ngIf="!isCluster">
+        <kt-product-card *ngFor="let product of products" [isParterMember]="isParterMember" [product]="product" [isMinisite]="isMinisite"
+          [isPartner]="isPartner" class="swiper-slide col-md-3 col-sm-12" shadow="more" [colors]="colors"
+          [source]="source" [search]="source" [buttonLabel]="this.btnName" [isNameEnable]="isButtonEnable">
+        </kt-product-card>
+      </div>
+      <div class="swiper-wrapper" *ngIf="isCluster">
+        <kt-group-cards *ngFor="let product of products" [group]="product" [colors]="colors"
+          class="swiper-slide col-md-3 col-sm-12" shadow="more" [buttonLabel]="this.btnName"
+          [isNameEnable]="isButtonEnable">
+        </kt-group-cards>
+      </div>
+    </div>
+  </kt-portlet-body>
+</div>

@@ -1,0 +1,147 @@
+<div *ngIf="totalAmountPayable === 0" class="kt-portlet kt-callout kt-callout--info kt-callout--diagonal-bg">
+  <div class="kt-portlet__body">
+    <div class="kt-callout__body">
+      <div class="kt-callout__content">
+        <h3 class="kt-callout__title">Cart Details</h3>
+        <p class="kt-callout__desc">
+          Oops.. we didn't find any items in the cart.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<kt-portlet *ngIf="totalAmountPayable > 0">
+  <div class="kt-portlet__head">
+    <div class="kt-portlet__head-label">
+      <h3 class="kt-portlet__head-title">Cart Details</h3>
+    </div>
+    <div *ngIf="totalAmountPayable !== 0 && isEnable" class="kt-portlet__head-toolbar">
+      <span class="btn btn-brand btn-sm" (click)="proceedToPay()"
+        [ngClass]="{'kt-spinner kt-spinner--right kt-spinner--md kt-spinner--light': processingPayment }">
+        Pay Now
+      </span>
+    </div>
+    <div *ngIf="!isEnable" class="kt-portlet__head-toolbar" style="cursor:pointer;">
+      <span (click)="dialogRef.close()">X</span>
+    </div>
+  </div>
+  <kt-portlet-body>
+  <form>
+    <!-- begin:: Mycart -->
+    <div *ngIf="totalAmountPayable !== 0" class="kt-mycart">
+      <div *ngIf="offerListCart.length!=0">
+        <div *ngFor="let cd of offerListCart" [ngStyle]="{'max-height': '28vh', 'position': 'relative'}"
+        class="kt-mycart__body">
+        <div class="kt-mycart__item">
+          <div class="kt-mycart__container row">
+            <a href="javascript:;" class="kt-mycart__pic col-6">
+              <img [src]="getImagesServices(cd.shortName, cd.name)" title="">
+            </a>
+            <div class="kt-mycart__info cart-data col">
+              <a href="javascript:;" class="kt-mycart__title">
+                {{cd.description}}
+              </a>
+              <!-- <span class="kt-mycart__desc">
+                {{cd.description}}
+              </span> -->
+
+              <div class="kt-mycart__action col-5" style="margin-left: -10px;">
+                <span class="kt-mycart__price">{{cd.amount | currency:"₹"}}</span>
+                <span class="kt-mycart__text">for</span>
+                <span class="kt-mycart__quantity">{{cd.quantity||1}}</span>
+              </div>
+            </div>
+            <div class="kt-mycart__info col">
+              <span class="kt-mycart__desc float-right">
+                <a  (click)="removeFromCart(cd.id)"
+                  class="btn btn-brand btn-sm">X</a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+      <div *ngIf="offerListCart.length==0">
+        <div *ngFor="let cd of cartItemsList" [ngStyle]="{'max-height': '28vh', 'position': 'relative'}"
+        class="kt-mycart__body">
+        <div class="kt-mycart__item">
+          <div class="kt-mycart__container">
+            <a href="javascript:;" class="kt-mycart__pic">
+              <img [src]="getImagesServices(cd.packageDetailName, cd.fileName)" title="">
+            </a>
+            <div class="kt-mycart__info cart-data">
+              <a href="javascript:;" class="kt-mycart__title">
+                {{cd.packageDetailName}}
+              </a>
+              <span class="kt-mycart__desc">
+                {{cd.prdName}}
+              </span>
+
+              <div class="kt-mycart__action" >
+                <span class="kt-mycart__price">{{cd.totalAmountPayable | currency:"₹"}}</span>
+                <span class="kt-mycart__text">for</span>
+                <span class="kt-mycart__quantity">{{cd.quantity}}</span>
+              </div>
+            </div>
+            <div class="kt-mycart__info" *ngIf="isEnable">
+              <span class="kt-mycart__desc">
+                <a *ngIf="cd.packageDetailId === 3" [routerLink]="['/'+finalOrgUrl+'/sales/catalogue'] | baseurl"
+                  class="btn btn-secondary">Edit</a>
+                <a *ngIf="cd.packageDetailId === 1" [routerLink]="['/'+finalOrgUrl+'/profile'] | baseurl"
+                  class="btn btn-secondary">Edit</a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    
+      <div class="row">
+
+      <div *ngIf="totalAmountPayable !== 0&&!isEnable" class="col set-align-center">
+        <button type="button mt-4" class="btn btn-brand btn-sm" (click)="sentMail()"
+        [ngClass]="{'kt-spinner kt-spinner--right kt-spinner--md kt-spinner--light': processingPayment }">Get Proform by Mail</button>
+      </div>
+      <div class="kt-mycart__footer col">
+        <div class="kt-mycart__section">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div class="kt-mycart__subtitel ">
+            <span>Sub Total</span>
+            <span>Discount</span>
+            <span>CGST</span>
+            <span>GST</span>
+            <span>Total
+            </span>
+          </div>
+           
+            <div class="kt-mycart__prices " >
+              <span>{{allDetails.grandTotalWithoutDiscount | currency:"₹"}}</span>
+              <span>{{allDetails.discount | currency:"₹"}}</span>
+              <span>{{00 | currency:"₹"}}</span>
+              <span>{{00 | currency:"₹"}}</span>
+              <span class="kt-font-brand">{{allDetails.grandTotalPayable | currency:"₹"}}</span>
+            </div>
+          </div>
+      </div>
+    </div>
+
+    </div>
+
+    <div *ngIf="isPaymentPaid == true">
+      <h4 class="text-center">Your Payment is Successfull.</h4>
+    </div>
+    <!-- end:: Mycart -->
+  </form>
+</kt-portlet-body>
+  <kt-portlet-footer>
+    <div *ngIf="totalAmountPayable !== 0&&isEnable" class="kt-mycart__footer kt-align-right m-3">
+      <button type="button" class="btn btn-brand btn-sm" (click)="proceedToPay()"
+        [ngClass]="{'kt-spinner kt-spinner--right kt-spinner--md kt-spinner--light': processingPayment }">Pay
+        Now</button>
+    </div>
+  </kt-portlet-footer>
+</kt-portlet>

@@ -1,0 +1,73 @@
+:host {
+  .name-reg-cell {
+    margin-left: -78px;
+  }
+
+  .name-profile-cell {
+    margin-left: -52px;
+  }
+
+  .block-btn {
+    margin-left: -19px;
+  }
+
+  .date-reg-cell {
+    margin-left: -38px;
+  }
+  .mat-checkbox-column {
+    margin-bottom: 2px !important;
+  }
+  .phone-cell {
+    margin-left: 13px;
+  }
+
+  .date-profile-cell {
+    margin-left: -9px;
+  }
+
+  .reinvite-cell {
+    margin-left: 14px;
+  }
+
+  .comment-cell {
+    padding-right: 18px !important;
+    margin-top: 3px;
+    margin-bottom: 3px;
+  }
+
+  .mat-dialog-container {
+    padding: 20px !important;
+  }
+
+  .disabled-row {
+    background-color: #efefef;
+  }
+
+  .block-btn {
+    margin-left: -11px;
+  }
+
+  .mat-header-cell.mat-column-email,
+  .mat-cell.mat-column-email {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+
+    word-break: break-word;
+
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+  }
+
+  .mat-header-cell.mat-column-email,
+  .mat-cell.mat-column-email {
+    flex: 0 0 200px !important;
+    width: 200px !important;
+  }
+  .check-coloumn {
+    margin-top: 14px !important;
+  }
+}

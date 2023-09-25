@@ -1,0 +1,59 @@
+.badge-danger
+{
+    background-color: #ff0000 !important;
+}
+.float-right.search-button{
+    width:30% !important;
+}
+.img-size{
+    width:50px;
+    height: 50px;
+}
+.text-center {
+    text-align: center !important;
+}
+.web-cell{
+    padding-left: 10px;
+}
+.text-break{ 
+    word-break:break-all !important;
+    
+}
+.cat-cell{
+    padding-left: 0px !important;
+}
+.mat-header-cell:last-of-type {
+    padding-right: 0px !important; 
+}
+
+mat-cell:last-of-type{
+padding-right:0px !important;
+}
+
+.col1-width{
+    max-width: 180px !important;
+}
+
+.search-input{
+height: 42px;
+}
+
+a:hover {
+    color: #4186EE !important;
+}
+
+.link-url:hover{
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+@media (min-width: 320px) and (max-width: 480px) {
+    .col1-width{
+        max-width: 100px !important;
+        padding-left: 0px;
+    }
+
+    .col3-width{
+        display: none !important;
+    }
+  }

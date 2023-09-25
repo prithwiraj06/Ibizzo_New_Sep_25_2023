@@ -1,0 +1,24 @@
+<div class="align-cards row mb-2">
+  <div *ngFor='let item of items' class="col">
+    <div class="card  ml-2 mt-2 mb-4" style="width: 16rem;">
+      <img class="card-img-top"
+        [src]="item.image?getImages(item.image):'../../../../assets/media/placeholder/product.jpg'" alt="{{item.title}}"
+        style="height: 232px">
+      <div class="card-body align-text assign-color" *ngIf='(product != false)'>
+        <h5 class="card-title overview-text"><b>{{item.title}}</b></h5>
+        <div class="card-text overview-text">Seller : {{item.seller}}</div>
+        <div class="card-text label-color overview-text">Price : {{item.price}} INR</div>
+        <a class="btn set-btn mt-1" [routerLink]="['/pages/request-for-quote'] | baseurl"
+          [queryParams]="{compId:item.companyId, productId:item.productId}">{{buttonName}}</a>
+      </div>
+      <div class="card-body align-text assign-color" *ngIf='(product == false)'>
+        <h5 class="card-title overview-text"><b>{{item.supplierName}}</b></h5>
+        <div class="card-text overview-text">Category : {{item.category}}</div>
+        <div class="card-text overview-text">Location : {{item.location}} </div>
+        <br>
+        <a class="btn set-btn2 mt-1" [routerLink]="['/minisite/sales-catalogue'] | baseurl"
+          [queryParams]="{companyName:item.supplierName,supplierId: item.supplierId}"> Sales Catalogue</a>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,44 @@
+.mat-action-column {
+  overflow: visible;
+}
+.btn-outline-danger {
+  margin-left: 12px;
+}
+
+:host {
+  .mat-header-cell:first-child,
+  .mat-cell:first-child {
+    flex: 50px;
+  }
+  .mat-header-cell.mat-column-groupname,
+  .mat-cell.mat-column-groupname,
+  .mat-header-cell.mat-column-email,
+  .mat-cell.mat-column-email,
+  .mat-header-cell.mat-column-phoneNumber,
+  .mat-cell.mat-column-phoneNumber {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
+
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+  }
+
+  .mat-header-cell.mat-column-email,
+  .mat-cell.mat-column-email {
+    flex: 0 0 200px !important;
+    width: 200px !important;
+  }
+
+  .email-col{
+    margin-left: -60px !important;
+  }
+
+  .title-color{
+    color: #c3c3c3;
+  }
+}

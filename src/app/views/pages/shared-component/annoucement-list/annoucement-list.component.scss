@@ -1,0 +1,64 @@
+:host{
+  .associations-cards{
+  background: #FFFFFF;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.12);
+  border-radius: 6px;
+  }
+  .associations-card-header{
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    }
+
+    .annoucement-card-body{
+      font-family: Poppins;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    text-align: center;
+    
+    /* Accent colors/Accent Color */
+    
+    color: #2F2F2F;
+    }
+
+    .btn-login-xl{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 5px 20px;
+      background: #fff;
+      box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.15);
+      border-radius: 100px;
+      border: 1px solid #DA0608;
+      color: #DA0608;
+      height: 35px;
+      width: 100px;
+    }
+
+    .btn-delete-xl{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 5px 20px;
+      background:#DA0608;
+      box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.15);
+      border-radius: 100px ;
+      border: 1px solid #DA0608;
+      color: #fff;
+      height: 35px;
+      width: 100px;
+    }
+  
+    .btn-login-xl:hover{
+    background: #DA0608;
+    color: #fff;
+    border: 1px solid #DA0608 !important;
+  
+    }
+}

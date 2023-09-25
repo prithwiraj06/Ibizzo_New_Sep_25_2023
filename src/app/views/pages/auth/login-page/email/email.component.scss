@@ -1,0 +1,48 @@
+:host{
+    .align-link{
+    display: flex !important;
+    flex-direction: row-reverse !important;
+  }
+
+  .register{
+    margin-bottom: -49px !important;
+  }
+
+  .mandatory-field:after{
+    content: "*";
+    margin-bottom: 2px;
+    font-size: 15px;
+    color: red;
+  }
+
+  a {
+    display: inline-block;
+    text-decoration:none;
+    color: #5d78ff !important;
+    cursor: pointer !important;
+  }
+
+  a:after {
+    content: "";
+    display: block;
+    width: 0;
+    border-bottom: 1px solid;
+    margin: 0 auto;
+    transition:all 0.3s linear 0s;
+    cursor: pointer !important;
+  }
+
+  a:hover:after {
+    width: 90%;
+    color: #5d78ff !important;
+    cursor: pointer !important;
+  }
+
+  .set-corsor{
+    cursor: pointer !important;
+  }
+
+  .kt-portlet__foot{
+    padding: 10px !important;
+  }
+}

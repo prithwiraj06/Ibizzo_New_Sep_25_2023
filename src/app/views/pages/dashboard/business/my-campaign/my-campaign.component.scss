@@ -1,0 +1,32 @@
+:host{
+  .header-cell{
+    margin-left: -90px;
+  }
+  
+  .align-item{
+    justify-content: center;
+    display: flex;
+  }
+  
+  @media (min-width: 320px) and (max-width: 480px) {
+    .mob-view{
+      display: none !important;
+    }
+    .header-cell{
+      margin-left: 0px;
+    }
+    
+    .mat-col1{
+      padding-left: 0px !important;
+      max-width: 20px !important;
+    }
+  
+    .set-padding{
+      padding-right: 10px !important;
+    }
+  }
+
+  .pointer{
+    cursor: pointer !important;
+  }
+}

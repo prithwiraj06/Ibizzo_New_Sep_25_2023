@@ -1,0 +1,31 @@
+<div>
+  <kt-group-main-page></kt-group-main-page>
+</div>
+<div>
+  <mat-tab-group
+    [selectedIndex]="selectedIndex"
+    (selectedTabChange)="onTabPanelClick($event)"
+  >
+    <mat-tab label="Products">
+      <div *ngIf="product">
+        <div class="public-share">
+          <kt-social-share></kt-social-share>
+        </div>
+
+        <kt-article-card
+          [groupId]="groupId"
+          [isProduct]="true"
+        ></kt-article-card>
+      </div>
+    </mat-tab>
+    <mat-tab label="Discussions">
+      <div class="public-share">
+        <kt-social-share></kt-social-share>
+      </div>
+
+      <div *ngIf="discussion">
+        <kt-article-card [groupId]="groupId"></kt-article-card>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</div>

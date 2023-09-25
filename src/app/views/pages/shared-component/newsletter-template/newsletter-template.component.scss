@@ -1,0 +1,36 @@
+//  @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
+ @import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css');
+ 
+p {
+  font-family: Lato;
+}
+
+:host{
+  ::ng-deep{
+   .gjs-pn-panel .gjs-pn-buttons .fa {
+      font-size: initial !important;
+    }
+    
+    .fa-eye {
+      font-size: initial !important;
+    }
+  }
+
+}
+
+.border-div{
+  border:1px solid black;
+}
+
+.template-name{
+  cursor: pointer;
+  color: #5d78ff
+}
+.template-name:hover{
+ text-decoration: underline;
+}
+
+.gjs-pn-myNewPanel{
+  margin-left: 104px !important;
+}
+

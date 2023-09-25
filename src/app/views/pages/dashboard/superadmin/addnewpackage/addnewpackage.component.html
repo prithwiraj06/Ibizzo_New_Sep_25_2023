@@ -1,0 +1,104 @@
+<!--begin form-->
+<form [formGroup]="form" class="kt-form kt-form--label-right">
+    <mat-card class="product-card">
+        <mat-card-header>
+            <mat-card-title style="font-size: 17px">Package Details</mat-card-title>
+        </mat-card-header>
+        <hr class="mt-1">
+        <mat-card-content>
+            <div class="row form-group">
+                <div class="col-lg-3 form-label">
+                    <label class="mandatory-field">
+                        Package Name
+                    </label>
+                </div>
+                <div class="col-lg-6">
+                    <div class="input-group ">
+                        <input [ngClass]="isControlHasError('packageName','required') ? 'border-color' : ''"
+                            [readonly]='data.name' class="form-control" formControlName="packageName" name="packageName"
+                            type="text">
+                    </div>
+                    <mat-error *ngIf="isControlHasError('packageName','required')">
+                        Required
+                    </mat-error>
+                </div>
+
+            </div>
+            <div class="row form-group">
+                <div class="col-lg-3 form-label">
+                    <label class="mandatory-field">
+                        Package Type
+                    </label>
+                </div>
+                <div class="col-lg-6">
+                    <div class="input-group ">
+                        <input [ngClass]="isControlHasError('packageType','required') ? 'border-color' : ''"
+                            [readonly]='data.packageTypeId' class="form-control" formControlName="packageType"
+                            name="packageType" type="text">
+                    </div>
+                    <mat-error *ngIf="isControlHasError('packageType','required')">
+                        Required
+                    </mat-error>
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-lg-3 form-label">
+                    <label class="mandatory-field">
+                        Price
+                    </label>
+                </div>
+                <div class="col-lg-6">
+                    <div class="input-group ">
+                        <input [ngClass]="isControlHasError('price','required') ? 'border-color' : ''"
+                            class="form-control" formControlName="price" name="price" type="text">
+                    </div>
+                    <mat-error *ngIf="isControlHasError('price','required')">
+                        Required
+                    </mat-error>
+
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-lg-3 form-label">
+                    <label class="mandatory-field">
+                        Description
+                    </label>
+                </div>
+                <div class="col-lg-6">
+                    <div class="input-group ">
+                        <input [ngClass]="isControlHasError('description','required') ? 'border-color' : ''"
+                            class="form-control" formControlName="description" name="addressline1" type="text">
+                    </div>
+                    <mat-error *ngIf="isControlHasError('description','required')">
+                        Required
+                    </mat-error>
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-lg-3 form-label">
+                    <label class="mandatory-field">
+                        Duration
+                    </label>
+                </div>
+                <div class="col-lg-6">
+                    <div class="input-group ">
+                        <input [ngClass]="isControlHasError('duration','required') ? 'border-color' : ''"
+                            class="form-control" formControlName="duration" name="duration" type="text">
+                    </div>
+                    <mat-error *ngIf="isControlHasError('duration','required')">
+                        Required
+                    </mat-error>
+                </div>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</form>
+<div class="kt-portlet-footer footer">
+    <button type="button" [ngClass]="{'kt-spinner kt-spinner--light': loading}" class="btn btn-brand"
+        (click)="submit()">
+        Submit
+    </button>&nbsp;
+    <button type="button" class="btn btn-secondary" (click)="cancel()">
+        Cancel
+    </button>
+</div>

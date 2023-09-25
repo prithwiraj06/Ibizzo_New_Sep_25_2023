@@ -1,0 +1,219 @@
+<kt-portlet>
+  <kt-portlet-header title="Email Invite"></kt-portlet-header>
+  <kt-portlet-body>
+
+    <div #wizard class="kt-grid kt-wizard-v3 kt-wizard-v3--white" id="kt_wizard_v3" data-ktwizard-state="step-first">
+      <div class="kt-grid__item">
+        <!--begin: Form Wizard Nav -->
+        <div class="kt-wizard-v3__nav">
+          <div class="kt-wizard-v3__nav-items">
+            <a class="kt-wizard-v3__nav-item wizard-tab" href="javascript:;" data-ktwizard-type="step"
+              data-ktwizard-state="current">
+              <div class="kt-wizard-v3__nav-body">
+                <div class="kt-wizard-v3__nav-label">
+                  <span>1</span>Validate Email
+                </div>
+                <div class="kt-wizard-v3__nav-bar"></div>
+              </div>
+            </a>
+            <a class="kt-wizard-v3__nav-item wizard-tab" href="javascript:;" data-ktwizard-type="step">
+              <div class="kt-wizard-v3__nav-body">
+                <div class="kt-wizard-v3__nav-label">
+                  <span>2</span> Invite User
+                </div>
+                <div class="kt-wizard-v3__nav-bar"></div>
+              </div>
+            </a>
+            <a class="kt-wizard-v3__nav-item wizard-tab" href="javascript:;" data-ktwizard-type="step">
+              <div class="kt-wizard-v3__nav-body">
+                <div class="kt-wizard-v3__nav-label">
+                  <span>3</span> Edit Template
+                </div>
+                <div class="kt-wizard-v3__nav-bar"></div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="kt-grid__item kt-grid__item--fluid kt-wizard-v3__wrapper">
+        <!--begin: Form Wizard Form-->
+        <form class="kt-form pt-4 pb-0 ml-1 mr-1" id="kt_form">
+          <div class="kt-wizard-v3__content" data-ktwizard-type="step-content" data-ktwizard-state="current">
+            <form [formGroup]="form">
+              <div class="row mt-2">
+                <div class="col-lg-2 form-label">
+                  <label class="mandatory-field">To Email</label>
+                </div>
+                <div class="col-lg-6">
+                  <input type="email" class="form-control"
+                    [ngClass]="isControlHasError('email','required') || isControlHasError('email','pattern') ? 'border-color' : ''"
+                    formControlName="email" placeholder="Enter email">
+                  <mat-error *ngIf="isControlHasError('email','required')">
+                    Email is required
+                  </mat-error>
+                  <mat-error *ngIf="isControlHasError('email','pattern')">
+                    Invalid Email
+                  </mat-error>
+                </div>
+              </div>
+
+            </form>
+          </div>
+        </form>
+      </div>
+      <div class="kt-wizard-v3__content" data-ktwizard-type="step-content">
+        <div *ngIf="allowInvite">
+          <form [formGroup]="formDetails">
+            <div class="row form-group" *ngIf="allowInvite">
+              <div class="col-lg-2 form-label">
+                <label class="mandatory-field">Name</label>
+              </div>
+              <div class="col-lg-6">
+                <input type="text" class="form-control"
+                  [ngClass]="isControlHasError('name','required') ? 'border-color' : ''" formControlName="name"
+                  placeholder="Enter name">
+                <mat-error *ngIf="isControlHasError('name','required')">
+                  Name is required
+                </mat-error>
+              </div>
+            </div>
+
+            <div class="row form-group">
+              <div class="col-lg-2 form-label">
+                <label class="mandatory-field">To Email</label>
+              </div>
+              <div class="col-lg-6">
+                <input type="email" class="form-control"
+                  [ngClass]="isControlHasError('email','required') || isControlHasError('email','pattern') ? 'border-color' : ''"
+                  formControlName="email" placeholder="Enter name" [readonly]="allowInvite">
+                <mat-error *ngIf="isControlHasError('email','required')">
+                  Email is required
+                </mat-error>
+                <mat-error *ngIf="isControlHasError('email','pattern')">
+                  Invalid Email
+                </mat-error>
+              </div>
+            </div>
+
+            <div *ngIf="allowInvite">
+              <div class="row form-group">
+                <div class="col-lg-2 form-label">
+                  <label class="mandatory-field">Company Name</label>
+                </div>
+                <div class="col-lg-6">
+                  <input type="email" class="form-control"
+                    [ngClass]="isControlHasError('companyName','required') ? 'border-color' : ''"
+                    formControlName="companyName" placeholder="Enter Company name">
+                  <mat-error *ngIf="isControlHasError('companyName','required')">
+                    Company name is required
+                  </mat-error>
+                </div>
+              </div>
+
+
+              <div class="row form-group">
+                <div class="col-lg-2 form-label">
+                  <label>Phone Number</label>
+                </div>
+                <div class="col-lg-6">
+                  <input type="text" pattern="\d*" maxlength="10" min="0" oninput="validity.valid||(value='');"
+                    class="form-control" formControlName="phone" placeholder="Enter Phone number"
+                    [ngClass]="isControlHasError('phone','pattern') ? 'border-color' : ''">
+                  <mat-error *ngIf="isControlHasError('phone','pattern')">
+                    It should be 10 digits
+                  </mat-error>
+                </div>
+              </div>
+
+              <div class="row form-group">
+                <div class="col-lg-2 form-label">
+                  <label>Website</label>
+                </div>
+                <div class="col-lg-6">
+                  <input type="email" class="form-control"
+                    [ngClass]="isControlHasError('website','pattern') ? 'border-color' : ''" formControlName="website"
+                    placeholder="http://example.com">
+                  <mat-error *ngIf="isControlHasError('website','pattern')">
+                    Invalid website link
+                  </mat-error>
+                </div>
+              </div>
+
+              <div class="row form-group">
+                <div class="col-lg-2 form-label">
+                  <label class="mandatory-field">Pincode</label>
+                </div>
+                <div class="col-lg-6">
+                  <input type="text" pattern="\d*" maxlength="6" min="6" oninput="validity.valid||(value='');"
+                    class="form-control"
+                    [ngClass]="isControlHasError('pinCode','required') || isControlHasError('pinCode','pattern') ? 'border-color' : ''"
+                    formControlName="pinCode" placeholder="Enter Pincode">
+                  <mat-error *ngIf="isControlHasError('pinCode','required')">
+                    Pincode is required.
+                  </mat-error>
+                  <mat-error *ngIf="isControlHasError('pinCode','pattern')">
+                    Please enter 6 digit pincode.
+                  </mat-error>
+                </div>
+              </div>
+            </div>
+
+          </form>
+        </div>
+
+      </div>
+      <div class="kt-wizard-v3__content" data-ktwizard-type="step-content">
+        <div *ngIf="next==3">
+          <kt-invite-settings #invitationComposer footer="hidden" hideToaster='hide'></kt-invite-settings>
+        </div>
+      </div>
+
+      <div class="kt-form__actions p-0 m-3">
+        <div *ngIf="next==2 || next == 3" (click)="previous()"
+          class="btn btn-secondary btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u mb-4"
+          data-ktwizard-type="action-prev">
+          <span>
+            <span>Previous</span>
+          </span>
+        </div>
+        <div class=" float-right">
+          <div (click)="!isDisable?addTemplate('inviteLoading', true):null"
+            class=" btn btn-brand  btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u mb-4"
+            [ngClass]="{'kt-spinner kt-spinner--right kt-spinner--md kt-spinner--primary': loading.inviteLoading }"
+            data-ktwizard-type="action-submit">
+            <span>
+              <span>Invite</span>
+            </span>
+          </div>
+          &nbsp;
+          <div (click)="!isDisable?addTemplate('profile', false):null"
+            class="btn btn-default  btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u  mb-4"
+            [ngClass]="{'kt-spinner kt-spinner--right kt-spinner--md kt-spinner--light': loading.profile }"
+            data-ktwizard-type="action-submit">
+            <span>
+              <span>Invite & Profile Update</span>
+            </span>
+          </div>
+        </div>
+
+        <div *ngIf="(!allowInvite&&next==1)" (click)="checkForInvite()"
+          class="btn btn-brand btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u float-right mb-4"
+          [ngClass]="{'kt-spinner kt-spinner--right kt-spinner--md kt-spinner--light': loading.submit }">
+          <span>
+            <span>Next Step</span>
+          </span>
+        </div>
+        <div *ngIf="(allowInvite&&next==2)" (click)="inviteMember()"
+          class="btn btn-brand  btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u float-right mb-4"
+          [ngClass]="{'kt-spinner kt-spinner--right kt-spinner--md kt-spinner--light': loading.inviteLoading }">
+          <span>
+            <span>Next Step</span>
+          </span>
+        </div>
+
+      </div>
+    </div>
+
+
+  </kt-portlet-body>
+</kt-portlet>

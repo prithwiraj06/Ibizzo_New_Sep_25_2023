@@ -1,0 +1,88 @@
+
+
+<!-- <img [src]="croppedImage" [style.border]="croppedImage ? '1px solid black' : 'none'" /> -->
+<kt-portlet class="">
+  <kt-portlet-header title="Image Cropper">
+    <ng-container ktPortletTools>
+      <div class="col-sm row mt-2 mr-2">
+        <div class="col-sm-2"></div>
+        <div class="col-3">
+          <label class="btn btn-primary"
+                >Insert
+                <input type="file"  accept="image/*" (change)="fileChangeEvent($event)" />
+              </label> 
+          </div>
+          <div class="col-3">
+            <div class="btn btn-primary" (click)="download(croppedImage)">Apply</div>
+          </div>
+          <div class="col-3">
+            <div class="btn btn-primary " (click)="dialogRef.close()">Cancel</div>
+          </div>
+      </div>
+    </ng-container>
+  </kt-portlet-header>
+
+  <!-- <hr/> -->
+  <kt-portlet-body >
+    <div class="set-align-center" style="height: 400px;">
+      <div style="height: 100%;">
+        <image-cropper
+            [imageChangedEvent]="imageChangedEvent"
+            [maintainAspectRatio]="true"
+            [containWithinAspectRatio]="containWithinAspectRatio"
+            [aspectRatio]="1/1"
+            [resizeToWidth]="300"
+            [resizeToHeight]="300"
+            [cropperMinWidth]="128"
+            [onlyScaleDown]="true"
+            [roundCropper]="false"
+            [canvasRotation]="canvasRotation"
+            [transform]="transform"
+            [style.display]="showCropper ? null : 'none'"
+            format="png"
+            (imageCropped)="imageCropped($event)"
+            (imageLoaded)="imageLoaded()"
+            (cropperReady)="cropperReady($event)"
+            (loadImageFailed)="loadImageFailed()"
+        ></image-cropper>
+    </div>
+    </div>
+  
+  </kt-portlet-body>
+<hr/>
+<kt-portlet-footer class="row">
+  <div class="col-sm-4"></div>
+    <div class="col row set-align-center mb-2">
+   
+      <button class="col-1 btn btn-primary" (click)="rotateLeft()"><span class="material-icons  set-align-center">
+        rotate_left
+        </span></button>
+      <button class="col-1 btn btn-primary" (click)="rotateRight()"><span class="material-icons  set-align-center">
+        rotate_right
+        </span></button>
+      <button class="col-1 btn btn-primary" (click)="flipHorizontal()"><span class="material-icons  set-align-center">
+        swap_horiz
+        </span></button>
+      <button class="col-1 btn btn-primary" (click)="flipVertical()"><span class="material-icons  set-align-center">
+        swap_vert
+        </span></button>
+    
+      <!-- <button class="col-sm" (click)="toggleContainWithinAspectRatio()">{{containWithinAspectRatio?'Fill Aspect Ratio':'Contain Within Aspect Ratio'}}</button> -->
+      <button class="col-1 btn btn-primary" (click)="resetImage()"><span class="material-icons  set-align-center">
+        autorenew
+        </span></button>
+        <button class="col-1 btn btn-primary" (click)="zoomOut()"><span class="material-icons  set-align-center">
+          zoom_out
+          </span></button>
+        <button class="col-1 btn btn-primary" (click)="zoomIn()"><span class="material-icons  set-align-center">
+          zoom_in
+          </span></button>
+      <!-- <input [(ngModel)]="rotation" placeholder="Rotation" type="number" (keyup)="updateRotation()" />  -->
+    
+    </div>
+  <div class="col-sm-3"></div>
+  </kt-portlet-footer>
+
+</kt-portlet>
+
+

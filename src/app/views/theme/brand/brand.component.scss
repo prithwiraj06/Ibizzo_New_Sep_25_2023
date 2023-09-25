@@ -1,0 +1,90 @@
+:host {
+  .minisite-header .kt-header__brand-logo {
+    display: inline !important;
+  }
+
+  .company-text {
+    font-size: 25px;
+    font-weight: 500;
+    color: black;
+  }
+
+  .sub-text {
+    font-size: 15px;
+    color: black;
+  }
+
+  .company-link {
+    color: #ff9900 !important;
+    font-weight: bold;
+    text-decoration: underline;
+  }
+
+  .mini-site-logo {
+    // width: 60px !important;
+    max-height: 60px !important;
+    padding: 3px;
+    background-color: white;
+  }
+
+  .gst-text {
+    font-weight: bold;
+  }
+
+  // Mobile mode(1024px and below)
+  @media (max-width: 1024px) {
+    .company-text {
+      font-size: 1.5rem;
+    }
+
+    .sub-text {
+      font-size: 1rem;
+      font-weight: 100;
+    }
+  }
+
+  .kt-header__brand-logo {
+    a {
+      width: 250px;
+      display: flex;
+      flex: 1;
+      align-items: center;
+      color: #000;
+    }
+
+    span {
+      font-size: 10px;
+      font-weight: 600;
+      display: inline-block;
+      max-width: 120px;
+    }
+  }
+
+  .badge.badge-paid {
+    display: inline-block;
+    border: 1px solid #f97674;
+    background-color: #f5eeed;
+    color: #ea2520;
+    padding: 0.2rem 0.4rem;
+    font-size: 0.85rem;
+  }
+
+  @media only screen and (max-width: 1080px) {
+    .txt-size {
+      width: 600px !important;
+    }
+  }
+
+  @media only screen and (max-width: 1024px) {
+    .hide-links,
+    .hide-img {
+      display: none !important;
+    }
+  }
+
+  @media only screen and (min-width: 1000px) {
+    .hide-text {
+      display: none !important;
+    }
+  }
+}

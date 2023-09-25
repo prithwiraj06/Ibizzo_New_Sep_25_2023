@@ -1,0 +1,49 @@
+:host {
+  ::ng-deep {
+    ngb-tabset > .nav-tabs {
+      display: none;
+    }
+  }
+
+  .kt-container .kt-grid__item .kt-grid__item--fluid {
+    padding: 0px !important;
+  }
+
+  .hero-slider-container {
+    overflow: hidden;
+    margin-bottom: 15px;
+  }
+
+  .hero-slider-left-blurb{
+    background-image: url(/assets/media/marketing/looking-for-suppliers.png);
+    margin-right: 10px;
+    border-radius: 10px;
+    width: 320px;
+    height: 320px;
+    margin-top: 20px;
+    background-position: center;;
+  }
+
+  @media (max-width: 480px){
+    .hidden-mobile {
+      display: none !important;
+    }
+
+    .mobile-screen{
+      padding-left: 0px !important;
+      padding-right: 0px !important;
+    }
+  }
+
+  .set-padding {
+    padding: 0px !important;
+  }
+
+  @media (min-width: 480px) {
+    .hidden-desktop{
+      display: none !important;
+    }
+  }
+
+  
+}

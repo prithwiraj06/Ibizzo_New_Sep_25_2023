@@ -1,0 +1,106 @@
+<h2 class="mb-3">Create Newsletter</h2>
+
+<div class="row">
+  <a *ngIf="!newsLetter" [routerLink]="createTemplateUrl | baseurl" [queryParams]="{'t':'basic'}"
+    class="col-xl-3 col-md-3 col-sm-3">
+    <div class="kt-portlet kt-portlet--height-fluid newsletter">
+      <div class="card-image">
+        <img src="/assets/media/email-templates/basic-template.jpg" alt="Banner Template">
+      </div>
+      <div class="kt-portlet__footer kt-portlet__footer--fit-y  mb-3  mt-2">
+        <div class="kt-widget__action">
+          <h5 class="text-center kt-font-bold text-primary">
+            Basic Template
+          </h5>
+        </div>
+      </div>
+
+    </div>
+  </a>
+
+  <a *ngIf="!newsLetter" [routerLink]="createTemplateUrl | baseurl" [queryParams]="{'t':'banner'}"
+    class="col-xl-3 col-md-3 col-sm-3">
+    <div class="kt-portlet kt-portlet--height-fluid newsletter">
+      <div class="card-image">
+        <img src="/assets/media/email-templates/banner-template.jpg" alt="Banner Template">
+      </div>
+      <div class="kt-portlet__footer kt-portlet__footer--fit-y  mb-3  mt-2">
+        <div class="kt-widget__action">
+          <h5 class="text-center kt-font-bold text-primary">
+            Banner Template
+          </h5>
+        </div>
+      </div>
+    </div>
+  </a>
+
+
+  <a *ngIf="!newsLetter" [routerLink]="createTemplateUrl | baseurl" [queryParams]="{'t':'colorful'}"
+    class="col-xl-3 col-md-3 col-sm-3">
+    <div class="kt-portlet kt-portlet--height-fluid newsletter">
+      <div class="card-image">
+        <img src="/assets/media/email-templates/colorful-template.jpg" alt="Banner Template">
+      </div>
+      <div class="kt-portlet__footer kt-portlet__footer--fit-y mb-3  mt-2">
+        <div class="kt-widget__action">
+          <h5 class="text-center kt-font-bold text-primary">
+            Colorfull Template
+          </h5>
+        </div>
+      </div>
+    </div>
+  </a>
+
+  <div *ngIf="newsLetter" class="col-xl-3 col-md-3 col-sm-3 ">
+    <div class="div-delete-icon">
+      <i class="material-icons float-right delete-icon" (click)="deleteTemplate(newsLetter.id)">close</i>
+    </div>
+    <a [routerLink]="createTemplateUrl | baseurl" [queryParams]="{'id':newsLetter.id}">
+      <div class="kt-portlet kt-portlet--height-fluid newsletter">
+        <div class="card-image">
+          <img [src]='newsLetter.dataUri' alt="Banner Template">
+        </div>
+        <div class="kt-portlet__footer kt-portlet__footer--fit-y mb-3  mt-2">
+          <div class="kt-widget__action">
+            <h5 class="text-center kt-font-bold text-primary">
+              {{newsLetter.templateName}} /Draft
+            </h5>
+          </div>
+        </div>
+      </div>
+    </a>
+  </div>
+
+
+  <a *ngIf="!newsLetter" [routerLink]="createTemplateUrl | baseurl" class="col-xl-3 col-md-3 col-sm-3">
+    <div class="kt-portlet kt-portlet--height-fluid newsletter">
+      <div class="kt-portlet__head kt-portlet__head--noborder">
+        <div class="kt-portlet__head-label">
+          <h3 class="kt-portlet__head-title">
+          </h3>
+        </div>
+      </div>
+      <div class="kt-portlet__body kt-portlet__body--fit-y kt-margin-b-40">
+        <!--begin::Widget -->
+        <div class="kt-widget kt-widget--user-profile-4">
+          <div class="kt-widget__head">
+            <div class="kt-widget__content">
+              <div class="kt-widget__section">
+                <div class="kt-widget__username">
+                  <mat-icon class="flaticon2-plus" style="font-size:23px !important;"></mat-icon>
+                </div>
+                <div class="kt-widget__action">
+                  <button type="button" class="lable-color btn btn-bold btn-sm" style="font-size: 14px !important;">
+                    Create new template
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--end::Widget -->
+        </div>
+        <!--end::Widget -->
+      </div>
+    </div>
+  </a>
+</div>

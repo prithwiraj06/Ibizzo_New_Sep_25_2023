@@ -1,0 +1,73 @@
+<div *ngIf="group" [class]="className">
+  <div *ngIf="!isCluster">
+    <div class="card-image">
+      <img [src]="viewImage(group)" [alt]="group.name" />
+    </div>
+    <div class="card-body" [ngClass]="this.isNameEnable ? 'card-height' : ''">
+      <div class="card-text-body">
+        <div *ngIf="group.name" class="card-title kt-truncate text-center">
+          {{ group.name }}
+        </div>
+      </div>
+    </div>
+    <div class="card-footer footer-data" style="width: 100%" *ngIf="!isMyGroup">
+      <a [target]="target" class="btn btn-elevate btn-pill btn-sm" (click)="joinGroup(group)"
+        [ngStyle]="buttonStyleColor">{{ buttonLabel }}</a>
+      <button class="btn btn-elevate btn-pill btn-sm btn-gray" (click)="view(group)">
+        View
+      </button>
+    </div>
+    <div class="card-footer" style="width: 100%" *ngIf="isMyGroup">
+      <a class="btn btn-elevate btn-pill btn-sm btn-primary" [ngStyle]="{
+          width:
+            getOwner(group, 'isOwner') && getOwner(group, 'isMember')
+              ? '45%'
+              : '100%'
+        }" [routerLink]="
+          ['/dashboard/business/settings/' + group.id + '/manage'] | baseurl
+        " *ngIf="getOwner(group, 'isOwner')">Manage</a>
+      <a class="btn btn-elevate btn-pill btn-sm btn-gray"
+        [routerLink]="['/dashboard/business/settings/' + group.id] | baseurl" [ngStyle]="{
+          width:
+            getOwner(group, 'isOwner') && getOwner(group, 'isMember')
+              ? '45%'
+              : '100%'
+        }" *ngIf="getOwner(group, 'isMember')">View</a>
+    </div>
+  </div>
+  <div *ngIf="isCluster">
+    <div class="card-image-partner">
+      <img [src]="viewImage(group)" [alt]="group.name" />
+    </div>
+    <div class="card-body card-name" [ngClass]="this.isNameEnable ? 'card-height' : ''">
+      <div class="card-text-body">
+        <div *ngIf="group.name" class="card-title kt-truncate text-center">
+          {{ group.name }}
+        </div>
+      </div>
+    </div>
+    <div class="card-footer">
+      <div class="btn-group" style="width: 100%">
+        <button [routerLink]="
+            ['/dashboard/partner/manage-groups/' + group.id + '/manage']
+              | baseurl
+          " type="button" class="btn btn-block btn-outline-primary">
+          Manage
+        </button>
+        <button type="button" class="btn btn-outline-primary dropdown-toggle dropdown-toggle-split"
+          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <span class="sr-only">Toggle Dropdown</span>
+        </button>
+        <div class="dropdown-menu">
+          <div class="dropdown-item"> {{getTitle(group)}}</div>
+          <div class="dropdown-divider"></div>
+          <a (click)="openService(group)" class="dropdown-item cursor-view"> Assign As Admin</a>
+          <div class="dropdown-divider"></div>
+          <a (click)="addMember(group)" class="dropdown-item cursor-view">
+            Add Members
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

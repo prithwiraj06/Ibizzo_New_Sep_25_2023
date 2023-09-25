@@ -1,0 +1,82 @@
+<div class="kt-grid__item kt-grid__item--fluid kt-app__content">
+  <div class="kt-chat">
+    <div class="kt-portlet kt-portlet--head-lg kt-portlet--last">
+      <div class="kt-portlet__head">
+        <div class="kt-portlet__head-label">
+          <h1 class="kt-portlet__head-title">Comments</h1>
+        </div>
+        <div class="kt-portlet__head-toolbar">
+          <button class="btn btn-clear" (click)="dialogRef.close()">
+            <i class="la la-close"></i>
+          </button>
+        </div>
+      </div>
+      <div class="kt-portlet__body" *ngIf="comments.length > 0">
+        <div
+          class="kt-scroll kt-scroll--pull ps--rail-y"
+          style="height: 300px; overflow: auto"
+        >
+          <div
+            *ngIf="fetching"
+            style="display: flex; justify-content: center; align-items: center"
+          >
+            <mat-progress-spinner
+              color="primary"
+              mode="indeterminate"
+              diameter="30"
+            >
+            </mat-progress-spinner>
+          </div>
+          <div class="kt-chat__message" *ngFor="let comment of comments">
+            <div class="comment-space" *ngIf="comment">
+              <div class="kt-chat__user">
+                <span
+                  class="kt-media kt-media--sm kt-media--circle kt-media--success"
+                >
+                  <span>{{ getCharname(comment.memberName) }}</span>
+                </span>
+                <span class="kt-chat__username">{{ comment.memberName }}</span>
+              </div>
+              <div class="kt-chat__text kt-bg-light-success word-space">
+                {{ comment.commentText }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="comments.length == 0">
+        <kt-no-results
+          class="text-position"
+          textColor="true"
+          [show]="true"
+          message="There are no comments to show"
+        ></kt-no-results>
+      </div>
+      <div class="kt-portlet__foot" *ngIf="!isPublic()">
+        <div class="p-3 kt-form__actions kt-form__actions--solid">
+          <div class="kt-chat__input">
+            <div class="kt-chat__editor">
+              <textarea
+                style="height: 50px"
+                placeholder="Type here..."
+                [(ngModel)]="comment"
+              ></textarea>
+            </div>
+
+            <div class="kt-chat__toolbar">
+              <div class="kt_chat__actions">
+                <button
+                  type="button"
+                  class="btn btn-brand btn-md btn-upper btn-bold kt-chat__reply"
+                  (click)="reply()"
+                >
+                  reply
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

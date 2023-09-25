@@ -1,0 +1,104 @@
+<kt-portlet>
+  <div class="kt-portlet__head">
+    <div class="kt-portlet__head-label">
+      <h3 class="kt-portlet__head-title">Members List</h3>
+    </div>
+    <div class="kt-portlet__head-toolbar">
+      <button class="btn btn-clear" (click)="dialogRef.close()">
+        <i class="la la-close"></i>
+      </button>
+    </div>
+  </div>
+
+  <kt-portlet-body class="set-padding kt-portlet__body">
+    <mat-table #table [dataSource]="dataSource">
+      <ng-container matColumnDef="brands">
+        <mat-header-cell *matHeaderCellDef class="brands">
+          Brands
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element" class="brands">
+          <img
+            class="img-size"
+            *ngIf="element.companyLogo != null && element.companyLogo != ''"
+            [src]="getImage(element.companyLogo)"
+          />
+          <img
+            class="img-size"
+            *ngIf="element.companyLogo == null || element.companyLogo == ''"
+            src="../../../../assets/media/logos/default-partner-logo.png "
+          />
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="companies">
+        <mat-header-cell *matHeaderCellDef class="col2-width">
+          Registered Companies
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element" class="text-break col2-width">
+          <a
+            *ngIf="element.companyName != null && element.companyName != ''"
+            (click)="getUrl(element)"
+            class="link-url text-primary"
+            target="_blank"
+            >{{ element.companyName }}</a
+          >
+          <span *ngIf="element.companyName == null || element.companyName == ''"
+            >Your Company Name</span
+          >
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="salesCatalogue">
+        <mat-header-cell
+          *matHeaderCellDef
+          class="catalouge mob-view set-margin ipad-width ml-5"
+        >
+          Sales Catalogue
+        </mat-header-cell>
+        <mat-cell
+          *matCellDef="let element"
+          class="catalouge mob-view set-margin ipad-width"
+        >
+          <a
+            class="btn btn-clear"
+            (click)="getUrl(element, 'sales-catalogue')"
+            class="link-url text-primary"
+            target="_blank"
+            ><span class="badge badge-pill badge-danger">
+              {{ element.salesPrdCnt }}</span
+            >
+
+            Catalogue</a
+          >
+        </mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns"> </mat-row>
+    </mat-table>
+    <div
+      *ngIf="fetching"
+      style="
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #ffffff !important;
+      "
+    >
+      <mat-progress-spinner color="primary" mode="indeterminate" diameter="20">
+      </mat-progress-spinner>
+    </div>
+    <div
+      class="mat-table__message text-center"
+      *ngIf="!dataSource.hasData"
+      style="background-color: #ffffff !important"
+    >
+      No Record Found
+    </div>
+    <mat-paginator
+      [pageSize]="10"
+      [pageSizeOptions]="[10, 20, 30]"
+      (page)="pageChangeEvent($event)"
+      [length]="1000"
+      [showFirstLastButtons]="true"
+    >
+    </mat-paginator>
+  </kt-portlet-body>
+</kt-portlet>

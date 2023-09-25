@@ -1,0 +1,15 @@
+<kt-portlet>
+  <kt-portlet-header title="Email template">
+  </kt-portlet-header>
+  <kt-invite-settings #invitationComposer footer="hidden" hideToaster='hide'></kt-invite-settings>
+  <kt-portlet-footer>
+    <div class="m-1">
+      <button class="btn btn-brand float-right m-2 pr-3" (click)="sent()">
+        Continue
+      </button>
+      <button class="btn btn-default float-right m-2 pr-3" (click)="cancel()">
+        Cancel
+      </button>
+    </div>
+  </kt-portlet-footer>
+</kt-portlet>

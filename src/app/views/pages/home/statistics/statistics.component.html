@@ -1,0 +1,133 @@
+<kt-portlet *ngIf="currentPartnerId == 1; else showPartnerStatistics">
+  <kt-portlet-body class="kt-sc-faq support-imge" id="market-place">
+    <p>
+      Source products from {{ CategoriesCount }} business categories with over
+      {{ ProductsCount }} products from {{ MarketPlacesCount }} Marketplaces
+      Across the Globe.<br />
+      You Own a Business? <span class="kt-font-brand">REGISTER</span> for
+      <span class="kt-font-brand">FREE</span> and get access to thousands of
+      <span class="kt-font-brand">BUYERS</span> across the Market places.
+    </p>
+
+    <div class="row">
+      <div class="col">
+        <button
+          type="button"
+          (click)="requestForQuote()"
+          class="btn btn-light btn-lg"
+        >
+          Request for a Quote</button
+        >&nbsp;
+        <button
+          type="button"
+          [routerLink]="['/auth/register'] | baseurl"
+          class="btn btn-brand btn-lg"
+        >
+          Register for Free
+        </button>
+      </div>
+    </div>
+    <hr />
+    <div class="row">
+      <div class="col">
+        <span
+          class="kt-widget24__stats kt-font-brand"
+          [countUp]="ProductsCount"
+        >
+          1 </span
+        ><br />
+        Products
+      </div>
+      <div class="col">
+        <span
+          class="kt-widget24__stats kt-font-warning"
+          [countUp]="MarketPlacesCount"
+          >0</span
+        ><br />
+        MarketPlaces
+      </div>
+      <div class="col">
+        <span class="kt-widget24__stats kt-font-danger" [countUp]="Suppliers"
+          >0 </span
+        ><br />
+        Registered Businesses
+      </div>
+      <div class="col">
+        <span class="kt-widget24__stats kt-font-success" [countUp]="Buyers"
+          >0</span
+        ><br />
+        Enquiries
+      </div>
+      <div class="col">
+        <span
+          class="kt-widget24__stats kt-font-info"
+          [countUp]="totolActivities"
+          >0</span
+        ><br />
+        Total Activities
+      </div>
+    </div>
+  </kt-portlet-body>
+</kt-portlet>
+
+<ng-template #showPartnerStatistics>
+  <kt-portlet>
+    <kt-portlet-body class="kt-sc-faq support-imge" id="market-place">
+      <div class="row">
+        <div
+          class="col"
+          [routerLink]="['/' + currentPartnerName + '/pages/partner-members']"
+          style="cursor: pointer !important"
+        >
+          <span
+            class="kt-widget24__stats kt-font-warning"
+            [countUp]="partnerInfo.noOfMembers"
+            >0</span
+          ><br />
+          Members
+        </div>
+        <div class="col">
+          <span
+            class="kt-widget24__stats kt-font-brand"
+            [countUp]="partnerInfo.noOfProducts"
+            >0</span
+          ><br />
+          Sale Products
+        </div>
+        <div class="col">
+          <span
+            class="kt-widget24__stats kt-font-primary"
+            [countUp]="partnerInfo.noOfPurchaseProduct"
+            >0</span
+          ><br />
+          Purchase Products
+        </div>
+        <div class="col kt-hidden">
+          <span
+            class="kt-widget24__stats kt-font-warning"
+            [countUp]="partnerInfo.noOfSellers"
+            >0</span
+          ><br />
+          Registered Businesses
+        </div>
+        <div class="col">
+          <span
+            class="kt-widget24__stats kt-font-danger"
+            [countUp]="partnerInfo.noOfEnquiries"
+            >0</span
+          ><br />
+          Enquiries
+        </div>
+
+        <div class="col">
+          <span
+            class="kt-widget24__stats kt-font-brand"
+            [countUp]="totolActivities"
+            >0</span
+          ><br />
+          Marketplace Activity
+        </div>
+      </div>
+    </kt-portlet-body>
+  </kt-portlet>
+</ng-template>

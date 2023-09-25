@@ -1,0 +1,45 @@
+<kt-portlet>
+  <kt-portlet-header title="Verify Phone Number">
+  </kt-portlet-header>
+  <kt-portlet-body>
+    <div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">Phone number</label>
+        <div class="input-group mb-3">
+          <input [(ngModel)]="phone" class="form-control" type="text" pattern="\d*" maxlength="10" min="0"
+            oninput="validity.valid||(value='');" placeholder="Phone number" (ngModelChange)="comparePhone()"
+            [readonly]="enableEdit" [ngClass]="enableEdit?'read-only':'read-write'">
+          <div class="input-group-append">
+            <span class="input-group-text" [ngClass]="enableEdit?'btn btn-default':'btn btn-warning'" id="basic-addon2"
+              (click)="editPhone()"><i class="fa flaticon-edit"></i></span>
+          </div>
+        </div>
+        <div class="float-right">
+          <span class="text-primary mouse-pointer" (click)="sent()">Resend</span>
+        </div>
+
+        <mat-error *ngIf="isEnable">
+          Phone Number is required
+        </mat-error>
+        <mat-error *ngIf="isEnableLength">
+          Phone Number is should be 10
+        </mat-error>
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">OTP Number:</label>
+        <input [(ngModel)]="otpNumber" class="form-control" type="text" maxlength="4" min="0"
+          oninput="validity.valid||(value='');" placeholder="Enter the OTP" (ngModelChange)="compare()">
+      </div>
+    </div>
+  </kt-portlet-body>
+  <kt-portlet-footer>
+    <div class="float-right m-2">
+      <button class="btn btn-default mr-2" (click)="dialogRef.close()">
+        Cancel
+      </button>
+      <button class="btn btn-primary" (click)="verifyOTP()">
+        Submit
+      </button>
+    </div>
+  </kt-portlet-footer>
+</kt-portlet>

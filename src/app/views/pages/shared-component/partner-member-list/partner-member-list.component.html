@@ -1,0 +1,269 @@
+<kt-portlet>
+  <div class="kt-portlet__head">
+    <div class="mt-3">
+      <h5 *ngIf="searchBar">Search Member</h5>
+      <h5 *ngIf="!searchBar">Member List</h5>
+    </div>
+    <div *ngIf="searchBar" class="mt-1">
+      <div class="kt-header__topbar-item kt-header__topbar-item--search">
+        <div class="kt-header__topbar-wrapper">
+          <div class="kt-header-toolbar">
+            <div
+              autoClose="outside"
+              class="kt-quick-search kt-quick-search--inline kt-quick-search--result-compact"
+              id="kt_quick_search_default"
+            >
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <mat-select [(ngModel)]="option" class="form-control">
+                    <mat-option
+                      *ngFor="let type of searchTypes"
+                      [value]="type.value"
+                    >
+                      {{ type.text }}
+                    </mat-option>
+                  </mat-select>
+                </div>
+                <input
+                  #searchInput
+                  [(ngModel)]="searchText"
+                  type="text"
+                  class="form-control search-input"
+                  (keyup.enter)="searchContent(searchText, true)"
+                  placeholder="Search..."
+                  [ngModelOptions]="{ standalone: true }"
+                />
+                <div class="input-group-append">
+                  <button
+                    class="btn btn-brand search-btn"
+                    type="button"
+                    (click)="searchContent(searchText, true)"
+                  >
+                    <mat-icon class="search-icon">search</mat-icon>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="!searchBar" class="mt-2">
+      <div class="kt-header__topbar-item kt-header__topbar-item--search">
+        <div class="kt-header__topbar-wrapper">
+          <div class="kt-header-toolbar">
+            <div
+              autoClose="outside"
+              class="kt-quick-search kt-quick-search--inline kt-quick-search--result-compact"
+              id="kt_quick_search_default"
+            >
+              <div class="input-group">
+                <input
+                  #searchInput
+                  [(ngModel)]="searchMember"
+                  type="text"
+                  class="form-control search-input"
+                  (keyup.enter)="searchMembers()"
+                  placeholder="Search..."
+                  [ngModelOptions]="{ standalone: true }"
+                />
+                <div class="input-group-append">
+                  <button
+                    class="btn btn-brand search-btn"
+                    type="button"
+                    (click)="searchMembers()"
+                  >
+                    <mat-icon class="search-icon">search</mat-icon>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <kt-portlet-body>
+    <div *ngIf="!searchBar">
+      <div *ngIf="!isGroup">
+        <mat-tab-group
+          [selectedIndex]="selectedIndex"
+          (selectedTabChange)="onTabPanelClick($event, $event.tab)"
+        >
+          <mat-tab label="New Request">
+            <div *ngIf="newRequestTab">
+              <kt-data-source-table
+                [partnerId]="partnerId"
+                type="1"
+                #searchData
+              ></kt-data-source-table>
+            </div>
+          </mat-tab>
+          <mat-tab label="Member">
+            <div *ngIf="memberTab">
+              <kt-data-source-table
+                [partnerId]="partnerId"
+                type="2"
+                #searchData
+              ></kt-data-source-table>
+            </div>
+          </mat-tab>
+          <mat-tab label="Non Member">
+            <div *ngIf="nonMemberTab">
+              <kt-data-source-table
+                [partnerId]="partnerId"
+                type="3"
+                #searchData
+              ></kt-data-source-table>
+            </div>
+          </mat-tab>
+        </mat-tab-group>
+      </div>
+      <div *ngIf="isGroup">
+        <kt-data-source-table
+          [partnerId]="partnerId"
+          isGroup="true"
+          type="2"
+          #searchData
+        ></kt-data-source-table>
+      </div>
+    </div>
+    <div *ngIf="searchBar">
+      <!-- <kt-data-source-table [searchData]="memberList"></kt-data-source-table> -->
+      <div
+        class="mat-table__wrapper"
+        [ngStyle]="{ overflow: memberList.length == 0 ? 'hidden' : 'auto' }"
+        style="height: 250px"
+      >
+        <mat-table
+          class="lmat-elevation-z8"
+          #table
+          [dataSource]="dataSource1"
+          matSortActive="name"
+          matSort
+          #sort1="matSort"
+          matSortDisableClear
+          matSortDirection="asc"
+        >
+          <ng-container matColumnDef="id">
+            <mat-header-cell
+              *matHeaderCellDef
+              mat-sort-header
+              class="cell-size"
+            >
+              #
+            </mat-header-cell>
+            <mat-cell *matCellDef="let contact; let i = index">
+              {{ i + 1 + paginator.pageSize * paginator.pageIndex }}
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>
+              Name
+            </mat-header-cell>
+            <mat-cell *matCellDef="let contact; let i = index">
+              <span class="text-overflow">
+                {{ contact.name }}
+              </span>
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="email">
+            <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
+            <mat-cell *matCellDef="let contact">
+              <a href="#" class="text-primary text-overflow">
+                {{ contact.email }}</a
+              >
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="phone">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>
+              Phone
+            </mat-header-cell>
+            <mat-cell *matCellDef="let contact">
+              {{ contact.phoneNumber }}
+            </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="companyName">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>
+              Company Name
+            </mat-header-cell>
+            <mat-cell *matCellDef="let contact">
+              {{ contact.companyName }}
+            </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="registeredPartner">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>
+              Registered Partner
+            </mat-header-cell>
+            <mat-cell *matCellDef="let contact">
+              {{ contact.orgName }}
+            </mat-cell>
+          </ng-container>
+
+          <!-- <ng-container matColumnDef="status">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>
+              Status
+            </mat-header-cell>
+            <mat-cell *matCellDef="let contact">
+              <div class="font-weight-bold"
+                [ngClass]="contact.status==1?'text-warning':contact.status==2?'text-success':'text-danger'">
+                {{contact.status==1?'Pending':contact.status==2?'Approved':'Rejected'}}
+              </div>
+            </mat-cell>
+          </ng-container> -->
+
+          <ng-container matColumnDef="actions">
+            <mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
+            <mat-cell *matCellDef="let contact; let i = index">
+              <div>
+                <button
+                  class="btn btn-success btn-sm"
+                  (click)="addToMember(i, contact)"
+                >
+                  Add as Member
+                </button>
+              </div>
+            </mat-cell>
+          </ng-container>
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row
+            class="mat-row"
+            *matRowDef="let row; columns: displayedColumns"
+          >
+          </mat-row>
+        </mat-table>
+      </div>
+      <div
+        class="mat-table__message label text-center"
+        *ngIf="memberList.length == 0"
+      >
+        No record found
+      </div>
+      <div
+        *ngIf="fetching"
+        style="display: flex; justify-content: center; align-items: center"
+      >
+        <mat-progress-spinner
+          color="primary"
+          mode="indeterminate"
+          diameter="20"
+        >
+        </mat-progress-spinner>
+      </div>
+      <div class="mat-table__bottom" *ngIf="dataSource1">
+        <mat-paginator
+          [pageSize]="10"
+          [pageSizeOptions]="[5, 10, 20]"
+          (page)="pageChangeEvent($event)"
+          [length]="count"
+          [showFirstLastButtons]="true"
+        >
+        </mat-paginator>
+      </div>
+    </div>
+  </kt-portlet-body>
+  <kt-portlet-footer *ngIf="isGroup"> </kt-portlet-footer>
+</kt-portlet>

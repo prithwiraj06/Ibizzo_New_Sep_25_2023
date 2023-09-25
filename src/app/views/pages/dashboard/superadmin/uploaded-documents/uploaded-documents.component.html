@@ -1,0 +1,54 @@
+<kt-portlet>
+  <div class="kt-portlet__head">
+    <div class="kt-portlet__head-label">
+      <h3 class="kt-portlet__head-title">List of Documents</h3>
+    </div>
+  </div>
+  <kt-portlet-body>
+    <kt-no-results *ngIf="documents.length==0"
+    class="text-position"
+    textColor="true"
+    [show]="true"
+    message="There are no content to show."
+  ></kt-no-results>
+  <div class="kt-section__body" id='Documents'>
+    <div *ngIf="documents.length!=0" class="row">
+      <div class="col-lg-6 text-center p-1">
+        <img [src]="noDoc" class="no-image" alt="">
+      </div>
+    </div>
+    <div class="row">
+      <a *ngFor="let doc of documents;let i=index" class="col border" [href]="getRoute(doc.docName)"  target="_blank" >
+        <div class="mt-2">
+          <span class="font-weight-bold p-1 mob-view">{{getTitle(doc.docType)}}</span>
+        </div>
+        <ul class="list-group list-group-flush list-data p-2 set-align-center">
+          <li class="list-group-item list-content"> <a target="_blank">
+              <img src="../../../../../../assets/images/cloud-storage.png" style="width: 250px;" alt="PDF Thumbnail"
+                class="rounded impload-img" />
+              
+            </a>
+            <!-- <div class="float-right mt-3" (click)="deleteDoc(i)">
+              <i class="fa fa-close" style="font-size: 30px;
+              color: #646c9a;"></i>
+            </div> -->
+          </li>
+        </ul>
+        <div class="set-align-center">
+          <span class="pl-2 font-weight-bold p-1 mob-view">{{ getDocName(doc.docName)}}</span>
+        </div>
+      </a>
+    </div>
+  </div>
+  </kt-portlet-body>
+ 
+
+<kt-portlet-footer>
+  <button type="button" class="btn btn-secondary m-2 float-right" (click)="dialogRef.close()">
+    Cancel
+  </button>
+  <button type="button" [disabled]="data.isVerified=='Payment Pending'" class="btn btn-primary m-2 float-right" (click)="verifyPage()">
+    Verify
+  </button>
+</kt-portlet-footer>
+ </kt-portlet>

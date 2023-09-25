@@ -1,0 +1,23 @@
+<div class="">
+  <div class="row" *ngFor="let item of dyminArr;let i=index">
+    <div class="col-lg-5 form-label">
+      <input type="text" [(ngModel)]="key[i]" class="form-control" [placeholder]="keyName[i]" /> :
+    </div>
+    <div class="col-lg-5">
+      <input type="text" [(ngModel)]="value[i]" class="form-control" [placeholder]="valueName[i]"/>
+    </div>
+    <div class="col-lg-2" *ngIf="i>2">
+      <button class="btn btn-danger" (click)="remove(i)">Remove</button>
+    </div>
+  </div>
+  <!-- <div>
+    <button class="btn btn-primary" (click)="add()">Add</button>
+  </div> -->
+  <div class="row mt-2" style="margin-bottom: 14px;">
+    <div class="col-lg add-label" (click)="addRow()" style="margin-left: -62px;">
+      <i class="mb-add-margin"><i style="color:#2F75DB" class="fa-lg fa fa-plus-circle"></i></i>
+      &nbsp;<span style="color:#dc3545; font-weight:500 ;">Add More
+        Details</span>
+    </div>
+  </div>
+</div>

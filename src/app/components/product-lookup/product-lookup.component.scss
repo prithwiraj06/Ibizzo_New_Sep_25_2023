@@ -1,0 +1,10 @@
+:host {
+  display: block;
+  width: 100%;
+  ::ng-deep{
+  .select2-container{
+    display: block;
+    width: 100% !important;
+  }
+}
+}

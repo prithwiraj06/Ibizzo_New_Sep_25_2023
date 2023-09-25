@@ -1,0 +1,36 @@
+:host {
+  .btn-chat {
+    float: right;
+    margin-top: 15px;
+    margin-bottom: 10px;
+  }
+  .kt-chat__text {
+    display: inline-block;
+    padding: 1.2rem 1.7rem;
+    padding: 0.1rem 1.5rem 0.1rem 1.6rem;
+    margin-top: 0.8rem;
+    color: #6c7293;
+    font-weight: 500;
+    font-size: 1.1rem;
+    border-radius: 4px;
+  }
+  .kt_chat__actions {
+    margin-left: 45em !important;
+  }
+  .kt-chat .kt-chat__input .kt-chat__editor textarea {
+    width: 100%;
+    border: 0 !important;
+    outline: none !important;
+    background-color: transparent !important;
+    color: var(--gray-dark) !important;
+  }
+  .chat-text {
+    margin-top: 5px;
+  }
+  .word-space {
+    word-spacing: 3px !important;
+  }
+  .comment-space {
+    margin-top: 10px !important;
+  }
+}

@@ -1,0 +1,94 @@
+<kt-portlet>
+  <div class="kt-portlet__head">
+    <div class="kt-portlet__head-label">
+      <h3 *ngIf="!(data.type == 'myCompaign')" class="kt-portlet__head-title">
+        My Product Flyers
+      </h3>
+      <h3 *ngIf="data.type == 'myCompaign'" class="kt-portlet__head-title">
+        My Campaigns
+      </h3>
+    </div>
+    <div class="kt-portlet__head-toolbar">
+      <button class="btn btn-clear" (click)="dialogRef.close()">
+        <i class="la la-close"></i>
+      </button>
+    </div>
+  </div>
+  <kt-portlet-body>
+    <mat-table #table [dataSource]="dataSource">
+      <ng-container matColumnDef="#">
+        <mat-header-cell *matHeaderCellDef> # </mat-header-cell>
+        <mat-cell *matCellDef="let element; let i = index">
+          {{ i + 1 + this.paginator.pageSize * this.paginator.pageIndex }}
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="companyName">
+        <mat-header-cell *matHeaderCellDef class="sent-cell"
+          >Company Name</mat-header-cell
+        >
+        <mat-cell *matCellDef="let element" class="sent-cell">
+          {{ element.companyName }}
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="product">
+        <mat-header-cell *matHeaderCellDef class="recieved-cell"
+          >Product</mat-header-cell
+        >
+        <mat-cell *matCellDef="let element" class="recieved-cell">
+          <span>{{ data.productName }}</span>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="seen">
+        <mat-header-cell
+          *matHeaderCellDef
+          [ngClass]="
+            data.type == 'myCompaign' ? 'sent-cell-compaign' : 'seen-cell'
+          "
+        >
+          Seen
+        </mat-header-cell>
+        <mat-cell
+          *matCellDef="let element"
+          [ngClass]="
+            data.type == 'myCompaign' ? 'sent-cell-compaign' : 'seen-cell'
+          "
+        >
+          <p [innerHtml]="getStatus(element)"></p>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="view">
+        <mat-header-cell *matHeaderCellDef> View Flyer </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <button
+            class="btn btn-label-primary btn-sm"
+            (click)="openFlyer(element)"
+          >
+            View
+          </button>
+        </mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns"> </mat-row>
+    </mat-table>
+
+    <div class="mat-table__message" *ngIf="!dataSource.hasData">
+      No Record Found
+    </div>
+
+    <div class="mat-table__bottom">
+      <mat-spinner [diameter]="20" *ngIf="fetching"> </mat-spinner>
+      <mat-paginator
+        [pageSize]="5"
+        [length]="1000"
+        (page)="pageChangeEvent()"
+        [pageSizeOptions]="[3, 5, 10]"
+        [showFirstLastButtons]="true"
+      >
+      </mat-paginator>
+    </div>
+  </kt-portlet-body>
+</kt-portlet>

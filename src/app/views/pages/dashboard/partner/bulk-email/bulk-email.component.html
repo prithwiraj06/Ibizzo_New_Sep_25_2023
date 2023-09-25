@@ -1,0 +1,200 @@
+<kt-portlet>
+  <kt-portlet-body>
+    <div
+      #wizard
+      class="kt-grid kt-wizard-v3 kt-wizard-v3--white"
+      id="kt_wizard_v3"
+      data-ktwizard-state="step-first"
+    >
+      <div class="kt-grid__item">
+        <!--begin: Form Wizard Nav -->
+        <div class="kt-wizard-v3__nav">
+          <div class="kt-wizard-v3__nav-items">
+            <a
+              class="kt-wizard-v3__nav-item wizard-tab"
+              href="javascript:;"
+              data-ktwizard-type="step"
+              data-ktwizard-state="current"
+            >
+              <div class="kt-wizard-v3__nav-body">
+                <div class="kt-wizard-v3__nav-label"><span>1</span>Browse</div>
+                <div class="kt-wizard-v3__nav-bar"></div>
+              </div>
+            </a>
+            <a
+              class="kt-wizard-v3__nav-item wizard-tab"
+              href="javascript:;"
+              data-ktwizard-type="step"
+            >
+              <div class="kt-wizard-v3__nav-body">
+                <div class="kt-wizard-v3__nav-label">
+                  <span>2</span> Edit Template
+                </div>
+                <div class="kt-wizard-v3__nav-bar"></div>
+              </div>
+            </a>
+            <a
+              class="kt-wizard-v3__nav-item wizard-tab"
+              href="javascript:;"
+              data-ktwizard-type="step"
+            >
+              <div class="kt-wizard-v3__nav-body">
+                <div class="kt-wizard-v3__nav-label"><span>3</span> Result</div>
+                <div class="kt-wizard-v3__nav-bar"></div>
+              </div>
+            </a>
+          </div>
+        </div>
+        <!--end: Form Wizard Nav -->
+      </div>
+      <div class="kt-grid__item kt-grid__item--fluid kt-wizard-v3__wrapper">
+        <!--begin: Form Wizard Form-->
+        <form class="kt-form pb-0 pt-4" id="kt_form">
+          <!--begin: Form Wizard Step 1-->
+          <div
+            class="kt-wizard-v3__content"
+            data-ktwizard-type="step-content"
+            data-ktwizard-state="current"
+          >
+            <form [formGroup]="bulkInviteUpload">
+              <div class="form-group m-3">
+                <label class="kt-font-bold">Select a File (&lt; 1MB)</label>
+                <div class="custom-file">
+                  <input
+                    type="file"
+                    class="custom-file-input"
+                    formControlName="file"
+                    accept=".csv"
+                    (change)="onFileChange($event)"
+                  />
+                  <label
+                    class="custom-file-label selected"
+                    for="customFile"
+                    id="customLabel"
+                    >{{ fileName }}</label
+                  >
+                </div>
+              </div>
+            </form>
+          </div>
+          <!--end: Form Wizard Step 1-->
+
+          <!--begin: Form Wizard Step 2-->
+          <div class="kt-wizard-v3__content" data-ktwizard-type="step-content">
+            <div *ngIf="next == 2">
+              <kt-invite-settings
+                #invitationComposer
+                footer="hidden"
+                hideToaster="hide"
+              ></kt-invite-settings>
+            </div>
+          </div>
+          <!--end: Form Wizard Step 2-->
+
+          <!--begin: Form Wizard Step 3-->
+          <div class="kt-wizard-v3__content" data-ktwizard-type="step-content">
+            <div class="row">
+              <div class="col-md-2 offset-md-2">
+                <!--begin:: Widgets/Stats2-1 -->
+                <div class="kt-portlet__body kt-portlet__body--fit">
+                  <div class="kt-widget1" style="width: 600px;">
+                    <div class="kt-widget1__item row">
+                      <div class="kt-widget1__info col-4">
+                        <h3 class="kt-widget1__title">No. of Invite(s) sent</h3>
+                      </div>
+                      <span
+                        class="kt-widget1__number kt-font-brand col-4 text-center"
+                        >{{ inviteUser.newInviteSentList }}</span
+                      >
+                      <div class="col"></div>
+                    </div>
+
+                    <div class="kt-widget1__item row">
+                      <div class="kt-widget1__info col-4">
+                        <h3 class="kt-widget1__title">Already Invited</h3>
+                      </div>
+                      <span
+                        class="kt-widget1__number kt-font-danger col-4 text-center"
+                        >{{ inviteUser.alreadyInvitedList }}</span
+                      >
+                      <div
+                        [routerLink]="
+                          ['/dashboard/partner/invite/pending-registration']
+                            | baseurl
+                        "
+                        class="btn btn-default col"
+                      >
+                        View Invited Member(s)
+                      </div>
+                    </div>
+
+                    <div class="kt-widget1__item row">
+                      <div class="kt-widget1__info col-4">
+                        <h3 class="kt-widget1__title">Already Registered</h3>
+                      </div>
+                      <span
+                        class="kt-widget1__number kt-font-success col-4 text-center"
+                      >
+                        {{ inviteUser.alreadyRegList }}</span
+                      >
+                      <div
+                        [routerLink]="['/dashboard/partner/member'] | baseurl"
+                        class="btn btn-default col"
+                      >
+                        View Registered Member(s)
+                      </div>
+                    </div>
+                  </div>
+                  <!--end:: Widgets/Stats2-1 -->
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!--begin: Form Actions -->
+          <div class="kt-form__actions m-3">
+            <div
+              (click)="previous()"
+              *ngIf="!hidePreviousButton"
+              class="btn btn-secondary btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u"
+              data-ktwizard-type="action-prev"
+            >
+              Previous
+            </div>
+            <div *ngIf="next == 2">
+              <button
+                [hidden]="hidePreviousButton"
+                (click)="invite()"
+                [ngClass]="{
+                  'kt-spinner kt-spinner--right kt-spinner--md kt-spinner--light': loading
+                }"
+                class="btn btn-primary btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u"
+                data-ktwizard-type=""
+              >
+                Submit
+              </button>
+            </div>
+            <div *ngIf="next == 1"></div>
+            <div *ngIf="next == 1">
+              <button
+                class="btn btn-secondary btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u"
+                (click)="downloadSample()"
+              >
+                DOWNLOAD CSV FORMAT</button
+              >&nbsp;
+              <button
+                class="btn btn-primary btn-md btn-tall btn-wide kt-font-bold kt-font-transform-u"
+                (click)="nextStep()"
+              >
+                Next Step
+              </button>
+            </div>
+          </div>
+          <!--end: Form Actions -->
+        </form>
+        <!--end: Form Wizard Form-->
+      </div>
+    </div>
+    <!--end: Form Wizard Nav -->
+  </kt-portlet-body>
+</kt-portlet>

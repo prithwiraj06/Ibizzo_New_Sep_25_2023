@@ -1,0 +1,30 @@
+<!--begin: Search -->
+<div class="kt-header__topbar-item kt-header__topbar-item--search">
+  <div class="kt-header__topbar-wrapper">
+    <div class="kt-header-toolbar">
+      <div ngbDropdown placement="bottom" autoClose="outside"
+        class="kt-quick-search kt-quick-search--inline kt-quick-search--result-compact" id="kt_quick_search_default"
+        *ngIf="isCheckForMinisite">
+        <div class="input-group">
+          <!-- <div class="input-group-prepend">
+            <mat-select [(ngModel)]="option" class="form-control">
+              <mat-option *ngFor="let type of searchTypes" [value]="type.value">
+                {{ type.text }}
+              </mat-option>
+            </mat-select>
+          </div> -->
+
+          <input #searchInput [(ngModel)]="searchText.text" type="text" class="form-control search-input"
+            (keyup.enter)="searchContent()" placeholder="Search Product, Services or Company" [ngModelOptions]="{ standalone: true }" />
+
+          <div class="input-group-append">
+            <button  [ngClass]="{
+              'kt-spinner kt-spinner--right kt-spinner--md kt-spinner--light': loading}" class="search-btn btn-icon" type="button" (click)="searchContent()">
+            <mat-icon class="search-icon">search</mat-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

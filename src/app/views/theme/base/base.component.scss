@@ -1,0 +1,23 @@
+kt-base {
+  opacity: 0;
+  height: 100%;
+
+  .kt-grid--root {
+    height: 100%;
+  }
+}
+
+// #main-container{
+// 	padding: 30px 0px !important;
+// }
+
+.kt-page--loaded {
+  kt-base {
+    opacity: 1;
+    transition: opacity 1s ease-in-out;
+  }
+}
+
+.padding-header {
+  padding-left: 25px !important;
+}

@@ -1,0 +1,110 @@
+<kt-portlet>
+  <div class="kt-portlet__head">
+    <div class="kt-portlet__head-label">
+      <h3 class="kt-portlet__head-title">
+        Tell your buyers about this product
+      </h3>
+    </div>
+    <div class="kt-portlet__head-toolbar">
+      <button class="btn btn-clear" (click)="dialogRef.close()">
+        <i class="la la-close"></i>
+      </button>
+    </div>
+  </div>
+  <kt-portlet-body>
+    <div class="row form-group bg-color">
+      <div class="col-lg-3 form-label">
+        <label>Product Description</label>
+      </div>
+      <div class="col-lg-6">
+        <label class="readonly-input form-label">{{ data.productName }}</label>
+      </div>
+    </div>
+
+    <div class="row form-group">
+      <div class="col-lg-3 form-label">
+        <label>Company</label>
+      </div>
+      <div class="col-lg-6">
+        <label class="readonly-input form-label">{{
+          data.companyName || currentUser.companyName
+        }}</label>
+      </div>
+    </div>
+
+    <div class="row form-group">
+      <div class="col-lg-3 form-label">
+        <label>Enter your message here</label>
+      </div>
+      <div class="col-lg-6">
+        <textarea
+          type="text"
+          class="form-control"
+          rows="3"
+          [(ngModel)]="message"
+        ></textarea>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-3"></div>
+      <div class="col-lg-6">
+        <div
+          class="input-group bootstrap-touchspin bootstrap-touchspin-injected"
+        >
+          <span class="input-group-btn input-group-prepend">
+            <button
+              class="btn-secondary btn btn-sm btn-bold bootstrap-touchspin-down"
+              type="button"
+              (click)="decrementValue()"
+            >
+              <i class="fa fa-minus"></i>
+            </button>
+          </span>
+          <input
+            id="kt_touchspin_1"
+            type="text"
+            class="form-control input-text"
+            [(ngModel)]="count"
+            (ngModelChange)="valueChangedByType($event)"
+            name="demo1"
+          />
+          <span class="input-group-btn input-group-append">
+            <button
+              class="btn-secondary btn btn-sm btn-bold bootstrap-touchspin-up"
+              type="button"
+              (click)="incrementValue()"
+            >
+              <i class="fa fa-plus"></i>
+            </button>
+          </span>
+          <span class="form-text text-muted mt-2"
+            >Links to above mentioned items will be sent to
+            {{ count }} buyers.</span
+          >
+        </div>
+      </div>
+    </div>
+
+    <!-- <div class="row form-group btn-align mt-2">
+      <button class="btn-success btn btn-sm btn-bold" type="button">
+        TOTAL INR
+        <span>{{ totalValue }}</span>
+      </button>
+    </div> -->
+  </kt-portlet-body>
+  <kt-portlet-footer class="form-group footer-align">
+    <button class="btn btn-default mt-3 mr-3" (click)="previewFlyer()">
+      Preview
+    </button>
+    <button
+      type="button"
+      class="mt-3 btn btn-primary btn-bold"
+      (click)="proceedToPay()"
+      [ngClass]="{ 'kt-spinner kt-spinner--light': loading }"
+      [disabled]="diasbleBtn()"
+    >
+      Send
+    </button>
+  </kt-portlet-footer>
+</kt-portlet>

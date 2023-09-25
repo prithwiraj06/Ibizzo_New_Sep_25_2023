@@ -1,0 +1,47 @@
+<div class="row">
+  <div class="col-lg-7 col-sm-12 col-md-7">
+    <div class="image-gallery-swiper-container body-height">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide no-padding" *ngFor="let item of imageGallery">
+          <a *ngIf="item.url" [href]="item.url"><img [src]="item.imageName" [alt]="item.description"
+              class="col-sm-12 col-lg-12 col-md-12 no-padding" /></a>
+          <div *ngIf="!item.url">
+            <img [src]="item.imageName" [alt]="item.description" class="col-sm-12 col-lg-12 col-md-12 no-padding" />
+          </div>
+          <div class="silde-title" *ngIf="item.description && item.description.length">
+            {{ item.description }}
+          </div>
+        </div>
+      </div>
+      <!-- Add Arrows -->
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+    </div>
+  </div>
+  <div class="col-lg-5 col-sm-12 col-md-5">
+    <kt-portlet>
+      <div class="kt-portlet__head">
+        <div class="kt-portlet__head-label label-size">
+          <span class="btn btn-primary btn-size" (click)="requestForQuote()">
+            Post Your Requirement
+          </span>
+        </div>
+      </div>
+      <kt-portlet-body>
+        <div class="row">
+          <div class="col-log-6 col-md-6 no-padding small-image" *ngFor="let item of promotionGallery">
+            <div class="silde-title-short" *ngIf="item.description && item.description.length">
+              {{ item.description }}
+            </div>
+            <a *ngIf="item.url" [href]="item.url">
+              <img [src]="item.imageName" [alt]="item.description" class="align-pics" />
+            </a>
+            <div *ngIf="!item.url">
+              <img [src]="item.imageName" [alt]="item.description" class="align-pics" />
+            </div>
+          </div>
+        </div>
+      </kt-portlet-body>
+    </kt-portlet>
+  </div>
+</div>

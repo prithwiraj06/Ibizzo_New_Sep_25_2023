@@ -1,0 +1,11 @@
+<div style="padding: 20px;">
+    <div class="form-group">
+        <label for="comment">Comment:</label>
+        <textarea [(ngModel)]="comment" matInput placeholder="Type here...." class="form-control" rows="5"
+            id="comment"></textarea>
+    </div>
+    <button type="button" class="btn btn-brand btn-md btn-upper btn-bold kt-chat__reply btn-chat"
+        (click)="addComment()">
+        Add Comment
+    </button>
+</div>

@@ -1,0 +1,56 @@
+<!-- begin: Header -->
+<div
+  ktHeader
+  #ktHeader
+  class="kt-header kt-grid__item"
+  [ngClass]="htmlClassService.getClasses('header', true)"
+  id="kt_header"
+>
+  <ngb-progressbar
+    class="kt-loading-bar"
+    *ngIf="(loader.progress$ | async) > 0"
+    [value]="loader.progress$ | async"
+    height="3px"
+  ></ngb-progressbar>
+  <div class="mt-2 primary-text"></div>
+  <div class="kt-header__top">
+    <div class="kt-container container-div company-header">
+      <!-- begin:: Brand -->
+      <kt-brand></kt-brand>
+      <!-- end:: Brand -->
+      <kt-search-default
+        class="search-bar"
+        style="width: 1200px !important"
+      ></kt-search-default>
+      <!-- begin:: Header Topbar -->
+     
+      <!-- end:: Header Topbar -->
+      <div *ngIf="(userInfo&&isVerfied())" (click)="showTitle()">
+        <img alt="logo" src="../../../../../assets/images/verified.png" height="60" />
+      </div>
+
+      <a href="javascript:;" *ngIf="(userInfo&&userInfo.showContact)" (click)="gotoContact()">
+        <img
+          alt="logo"
+          src="../../../../../assets/images/calll.png"
+          class="kt-header__primary-logo-default"
+          height="50"
+          width="70"
+        />
+      </a>
+      <kt-topbar></kt-topbar>
+      <!-- end:: Header Topbar -->
+    </div>
+  </div>
+  <div class="kt-header__bottom">
+    <div class="kt-container" [ngClass]="{ 'kt-container--fluid': fluid }">
+      <!-- begin: Header Menu -->
+      <kt-menu-horizontal
+        *ngIf="menuHeaderDisplay"
+        [showRightToolbar]="false"
+      ></kt-menu-horizontal>
+      <!-- end: Header Menu -->
+    </div>
+  </div>
+</div>
+<!-- end: Header -->

@@ -1,0 +1,54 @@
+<div class="kt-portlet">
+  <div class="kt-portlet__head">
+    <div class="kt-portlet__head-label">
+      <h3 class="kt-portlet__head-title">Announcement List</h3>
+    </div>
+    <div class="mt-2" *ngIf="isSuperAdmin">
+      <div class="kt-header__topbar-item kt-header__topbar-item--search">
+        <div class="kt-header__topbar-wrapper">
+          <div class="kt-header-toolbar">
+            <button
+                  type="button"
+                  class="btn btn-outline-primary"
+                  [routerLink]="['/dashboard/admin/add-annoucement'] | baseurl"
+                >
+                  Add new
+                </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="kt-portlet-body">
+    <div  class="row">
+      <div *ngFor="let item of allAnnoncement" class="col-3 col-3-xl">
+        <div  class=" associations-cards m-3 p-1 pr-0" >
+          <div class="set-align-center">
+            <img [src]="getImage(item.image)" height="210" width="100%" alt="" />
+          </div>
+          <div class="" style="padding: '20px';height: '220px'" >
+            <div class="set-align-center mt-1">
+              <span class="associations-card-header"
+              style="text-align: center;"
+              >
+               {{item.title}}
+              </span>
+            </div>
+            <div class="annoucement-card-body mt-4">
+              {{item.description}}
+           </div>
+            <div class="set-align-center mb-2">
+              <Button class="btn-login-xl mt-5"
+              [routerLink]="['/dashboard/admin/add-annoucement/'+item.announcementId] | baseurl"
+              >Edit</Button>
+              <Button class="btn-delete-xl mt-5 ml-2" (click)="delete(item)">Delete</Button>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+ 
+</div>

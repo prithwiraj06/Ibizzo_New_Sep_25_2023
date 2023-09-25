@@ -1,0 +1,20 @@
+<div class="kt-portlet kt-portlet--height-fluid">
+    <div class="kt-portlet__head">
+        <div class="kt-portlet__head-label">
+            <div class="kt-portlet__head-title kt-font-brand">
+                Categories
+            </div>
+        </div>
+    </div>
+    <div class="kt-portlet__body ">
+        <div class="kt-widget4">
+            <div class="kt-widget4__item" *ngFor="let item of categories">
+                <a [routerLink]="['/pages/category'] | baseurl" [queryParams]="{'categoryId': [item.categoryId]}"
+                    class="kt-widget4__title kt-widget4__title--light set-font ">
+                    {{item.category}}
+                </a>
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,341 @@
+:host {
+  .main-card {
+    height: 325px !important;
+    width: 250px;
+    margin: 10px;
+    background: #ff4700;
+    border-radius: 10px;
+    // border-width: 8px;
+    // border-color: #316903;
+    // background-image: linear-gradient(#0220c5, #501a2c);
+  }
+
+  .text-link-offer {
+    color: #2f2f2f;
+    font-size: 14px;
+    font-family: "Poppins";
+    line-height: 140%;
+    font-weight: 600;
+  }
+  .table-head-two {
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 60px;
+    color: #ffffff;
+    text-align: center;
+  }
+  .table-small {
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    text-align: center;
+    color: #ffffff;
+  }
+  .table-colspan-text {
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 140%;
+    color: #ffffff;
+    padding: 15px;
+    background-color: #3d6098;
+  }
+
+  .table-head-one {
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    text-align: center;
+    line-height: 130%;
+    color: #2f2f2f;
+  }
+
+  .border-full {
+    border: 2px solid #ff4700 !important;
+  }
+
+  .btn-primary-reg {
+    background: #da0608 !important;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.15);
+    border-radius: 100px !important;
+    border: 1px solid #da0608 !important;
+    height: 35px;
+    width: 170px;
+  }
+
+  .btn-primary-reg:hover {
+    background: #da0608;
+    color: #fff;
+    border: 1px solid #da0608 !important;
+  }
+
+  .ruppes {
+    color: #fff;
+    font-size: 16px !important;
+    font-family: monospace;
+    font-weight: bold;
+  }
+  .container-package {
+    display: flex;
+    justify-content: center;
+  }
+  .material-icons {
+    color: #000;
+  }
+
+  .surround-margin {
+    margin-bottom: 10px;
+    margin-right: 30px;
+    margin-left: 30px;
+  }
+
+  .ruppes-list {
+    color: #fff;
+    font-size: 12px !important;
+    /* font-family: monospace; */
+    font-weight: bold;
+  }
+
+  .footer-txt {
+    font-size: 18px !important;
+    font-weight: bold;
+    color: #000;
+  }
+
+  .heading {
+    font-size: 30px;
+    margin-top: 20px;
+    color: #eb920fe3;
+    font-family: initial;
+    font-weight: bold;
+  }
+
+  .sub-heading {
+    font-size: 20px;
+    text-align: justify;
+    font-family: auto;
+    font-weight: 500;
+    color: #000;
+  }
+
+  @media (max-width: 425px) {
+    .border-right-check {
+      display: none !important;
+    }
+  }
+
+  .text-color {
+    color: #fff;
+  }
+
+  ul li {
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  .feature {
+    border: 1px solid #fff;
+    padding: 20px;
+  }
+
+  .border-right-check {
+    margin-top: 80px;
+    border-left: 2px solid #ff4700 !important;
+  }
+  .material-icons {
+    font-size: 20px !important;
+  }
+  .list-container {
+    display: flex;
+    justify-content: center;
+  }
+
+  .price-text {
+    font-size: 23px !important;
+    font-family: monospace;
+    font-weight: bold;
+    font-style: italic;
+    color: #efefef;
+    text-shadow: 1px 1px 5px #000, 0 0 34px #2f660e, 0 0 20px #458f0c;
+    letter-spacing: -2px !important;
+  }
+  .list-font {
+    font-size: 30px;
+    color: #fff;
+  }
+  .pay-now-btn {
+    // border-bottom: 49px solid  rgb(100, 10, 10);
+    // border-right: 34px solid transparent;
+    background-color: #fff;
+    cursor: pointer;
+  }
+
+  .cursor-point {
+    cursor: pointer;
+  }
+
+  .pay-text {
+    color: #316903;
+    font-weight: bold;
+    font-size: 20px;
+  }
+
+  .btn-color {
+    // background-image: linear-gradient(#0220c5, #501a2c);
+    background-image: linear-gradient(#cd1b13, #d13b6e);
+    color: #fff;
+  }
+
+  .swiper-slide {
+    //  width: 271px !important;
+  }
+
+  // .main-card {
+  //   height: auto !important;
+  //   width: 250px;
+  //   margin: 10px;
+  //   /* background: #ff4700 !important; */
+  //   border-radius: 10px;
+  // }
+
+  .pay-now-btn1 {
+    width: 150px !important;
+    height: 40px !important;
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+    padding-left: 15px !important;
+    padding-right: 35px !important;
+    border-top-right-radius: 84px !important;
+  }
+
+  .set-align-center {
+    display: flex;
+    justify-content: center;
+    /* align-content: center; */
+  }
+
+  .color-change {
+    font-weight: bold;
+    background: yellow;
+  }
+
+  .border-offers {
+    padding: 10px;
+    border: 1px solid;
+    text-align: center;
+    font-weight: 600;
+  }
+  .ruppes {
+    color: #fff;
+    font-size: 16px !important;
+    font-family: monospace;
+    font-weight: bold;
+  }
+
+  .material-icons {
+    color: #000;
+  }
+
+  .surround-margin {
+    margin-bottom: 10px;
+    margin-right: 30px;
+    margin-left: 30px;
+  }
+
+  .ruppes-list {
+    color: #fff;
+    font-size: 12px !important;
+  }
+
+  .footer-txt {
+    font-size: 18px !important;
+    font-weight: bold;
+    color: #000;
+  }
+
+  .heading {
+    font-size: 30px;
+    margin-top: 20px;
+    color: #eb920fe3;
+    font-family: initial;
+    font-weight: bold;
+  }
+
+  .sub-heading {
+    font-size: 20px;
+    text-align: justify;
+    font-family: auto;
+    font-weight: 500;
+    color: #000;
+  }
+
+  @media (max-width: 425px) {
+    .border-right-check {
+      display: none !important;
+    }
+  }
+
+  .text-color {
+    color: #fff;
+  }
+
+  ul li {
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  .border-full {
+    border: 2px solid #ff4700 !important;
+  }
+
+  .feature {
+    border: 1px solid #fff;
+    padding: 20px;
+  }
+
+  .border-right-check {
+    margin-top: 80px;
+    border-left: 2px solid #ff4700 !important;
+  }
+
+  .price-text {
+    font-size: 23px !important;
+    font-family: monospace;
+    font-weight: bold;
+  }
+
+  .pay-now-btn {
+    background-color: #fff;
+    cursor: pointer;
+  }
+
+  .pay-text {
+    color: #eb920fe3;
+    font-weight: bold;
+  }
+
+  .btn-color {
+    background-image: linear-gradient(#cd1b13, #d13b6e);
+    color: #fff;
+  }
+  .company-info {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    box-shadow: 0px 0px 13px 0px rgba(82, 63, 105, 0.05);
+    background-color: #ffffff;
+    margin-bottom: 20px;
+    border-radius: 4px;
+  }
+  .btn-brand {
+    background-color: #ff0000;
+    border-color: #ff0000;
+    color: #ffffff;
+  }
+}

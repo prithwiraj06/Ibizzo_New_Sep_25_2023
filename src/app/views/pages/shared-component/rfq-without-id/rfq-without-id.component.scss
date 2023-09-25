@@ -1,0 +1,24 @@
+.form-label{
+  text-align: right;
+  margin-top: 11px;
+}
+
+.btn-color{
+  background: #dc3545 !important;
+  color: #ffffff;
+}
+
+.footer-align{
+  text-align: center; 
+}
+
+.error{
+  border-color: #dc3545;
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+  .form-label{
+    text-align: left;
+}
+
+}

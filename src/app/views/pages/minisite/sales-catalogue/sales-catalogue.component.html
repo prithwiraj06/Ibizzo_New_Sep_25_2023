@@ -1,0 +1,79 @@
+<div
+  class="sales-catalog-wrapper"
+  svgbackground
+  [accentColor]="userInfo.accentColor"
+  [alternateColor]="userInfo.alternateColor"
+>
+  <div class="row">
+    <div class="col col-md-3">
+      <h2 class="kt-sc__title">Sales Catalogue</h2>
+    </div>
+    <div class="col col-md-9">
+      <kt-social-share></kt-social-share>
+    </div>
+  </div>
+
+  <!-- begin:: Section -->
+  <div class="row">
+    <div class="col col-md-3">
+      <kt-portlet>
+        <kt-portlet-header title="Featured"></kt-portlet-header>
+        <kt-portlet-body class="less-padding">
+          <kt-product-card
+            *ngIf="heroCard"
+            [product]="heroCard"
+            [colors]="minisiteColors"
+            [isCatalog]="true"
+            [source]="search"
+            [search]="search"
+            [memId]="this.companyInfo.sellerId"
+            target="_blank"
+          ></kt-product-card>
+        </kt-portlet-body>
+      </kt-portlet>
+    </div>
+
+    <div class="col col-md-9">
+      <div class="kt-portlet">
+        <kt-portlet-header title="New Arrival"></kt-portlet-header>
+        <kt-portlet-body class="less-padding portlet-body">
+          <kt-no-results
+            class="text-position"
+            *ngIf="newArrivals.length == 0"
+            [show]="true"
+            message="There are no new arrivals"
+          ></kt-no-results>
+          <div class="row" *ngIf="newArrivals && newArrivals.length">
+            <kt-product-card
+              *ngFor="let product of newArrivals"
+              [product]="product"
+              [search]="search"
+              class="col col-md-4"
+              [colors]="minisiteColors"
+              [source]="search"
+              [isCatalog]="true"
+              [memId]="this.companyInfo.sellerId"
+              target="_blank"
+            >
+            </kt-product-card>
+          </div>
+        </kt-portlet-body>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="remainingProducts.length" class="row mobi-view">
+  <kt-product-card
+    *ngFor="let product of remainingProducts"
+    [product]="product"
+    [search]="search"
+    class="col col-md-3"
+    shadow="more"
+    [colors]="minisiteColors"
+    [source]="search"
+    [isCatalog]="true"
+    target="_blank"
+  >
+  </kt-product-card>
+</div>

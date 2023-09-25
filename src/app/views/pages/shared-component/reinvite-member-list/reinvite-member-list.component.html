@@ -1,0 +1,225 @@
+<kt-portlet-body>
+  <div class="mat-table__wrapper">
+    <mat-table
+      #table
+      [dataSource]="dataSource"
+      matSortActive="name"
+      matSortDirection="asc"
+      class="table table-striped"
+      matSort
+      #sort1="matSort"
+      (matSortChange)="sortData($event)"
+    >
+      <ng-container matColumnDef="#" *ngIf="type == 'pendingReg'">
+        <mat-header-cell *matHeaderCellDef>
+          <span class="check-coloumn">
+            <mat-checkbox
+              (change)="$event ? masterToggle() : null"
+              [checked]="isCheck"
+              [indeterminate]="isCheck"
+            >
+            </mat-checkbox>
+          </span>
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element; let i = index">
+          <mat-checkbox
+            [disabled]="element.isActive == 0"
+            (click)="$event.stopPropagation()"
+            [checked]="selection.isSelected(element)"
+            (change)="handleInviteMember(element, $event)"
+          ></mat-checkbox>
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="#" *ngIf="type != 'pendingReg'">
+        <mat-header-cell *matHeaderCellDef> # </mat-header-cell>
+        <mat-cell *matCellDef="let element; let i = index">
+          {{ i + 1 + paginator.pageSize * paginator.pageIndex }}
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <mat-header-cell
+          *matHeaderCellDef
+          [ngClass]="
+            type == 'updatedProfile' ? 'name-profile-cell' : 'name-reg-cell'
+          "
+          mat-sort-header
+        >
+          Name
+        </mat-header-cell>
+        <mat-cell
+          *matCellDef="let element"
+          [ngClass]="
+            type == 'updatedProfile' ? 'name-profile-cell' : 'name-reg-cell'
+          "
+        >
+          {{ element.name }}
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="companyName">
+        <mat-header-cell *matHeaderCellDef mat-sort-header
+          >Company Name</mat-header-cell
+        >
+        <mat-cell *matCellDef="let element">
+          {{ element.companyName }}
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="email">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          Email
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <a href="mailto:{{ element.email }}" class="kt-link">{{
+            element.email
+          }}</a>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="phoneNo">
+        <mat-header-cell
+          *matHeaderCellDef
+          [ngClass]="type == 'updatedProfile' ? 'phone-cell' : ''"
+        >
+          Phone No
+        </mat-header-cell>
+        <mat-cell
+          *matCellDef="let element"
+          [ngClass]="type == 'updatedProfile' ? 'phone-cell' : ''"
+        >
+          {{ element.phoneNo }}
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="reinvite">
+        <mat-header-cell
+          *matHeaderCellDef
+          [ngClass]="type == 'updatedProfile' ? 'reinvite-cell' : ''"
+        >
+          ReInvite
+        </mat-header-cell>
+        <mat-cell
+          *matCellDef="let element; let i = index"
+          [ngClass]="type == 'updatedProfile' ? 'reinvite-cell' : ''"
+        >
+          <mat-checkbox (change)="handleInviteMember(element, $event)"
+            >Reinvite</mat-checkbox
+          >
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="sales">
+        <mat-header-cell *matHeaderCellDef> Sales Products </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          {{ element.salesPrdCnt }}
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="purchase">
+        <mat-header-cell *matHeaderCellDef> Purchase Products </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          {{ element.purchasePrdCnt }}
+        </mat-cell>
+      </ng-container>
+      -->
+
+      <ng-container matColumnDef="block">
+        <mat-header-cell
+          *matHeaderCellDef
+          [ngClass]="type == 'updatedProfile' ? 'block-profile-cell' : ''"
+        >
+          Block
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <button
+            *ngIf="element.isActive == 1"
+            [ngClass]="type != 'updatedProfile' ? 'block-btn' : ''"
+            class="btn btn-clear btn-sm"
+            (click)="blockInvitedMember(element)"
+          >
+            <i class="fa fa-user-slash kt-font-danger"></i>&nbsp;Block
+          </button>
+          <button
+            *ngIf="element.isActive == 0"
+            [ngClass]="type != 'updatedProfile' ? 'block-btn' : ''"
+            class="btn btn-clear btn-sm"
+            (click)="unblockInvitedMember(element)"
+          >
+            <i class="fa fa-user-check kt-font-success"></i>&nbsp;Unblock
+          </button>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="profile">
+        <mat-header-cell *matHeaderCellDef> Profile </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <button
+            class="btn btn-label-brand btn-sm"
+            (click)="memberProfile(element)"
+          >
+            Update
+          </button>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="status">
+        <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <div
+            class="font-weight-bold"
+            [ngClass]="element.emailSent == 0 ? 'text-success' : 'text-warning'"
+          >
+            {{ element.emailSent == 0 ? "Mail Sent" : "Not Sent" }}
+          </div>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="dateTime">
+        <mat-header-cell
+          *matHeaderCellDef
+          [ngClass]="
+            type == 'updatedProfile' ? 'date-profile-cell' : 'date-reg-cell'
+          "
+        >
+          History
+        </mat-header-cell>
+        <mat-cell
+          *matCellDef="let element"
+          [ngClass]="
+            type == 'updatedProfile' ? 'date-profile-cell' : 'date-reg-cell'
+          "
+        >
+          <button
+            class="btn btn-label-primary btn-sm"
+            (click)="seeHistory(element)"
+          >
+            See history
+          </button>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row
+        *matRowDef="let row; columns: displayedColumns"
+        [ngClass]="row.isActive == 0 ? 'disabled-row' : ''"
+      >
+      </mat-row>
+    </mat-table>
+
+    <div class="mat-table__message" *ngIf="!dataSource.hasData">
+      No Record Found
+    </div>
+  </div>
+  <div class="mat-table__bottom">
+    <mat-spinner *ngIf="loading" [diameter]="20"> </mat-spinner>
+    <mat-paginator
+      [pageSize]="10"
+      [pageSizeOptions]="[10, 20, 50]"
+      (page)="pageChangeEvent()"
+      [length]="length"
+      [showFirstLastButtons]="true"
+    >
+    </mat-paginator>
+  </div>
+</kt-portlet-body>

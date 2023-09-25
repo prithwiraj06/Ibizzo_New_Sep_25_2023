@@ -1,0 +1,114 @@
+
+.border-color {
+  border-color: #fd397a !important;
+}
+
+.border-color:focus {
+  border-color: #fd397a;
+}
+
+.form-label{
+  margin-top: 1%;
+  text-align: right;
+}
+
+@import "../../../../../../assets/sass/pages/wizard/wizard-3.scss";
+
+:host{
+  .kt-portlet__body{
+    padding: 0px !important;
+  }
+
+  .kt-wizard-v3__nav-items.kt-wizard-v3__nav-items--clickable{
+    padding: 0 2rem !important;
+  }
+
+  .kt-wizard-v3__nav-item{
+    flex: 0 0 25% !important;
+  }
+
+  .kt-wizard-v3__content{
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .kt-form__actions{
+    padding: 15px 0px;
+  }
+
+  form{
+    width: 100% !important;
+  }
+
+  .header-without-padding{
+    padding-left: 0px;
+    margin-bottom: 15px;
+  }
+
+  .mat-radio-seperator {
+    mat-radio-button{
+      border-bottom: 1px dotted silver;
+      display: block;
+      padding: 5px;
+    }
+  }
+  
+  .kt-option-outline-brand{
+    border: 1px solid #366cf3;
+    color: #366cf3;
+  }
+  
+  .kt-option__body{
+    padding-top: 0px;
+  }
+  
+  button.btn-purchase{
+    margin-top: 15px;
+  }
+  
+  .no-margin{
+    margin-bottom: 0px;
+  }
+  
+  .header{
+    display: grid;
+    justify-content: center;
+  }
+  
+  .text-style{
+    display: grid;
+    justify-content: center;
+  }
+  .payment{
+    margin-top: 10px;
+  }
+  .test-mode{
+    color: #3a2700;
+    margin: -25px -25px 0px -25px;
+    background-color: #fbdd9fd6;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    padding: 5px;
+  }
+  .mat-expansion-panel-header[aria-disabled=true] {
+    color: #435bd2 !important;
+      font-family: Poppins !important;
+      font-size:initial;
+  }
+
+  .mat-table__wrapper .mat-table {
+    min-width: 859px !important;
+    width: 100% !important;
+}
+
+.wizard-tab{
+  pointer-events: none !important;
+}
+
+.form-control[readonly] {
+  background-color: #d8dbe0 !important;
+}
+
+}

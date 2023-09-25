@@ -1,0 +1,145 @@
+<kt-portlet>
+  <kt-portlet-body class="portlet-body">
+    <mat-table #table [dataSource]="dataSource">
+      <ng-container matColumnDef="#">
+        <mat-header-cell
+          *matHeaderCellDef
+          class="mob-view"
+          [ngClass]="title == 'sales' ? '' : 'cell'"
+        >
+          #
+        </mat-header-cell>
+        <mat-cell
+          *matCellDef="let element; let i = index"
+          class="mob-view"
+          [ngClass]="title == 'sales' ? '' : 'cell'"
+        >
+          {{ element.serialNumber }}
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="products" >
+        <mat-header-cell *matHeaderCellDef element class='products' [ngClass]="title == 'sales' ? 'sales-cell' : ''">
+          Products/services
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element" class='products' [ngClass]="title == 'sales' ? 'sales-cell' : ''">
+          {{element.productName}}
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="supplyDetails">
+        <mat-header-cell *matHeaderCellDef class="mob-view"
+          >Supply Details</mat-header-cell
+        >
+        <mat-cell *matCellDef="let element" class="mob-view">
+          <div>
+            <p style="margin-bottom: 0rem !important;">
+              Price:
+              <span class="price-text"
+                >{{ element.priceMin }} - {{ element.priceMax }} INR</span
+              >
+            </p>
+            MOQ: <span class="price-text">{{ element.moq }}</span>
+          </div>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="description">
+        <mat-header-cell *matHeaderCellDef element class="mob-view">
+          Description
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element" class="mob-view">
+          <span class="kt-truncate">{{
+            (element?.descriptionList)[0]?.description
+          }}</span>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="history">
+        <mat-header-cell
+          *matHeaderCellDef
+          class="history"
+          [ngClass]="title == 'sales' ? 'sales-history' : ''"
+        >
+          History
+        </mat-header-cell>
+        <mat-cell
+          *matCellDef="let element"
+          class="history"
+          [ngClass]="title == 'sales' ? 'sales-history' : ''"
+        >
+          <button
+            class="btn btn-label-primary btn-sm"
+            (click)="openProductFlyers(element)"
+          >
+            View
+          </button>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="buyers">
+        <mat-header-cell
+          *matHeaderCellDef
+          class="buyers"
+          [ngClass]="title == 'sales' ? 'sales-buyer' : ''"
+        >
+          Buyers
+        </mat-header-cell>
+        <mat-cell
+          *matCellDef="let element"
+          class="buyers"
+          [ngClass]="title == 'sales' ? 'sales-buyer' : ''"
+        >
+          <button
+            class="btn btn-label-brand btn-sm"
+            (click)="tellBuyersOrSeller(element, 1)"
+          >
+            {{ element.noOfBuyers }}
+          </button>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="seller">
+        <mat-header-cell *matHeaderCellDef class="saler-cell">
+          Sellers
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element" class="saler-cell">
+          {{ element.noOfSellers }}
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="action">
+        <mat-header-cell *matHeaderCellDef element>
+          Actions
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <button class="btn btn-outline-primary" (click)="emitFunc(element)">Edit</button>
+          &nbsp;
+          <button class="btn btn-outline-secondary" *ngIf="title == 'sales'" (click)="delete(element)">Delete</button>
+          <button class="btn btn-outline-secondary" *ngIf="title != 'sales'"
+            [routerLink]="['/dashboard/business/quote'] | baseurl" [queryParams]="{'productName': element.productName}">
+            RFQ</button>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns"> </mat-row>
+    </mat-table>
+
+    <div class="mat-table__message" *ngIf="!dataSource.hasData">
+      No Record Found
+    </div>
+
+    <div class="mat-table__bottom">
+      <mat-spinner [diameter]="20" *ngIf="fetching"> </mat-spinner>
+      <mat-paginator
+        [pageSize]="8"
+        [pageSizeOptions]="[8, 16, 24]"
+        (page)="pageChangeEvent($event)"
+        [length]="1000"
+        [showFirstLastButtons]="true"
+      >
+      </mat-paginator>
+    </div>
+  </kt-portlet-body>
+</kt-portlet>

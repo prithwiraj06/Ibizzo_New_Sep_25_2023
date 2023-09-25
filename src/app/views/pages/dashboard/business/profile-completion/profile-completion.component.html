@@ -1,0 +1,21 @@
+<!--   -->
+
+<div class="kt-mycart__container" [routerLink]="['/dashboard/business/profile'] | baseurl">
+  <div class="circle" id="circle-c">
+    <div *ngIf="totalPercentage" class="profile-status">
+      {{ totalPercentage }}%
+    </div>
+  </div>
+  <div class="kt-mycart__info user-details">
+    <a *ngIf="totalPercentage" class="kt-mycart__title kt-font-bold text-primary">
+      Your profile is completed only
+      {{ totalPercentage }}%
+    </a>
+  </div>
+  <div class="kt-mycart__info">
+    <div class="kt-notification__custom">
+      <a [routerLink]="['/dashboard/business/profile'] | baseurl" class="btn btn-secondary border-default">Update</a>
+      <div></div>
+    </div>
+  </div>
+</div>

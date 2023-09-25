@@ -1,0 +1,20 @@
+
+:host{
+  .cursor{
+    cursor: pointer;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    }
+    .amount-cell{
+      margin-left: -80px;
+    }
+
+    .mat-action-column{
+      overflow: visible;
+      
+      // width: 10px !important;
+      // min-width: 10px !important;
+      // max-width: 10px !important;
+    }
+}

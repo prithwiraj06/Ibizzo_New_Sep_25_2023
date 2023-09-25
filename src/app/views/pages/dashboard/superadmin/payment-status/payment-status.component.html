@@ -1,0 +1,94 @@
+<kt-portlet>
+  <div class="kt-portlet__head">
+    <div class="kt-portlet__head-label">
+      <h3 class="kt-portlet__head-title">Payment Status</h3>
+    </div>
+  </div>
+
+  <kt-portlet-body>
+    <mat-table #table [dataSource]="dataSource">
+      <ng-container matColumnDef="#">
+        <mat-header-cell *matHeaderCellDef> SI. No </mat-header-cell>
+        <mat-cell *matCellDef="let element; let i=index"> {{(i+1)+(paginator.pageSize*paginator.pageIndex)}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef class="amount-cell-1">Name</mat-header-cell>
+        <mat-cell *matCellDef="let element" class="amount-cell-1">
+          <span class="text-overflow">
+            {{element.name}}
+          </span>
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="email">
+        <mat-header-cell *matHeaderCellDef class="amount-cell-2">Email</mat-header-cell>
+        <mat-cell *matCellDef="let element" class="amount-cell-2">
+          <a class="text-primary text-overflow" [href]="getMail(element)">
+            {{element.email}}
+          </a>
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="phone">
+        <mat-header-cell *matHeaderCellDef class="amount-cell">Phone</mat-header-cell>
+        <mat-cell *matCellDef="let element" class="amount-cell">
+          {{element.phoneNumber}}
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="trxId">
+        <mat-header-cell *matHeaderCellDef class="amount-cell">
+          Reference Id
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element" class="amount-cell">
+          <span class="btn btn-label-primary btn-sm">
+            {{element.referenceId}}
+          </span>
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="comments">
+        <mat-header-cell *matHeaderCellDef class="amount-cell-3">
+          Comments
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element" class="amount-cell-3">
+          <span>
+            {{element.comments}}
+          </span>
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="amount">
+        <mat-header-cell *matHeaderCellDef>
+          Amount
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <span class="cursor">
+            {{element.totalAmount/100}}
+            <!-- <i class="fa fa-info-circle" aria-hidden="true"></i> -->
+          </span>
+        </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="status">
+        <mat-header-cell *matHeaderCellDef>
+          Status
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <span *ngIf='element.actions' [ngClass]="element.actions=='Reject'?'text-danger':'text-success'">
+            {{element.actions=='Reject'?'Rejected':'Approved'}}
+          </span>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;">
+      </mat-row>
+    </mat-table>
+
+    <div class="mat-table__message text-center " *ngIf="record">
+      No Record Found
+    </div>
+    <div *ngIf="fetching" style="display: flex; justify-content: center; align-items: center">
+      <mat-progress-spinner color="primary" mode="indeterminate" diameter="20">
+      </mat-progress-spinner>
+    </div>
+    <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]" (page)="pageChangeEvent()" [length]='1000'
+      [showFirstLastButtons]="true">
+    </mat-paginator>
+  </kt-portlet-body>
+</kt-portlet>

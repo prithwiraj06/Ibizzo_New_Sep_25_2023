@@ -1,0 +1,15 @@
+:host {
+  width: 100%;
+  display: block;
+}
+
+:host {
+  ::ng-deep {
+    .select2-selection--multiple {
+      padding: 5px !important;
+    }
+    .select2-container {
+      width: 100% !important;
+    }
+  }
+}

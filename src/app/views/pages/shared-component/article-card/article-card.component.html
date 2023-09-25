@@ -1,0 +1,632 @@
+<div *ngIf="!isProduct&&!isPublic">
+  <div class="row">
+    <div class="col-lg-12">
+      <span class="question">Post a :</span>
+
+      <a (click)="openRFQ()" class="btn btn-light link-btn">
+        <i class="flaticon2-shopping-cart kt-font-primary"></i>
+        Requirement
+      </a>
+      <button class="btn btn-light" (click)="createArticle()">
+        <i class="flaticon-list-1 kt-font-success"></i>
+        Article
+      </button>
+      <button class="btn btn-light" (click)="createVideo()">
+        <i class="flaticon-youtube kt-font-danger"></i>
+        Video
+      </button>
+    </div>
+  </div>
+  <div>
+    <kt-no-results class="text-position" *ngIf="finalArray.length == 0" [show]="true"
+     message="There are no posts to show."
+></kt-no-results>
+  </div>
+  <div class="search-results row" infiniteScroll [infiniteScrollDistance]="0.5"
+    (scrolled)="scrollDown($event, 'discussion')">
+    <div class="col-lg-4" *ngIf="firstArray.length > 0">
+      <!--begin::Card-->
+
+      <div class="card card-custom card-stretch card-stretch-third gutter-b card-border" *ngFor="let item of firstArray">
+        <div class="card-body" *ngIf="!item.video">
+           <div class="content-center">
+            <img mat-card-image width="265" *ngIf="item.contentLink" height="200" [src]="getImage(item.contentLink)" />
+
+          </div>
+
+          <p *ngIf="item.articleContent" [innerHTML]=" item.articleContent">
+            <!-- {{ item.articleContent }} -->
+          </p>
+        </div>
+        <div class="card-body" *ngIf="item.video">
+        <div class="content-center">
+             <iframe width="265" [src]="item.video" frameborder="0"
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+          </iframe>
+          </div>
+
+          <p *ngIf="item.articleContent">
+            {{ item.articleContent }}
+          </p>
+        </div>
+        <div class="card-footer">
+          <div class="row">
+            <button class="col-sm-6 btn btn-bold btn-sm" style="float: right;" (click)="comment(item)">
+              <i class="flaticon2-chat-1"></i> Comment
+            </button>
+            <button class="col-sm-6 btn btn-bold btn-sm" style="float: right;" (click)="viewMember(item)">
+              <i class="flaticon-users-1"></i> View member
+            </button>
+          </div>
+        </div>
+      </div>
+      <!--end::Card-->
+    </div>
+    <div class="col-lg-4" *ngIf="secondArray.length > 0">
+      <!--begin::Card-->
+
+      <div class="card card-custom card-stretch card-stretch-third gutter-b card-border" *ngFor="let item of secondArray">
+        <div class="card-body" *ngIf="!item.video">
+         <div class="content-center">
+            <img mat-card-image width="265" *ngIf="item.contentLink" height="200" [src]="getImage(item.contentLink)" />
+
+          </div>
+          <div *ngIf="item.articleContent" [innerHTML]=" item.articleContent">
+            <!-- {{ item.articleContent }} -->
+          </div>
+        </div>
+        <div class="card-body" *ngIf="item.video">
+        <div class="content-center">
+             <iframe width="265" [src]="item.video" frameborder="0"
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+          </iframe>
+          </div>
+
+          <p *ngIf="item.articleContent">
+            {{ item.articleContent }}
+          </p>
+        </div>
+        <div class="card-footer">
+          <div class="row">
+            <button class="col-sm-6 btn btn-bold btn-sm" style="float: right;" (click)="comment(item)">
+              <i class="flaticon2-chat-1"></i> Comment
+            </button>
+            <button class="col-sm-6 btn btn-bold btn-sm" style="float: right;" (click)="viewMember(item)">
+              <i class="flaticon-users-1"></i> View member
+            </button>
+          </div>
+        </div>
+      </div>
+      <!--end::Card-->
+    </div>
+    <div class="col-lg-4" *ngIf="thirdArray.length > 0">
+      <!--begin::Card-->
+
+      <div class="card card-custom card-stretch card-stretch-third gutter-b card-border" *ngFor="let item of thirdArray">
+        <div class="card-body" *ngIf="!item.video">
+         <div class="content-center">
+            <img mat-card-image width="265" *ngIf="item.contentLink" height="200" [src]="getImage(item.contentLink)" />
+
+          </div>
+          <p *ngIf="item.articleContent" [innerHTML]=" item.articleContent">
+            <!-- {{ item.articleContent }} -->
+          </p>
+        </div>
+        <div class="card-body" *ngIf="item.video">
+        <div class="content-center">
+             <iframe width="265" [src]="item.video" frameborder="0"
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+          </iframe>
+          </div>
+
+          <p *ngIf="item.articleContent">
+            {{ item.articleContent }}
+          </p>
+        </div>
+        <div class="card-footer">
+          <div class="row">
+            <button class="col-sm-6 btn btn-bold btn-sm" style="float: right;" (click)="comment(item)">
+              <i class="flaticon2-chat-1"></i> Comment
+            </button>
+            <button class="col-sm-6 btn btn-bold btn-sm" style="float: right;" (click)="viewMember(item)">
+              <i class="flaticon-users-1"></i> View member
+            </button>
+          </div>
+        </div>
+      </div>
+      <!--end::Card-->
+    </div>
+  </div>
+  <mat-spinner *ngIf="loadingDiscussions" style="margin: 0 auto;" [diameter]="30">
+  </mat-spinner>
+  <!-- end Discussions -->
+</div>
+
+<!-- start public view -->
+
+<div *ngIf="!isProduct&&isPublic">
+  <div class="row" >
+    <div class="col-lg-12">
+      <span class="question">Post a :</span>
+
+      <a (click)="openRFQ()" class="btn btn-light link-btn">
+        <i class="flaticon2-shopping-cart kt-font-primary"></i>
+        Requirement
+      </a>
+      <button class="btn btn-light" (click)="createArticle()">
+        <i class="flaticon-list-1 kt-font-success"></i>
+        Article
+      </button>
+      <button class="btn btn-light" (click)="createVideo()">
+        <i class="flaticon-youtube kt-font-danger"></i>
+        Video
+      </button>
+    </div>
+  </div>
+  <div>
+    <kt-no-results class="text-position" *ngIf="finalArray.length == 0" [show]="true"
+     message="There are no posts to show."
+></kt-no-results>
+  </div>
+  <div class="search-results row" infiniteScroll [infiniteScrollDistance]="0.5"
+    (scrolled)="scrollDown($event, 'discussion')">
+    <div class="col-lg-3" *ngIf="firstArray.length > 0">
+      <!--begin::Card-->
+
+      <div class="card card-custom card-stretch card-stretch-third gutter-b card-border" *ngFor="let item of firstArray">
+        <div class="card-body" *ngIf="!item.video">
+         <div class="content-center">
+            <img mat-card-image width="265" *ngIf="item.contentLink" height="200" [src]="getImage(item.contentLink)" />
+
+          </div>
+          <p *ngIf="item.articleContent" [innerHTML]=" item.articleContent">
+            <!-- {{ item.articleContent }} -->
+          </p>
+        </div>
+        <div class="card-body" *ngIf="item.video">
+        <div class="content-center">
+             <iframe width="265" [src]="item.video" frameborder="0"
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+          </iframe>
+          </div>
+
+          <p *ngIf="item.articleContent">
+            {{ item.articleContent }}
+          </p>
+        </div>
+        <div class="card-footer">
+          <div class="row">
+            <button class="col-sm-6 btn btn-bold btn-sm" style="float: right;" (click)="comment(item)">
+              <i class="flaticon2-chat-1"></i> Comment
+            </button>
+            <button class="col-sm-6 btn btn-bold btn-sm" style="float: right;" (click)="viewMember(item)">
+              <i class="flaticon-users-1"></i> View member
+            </button>
+          </div>
+        </div>
+      </div>
+      <!--end::Card-->
+    </div>
+    <div class="col-lg-3" *ngIf="secondArray.length > 0">
+      <!--begin::Card-->
+
+      <div class="card card-custom card-stretch card-stretch-third gutter-b card-border" *ngFor="let item of secondArray">
+        <div class="card-body" *ngIf="!item.video">
+         <div class="content-center">
+            <img mat-card-image width="265" *ngIf="item.contentLink" height="200" [src]="getImage(item.contentLink)" />
+
+          </div>
+          <div *ngIf="item.articleContent" [innerHTML]=" item.articleContent">
+            <!-- {{ item.articleContent }} -->
+          </div>
+        </div>
+        <div class="card-body" *ngIf="item.video">
+        <div class="content-center">
+             <iframe width="265" [src]="item.video" frameborder="0"
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+          </iframe>
+          </div>
+
+          <p *ngIf="item.articleContent">
+            {{ item.articleContent }}
+          </p>
+        </div>
+        <div class="card-footer">
+          <div class="row">
+            <button class="col-sm-6 btn btn-bold btn-sm" style="float: right;" (click)="comment(item)">
+              <i class="flaticon2-chat-1"></i> Comment
+            </button>
+            <button class="col-sm-6 btn btn-bold btn-sm" style="float: right;" (click)="viewMember(item)">
+              <i class="flaticon-users-1"></i> View member
+            </button>
+          </div>
+        </div>
+      </div>
+      <!--end::Card-->
+    </div>
+    <div class="col-lg-3" *ngIf="thirdArray.length > 0">
+      <!--begin::Card-->
+
+      <div class="card card-custom card-stretch card-stretch-third gutter-b card-border" *ngFor="let item of thirdArray">
+        <div class="card-body" *ngIf="!item.video">
+         <div class="content-center">
+            <img mat-card-image width="265" *ngIf="item.contentLink" height="200" [src]="getImage(item.contentLink)" />
+
+          </div>
+          <p *ngIf="item.articleContent" [innerHTML]=" item.articleContent">
+            <!-- {{ item.articleContent }} -->
+          </p>
+        </div>
+        <div class="card-body" *ngIf="item.video">
+        <div class="content-center">
+             <iframe width="265" [src]="item.video" frameborder="0"
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+          </iframe>
+          </div>
+
+          <p *ngIf="item.articleContent">
+            {{ item.articleContent }}
+          </p>
+        </div>
+        <div class="card-footer">
+          <div class="row">
+            <button class="col-sm-6 btn btn-bold btn-sm" style="float: right;" (click)="comment(item)">
+              <i class="flaticon2-chat-1"></i> Comment
+            </button>
+            <button class="col-sm-6 btn btn-bold btn-sm" style="float: right;" (click)="viewMember(item)">
+              <i class="flaticon-users-1"></i> View member
+            </button>
+          </div>
+        </div>
+      </div>
+      <!--end::Card-->
+    </div>
+    <div class="col-lg-3" *ngIf="fourthArray.length > 0">
+      <!--begin::Card-->
+
+      <div class="card card-custom card-stretch card-stretch-third gutter-b card-border" *ngFor="let item of fourthArray">
+        <div class="card-body" *ngIf="!item.video">
+         <div class="content-center">
+            <img mat-card-image width="265" *ngIf="item.contentLink" height="200" [src]="getImage(item.contentLink)" />
+
+          </div>
+          <p *ngIf="item.articleContent" [innerHTML]=" item.articleContent">
+            <!-- {{ item.articleContent }} -->
+          </p>
+        </div>
+        <div class="card-body" *ngIf="item.video">
+        <div class="content-center">
+             <iframe width="265" [src]="item.video" frameborder="0"
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+          </iframe>
+          </div>
+
+          <p *ngIf="item.articleContent">
+            {{ item.articleContent }}
+          </p>
+        </div>
+        <div class="card-footer">
+          <div class="row">
+            <button class="col-sm-6 btn btn-bold btn-sm" style="float: right;" (click)="comment(item)">
+              <i class="flaticon2-chat-1"></i> Comment
+            </button>
+            <button class="col-sm-6 btn btn-bold btn-sm" style="float: right;" (click)="viewMember(item)">
+              <i class="flaticon-users-1"></i> View member
+            </button>
+          </div>
+        </div>
+      </div>
+      <!--end::Card-->
+    </div>
+  </div>
+  <mat-spinner *ngIf="loadingDiscussions" style="margin: 0 auto;" [diameter]="30">
+  </mat-spinner>
+  <!-- end Discussions -->
+</div>
+
+
+<!-- end of public view discussions  -->
+
+
+
+
+
+
+
+
+
+
+
+<!-- start product and services -->
+<div *ngIf="isProduct&&!isPublic">
+  <div class="search-results row" infiniteScroll infiniteScroll [infiniteScrollDistance]="0.5"
+    (scrolled)="scrollDown($event, 'product')">
+    <div class="col-lg-4" *ngIf="firstArrayProduct.length>0">
+      <!--begin::Card-->
+
+      <div class="card card-custom card-stretch card-stretch-third gutter-b card-border" *ngFor="let item of firstArrayProduct">
+        <div class="card-body">
+           <div class="content-center">
+            <img mat-card-image width="265" height="200" [src]="viewImage(item.productimage)" />
+
+          </div>
+          <div class="card-text-body">
+            <div class="card-title kt-truncate" *ngIf="item.name">
+              {{ item.name }}
+            </div>
+            <div>
+              <div class="card-text kt-truncate" *ngIf="item.suppliername">
+                Seller: {{ item.suppliername }}
+              </div>
+              <div class="card-text" *ngIf="item.priceMin == 0.0 && item.priceMax == 0.0">
+                Contact supplier for price
+
+              </div>
+              <div class="card-text" *ngIf="item.priceMin != 0.0 && item.priceMax != 0.0">
+                Price: {{ item.priceMin }} - {{ item.priceMax }} INR
+               
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <a class="btn btn-block" target="_blank" [routerLink]="getUrl(item)" style="
+              background-color: rgb(204, 0, 17);
+              color: rgb(255, 255, 255);
+            ">More Details</a>
+        </div>
+      </div>
+
+      <!--end::Card-->
+    </div>
+    <div class="col-lg-4" *ngIf="secondArrayProduct.length>0">
+      <!--begin::Card-->
+
+      <div class="card card-custom card-stretch card-stretch-third gutter-b card-border" *ngFor="let item of secondArrayProduct">
+        <div class="card-body">
+             <div class="content-center">
+            <img mat-card-image width="265" height="200" [src]="viewImage(item.productimage)" />
+
+
+          </div>
+          <div class="card-text-body">
+            <div class="card-title kt-truncate" *ngIf="item.name">
+              {{ item.name }}
+            </div>
+            <div>
+              <div class="card-text kt-truncate" *ngIf="item.suppliername">
+                Seller: {{ item.suppliername }}
+              </div>
+              <div class="card-text" *ngIf="item.priceMin == 0.0 && item.priceMax == 0.0">
+                Contact supplier for price
+
+              </div>
+              <div class="card-text" *ngIf="item.priceMin != 0.0 && item.priceMax != 0.0">
+                Price: {{ item.priceMin }} - {{ item.priceMax }} INR
+               
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <a class="btn btn-block" target="_blank" [routerLink]="getUrl(item)" style="
+              background-color: rgb(204, 0, 17);
+              color: rgb(255, 255, 255);
+            ">More Details</a>
+        </div>
+      </div>
+
+      <!--end::Card-->
+    </div>
+    <div class="col-lg-4" *ngIf="thirdArrayProduct.length>0">
+      <!--begin::Card-->
+
+      <div class="card card-custom card-stretch card-stretch-third gutter-b card-border" *ngFor="let item of thirdArrayProduct">
+        <div class="card-body">
+           <div class="content-center">
+            <img mat-card-image width="265" height="200" [src]="viewImage(item.productimage)" />
+
+          </div>
+          <div class="card-text-body">
+            <div class="card-title kt-truncate" *ngIf="item.name">
+              {{ item.name }}
+            </div>
+            <div>
+              <div class="card-text kt-truncate" *ngIf="item.thirdArray">
+                Seller: {{ item.suppliername }}
+              </div>
+              <div class="card-text" *ngIf="item.priceMin == 0.0 && item.priceMax == 0.0">
+                Contact supplier for price
+
+              </div>
+              <div class="card-text" *ngIf="item.priceMin != 0.0 && item.priceMax != 0.0">
+                Price: {{ item.priceMin }} - {{ item.priceMax }} INR
+               
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <a class="btn btn-block" target="_blank" [routerLink]="getUrl(item)" style="
+              background-color: rgb(204, 0, 17);
+              color: rgb(255, 255, 255);
+            ">More Details</a>
+        </div>
+      </div>
+
+      <!--end::Card-->
+    </div>
+    
+    <mat-spinner *ngIf="loadingProduct" style="margin: 0 auto;" [diameter]="30">
+    </mat-spinner>
+  </div>
+</div>
+
+
+<!-- start of public products -->
+
+
+<!-- start product and services -->
+<div *ngIf="isProduct&&isPublic">
+  <div class="search-results row" infiniteScroll infiniteScroll [infiniteScrollDistance]="0.5"
+    (scrolled)="scrollDown($event, 'product')">
+    <div class="col-lg-3" *ngIf="firstArrayProduct.length>0">
+      <!--begin::Card-->
+
+      <div class="card card-custom card-stretch card-stretch-third gutter-b card-border" *ngFor="let item of firstArrayProduct">
+        <div class="card-body">
+           <div class="content-center">
+            <img mat-card-image width="265" height="200" [src]="viewImage(item.productimage)" />
+
+          </div>
+          <div class="card-text-body">
+            <div class="card-title kt-truncate" *ngIf="item.name">
+              {{ item.name }}
+            </div>
+            <div>
+              <div class="card-text kt-truncate" *ngIf="item.suppliername">
+                Seller: {{ item.suppliername }}
+              </div>
+              <div class="card-text" *ngIf="item.priceMin == 0.0 && item.priceMax == 0.0">
+                Contact supplier for price
+
+              </div>
+              <div class="card-text" *ngIf="item.priceMin != 0.0 && item.priceMax != 0.0">
+                Price: {{ item.priceMin }} - {{ item.priceMax }} INR
+               
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <a class="btn btn-block" target="_blank" [routerLink]="getUrl(item)" style="
+              background-color: rgb(204, 0, 17);
+              color: rgb(255, 255, 255);
+            ">More Details</a>
+        </div>
+      </div>
+
+      <!--end::Card-->
+    </div>
+    <div class="col-lg-3" *ngIf="secondArrayProduct.length>0">
+      <!--begin::Card-->
+
+      <div class="card card-custom card-stretch card-stretch-third gutter-b card-border" *ngFor="let item of secondArrayProduct">
+        <div class="card-body">
+           <div class="content-center">
+            <img mat-card-image width="265" height="200" [src]="viewImage(item.productimage)" />
+
+          </div>
+          <div class="card-text-body">
+            <div class="card-title kt-truncate" *ngIf="item.name">
+              {{ item.name }}
+            </div>
+            <div>
+              <div class="card-text kt-truncate" *ngIf="item.suppliername">
+                Seller: {{ item.suppliername }}
+              </div>
+              <div class="card-text" *ngIf="item.priceMin == 0.0 && item.priceMax == 0.0">
+                Contact supplier for price
+
+              </div>
+              <div class="card-text" *ngIf="item.priceMin != 0.0 && item.priceMax != 0.0">
+                Price: {{ item.priceMin }} - {{ item.priceMax }} INR
+               
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <a class="btn btn-block" target="_blank" [routerLink]="getUrl(item)" style="
+              background-color: rgb(204, 0, 17);
+              color: rgb(255, 255, 255);
+            ">More Details</a>
+        </div>
+      </div>
+
+      <!--end::Card-->
+    </div>
+    <div class="col-lg-3" *ngIf="thirdArrayProduct.length>0">
+      <!--begin::Card-->
+
+      <div class="card card-custom card-stretch card-stretch-third gutter-b card-border" *ngFor="let item of thirdArrayProduct">
+        <div class="card-body">
+           <div class="content-center">
+            <img mat-card-image width="265" height="200" [src]="viewImage(item.productimage)" />
+
+          </div>
+          <div class="card-text-body">
+            <div class="card-title kt-truncate" *ngIf="item.name">
+              {{ item.name }}
+            </div>
+            <div>
+              <div class="card-text kt-truncate" *ngIf="item.thirdArray">
+                Seller: {{ item.suppliername }}
+              </div>
+              <div class="card-text" *ngIf="item.priceMin == 0.0 && item.priceMax == 0.0">
+                Contact supplier for price
+
+              </div>
+              <div class="card-text" *ngIf="item.priceMin != 0.0 && item.priceMax != 0.0">
+                Price: {{ item.priceMin }} - {{ item.priceMax }} INR
+               
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <a class="btn btn-block" target="_blank" [routerLink]="getUrl(item)" style="
+              background-color: rgb(204, 0, 17);
+              color: rgb(255, 255, 255);
+            ">More Details</a>
+        </div>
+      </div>
+
+      <!--end::Card-->
+    </div>
+    <div class="col-lg-3" *ngIf="fourthArrayProduct.length>0">
+      <!--begin::Card-->
+
+      <div class="card card-custom card-stretch card-stretch-third gutter-b card-border" *ngFor="let item of fourthArrayProduct">
+        <div class="card-body">
+           <div class="content-center">
+            <img mat-card-image width="265" height="200" [src]="viewImage(item.productimage)" />
+
+          </div>
+          <div class="card-text-body">
+            <div class="card-title kt-truncate" *ngIf="item.name">
+              {{ item.name }}
+            </div>
+            <div>
+              <div class="card-text kt-truncate" *ngIf="item.thirdArray">
+                Seller: {{ item.suppliername }}
+              </div>
+              <div class="card-text" *ngIf="item.priceMin == 0.0 && item.priceMax == 0.0">
+                Contact supplier for price
+
+              </div>
+              <div class="card-text" *ngIf="item.priceMin != 0.0 && item.priceMax != 0.0">
+                Price: {{ item.priceMin }} - {{ item.priceMax }} INR
+               
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <a class="btn btn-block" target="_blank" [routerLink]="getUrl(item)" style="
+              background-color: rgb(204, 0, 17);
+              color: rgb(255, 255, 255);
+            ">More Details</a>
+        </div>
+      </div>
+
+      <!--end::Card-->
+    </div>
+    <mat-spinner *ngIf="loadingProduct" style="margin: 0 auto;" [diameter]="30">
+    </mat-spinner>
+  </div>
+</div>
+
+
+
+<!-- end of public proucts -->

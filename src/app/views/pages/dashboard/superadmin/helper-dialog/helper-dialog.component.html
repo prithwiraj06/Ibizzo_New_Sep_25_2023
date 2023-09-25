@@ -1,0 +1,30 @@
+<kt-portlet>
+  <div class="kt-portlet__head">
+    <div class="kt-portlet__head-label">
+      <h3 class="kt-portlet__head-title">Comments</h3>
+    </div>
+    <div class="float-right search-button ">
+      <div class="ml-0 mt-3  kt-input-icon kt-input-icon--left">
+        <div class="kt-font-bold courser" (click)="dialogRef.close()">X
+        </div>
+      </div>
+    </div>
+  </div>
+  <kt-portlet-body>
+    <div class="form-group">
+      <label for="exampleFormControlTextarea1">Enter your Comments</label>
+      <textarea class="form-control" id="exampleFormControlTextarea1" [(ngModel)]="comments" rows="3"></textarea>
+    </div>
+  </kt-portlet-body>
+  <kt-portlet-footer>
+    <div class="float-right m-2">
+      <button class="btn btn-secondary mr-1" (click)="dialogRef.close()">
+        Cancel
+      </button>
+      <button class="btn btn-primary" [ngClass]="{
+        'kt-spinner kt-spinner--right kt-spinner--md kt-spinner--light': loading}" (click)="addRegistration()">
+        Send
+      </button>
+    </div>
+  </kt-portlet-footer>
+</kt-portlet>

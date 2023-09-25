@@ -1,0 +1,101 @@
+:host {
+  max-width: 600px;
+
+  // .input-group .prepend-text {
+  //   line-height: 1 !important;
+  //   width: 170px;
+  //   text-align: left !important;
+  // }
+
+  mat-select.mat-select {
+    width: 150px;
+    border-radius: 4px 0px 0px 4px !important;
+  }
+
+  .material-icons {
+    font-size: 30px !important;
+}
+
+.input-group{
+    // background: #FFFFFF;
+    border: 0.05px solid #FFFFFF;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
+    border-radius: 100px;
+    height: 37px !important;
+    // margin-bottom: 13px;
+
+
+  }
+
+  .search-input{
+    // background: #FFFFFF;
+    border: 0.05px solid #FFFFFF;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
+    border-top-left-radius: 100px;
+    border-bottom-left-radius: 100px;
+    height: 40px !important;
+
+
+  }
+
+  .search-bar-group {
+    width: 454px !important;
+  }
+
+  .search-btn {
+    width: 71px !important;
+    height: 40px !important;
+    display: flex !important;
+    justify-content: center;
+    border-radius: 0px 100px 100px 0px;
+    background: #DA0608;
+    border: 0px !important;
+    align-items: center;
+    align-content: center;
+  }
+  // .btn-icon {
+  //   display: inline !important;
+  // }
+  .search-icon {
+    color: #ffffff;
+  }
+
+  // .kt-header__bottom {
+  //   background: linear-gradient(
+  //     to right,
+  //     #ff0000 0%,
+  //     #8f0222 81%,
+  //     #6d0019 100%
+  //   );
+  //   background-image: linear-gradient(
+  //     to right,
+  //     #ff0000 0%,
+  //     rgb(143, 2, 34) 81%,
+  //     rgb(109, 0, 25) 100%
+  //   );
+  // }
+
+  // @media only screen and (device-width: 768px) {
+  //   .input-group {
+  //     width: 80% !important;
+  //   }
+  // }
+  // @media only screen and (device-width: 768px) {
+  //   .kt-header__bottom {
+  //     background: linear-gradient(
+  //       to right,
+  //       #ff0000 0%,
+  //       #8f0222 81%,
+  //       #6d0019 100%
+  //     );
+  //     background-image: linear-gradient(
+  //       to right,
+  //       #ff0000 0%,
+  //       rgb(143, 2, 34) 81%,
+  //       rgb(109, 0, 25) 100%
+  //     );
+  //   }
+  // }
+}

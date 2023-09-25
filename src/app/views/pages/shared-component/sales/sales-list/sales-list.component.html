@@ -1,0 +1,80 @@
+<kt-portlet class="kt-portlet-clear mob-view">
+  <div class="kt-portlet__head">
+    <div class="kt-portlet__head-label">
+      <h3 class="kt-portlet__head-title kt-font-danger">Sales Catalogue</h3>
+      &nbsp;
+      <span class="kt-font-light kt-font-bold" *ngIf="action.addNewProduct">
+        - Add New Product</span
+      >
+      <span class="kt-font-light kt-font-bold" *ngIf="action.viewProducts">
+        - My Products</span
+      >
+      <span class="kt-font-light kt-font-bold" *ngIf="action.edit">
+        - Edit</span
+      >
+    </div>
+    <div class="kt-portlet__head-toolbar">
+      <button
+        type="button"
+        class="btn btn-outline-light kt-font-light btn-myproducts"
+        *ngIf="!action.viewProducts"
+        (click)="viewProducts()"
+      >
+        My Products</button
+      >&nbsp;
+      <button
+        *ngIf="action.viewProducts"
+        type="button"
+        class="btn btn-light btn-outline kt-font-danger"
+        (click)="addNewProduct()"
+      >
+        Add New Product</button
+      >&nbsp;
+      <button
+        type="button"
+        class="kt-hdden btn btn-light kt-font-danger kt-font-bold"
+        *ngIf="!action.viewProducts"
+        (click)="submit()"
+      >
+        Save
+      </button>
+    </div>
+  </div>
+</kt-portlet>
+
+<kt-product-list
+  *ngIf="action.viewProducts"
+  title="sales"
+  [isMember]="isMember"
+  [token]="token"
+  (product)="editElement($event)"
+  [partner]="partner"
+  [isPending]="isPending"
+></kt-product-list>
+
+<kt-sales-edit
+  #addNewProductRef
+  [productCategoryList]="productCategoryList"
+  (refresh)="refreshElement($event)"
+  [token]="token"
+  *ngIf="action.addNewProduct"
+  [list]="products"
+  [isMember]="isMember"
+  [addMemberApi]="addMemberApi"
+  (isMemberAdded)="memberEventHandle($event)"
+  [isPending]="isPending"
+  [addUserMemberProfile]="addUserMemberProfile"
+></kt-sales-edit>
+
+<kt-sales-edit
+  #addNewProductRef
+  [productCategoryList]="productCategoryList"
+  [data]="editProduct"
+  (refresh)="refreshElement($event)"
+  [token]="token"
+  *ngIf="action.edit"
+  [isMember]="isMember"
+  [addMemberApi]="addMemberApi"
+  (isMemberAdded)="memberEventHandle($event)"
+>
+</kt-sales-edit>

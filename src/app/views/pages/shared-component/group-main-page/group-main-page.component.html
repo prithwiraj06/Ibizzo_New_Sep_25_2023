@@ -1,0 +1,62 @@
+<div>
+  <kt-portlet>
+    <kt-portlet-body
+      class="kt-sc-faq"
+      id="market-place"
+      [ngStyle]="{ 'background-image': 'url(' + image + ')' }"
+    >
+      <!-- <div class="img-size">
+        <img
+          [src]="stats.groupIcon == '' ? myImgUrl : image"
+          class="img-fluid"
+          [alt]="stats.groupName"
+        />
+      </div> -->
+      <div class="text-align">
+        <div class="data-banner">
+          <span class="kt-font-brand company-text">{{
+            this.stats.groupName
+          }}</span>
+          <div class="row">
+            <div
+              class="col"
+              style="cursor: pointer !important"
+              (click)="openMembers()"
+            >
+              <span
+                class="kt-widget24__stats kt-font-warning"
+                [countUp]="stats.totalMembers"
+                >0</span
+              ><br />
+              Members
+            </div>
+            <div class="col">
+              <span
+                class="kt-widget24__stats kt-font-danger"
+                [countUp]="stats.totalPosts"
+                >0</span
+              ><br />
+              Discussions
+            </div>
+            <div class="col">
+              <span
+                class="kt-widget24__stats kt-font-brand"
+                [countUp]="stats.totalSalesProduct"
+                >0</span
+              ><br />
+              Sale Products
+            </div>
+            <div class="col">
+              <span
+                class="kt-widget24__stats kt-font-primary"
+                [countUp]="stats.totalPurchaseProduct"
+                >0</span
+              ><br />
+              Purchase Products
+            </div>
+          </div>
+        </div>
+      </div>
+    </kt-portlet-body>
+  </kt-portlet>
+</div>

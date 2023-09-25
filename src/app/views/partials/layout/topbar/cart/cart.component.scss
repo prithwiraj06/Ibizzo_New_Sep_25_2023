@@ -1,0 +1,25 @@
+:host{
+  .bubble-notification{
+    position: relative !important;
+    top: -9px !important;
+    left: -14px !important;
+  }
+
+  .go-to-cart{
+    width: 89px !important;
+    float: right !important;
+  }
+
+  @media (min-width: 320px) and (max-width: 480px) {
+    .mobile-view{
+      top: 0px !important;
+      left: 0px !important;
+      will-change: transform !important;
+      position: absolute !important;
+      transform: translate(-200px, 50px) !important;
+    }
+  }
+
+}
+
+   

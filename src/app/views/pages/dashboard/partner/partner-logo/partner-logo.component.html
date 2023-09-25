@@ -1,0 +1,92 @@
+<kt-portlet>
+	<div class="kt-portlet__head kt-portlet__space-x">
+		<div class="kt-portlet__head-label">
+			<h3 class="kt-portlet__head-title">
+				Upload Partner Logo
+			</h3>
+		</div>
+		<div class="kt-portlet__head-toolbar">
+			<button class="btn btn-clear" (click)="dialogRef.close()"><i class="la la-close"></i></button>
+	</div>
+	</div>
+
+  <kt-portlet-body>
+    <div class="form-group row"> 
+      <label class="col-lg-4 col-form-label"></label>
+      <div class="col-lg-6">
+        <div class="kt-avatar kt-avatar--outline kt-avatar--circle-" id="kt_user_edit_avatar">
+          <img class="kt-avatar__holder" [src]="getImage()">
+          <label class="kt-avatar__upload" data-toggle="kt-tooltip" title="" data-original-title="Change avatar">
+            <i class="fa fa-pen"></i>
+            <input type="file" name="profile_avatar" accept=".png, .jpg, .jpeg" (change)="fileUpload($event)">
+          </label>
+          <span *ngIf="response" class="close-button" data-toggle="kt-tooltip" title=""
+            data-original-title="Cancel avatar" (click)="deleteImage()">
+            <i class="fa fa-times close-icon"></i>
+          </span>
+        </div>
+        <span class="form-text text-muted">Allowed file types: png, jpg, jpeg</span>
+      </div>
+    </div>
+      <div class="form-group row">
+        <label for="accentColor" class="col-lg-5 set-label" >Overall site color</label>
+        <div class="input-group col-lg-5">
+          <div class="input-group-prepend"><span class="input-group-text"
+              [style.background-color]="accentColor"><i class="la la-eyedropper"
+                [style.color]="invertColor(accentColor)"></i></span></div>
+          <input type="text" class="form-control" readonly [value]="accentColor"
+            [(colorPicker)]="accentColor" [cpOutputFormat]="'hex'"
+            (cpSliderDragStart)="onColorChange('accentColor', $event)"
+            (cpSliderDragEnd)="onColorChange('accentColor', $event)" />
+          </div>
+        <label for="alternateColor" class="col-lg-5 set-label mt-3">Secondary color</label>
+        <div class="input-group col-lg-5 set-margin">
+          <div class="input-group-prepend"><span class="input-group-text"
+              [style.background-color]="alternateColor"><i class="la la-eyedropper"
+                [style.color]="invertColor(alternateColor)"></i></span></div>
+          <input type="text" class="form-control" [value]="alternateColor"
+            [(colorPicker)]="alternateColor" [cpOutputFormat]="'hex'"
+            (cpSliderDragStart)="onColorChange('alternateColor', $event)"
+            (cpSliderDragEnd)="onColorChange('alternateColor', $event)" />
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-lg-5 col-form-label set-label">Show company name</label>
+        <div class="col-lg-5 ">
+          <span class="kt-switch kt-switch--icon-check">
+            <label>
+              <input type="checkbox"  [(ngModel)]="isChk" value="true"/>
+              <span></span>
+            </label>
+          </span>
+          <div class="form-text text-muted">Enable to see company name beside logo.</div>
+        </div>
+      </div>
+      <div [formGroup]="form">
+        <div class="form-group">
+          <label class="ml-3">Keywords</label>
+  
+          <div class="col" formArrayName="keyWordsList" *ngIf="hasControl('keyWordsList')">
+            <div class="input-group bootstrap-touchspin bootstrap-touchspin-injected mt-2"
+              *ngFor="let cell of form.get('keyWordsList').controls; let i=index" [formGroupName]="i">
+              <input id="kt_touchspin_1" type="text" class="form-control" placeholder="keyword"
+                formControlName="value">
+              <span *ngIf="i==0" class="input-group-btn input-group-append">
+                <button class="btn btn-secondary bootstrap-touchspin-up" type="button" (click)="addCell('keyWordsList')">+
+                </button>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+  </kt-portlet-body>
+  <kt-portlet-footer>
+    <div  style="padding: 10px;">
+      <button type="button" class="btn btn-block btn-brand"
+          (click)="submit()">Upload & Save
+          <span [ngClass]="{'ml-3 kt-spinner kt-spinner--center kt-spinner--light': loading}"></span>
+        </button>
+    </div>
+  </kt-portlet-footer>
+</kt-portlet>

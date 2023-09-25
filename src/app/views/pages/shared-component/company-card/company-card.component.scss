@@ -1,0 +1,55 @@
+:host {
+  .image-area {
+    min-height: 200px;
+    background-color: #efefef;
+
+    .swiper-slide img {
+      width: 100%;
+      height: 200px;
+    }
+  }
+
+  .swiper-container {
+    width: 100%;
+    height: 100%;
+  }
+
+  .kt-widget__text {
+    margin-top: 10px !important;
+    margin-bottom: 0px !important;
+  }
+
+  .kt-widget__content {
+    margin-top: 0px !important;
+    padding-top: 0px !important;
+  }
+
+  .no-image {
+    text-align: center;
+    vertical-align: middle;
+    height: 200px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+  }
+  .btn-text {
+    width: 66px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .widget-text-set {
+    width: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+}

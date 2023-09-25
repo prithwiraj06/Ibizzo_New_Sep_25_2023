@@ -1,0 +1,58 @@
+<!-- begin:: Brand -->
+<div class="kt-header__brand kt-grid__item minisite-header hide-links" *ngIf="!isCheckMinisite">
+  <div class="kt-header__brand-logo pt-2" *ngIf="userInfo">
+    <div class="paid-indication pb-1 pt-2" *ngIf="userInfo">
+      <span *ngIf="userInfo.logo && isLogo" class="badge badge-paid">NOT PAID
+      </span>
+    </div>
+    <div class="hide-img">
+      <img alt="logo" [src]="
+          isLogoDisplay
+            ? userInfo.logo
+              ? getImage(userInfo.logo)
+              : getImage(null)
+            : getImage(null)
+        " class="mini-site-logo" height="60" />
+    </div>
+  </div>
+  <div *ngIf="userInfo" class="ml-3">
+    <div class="company-text">{{ userInfo.companyName }}</div>
+    <div class="sub-text txt-size">
+      <span *ngIf="userInfo.city">{{ userInfo.city }}, </span>
+      {{ userInfo.state }}
+      <span *ngIf="userInfo.gstin"> | GST </span>
+      <span *ngIf="userInfo.gstin" class="gst-text">{{ userInfo.gstin }} </span>
+      <span *ngIf="userInfo.website && isWebsiteLink">
+        |
+        <a [href]="userInfo.website" target="_blank" class="kt-link minisite-font-color">
+          {{ userInfo.website }}</a>
+      </span>
+    </div>
+  </div>
+</div>
+<div class="hide-text" *ngIf="userInfo">
+  <span class="company-text">{{ userInfo.companyName }}</span>
+  <div>
+    <span *ngIf="userInfo.city">{{ userInfo.city }},</span>
+    <span class="sub-text">{{ userInfo.state }}</span>
+    <span *ngIf="userInfo.website && isWebsiteLink">
+      |
+      <a [href]="userInfo.website" target="_blank" class="kt-link minisite-font-color">
+        {{ userInfo.website }}
+      </a>
+    </span>
+  </div>
+</div>
+
+<!-- end:: Brand -->
+
+<div *ngIf="isCheckMinisite" class="kt-header__brand kt-grid__item"
+  [ngClass]="htmlClassService.getClasses('brand', true)" id="kt_header_brand">
+  <div class="kt-header__brand-logo">
+    <a (click)="getRouterUrl(currentPartner)">
+      <img alt="logo" [src]="currentPartner.logo" class="kt-header__brand-logo-default" height="60" />
+      <img alt="logo" [src]="currentPartner.logo" class="kt-header__brand-logo-sticky" height="60" />
+      <span class="partner-font-color" *ngIf="currentPartner.showCompanyName == 1">{{ currentPartner.name }}</span>
+    </a>
+  </div>
+</div>

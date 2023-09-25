@@ -1,0 +1,25 @@
+<kt-portlet>
+  <div class="kt-portlet__head">
+    <div class="kt-portlet__head-label">
+      <h3 class="kt-portlet__head-title">List of Documents</h3>
+    </div>
+  </div>
+  <kt-portlet-body>
+  
+    <div>
+      <ul *ngFor="let item of titles" class="list-group row">
+        <li class="list-group-item">{{item}}</li>
+        </ul>
+    </div>
+ 
+
+  </kt-portlet-body>
+ 
+
+<kt-portlet-footer>
+  <button type="button" class="btn btn-secondary m-2 float-right" (click)="dialogRef.close()">
+    Cancel
+  </button>
+ 
+</kt-portlet-footer>
+ </kt-portlet>

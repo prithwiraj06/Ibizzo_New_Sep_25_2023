@@ -1,0 +1,63 @@
+<kt-portlet>
+  <div class="kt-portlet__head">
+    <div class="mt-3">
+      <h5
+        [ngClass]="{
+          'kt-spinner kt-spinner--right kt-spinner--md kt-spinner--danger ml-3': loading
+        }"
+      >
+        Product Category List
+      </h5>
+    </div>
+  </div>
+  <div>
+    <mat-table
+      class="lmat-elevation-z8"
+      #table
+      [dataSource]="dataSource"
+      matSort
+      matSortDisableClear
+      matSortActive="Name"
+      matSortDirection="asc"
+    >
+      <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef>
+          #
+        </mat-header-cell>
+        <mat-cell *matCellDef="let contact; let i = index">
+          {{ contact.id }}
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          Name
+        </mat-header-cell>
+        <mat-cell
+          *matCellDef="let contact; let i = index"
+          class="text-overflow name-reg-cell text-case"
+        >
+          {{ contact.name }}
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row
+        class="mat-row"
+        *matRowDef="let row; columns: displayedColumns"
+        [ngClass]="row.isCustom == 1 ? 'bg-dark' : 'bg-white'"
+      >
+      </mat-row>
+    </mat-table>
+  </div>
+  <div class="text-center" *ngIf="!isRecord">
+    No record found
+  </div>
+  <kt-portlet-footer>
+    <div class="float-right m-2">
+      <button class="btn btn-default" (click)="dialogRef.close()">
+        Cancel
+      </button>
+    </div>
+  </kt-portlet-footer>
+</kt-portlet>

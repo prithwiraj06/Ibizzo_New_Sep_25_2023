@@ -1,0 +1,29 @@
+:host {
+  ::ng-deep {
+    // override default version style
+    .kt-header__topbar {
+      > :last-child:not([role="tooltip"]) {
+        .kt-header__topbar-item {
+          margin-right: 0 !important;
+        }
+      }
+      .kt-header__topbar-item {
+        margin-right: 0.36rem !important;
+      }
+    }
+    .contact-logo {
+      margin-left: 250px !important;
+    }
+  }
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+  .mob-view {
+    display: none !important;
+  }
+  @media (min-width: 320px) and (max-width: 480px) {
+    .mob-view-btn {
+      margin-top: 13px !important;
+    }
+  }
+}

@@ -1,0 +1,58 @@
+<div class="kt-portlet kt-portlet--fit kt-portlet--head-lg kt-portlet--head-overlay kt-portlet--height-fluid"
+	style="width: 500px; margin: auto;">
+	<div class="kt-portlet__head kt-portlet__space-x">
+		<div class="kt-portlet__head-label">
+			<h3 class="kt-portlet__head-title kt-font-light">
+				Get Buy Leads
+			</h3>
+		</div>
+		<div class="kt-portlet__head-toolbar">
+			<button class="btn btn-clear" (click)="close()"><i class="la la-close kt-font-light"></i></button>
+		</div>
+	</div>
+	<div class="kt-portlet__body" style="max-height: none;">
+		<div class="kt-widget27">
+			<div class="kt-widget27__visual">
+				<img src="/assets/media/bg/bg-4.jpg" alt="">
+				<h3 class="kt-widget27__title">
+					<span><span>₹</span>{{totalValue}}</span>
+				</h3>
+				<div class="kt-widget27__btn">
+					<button class="btn btn-pill btn-light btn-elevate btn-bold" (click)="proceedToPay()">Pay Now</button>
+				</div>
+			</div>
+			<div class="kt-widget27__container kt-portlet__space-x">
+				<div class="tab-content">
+					<div id="kt_personal_income_quater_1" class="tab-pane active">
+
+						<div class=" input-group-lg set-button">
+							<span class="input-group-btn input-group-prepend">
+								<button class="btn btn-secondary bootstrap-touchspin-down" type="button" (click)="decrementValue()">
+									<span class="icon">-</span>
+								</button>
+							</span>
+							<input type="text" class="form-control input-text" [(ngModel)]="count"
+								(ngModelChange)="valueChangedByType($event)">
+							<span class="input-group-btn input-group-append">
+								<button class="btn btn-secondary" type="button" (click)="incrementValue()">
+									<span class="icon">+</span>
+								</button>
+							</span>
+						</div>
+
+						<div class="kt-widget11">
+							<div class="table-responsive">
+								<div style="text-align: center;" class="kt-margin-t-20">
+									<h5 *ngIf="packageDetails">Buy one lead at {{packageDetails.price}} INR</h5>
+									<h5 class="kt-margin-t-30">Above 10 and get 10% OFF</h5>
+									<h5>Above 20 and get 20% OFF</h5>
+									<h5>Above 30 and get 30% OFF</h5>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,342 @@
+<div class="kt-portlet">
+  <div class="kt-portlet__head">
+    <div class="kt-portlet__head-label ">
+      <h3 class="kt-portlet__head-title">
+        Member Registration
+      </h3>
+    </div>
+    <div class="kt-portlet__head-label">
+      <i class="fa fa-times" (click)='onClose()'></i>
+    </div>
+  </div>
+
+  <div [hidden]="registerHidden">
+    <form class="kt-form kt-form--label-right" [formGroup]="registerForm" (ngSubmit)="onClickNext()">
+      <div class="form-group row">
+        <label class='col-form-label ml-4 mandatory-field'>Email:</label>
+        <div class="col-lg-12 ">
+          <div class="input-group">
+            <input class="form-control" formControlName='Email'
+              placeholder="Enter your email ,cannot be changed once registered">
+            <div class="input-group-append">
+              <button *ngIf="inputMode=='enabled'" [class]="getClass()" type="button" (click)="verify()">Go!</button>
+              <button *ngIf="inputMode=='disabled'" class="btn btn-warning" type="button"
+                (click)="toggleInputLock('unlock')"><i class="fa flaticon-edit"></i></button>
+            </div>
+          </div>
+          <div *ngIf="(submitted||f.Email.touched) && f.Email.invalid" class="error-msg">
+            <mat-error *ngIf="f.Email.errors.required">Email is required</mat-error>
+            <mat-error *ngIf="f.Email.errors.pattern">Enter valid Email</mat-error>
+          </div>
+          <mat-error class="error-msg" [hidden]="isErrorMessageHidden">{{ErrrMessage}}</mat-error>
+        </div>
+      </div>
+
+      <div class="kt-portlet__body">
+        <div class="form-group row">
+          <label class='col-form-label ml-4 mandatory-field'>Name:</label>
+          <div class="col-lg-12 ">
+            <div class="input-group">
+              <input type="text" class="form-control" formControlName="Person" placeholder="Enter your name">
+            </div>
+            <div *ngIf="(submitted||f.Person.touched) && f.Person.invalid" class="error-msg">
+              <mat-error *ngIf="f.Person.errors.required">Name is required</mat-error>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class='col-form-label ml-4 mandatory-field'>Company Name:</label>
+          <div class="col-lg-12 ">
+            <div class="input-group">
+              <input type="text" class="form-control" formControlName=companyName placeholder="Enter your company name">
+            </div>
+            <div *ngIf="(submitted||f.companyName.touched) && f.companyName.invalid" class="error-msg">
+              <mat-error *ngIf="f.companyName.errors.required">Company name is required</mat-error>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class='col-form-label ml-4 mandatory-field'>Contact No:</label>
+          <div class="col-lg-12 ">
+            <div class="input-group">
+              <input type="number" class="form-control" formControlName=contact placeholder="Enter your phone number">
+            </div>
+            <div *ngIf="(submitted||f.contact.touched) && f.contact.invalid" class="error-msg">
+              <mat-error *ngIf="f.contact.errors.required">Contact is required</mat-error>
+              <mat-error *ngIf="f.contact.errors.pattern">Please enter correct mobile number or Landline number
+              </mat-error>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+
+      <div class="kt-portlet__foot">
+        <div class="row mt-3 mb-3 mr-4">
+          <div class='mt-1 ml-5'>Already have an account? <a (click)="showWindow('SHOW_LOGIN_WINDOW')">Sign in</a></div>
+          <div class=" ml-lg-auto">
+            <div class="form-group row mb-0 align-btn">
+              <div *ngIf="fetching" class='mt-2 mr-4'>
+                <mat-progress-spinner color="primary" mode="indeterminate" diameter="20">
+                </mat-progress-spinner>
+              </div>
+              <button type="submit" color="primary" class="btn btn-brand  ">
+                Continue
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div [hidden]="registerHidden2">
+    <form class="kt-form kt-form--label-right" [formGroup]="registerForm2" (ngSubmit)="onClickSubmit()">
+      <div class="kt-portlet__body">
+        <div class="form-group row">
+          <label class='col-form-label ml-4 mandatory-field'>Business Category:</label>
+          <div class="col-lg-12 ">
+            <div class="input-group">
+              <div ngbDropdown>
+                <ngx-tags-input class="form-control input-lg" formControlName="Business" #businessCategory
+                  [(ngModel)]="canDeleteTagsParam" [canDeleteTags]="true" [canAddTags]="true" ngbDropdownToggle
+                  (ngModelChange)="callToCategoryAutoSuggest($event,true)" (click)='inputtag()'
+                  (onTagsChanged)='onTagsChanged($event)' autoClose='inside'></ngx-tags-input>
+                <div ngbDropdownMenu open='false' *ngIf='tag'>
+                  <form class="px-4 py-3">
+                    <label>Please type your Category and click below button.</label>
+                    <button type="submit" class="btn btn-outline-primary btn-block"
+                      (click)="onClickAddNewCategoryBtn()">Add this category</button>
+                  </form>
+                </div>
+              </div>
+
+            </div>
+            <div *ngIf="(submitted||f1.Business.touched) && f1.Business.invalid" class="error-msg">
+              <mat-error *ngIf="f1.Business.errors.required">Business is required</mat-error>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class='col-form-label ml-4 mandatory-field'>Sales Product:</label>
+          <div class="col-lg-12 ">
+            <div class="input-group">
+              <div ngbDropdown>
+                <input type="text" ngbDropdownToggle class="form-control" formControlName="product"
+                  placeholder="Please enter only one product" (click)='showMenu()'
+                  (ngModelChange)="callToDBProduct($event,true)">
+                <div ngbDropdownMenu open='false' *ngIf='Menu'>
+                  <form class="px-4 py-3">
+                    <label>Please click on this button to add this product to your Catalogue.</label>
+                    <button type="submit" class="btn btn-outline-primary btn-block" (click)="onClickAdd()">Add this
+                      product</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="(submitted||f1.product.touched) && f1.product.invalid" class="error-msg">
+              <mat-error *ngIf="f1.product.errors.required">Product Name is required</mat-error>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class='col-form-label ml-4 mandatory-field'>Purchase Product:</label>
+          <div class="col-lg-12">
+            <div class="input-group">
+              <div ngbDropdown>
+                <input type="text" ngbDropdownToggle class="form-control" formControlName="purchaseProductName"
+                  placeholder="Please enter only one product" (click)='display()'
+                  (ngModelChange)="callToDBProduct($event,true)">
+                <div ngbDropdownMenu open='false' *ngIf='displayMenu'>
+                  <form class="px-4 py-3">
+                    <label>Please click on this button to add product you want to purchase.</label>
+                    <button type="submit" class="btn btn-outline-primary btn-block" (click)="onClickPurchaseAdd()">Add
+                      this product</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+
+            <div *ngIf="(submitted||f1.purchaseProductName.touched) && f1.purchaseProductName.invalid"
+              class="error-msg">
+              <mat-error *ngIf="f1.purchaseProductName.errors.required">Purchase Product is required</mat-error>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class='col-form-label ml-4 mandatory-field'>Pincode:</label>
+          <div class="col-lg-12 ">
+            <div class="input-group">
+              <input type="number" class="form-control" formControlName="pincode" placeholder="Enter pincode">
+            </div>
+            <div *ngIf="(submitted||f1.pincode.touched) && f1.pincode.invalid" class="error-msg">
+              <mat-error *ngIf="f1.pincode.errors.required">Pincode is required</mat-error>
+              <mat-error *ngIf="f1.pincode.errors.pattern">Please enter 6 digit pincode</mat-error>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="kt-portlet__foot">
+        <div class="row mt-3 mb-3 mr-4">
+          <div class=" ml-lg-auto">
+            <div class="form-group row mb-0 align-btn">
+              <div *ngIf="fetching" class='mt-2 mr-4'>
+                <mat-progress-spinner color="primary" mode="indeterminate" diameter="20">
+                </mat-progress-spinner>
+              </div>
+              <button type="submit" color="primary" class="btn btn-brand ">
+                Continue
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div [hidden]="registerHidden3">
+    <form class="kt-form kt-form--label-right" [formGroup]="registerForm3" (ngSubmit)="onClickConfirm()">
+
+      <div class="kt-portlet__body">
+        <div class="form-group row">
+          <label class='col-form-label ml-4 mandatory-field'>User Name:</label>
+          <div class="col-lg-12 ">
+            <div class="input-group">
+              <input type="text" formControlName="username" class="form-control" readonly>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class='col-form-label ml-4 mandatory-field'>Password:</label>
+          <div class="col-lg-12 ">
+            <div class="input-group">
+              <input type="password" class="form-control" formControlName="password" placeholder="Enter your password">
+            </div>
+
+            <div *ngIf="(submitted||f2.password.touched) && f2.password.invalid" class="error-msg">
+              <mat-error *ngIf="f2.password.errors.required">
+                Password is required
+              </mat-error>
+              <mat-error *ngIf="f2.password.errors.minlength" class="error-msg">
+                Minimum of 7 characters required
+              </mat-error>
+
+            </div>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class='col-form-label ml-4 mandatory-field'>Confirm Password:</label>
+          <div class="col-lg-12 ">
+
+            <div class="input-group">
+              <input type="password" class="form-control" formControlName="confirmpassword"
+                placeholder="Enter your confirm password">
+            </div>
+
+            <div *ngIf="(submitted||f2.confirmpassword.touched) && f2.confirmpassword.invalid" class="error-msg">
+
+              <mat-error *ngIf="f2.confirmpassword.errors.required">
+                Confirm password is required.
+              </mat-error>
+              <mat-error
+                *ngIf="registerForm3.get('confirmpassword').errors && registerForm3.get('confirmpassword').errors.ConfirmPassword"
+                class="error-msg">
+                Passwords didn't match.
+              </mat-error>
+            </div>
+
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class='col-form-label ml-4'> </label>
+
+          <div class="col-lg-12 ">
+            <div class="input-group">
+              <mat-checkbox formControlName="confirm" class=isCheck>
+                I agree with
+              </mat-checkbox>
+              <a (click)="onClickTermsAndCdnToggle()" class='ml-2'> Terms and Conditions</a>
+            </div>
+            <div *ngIf="(submitted||f2.confirm.touched) && f2.confirm.invalid" class="error-msg">
+              <mat-error *ngIf="f2.confirm.errors.required">Please accept terms and condition.</mat-error>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <div class="mx-auto">
+
+            <!-- Commented by Inqude -->
+            <!-- <img id="captchaimage" [src]='captchaImage' />
+                
+                <span>
+                   <i class="fa fa-refresh fa-2" aria-hidden="true" (click)="resetForm()"></i>
+                </span>
+
+                <input type="text" id="captcha" name="captcha" class="form-control input-control mt-2"
+                  formControlName="captcha" /> -->
+            <re-captcha #captchaRef="reCaptcha" siteKey="6LcTNtsUAAAAAMW2aH7RZT0rwp_cBi1uWpIzrM55" (resolved)="$event ">
+            </re-captcha>
+          </div>
+        </div>
+      </div>
+
+      <div class="kt-portlet__foot">
+        <div class="row mt-3 mb-3 mr-4">
+          <div class=" ml-lg-auto">
+            <div class="form-group row mb-0 align-btn">
+              <div *ngIf="fetching" class='mt-2 mr-4'>
+                <mat-progress-spinner color="primary" mode="indeterminate" diameter="20">
+                </mat-progress-spinner>
+              </div>
+              <button type="submit" color="primary" class="btn btn-brand  ">
+                Continue
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="cleafix">
+    <div [hidden]="lubkRegAckn">
+      <div class="banner">
+        <div class="row">
+          <div class="col-md-2 col-lg-2"></div>
+          <div class="col-md-8 col-lg-8 col-sm-12 col-xs-12 mt-6 mb-6">
+            <div class="card card-1">
+              <div class="card-body card-body-1">
+                <h3 class="card-title text-center"><span>Thank you!</span> Your Registration is complete.</h3>
+                <p class="card-text text-center">You can sign in to your dashboard to start your trade and upload your
+                  sales and purchase catalogue to get connected with more than 10,000 businesses around the world.</p>
+                <p class="card-text text-center">Personalize your account to get more accurate and specific sellers and
+                  Buyers matching your trade products.</p>
+                <div class="clearfix row">
+                  <div class="mx-auto pt-4">
+                    <a *ngIf="dynamicOrgPath?.length > 0; else defaultOrg" class="btn btn-outline-primary button-radius"
+                      (click)="showWindow('SHOW_DASHBOARD_WINDOW')">Go To Dashboard</a>
+                    <ng-template #defaultOrg>
+                      <a class="btnbtn-outline-primary " (click)="showWindow('SHOW_DASHBOARD_WINDOW')">Go To
+                        Dashboard</a>
+                    </ng-template>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

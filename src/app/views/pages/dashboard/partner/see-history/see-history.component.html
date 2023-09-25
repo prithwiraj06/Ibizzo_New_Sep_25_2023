@@ -1,0 +1,86 @@
+<div class="kt-portlet">
+    <div class="kt-portlet__head">
+        <div class="kt-portlet__head-label">
+            <h1 class="kt-portlet__head-title">
+                Comments History
+            </h1>
+        </div>
+        <div class="kt-portlet__head-toolbar">
+            <button class="btn btn-clear" (click)="dialogRef.close()"><i class="la la-close"></i></button>
+        </div>
+    </div>
+    <div class="kt-portlet__body" id="inviteHistoryContainer">
+        <div class="row">
+            <div class="col-xl-1"></div>
+            <div class="col-xl-10">
+                <div class="kt-timeline-v1 kt-timeline-v1--justified">
+                    <div class="kt-timeline-v1__items">
+                        <div class="kt-timeline-v1__marker"></div>
+                        <div *ngFor="let item of listComments">
+                            <div *ngIf="item.event=='Invite'" class="kt-timeline-v1__item kt-timeline-v1__item--first">
+
+                                <div class="kt-timeline-v1__item-circle">
+                                    <div class="kt-bg-danger"></div>
+                                </div>
+
+                                <span class="time-color">
+                                    {{item.createdDate | date:'medium'}}</span>
+
+                                <div class="kt-timeline-v1__item-content">
+                                    <div *ngFor="let item of listComments">
+                                        <div *ngIf="item.event=='Invite'" class="kt-timeline-v1__item-title cmt-color">
+                                            <img src="/assets/media/icons/svg/Communication/Flag.svg"
+                                                class="kt-svg-icon kt-font-brand">
+                                            &nbsp; Member invitation has been sent</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngFor="let item of listComments">
+                            <div *ngIf="item.event=='ReInvite'" class="kt-timeline-v1__item">
+                                <div class="kt-timeline-v1__item-circle">
+                                    <div class="kt-bg-danger"></div>
+                                </div>
+                                <span class="time-color">{{item.createdDate | date:'medium'}}</span>
+
+                                <div class="kt-timeline-v1__item-content">
+
+                                    <div class="kt-timeline-v1__item-title cmt-color">
+                                        <img src="/assets/media/icons/svg/Communication/Sending mail.svg">
+                                        &nbsp; Member Invitation has been resent</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngFor="let item of listComments">
+                            <div *ngIf="(item.comments&&item.comments!=null) " class="kt-timeline-v1__item">
+                                <div class="kt-timeline-v1__item-circle">
+                                    <div class="kt-bg-danger"></div>
+                                </div>
+                                <span class="time-color">{{item.createdDate | date:'medium'}}</span>
+                                <div class="kt-timeline-v1__item-content cmt-color">
+
+                                    <div class="kt-timeline-v1__item-title"><img
+                                            src="/assets/media/icons/svg/Communication/Group-chat.svg"> &nbsp;
+                                        {{item.comments}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div style="padding: 20px;">
+        <div class="form-group">
+            <textarea class="text-box" [(ngModel)]="comment" matInput placeholder="Type here...." class="form-control"
+                rows="5" id="comment"></textarea>
+        </div>
+        <button type="button" class="btn btn-brand btn-md btn-upper btn-bold kt-chat__reply btn-chat"
+            (click)="addComment()">
+            Add Comment
+        </button>
+
+    </div>
+</div>

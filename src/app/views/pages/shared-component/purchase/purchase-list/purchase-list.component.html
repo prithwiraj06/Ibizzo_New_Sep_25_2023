@@ -1,0 +1,83 @@
+<kt-portlet class="kt-portlet-clear">
+  <div class="kt-portlet__head">
+    <div class="kt-portlet__head-label">
+      <h3 class="kt-portlet__head-title kt-font-danger">Purchase Catalogue</h3>
+      &nbsp;
+      <span class="kt-font-light kt-font-bold" *ngIf="action.addNewProduct">
+        - Add New Product</span
+      >
+      <span class="kt-font-light kt-font-bold" *ngIf="action.viewProducts">
+        - My Products</span
+      >
+      <span class="kt-font-light kt-font-bold" *ngIf="action.edit">
+        - Edit</span
+      >
+    </div>
+    <div class="kt-portlet__head-toolbar">
+      <button
+        type="button"
+        class="btn btn-outline-light kt-font-light btn-myproducts"
+        *ngIf="!action.viewRequiremts"
+        (click)="viewRequiremts()"
+      >
+        My Products</button
+      >&nbsp;
+      <button
+        *ngIf="action.viewRequiremts"
+        type="button"
+        class="btn btn-brand"
+        (click)="addNewRequiremts()"
+      >
+        Add New Product</button
+      >&nbsp;
+      <button
+        type="button"
+        class="kt-hidden btn btn-brand kt-font-bold"
+        *ngIf="!action.viewRequiremts"
+      >
+        Save
+      </button>
+    </div>
+  </div>
+</kt-portlet>
+
+<!-- <kt-portlet *ngIf="!purchaseProducts.item">
+  <div class="kt-spinner kt-spinner--center kt-spinner--lg kt-spinner--light">
+  </div>
+</kt-portlet> -->
+
+<kt-product-list
+  *ngIf="action.viewRequiremts"
+  title="purchase"
+  [data]="purchaseProducts"
+  (product)="editElement($event)"
+  [partner]="partner"
+  [isMember]="isMember"
+  [token]="token"
+  [isPending]="isPending"
+></kt-product-list>
+
+<kt-purchase-edit
+  *ngIf="action.addNewRequiremts"
+  [productCategoryList]="productCategoryList"
+  (refresh)="refreshElement($event)"
+  [isMember]="isMember"
+  [token]="token"
+  (isMemberAdded)="memberEventHandle($event)"
+  [addMemberApi]="addMemberApi"
+  [isPending]="isPending"
+  [addUserMemberProfile]="addUserMemberProfile"
+>
+</kt-purchase-edit>
+
+<kt-purchase-edit
+  *ngIf="action.edit"
+  [data]="editProduct"
+  [productCategoryList]="productCategoryList"
+  (refresh)="refreshElement($event)"
+  [isMember]="isMember"
+  [token]="token"
+  (isMemberAdded)="memberEventHandle($event)"
+  [addMemberApi]="addMemberApi"
+>
+</kt-purchase-edit>

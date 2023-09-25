@@ -1,0 +1,20 @@
+<div class="kt-container mobile-screen">
+  <div class="herobanner-swiper-container">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide" *ngFor="let video of videos; let i = index">
+        <video
+          id="video-{{ i }}"
+          [autoplay]="i < 1"
+          loop="true"
+          name="media"
+          class="col-sm-12 col-lg-12 col-md-12 "
+        >
+          <source [src]="video.path" type="video/mp4" />
+        </video>
+      </div>
+    </div>
+    <!-- Add Arrows -->
+    <div class="herobanner swiper-button-next"></div>
+    <div class="herobanner swiper-button-prev"></div>
+  </div>
+</div>

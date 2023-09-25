@@ -1,0 +1,138 @@
+:host {
+  /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#fd397a+21,ffffff+93 */
+  background: #fd397a; /* Old browsers */
+  background: -moz-linear-gradient(
+    top,
+    #fd397a 21%,
+    #ffffff 93%
+  ); /* FF3.6-15 */
+  background: -webkit-linear-gradient(
+    top,
+    #fd397a 21%,
+    #ffffff 93%
+  ); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(
+    to bottom,
+    #fd397a 21%,
+    #ffffff 93%
+  ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fd397a', endColorstr='#ffffff',GradientType=0 ); /* IE6-9 */
+
+  background-size: 100% 500px;
+  background-repeat: no-repeat;
+  padding: 20px;
+  width: 100%;
+  display: block;
+  border-radius: 4px;
+  overflow: hidden;
+
+  .kt-notification-v2__item {
+    border-bottom: 1px solid #eaecf1;
+  }
+
+  .kt-notification-v2__item-title {
+    font-size: 14px;
+    font-weight: 600;
+
+    i.fa {
+      color: #b7c4f7;
+    }
+  }
+
+  .enquiry-createdDate {
+    padding: 1px 8px;
+    margin-top: 3px;
+  }
+
+  .product-quantity {
+    font-size: 11px;
+    margin-top: 2px;
+    color: black;
+  }
+
+  .btn-chat {
+    float: right;
+  }
+
+  .kt-media img {
+    width: 60px;
+    min-width: 60px;
+    max-width: 60px;
+    height: 60px;
+  }
+
+  .remaining-credits.kt-spinner {
+    padding-top: 25px;
+  }
+
+  .chat-enquiry-message {
+    border-radius: 0px;
+    text-align: center;
+  }
+
+  .kt-portlet__foot {
+    padding: 25px !important;
+  }
+
+  #chatMessageContainer {
+    overflow: auto !important;
+    height: 300px;
+    scroll-behavior: smooth;
+  }
+
+  .kt-chat-attachment {
+    background-color: white;
+    margin-top: 5px;
+    font-size: 11px;
+    text-align: left;
+    border: 1px solid #cbe0de;
+    border-radius: 5px;
+    padding: 3px 10px;
+    overflow: hidden;
+    display: table;
+  }
+
+  .set-cursor {
+    cursor: pointer !important;
+  }
+
+  // .kt-notification-v2__item.active{
+  //   background-color: #fff1ad;
+  //   overflow: hidden;
+
+  //   // &:before {
+  //   //   content: '';
+  //   //   width: 0;
+  //   //   height: 0;
+  //   //   border-style: solid;
+  //   //   border-width: 25px 0 25px 25px;
+  //   //   border-color: transparent transparent transparent #fff1ad;
+  //   //   position: fixed;
+  //   //   right: -15px;
+  //   //   z-index: 1000;
+  //   // }
+  // }
+
+  .btn-color {
+    background: #fce5e8;
+    color: #ff0100;
+  }
+  .mat-card-content {
+    margin-bottom: 0px !important;
+    margin-left: 20px !important;
+  }
+
+  .list-item-color {
+    background-color: #fff1ad;
+  }
+
+  .title-head{
+    display: inline-block;
+  }
+  .kt-portlet.kt-portlet--head-lg .kt-portlet__head {
+    min-height: 50px;
+}
+}
+.icon-right {
+  float: right !important;
+}

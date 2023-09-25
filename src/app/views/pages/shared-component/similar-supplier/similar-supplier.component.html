@@ -1,0 +1,99 @@
+<kt-portlet>
+  <div class="kt-portlet__head">
+    <div class="kt-portlet__head-label">
+      <h1 class="kt-portlet__head-title">Similar Suppliers</h1>
+    </div>
+  </div>
+  <div class="m-1 mt-2">
+    <h3 class="text-center text-danger kt-font-bold">
+      Get Quotes from similar product suppliers for
+    </h3>
+  </div>
+  <kt-portlet-body>
+    <div class="mat-table__wrapper">
+      <mat-table #table [dataSource]="dataSource" class="table table-striped">
+        <ng-container matColumnDef="id">
+          <mat-header-cell *matHeaderCellDef> # </mat-header-cell>
+          <mat-cell *matCellDef="let element; let i = index">
+            {{ i + 1 }}
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="name">
+          <mat-header-cell *matHeaderCellDef>Product Name</mat-header-cell>
+          <mat-cell *matCellDef="let element">
+            {{ element.productName }}
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="checkbox">
+          <mat-header-cell *matHeaderCellDef>
+            <mat-checkbox
+              (change)="$event ? masterToggle() : null"
+              [checked]="selection.hasValue() && isAllSelected()"
+              [indeterminate]="selection.hasValue() && !isAllSelected()"
+            >
+            </mat-checkbox>
+          </mat-header-cell>
+          <mat-cell *matCellDef="let element; let i = index">
+            <mat-checkbox
+              (click)="$event.stopPropagation()"
+              [checked]="selection.isSelected(element)"
+              (change)="supplerMembers(element, $event, i)"
+            ></mat-checkbox>
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="action">
+          <mat-header-cell *matHeaderCellDef class="action-cell">
+            Action
+          </mat-header-cell>
+          <mat-cell
+            *matCellDef="let element"
+            (click)="selctedUser(element, i)"
+            class="action-cell"
+          >
+            <button class="btn btn-label-primary btn-sm">Select</button>
+          </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row
+          *matRowDef="let row; columns: displayedColumns; let i = index"
+          [ngClass]="row.isActive == 0 ? 'disabled-row' : ''"
+          (change)="selctedUser(element, i)"
+        >
+        </mat-row>
+      </mat-table>
+
+      <!-- <div class="mat-table__message" *ngIf="!dataSource.hasData">
+        No Record Found
+      </div> -->
+    </div>
+    <!-- <div class="mat-table__bottom">
+      <mat-spinner *ngIf="loading" [diameter]="20">
+      </mat-spinner>
+      <mat-paginator [pageSize]="10" [pageSizeOptions]="[10, 20, 50]" (page)="pageChangeEvent()" length="1000"
+        [showFirstLastButtons]="true">
+      </mat-paginator>
+    </div> -->
+  </kt-portlet-body>
+  <kt-portlet-footer>
+    <div class="m-2">
+      <div class="float-right m-2">
+        <button class="btn btn-default mr-2" (click)="dialogRef.close()">
+          Cancel
+        </button>
+        <button
+          class="btn btn-primary"
+          [ngClass]="{
+            'kt-spinner kt-spinner--right kt-spinner--md kt-spinner--light': loading
+          }"
+          (click)="submit()"
+        >
+          Submit
+        </button>
+      </div>
+    </div>
+  </kt-portlet-footer>
+</kt-portlet>

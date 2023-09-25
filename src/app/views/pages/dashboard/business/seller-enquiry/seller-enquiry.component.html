@@ -1,0 +1,340 @@
+<div class="row">
+  <!-- Begin: Enquiry-list -->
+  <div class="col-xl-4">
+    <div class="kt-portlet kt-portlet--last">
+      <div class="kt-portlet__head">
+        <div
+          class="kt-portlet__head-label"
+          style="display: block; margin-top: 10px"
+        >
+          <h3
+            class="kt-portlet__head-title"
+            [ngClass]="{
+              'kt-spinner kt-spinner--right kt-spinner--md kt-spinner--primary':
+                loadingCredits
+            }"
+          >
+            <i class="flaticon-chat-1"></i>&nbsp;My Buyers
+          </h3>
+          <div>
+            <span class="kt-font-brand remaining-credits"
+              >Remaining Credits</span
+            >&nbsp;<span class="kt-badge kt-badge--danger">{{
+              leftQuotes
+            }}</span>
+          </div>
+        </div>
+        <div class="kt-portlet__head-toolbar">
+          <button
+            class="btn btn-label-primary btn-sm btn-bold"
+            (click)="addCredits(false)"
+          >
+            Buy Credits
+          </button>
+        </div>
+      </div>
+      <mat-spinner
+        style="margin: auto"
+        [diameter]="25"
+        *ngIf="loadingEnquiries"
+      >
+      </mat-spinner>
+
+      <kt-portlet-body style="height: 525px; overflow: auto; padding: 0px">
+        <div class="kt-notification-v2" *ngIf="enquiries && enquiries.length">
+          <div
+            class="kt-notification-v2__item"
+            [ngClass]="selectItem == i ? 'list-item-color' : ''"
+            (click)="initiateChat(item, i)"
+            id="enquiry-item-{{ item.serialNumber }}"
+            *ngFor="let item of enquiries; let i = index"
+          >
+            <table
+              [id]="item.enquiryId"
+              width="100%"
+              cellpadding="0"
+              cellspacing="0"
+              class="set-cursor"
+              (click)="goToChat('chat')"
+            >
+              <tr>
+                <td>
+                  <div class="kt-notification-v2__item-wrapper">
+                    <div class="kt-notification-v2__item-title kt-font-bold">
+                      {{ getCompanyName(item) }}{{ item.purchaserName }}
+                    </div>
+                    <div>
+                      {{ item.purchaserState }} - {{ item.purchaserPincode }}
+                    </div>
+                  </div>
+                  <div class="icon-right">
+                    <span>
+                      <i
+                        *ngIf="item.isQuoteDeducted == 'True'"
+                        class="icon-xl fas fa-lock-open"
+                      ></i>
+                    </span>
+                    <span *ngIf="item.isQuoteDeducted == 'False'">
+                      <i class="icon-xl fas fa-lock"></i>
+                    </span>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="row">
+                    <div class="col-md-3">
+                      <span class="kt-media">
+                        <img [src]="item.productImages[0]" alt="image" />
+                      </span>
+                    </div>
+                    <div class="col-md-9">
+                      <div class="kt-notification-v2__item-wrapper">
+                        <div
+                          *ngIf="item.hsnsacCode"
+                          class="kt-notification-v2__item-title"
+                        >
+                          HSN: {{ item.hsnsacCode }}
+                        </div>
+                        <div
+                          *ngIf="item.productName"
+                          class="kt-notification-v2__item-title"
+                        >
+                          {{ item.productName }}
+                        </div>
+
+                        <div
+                          *ngIf="!item.productName"
+                          class="kt-notification-v2__item-title"
+                        >
+                          {{ item.searchName }}
+                        </div>
+
+                        <div class="product-quantity">
+                          <strong>Quantity:</strong>
+                          {{ item.quantity }} &nbsp;<strong>Unit:</strong>
+                          {{ item.quantityTypeName }}
+                        </div>
+                      </div>
+                      <span
+                        class="
+                          btn btn-label-primary btn-pill btn-sm
+                          enquiry-createdDate
+                        "
+                        >{{ item.createdDate | date: "medium" }}</span
+                      >
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </kt-portlet-body>
+    </div>
+  </div>
+  <!-- End: Enquiry-list -->
+
+  <!-- Begin: Enquiry-Chat Window -->
+  <div class="col-xl-8">
+    <div class="kt-portlet__head-toolbar" *ngIf="loadingMessages">
+      <mat-spinner [diameter]="20"></mat-spinner> Loading messages...
+    </div>
+
+    <div
+      *ngIf="noCreditAvailableToRespondEnquiry"
+      class="kt-portlet kt-callout kt-callout--warning kt-callout--diagonal-bg"
+    >
+      <div class="kt-portlet__body">
+        <div class="kt-callout__body">
+          <div class="kt-callout__content">
+            <h3 class="kt-callout__title">No Credits</h3>
+            <p class="kt-callout__desc">
+              Buy leads to response to this Enquiry
+            </p>
+          </div>
+          <div class="kt-callout__action">
+            <a
+              (click)="addCredits(true)"
+              class="btn btn-custom btn-bold btn-upper btn-font-sm btn-warning"
+              >Buy Leads</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="kt-chat" *ngIf="!noCreditAvailableToRespondEnquiry">
+      <div class="kt-portlet kt-portlet--head-lg kt-portlet--last">
+        <div class="kt-portlet__head title-head">
+          <div class="kt-chat__head mt-2">
+            <div class="kt-chat__center" *ngIf="selectedEnquiry != null">
+              Company Name: {{ selectedEnquiry.sellerCompanyName }} /
+              {{ selectedEnquiry.purchaserName }}
+            </div>
+          </div>
+          <div class="kt-chat__head" *ngIf="selectedEnquiry != null">
+            <span class="kt-chat__center">
+              Buyer Email:
+              {{ selectedEnquiry.email ? selectedEnquiry.email : "" }} / Phone
+              No:
+              {{
+                selectedEnquiry.phoneNumber ? selectedEnquiry.phoneNumber : ""
+              }}
+            </span>
+          </div>
+        </div>
+
+        <!--  kt-chat__message--right -->
+        <div class="kt-portlet__body">
+          <div id="chatMessageContainer" class="kt-scroll kt-scroll--pull ps">
+            <div *ngIf="selectedEnquiry != null" class="kt-chat__messages">
+              <div
+                class="kt-chat__message"
+                *ngIf="
+                  selectedEnquiry != null &&
+                  selectedEnquiry.purchaserQuery != ''
+                "
+              >
+                <div class="kt-chat__user">
+                  <span
+                    class="
+                      kt-media kt-media--sm kt-media--circle kt-media--success
+                    "
+                  >
+                    <span [charname]="selectedEnquiry.purchaserName"></span>
+                  </span>
+                  <span class="kt-chat__username">{{
+                    selectedEnquiry.purchaserName
+                  }}</span>
+                  <!-- <span class="kt-chat__datetime">2 Hours</span> -->
+                </div>
+                <div class="kt-chat__text kt-bg-light-success">
+                  {{ selectedEnquiry.purchaserQuery }}
+                  <div
+                    *ngIf="
+                      selectedEnquiry.imageReference != null &&
+                      selectedEnquiry.imageReference != ''
+                    "
+                    class="kt-chat-attachment"
+                  >
+                    <a [href]="getUrl(selectedEnquiry.imageReference)">
+                      <i class="flaticon-download"></i> Click to download
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div
+                [class]="getMessageClass(message)"
+                *ngFor="let message of messages"
+              >
+                <div class="kt-chat__user">
+                  <span
+                    class="
+                      kt-media kt-media--sm kt-media--circle kt-media--success
+                    "
+                  >
+                    <span [charname]="message.name"></span>
+                  </span>
+                  <span class="kt-chat__username">{{ message.name }}</span>
+                  <!-- <span class="kt-chat__datetime">2 Hours</span> -->
+                </div>
+                <div class="kt-chat__text kt-bg-light-success">
+                  {{ message.message }}
+                  <div *ngIf="message.documentName" class="kt-chat-attachment">
+                    <a [href]="message.documentName">
+                      <i class="flaticon-download"></i> Click to download
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="ps__rail-x" style="left: 0px; bottom: 0px">
+              <div
+                class="ps__thumb-x"
+                tabindex="0"
+                style="left: 0px; width: 0px"
+              ></div>
+            </div>
+            <div class="ps__rail-y" style="top: 0px; right: -2px">
+              <div
+                class="ps__thumb-y"
+                tabindex="0"
+                style="top: 0px; height: 0px"
+              ></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="kt-portlet__foot">
+          <div class="kt-chat__input">
+            <div class="kt-chat__editor">
+              <textarea
+                [(ngModel)]="chat.message"
+                style="height: 50px"
+                placeholder="Type here..."
+              ></textarea>
+            </div>
+            <div class="kt-chat__toolbar">
+              <div class="kt_chat__tools">
+                <label
+                  class="input-group-text"
+                  for="attachFile"
+                  style="margin-top: 0px"
+                  *ngIf="selectedEnquiry != null"
+                  ><i class="flaticon-attachment"></i
+                ></label>
+                <input
+                  style="width: 0px; height: 0px"
+                  type="file"
+                  class="form-control-file"
+                  id="attachFile"
+                  #file
+                  name="myfile"
+                  multiple
+                  (change)="detectFiles($event)"
+                />
+              </div>
+              <div class="kt_chat__actions" style="display: flex !important">
+                <div *ngIf="selectedEnquiry != null">
+                  <button
+                    type="button"
+                    (click)="createProformaInvoice()"
+                    class="btn btn-outline-secondary btn-text"
+                  >
+                    Create Quotation
+                  </button>
+                </div>
+                <button
+                  *ngIf="!sendingMessage"
+                  type="button"
+                  class="
+                    btn btn-brand btn-md btn-upper btn-bold
+                    kt-chat__reply
+                    ml-3
+                  "
+                  (click)="reply()"
+                  [disabled]="selectedEnquiry == null"
+                >
+                  reply
+                </button>
+                <mat-spinner
+                  *ngIf="sendingMessage"
+                  [diameter]="20"
+                ></mat-spinner>
+              </div>
+            </div>
+            <small *ngIf="chat.attachment.name && chat.attachment.name.length"
+              >Attached:
+              <span class="badge badge-warning">{{
+                chat.attachment.name
+              }}</span>
+              - {{ chat.attachment.size }}<br
+            /></small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End: Enquiry-Chat Window -->
+</div>
